@@ -55,12 +55,13 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);//012346
+        setContentView(R.layout.activity_main);
+        //有点东西
 
         text = (TextView)findViewById(R.id.text);
         text1 = (TextView)findViewById(R.id.text1);
         mTokenText = (TextView)findViewById(R.id.text2);
-//        text2 =
+//        text2 = 没地方麻烦麻烦
 
         text.setOnClickListener(new View.OnClickListener() {
             @Override
