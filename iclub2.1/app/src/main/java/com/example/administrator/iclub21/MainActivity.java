@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
         text = (TextView)findViewById(R.id.text);
         text1 = (TextView)findViewById(R.id.text1);
         mTokenText = (TextView)findViewById(R.id.text2);
-//        text2 =
+//        text2 = Ã»µØ·½Âé·³Âé·³
 
         text.setOnClickListener(new View.OnClickListener() {
             @Override
