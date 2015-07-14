@@ -63,6 +63,10 @@ public class MainActivity extends ActionBarActivity {
         mTokenText = (TextView)findViewById(R.id.text2);
 //        text2 = 没地方麻烦麻烦LLLLLOOOOOOOO
 
+//        text2 = 没地方麻烦麻烦LLLLLSSSSSSSSS
+        ///asdfasdfasdfasdghegheg
+
+
         text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
