@@ -65,7 +65,9 @@ public class MainActivity extends ActionBarActivity {
 
 //        text2 = 没地方麻烦麻烦LLLLLSSSSSSSSS
         ///asdfasdfasdfasdghegheg
-        ///啊束带结发是
+
+        ///�������ᷢsj
+
 
 
         text.setOnClickListener(new View.OnClickListener() {
