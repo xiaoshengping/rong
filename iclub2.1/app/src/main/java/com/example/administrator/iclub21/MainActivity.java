@@ -66,8 +66,13 @@ public class MainActivity extends ActionBarActivity {
 //        text2 = 没地方麻烦麻烦LLLLLSSSSSSSSS
         ///asdfasdfasdfasdghegheg
 
+
         ///�������ᷢsj
         ////阿斯顿发送到
+
+
+        ///�������ᷢsj
+           ///jj���ǵ͹�
 
 
 
