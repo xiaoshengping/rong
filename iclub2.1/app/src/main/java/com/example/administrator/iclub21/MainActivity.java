@@ -67,7 +67,7 @@ public class MainActivity extends ActionBarActivity {
         ///asdfasdfasdfasdghegheg
 
         ///啊束带结发sj
-
+           ///jj还是低估
 
 
         text.setOnClickListener(new View.OnClickListener() {
