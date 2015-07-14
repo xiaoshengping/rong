@@ -41,31 +41,31 @@ public class MainActivity extends ActionBarActivity {
 
     private static final String TAG = "weibosdk";
 
-    /** ÏÔÊ¾ÈÏÖ¤ºóµÄĞÅÏ¢£¬Èç AccessToken */
+    /** æ˜¾ç¤ºè®¤è¯åçš„ä¿¡æ¯ï¼Œå¦‚ AccessToken */
     private TextView mTokenText;
 
     private AuthInfo mAuthInfo;
 
-    /** ·â×°ÁË "access_token"£¬"expires_in"£¬"refresh_token"£¬²¢Ìá¹©ÁËËûÃÇµÄ¹ÜÀí¹¦ÄÜ  */
+    /** å°è£…äº† "access_token"ï¼Œ"expires_in"ï¼Œ"refresh_token"ï¼Œå¹¶æä¾›äº†ä»–ä»¬çš„ç®¡ç†åŠŸèƒ½  */
     private Oauth2AccessToken mAccessToken;
 
-    /** ×¢Òâ£ºSsoHandler ½öµ± SDK Ö§³Ö SSO Ê±ÓĞĞ§ */
+    /** æ³¨æ„ï¼šSsoHandler ä»…å½“ SDK æ”¯æŒ SSO æ—¶æœ‰æ•ˆ */
     private SsoHandler mSsoHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //ÓĞµã¶«Î÷
+        //æœ‰ç‚¹ä¸œè¥¿
 
         text = (TextView)findViewById(R.id.text);
         text1 = (TextView)findViewById(R.id.text1);
         mTokenText = (TextView)findViewById(R.id.text2);
-//        text2 = Ã»µØ·½Âé·³Âé·³LLLLLOOOOOOOOjdhgs
+//        text2 = æ²¡åœ°æ–¹éº»çƒ¦éº»çƒ¦LLLLLOOOOOOOOjdhgs
 
-//        text2 = Ã»µØ·½Âé·³Âé·³LLLLLSSSSSSSSS
+//        text2 = æ²¡åœ°æ–¹éº»çƒ¦éº»çƒ¦LLLLLSSSSSSSSS
         ///asdfasdfasdfasdghegheg
-        ///°¡Êø´ø½á·¢
+        ///å•ŠæŸå¸¦ç»“å‘æ˜¯
 
 
         text.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        //Î¢²©µÇÂ½
+        //å¾®åšç™»é™†
         mTokenText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,14 +96,14 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    //µÚÈı·½Î¢²©µÇÂ¼
+    //ç¬¬ä¸‰æ–¹å¾®åšç™»å½•
     private void weibodenglu(){
-        // »ñÈ¡ Token View£¬²¢ÈÃÌáÊ¾ View µÄÄÚÈİ¿É¹ö¶¯£¨Ğ¡ÆÁÄ»¿ÉÄÜÏÔÊ¾²»È«£©
+        // è·å– Token Viewï¼Œå¹¶è®©æç¤º View çš„å†…å®¹å¯æ»šåŠ¨ï¼ˆå°å±å¹•å¯èƒ½æ˜¾ç¤ºä¸å…¨ï¼‰
 
 //        TextView hintView = (TextView) findViewById(com.sina.weibo.sdk.demo.R.id.obtain_token_hint);
 //        hintView.setMovementMethod(new ScrollingMovementMethod());
 
-        // ¿ìËÙÊÚÈ¨Ê±£¬Çë²»Òª´«Èë SCOPE£¬·ñÔò¿ÉÄÜ»áÊÚÈ¨²»³É¹¦
+        // å¿«é€Ÿæˆæƒæ—¶ï¼Œè¯·ä¸è¦ä¼ å…¥ SCOPEï¼Œå¦åˆ™å¯èƒ½ä¼šæˆæƒä¸æˆåŠŸ
         mAuthInfo = new AuthInfo(MainActivity.this, Constantser.APP_KEY, Constantser.REDIRECT_URL, Constantser.SCOPE);
         mSsoHandler = new SsoHandler(MainActivity.this, mAuthInfo);
 
@@ -115,7 +115,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
     /**
-     * µ± SSO ÊÚÈ¨ Activity ÍË³öÊ±£¬¸Ãº¯Êı±»µ÷ÓÃ¡£
+     * å½“ SSO æˆæƒ Activity é€€å‡ºæ—¶ï¼Œè¯¥å‡½æ•°è¢«è°ƒç”¨ã€‚
      *
      * @see {@link Activity#onActivityResult}
      */
@@ -123,8 +123,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // SSO ÊÚÈ¨»Øµ÷
-        // ÖØÒª£º·¢Æğ SSO µÇÂ½µÄ Activity ±ØĞëÖØĞ´ onActivityResults
+        // SSO æˆæƒå›è°ƒ
+        // é‡è¦ï¼šå‘èµ· SSO ç™»é™†çš„ Activity å¿…é¡»é‡å†™ onActivityResults
         if (mSsoHandler != null) {
             mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
@@ -132,32 +132,32 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /**
-     * Î¢²©ÈÏÖ¤ÊÚÈ¨»Øµ÷Àà¡£
-     * 1. SSO ÊÚÈ¨Ê±£¬ĞèÒªÔÚ {@link #onActivityResult} ÖĞµ÷ÓÃ {@link SsoHandler#authorizeCallBack} ºó£¬
-     *    ¸Ã»Øµ÷²Å»á±»Ö´ĞĞ¡£
-     * 2. ·Ç SSO ÊÚÈ¨Ê±£¬µ±ÊÚÈ¨½áÊøºó£¬¸Ã»Øµ÷¾Í»á±»Ö´ĞĞ¡£
-     * µ±ÊÚÈ¨³É¹¦ºó£¬Çë±£´æ¸Ã access_token¡¢expires_in¡¢uid µÈĞÅÏ¢µ½ SharedPreferences ÖĞ¡£
+     * å¾®åšè®¤è¯æˆæƒå›è°ƒç±»ã€‚
+     * 1. SSO æˆæƒæ—¶ï¼Œéœ€è¦åœ¨ {@link #onActivityResult} ä¸­è°ƒç”¨ {@link SsoHandler#authorizeCallBack} åï¼Œ
+     *    è¯¥å›è°ƒæ‰ä¼šè¢«æ‰§è¡Œã€‚
+     * 2. é SSO æˆæƒæ—¶ï¼Œå½“æˆæƒç»“æŸåï¼Œè¯¥å›è°ƒå°±ä¼šè¢«æ‰§è¡Œã€‚
+     * å½“æˆæƒæˆåŠŸåï¼Œè¯·ä¿å­˜è¯¥ access_tokenã€expires_inã€uid ç­‰ä¿¡æ¯åˆ° SharedPreferences ä¸­ã€‚
      */
     class AuthListener implements WeiboAuthListener {
 
         @Override
         public void onComplete(Bundle values) {
-            // ´Ó Bundle ÖĞ½âÎö Token
+            // ä» Bundle ä¸­è§£æ Token
             mAccessToken = Oauth2AccessToken.parseAccessToken(values);
-            //´ÓÕâÀï»ñÈ¡ÓÃ»§ÊäÈëµÄ µç»°ºÅÂëĞÅÏ¢
+            //ä»è¿™é‡Œè·å–ç”¨æˆ·è¾“å…¥çš„ ç”µè¯å·ç ä¿¡æ¯
             String  phoneNum =  mAccessToken.getPhoneNum();
             if (mAccessToken.isSessionValid()) {
-                // ÏÔÊ¾ Token
+                // æ˜¾ç¤º Token
                 updateTokenView(false);
 
-                // ±£´æ Token µ½ SharedPreferences
+                // ä¿å­˜ Token åˆ° SharedPreferences
                 AccessTokenKeeper.writeAccessToken(MainActivity.this, mAccessToken);
                 Toast.makeText(MainActivity.this, R.string.weibosdk_demo_toast_auth_success, Toast.LENGTH_SHORT).show();
             } else {
-                // ÒÔÏÂ¼¸ÖÖÇé¿ö£¬Äú»áÊÕµ½ Code£º
-                // 1. µ±ÄúÎ´ÔÚÆ½Ì¨ÉÏ×¢²áµÄÓ¦ÓÃ³ÌĞòµÄ°üÃûÓëÇ©ÃûÊ±£»
-                // 2. µ±Äú×¢²áµÄÓ¦ÓÃ³ÌĞò°üÃûÓëÇ©Ãû²»ÕıÈ·Ê±£»
-                // 3. µ±ÄúÔÚÆ½Ì¨ÉÏ×¢²áµÄ°üÃûºÍÇ©ÃûÓëÄúµ±Ç°²âÊÔµÄÓ¦ÓÃµÄ°üÃûºÍÇ©Ãû²»Æ¥ÅäÊ±¡£
+                // ä»¥ä¸‹å‡ ç§æƒ…å†µï¼Œæ‚¨ä¼šæ”¶åˆ° Codeï¼š
+                // 1. å½“æ‚¨æœªåœ¨å¹³å°ä¸Šæ³¨å†Œçš„åº”ç”¨ç¨‹åºçš„åŒ…åä¸ç­¾åæ—¶ï¼›
+                // 2. å½“æ‚¨æ³¨å†Œçš„åº”ç”¨ç¨‹åºåŒ…åä¸ç­¾åä¸æ­£ç¡®æ—¶ï¼›
+                // 3. å½“æ‚¨åœ¨å¹³å°ä¸Šæ³¨å†Œçš„åŒ…åå’Œç­¾åä¸æ‚¨å½“å‰æµ‹è¯•çš„åº”ç”¨çš„åŒ…åå’Œç­¾åä¸åŒ¹é…æ—¶ã€‚
                 String code = values.getString("code");
                 String message = getString(R.string.weibosdk_demo_toast_auth_failed);
                 if (!TextUtils.isEmpty(code)) {
@@ -179,9 +179,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /**
-     * ÏÔÊ¾µ±Ç° Token ĞÅÏ¢¡£
+     * æ˜¾ç¤ºå½“å‰ Token ä¿¡æ¯ã€‚
      *
-     * @param hasExisted ÅäÖÃÎÄ¼şÖĞÊÇ·ñÒÑ´æÔÚ token ĞÅÏ¢²¢ÇÒºÏ·¨
+     * @param hasExisted é…ç½®æ–‡ä»¶ä¸­æ˜¯å¦å·²å­˜åœ¨ token ä¿¡æ¯å¹¶ä¸”åˆæ³•
      */
     private void updateTokenView(boolean hasExisted) {
         String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(
@@ -198,7 +198,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    //qqµÇÂ¼
+    //qqç™»å½•
     private void denglu(String token){
         HttpUtils httpUtils = new HttpUtils();
         httpUtils.send(HttpRequest.HttpMethod.GET, token, new RequestCallBack<String>() {
@@ -234,7 +234,7 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    //µÚÈı·½qqµÇÂ¼
+    //ç¬¬ä¸‰æ–¹qqç™»å½•
     private void doLogin() {
         IUiListener listener = new BaseUiListener() {
             @Override
@@ -259,7 +259,7 @@ public class MainActivity extends ActionBarActivity {
     private class BaseUiListener implements IUiListener {
         @Override
         public void onComplete(Object response) {
-            //V2.0°æ±¾£¬²ÎÊıÀàĞÍÓÉJSONObject ¸Ä³ÉÁËObject,¾ßÌåÀàĞÍ²Î¿¼apiÎÄµµ
+            //V2.0ç‰ˆæœ¬ï¼Œå‚æ•°ç±»å‹ç”±JSONObject æ”¹æˆäº†Object,å…·ä½“ç±»å‹å‚è€ƒapiæ–‡æ¡£
 //            mBaseMessageText.setText("onComplete:");
             doComplete((JSONObject)response);
         }
