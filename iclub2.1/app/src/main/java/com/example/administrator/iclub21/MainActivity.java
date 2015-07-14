@@ -89,7 +89,7 @@ public class MainActivity extends ActionBarActivity {
 
 
     }
-         ///  就是觉得好的话
+
     //第三方微博登录
     private void weibodenglu(){
         // 获取 Token View，并让提示 View 的内容可滚动（小屏幕可能显示不全）
