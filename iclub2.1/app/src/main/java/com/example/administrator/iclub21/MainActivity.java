@@ -55,7 +55,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);///sdfasdfasdfsdf
+        setContentView(R.layout.activity_main);//012346
 
         text = (TextView)findViewById(R.id.text);
         text1 = (TextView)findViewById(R.id.text1);
