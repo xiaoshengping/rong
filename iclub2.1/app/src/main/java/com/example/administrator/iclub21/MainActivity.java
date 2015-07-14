@@ -55,7 +55,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);///sdfasdfasdfsdf
+        setContentView(R.layout.activity_main);
 
         text = (TextView)findViewById(R.id.text);
         text1 = (TextView)findViewById(R.id.text1);
@@ -89,7 +89,7 @@ public class MainActivity extends ActionBarActivity {
 
 
     }
-
+         ///  就是觉得好的话
     //第三方微博登录
     private void weibodenglu(){
         // 获取 Token View，并让提示 View 的内容可滚动（小屏幕可能显示不全）
