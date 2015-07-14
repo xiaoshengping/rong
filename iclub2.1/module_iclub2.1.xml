@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_iclub2.1" default="compile.module.iclub2.1">
+  <dirname property="module.iclub2.1.basedir" file="${ant.file.module_iclub2.1}"/>
+  
+  <property name="module.jdk.home.iclub2.1" value="${jdk.home.android_api_22_platform}"/>
+  <property name="module.jdk.bin.iclub2.1" value="${jdk.bin.android_api_22_platform}"/>
+  <property name="module.jdk.classpath.iclub2.1" value="jdk.classpath.android_api_22_platform"/>
+  
+  <property name="compiler.args.iclub2.1" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="iclub2.1.output.dir" value="${module.iclub2.1.basedir}/build"/>
+  <property name="iclub2.1.testoutput.dir" value="${module.iclub2.1.basedir}/build"/>
+  
+  <path id="iclub2.1.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="iclub2.1.module.production.classpath">
+    <path refid="${module.jdk.classpath.iclub2.1}"/>
+  </path>
+  
+  <path id="iclub2.1.runtime.production.module.classpath">
+    <pathelement location="${iclub2.1.output.dir}"/>
+  </path>
+  
+  <path id="iclub2.1.module.classpath">
+    <path refid="${module.jdk.classpath.iclub2.1}"/>
+    <pathelement location="${iclub2.1.output.dir}"/>
+  </path>
+  
+  <path id="iclub2.1.runtime.module.classpath">
+    <pathelement location="${iclub2.1.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.iclub2.1">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.iclub2.1">
+    <patternset refid="excluded.from.module.iclub2.1"/>
+  </patternset>
+  
+  <path id="iclub2.1.module.sourcepath">
+    <dirset dir="${module.iclub2.1.basedir}">
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.iclub2.1" depends="compile.module.iclub2.1.production,compile.module.iclub2.1.tests" description="Compile module iclub2.1"/>
+  
+  <target name="compile.module.iclub2.1.production" depends="register.custom.compilers" description="Compile module iclub2.1; production classes">
+    <mkdir dir="${iclub2.1.output.dir}"/>
+    <javac2 destdir="${iclub2.1.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.iclub2.1}/javac">
+      <compilerarg line="${compiler.args.iclub2.1}"/>
+      <bootclasspath refid="iclub2.1.module.bootclasspath"/>
+      <classpath refid="iclub2.1.module.production.classpath"/>
+      <src refid="iclub2.1.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.iclub2.1"/>
+    </javac2>
+    
+    <copy todir="${iclub2.1.output.dir}">
+      <fileset dir="${module.iclub2.1.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.iclub2.1.tests" depends="register.custom.compilers,compile.module.iclub2.1.production" description="compile module iclub2.1; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.iclub2.1" description="cleanup module">
+    <delete dir="${iclub2.1.output.dir}"/>
+    <delete dir="${iclub2.1.testoutput.dir}"/>
+  </target>
+</project>

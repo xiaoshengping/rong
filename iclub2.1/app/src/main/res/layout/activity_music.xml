@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent" android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:background="#90000000"
+    android:gravity="center"
+    android:id="@+id/music_back_ll"
+    android:padding="20dp">
+
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="歌曲"
+            android:id="@+id/tips"
+            android:textSize="15sp"
+            android:padding="10sp"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/ic_launcher"/>
+
+
+
+        <!--<LinearLayout android:orientation="horizontal"
+            android:layout_gravity="center_horizontal" android:layout_marginTop="4.0dip"
+            android:layout_height="wrap_content" android:layout_width="wrap_content">
+            <Button android:layout_width="80dip"
+                android:layout_height="wrap_content" android:id="@+id/btnPlayUrl"
+                android:text="2"></Button>
+            <Button android:layout_height="wrap_content" android:id="@+id/btnPause"
+                android:text="3" android:layout_width="80dip"></Button>
+            <Button android:layout_height="wrap_content"
+                android:layout_width="80dip" android:text="4"
+                android:id="@+id/btnStop"></Button>
+            <Button android:layout_height="wrap_content"
+                android:layout_width="80dip" android:text="5"
+                android:id="@+id/btnReplay"></Button>
+        </LinearLayout>-->
+
+        <LinearLayout android:orientation="horizontal"
+            android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip">
+            <SeekBar android:paddingRight="10dip" android:layout_gravity="center_vertical"
+                android:paddingLeft="10dip" android:layout_weight="1.0"
+                android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/skbProgress" android:max="100"></SeekBar>
+        </LinearLayout>
+</LinearLayout>

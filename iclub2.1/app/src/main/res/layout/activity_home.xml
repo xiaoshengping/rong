@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.iclub21.util.HomeActivity">
+
+    <RadioGroup
+        android:id="@+id/iclub_home_rg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#242424"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        >
+        <RadioButton
+            android:id="@+id/home_artist_rb"
+
+            android:text="艺人"
+            android:layout_weight="1"
+            android:textSize="@dimen/textSize12"
+
+            android:checked="true"
+            android:textColor="@color/home_color_seletor"
+
+            android:drawableTop="@drawable/home_artist_selector"
+            style="@style/paren_radiogrud"
+            />
+        <RadioButton
+            android:button="@null"
+            android:text="演艺人才"
+            android:layout_weight="1"
+            android:textSize="@dimen/textSize12"
+            android:gravity="center"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/home_talents_selector"
+            style="@style/paren_radiogrud"
+
+            />
+        <RadioButton
+            android:button="@null"
+            android:text="娱乐招聘"
+            android:layout_weight="1"
+            android:textSize="@dimen/textSize12"
+            android:gravity="center"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/home_recruitment_selector"
+            style="@style/paren_radiogrud"
+
+            />
+        <RadioButton
+            android:button="@null"
+            android:text="我的"
+            android:gravity="center"
+            android:textSize="@dimen/textSize12"
+            android:layout_weight="1"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/home_mine_selector"
+            style="@style/paren_radiogrud"
+
+            />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/iclub_home_rg"
+        android:layout_alignParentTop="true"
+        android:id="@+id/home_layout"></LinearLayout>
+
+</RelativeLayout>

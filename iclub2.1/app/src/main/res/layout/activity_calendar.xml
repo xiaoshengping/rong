@@ -1,0 +1,259 @@
+<RelativeLayout 
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <!--<com.example.view.MyView-->
+        <!--xmlns:my="http://schemas.android.com/apk/res/com.example.view.MyView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    
+    
+    <LinearLayout   
+    android:layout_width="match_parent"  
+    android:layout_height="match_parent"  
+    android:background="@color/whiter"
+    android:orientation="vertical" >  
+  
+    <RelativeLayout  
+        android:layout_width="match_parent"  
+        android:layout_height="50dp"  
+        android:background="#00f6f1ea"
+         >
+
+        <LinearLayout
+            android:id="@+id/btnPreMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="＜"
+            android:textSize="20sp"
+            android:scaleY="1.6"
+            android:paddingBottom="2dp"
+            android:textColor="#B5B8BB"
+            android:background="#00ffffff"/>
+        <TextView
+
+            android:layout_width="wrap_content"  
+            android:layout_height="wrap_content"
+            android:text="上个月"
+            android:textSize="18sp"
+            android:textColor="#B5B8BB"
+            android:background="#00ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnNextMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical">
+
+  
+        <TextView
+
+            android:layout_width="wrap_content"  
+            android:layout_height="wrap_content"  
+            android:layout_centerVertical="true"
+            android:text="下个月"
+            android:textSize="18sp"
+            android:textColor="#B5B8BB"
+            android:layout_marginRight="0dp"
+            android:layout_alignParentRight="true"
+            android:background="#00ffffff" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="＞"
+                android:textSize="20sp"
+                android:scaleY="1.6"
+                android:paddingBottom="1dp"
+                android:textColor="#B5B8BB"
+                android:background="#00ffffff"/>
+        </LinearLayout>
+  
+        <TextView  
+            android:id="@+id/tvCurrentMonth"  
+            android:layout_width="wrap_content"  
+            android:layout_height="wrap_content"  
+            android:layout_centerInParent="true"  
+            android:layout_centerVertical="true"  
+            android:text="2015年11月"
+            android:textColor="#626466"
+            android:textSize="20sp" />
+  
+
+    </RelativeLayout>  
+  
+    <LinearLayout  
+        android:layout_width="match_parent"  
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical"
+        android:background="@drawable/week_back_shape"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="0dp"
+        android:paddingLeft="0dp"
+        android:layout_marginRight="-2dp"
+        android:layout_marginLeft="-2dp">
+  
+        <TableLayout  
+            android:layout_width="match_parent"  
+            android:layout_height="20dip"  
+            android:layout_marginBottom="0dip"
+            android:layout_marginTop="0dip"
+            >
+  
+            <TableRow>  
+  
+                <TextView  
+                    style="@style/dateStyle"  
+                    android:text="@string/sunday"  
+                    android:textColor="@color/canlendar_text_color" />  
+  
+                <TextView  
+                    style="@style/dateStyle"  
+                    android:text="@string/monday"  
+                    android:textColor="@color/canlendar_text_color" />  
+                <TextView  
+                    style="@style/dateStyle"  
+                    android:text="@string/thesday"  
+                    android:textColor="@color/canlendar_text_color" />  
+  
+                <TextView  
+                    style="@style/dateStyle"  
+                    android:text="@string/wednesday"  
+                    android:textColor="@color/canlendar_text_color" />  
+  
+                <TextView  
+                    style="@style/dateStyle"  
+                    android:text="@string/thursday"  
+                    android:textColor="@color/canlendar_text_color" />  
+  
+                <TextView  
+                    style="@style/dateStyle"  
+                    android:text="@string/friday"  
+                    android:textColor="@color/canlendar_text_color" />  
+  
+                <TextView  
+                    style="@style/dateStyle"  
+                    android:text="@string/saturday"  
+                    android:textColor="@color/canlendar_text_color" />  
+            </TableRow>  
+        </TableLayout>  
+    </LinearLayout>  
+  
+    <LinearLayout  
+        android:layout_width="match_parent"  
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        >
+  
+        <android.support.v4.view.ViewPager  
+            android:id="@+id/vp_calendar"  
+            android:layout_width="match_parent"  
+            android:layout_height="200dp"
+            android:layout_gravity="center"  
+            android:background="#00000000" >
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击日历设置邀约状态"
+            android:textColor="#B3B5B9"
+            android:textSize="18sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="20dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="0dp"
+                    android:layout_gravity="center_vertical">
+                    <TextView
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/green_dot_shape"
+                        android:layout_marginBottom="0dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="绿色状态表示没空"
+                        android:textColor="#B3B5B9"
+                        android:textSize="18sp"
+                        android:layout_marginTop="3sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="0dp"
+                    android:layout_gravity="center_vertical">
+                    <TextView
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:background="@drawable/yellow_dot_shape"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="黄色状态为邀约日期"
+                        android:textColor="#B3B5B9"
+                        android:textSize="18sp"
+                        android:layout_marginTop="3sp"/>
+                </LinearLayout>
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textColor="#FFF0F0"
+            android:textSize="18sp"
+            android:background="@drawable/calendar_button_shape"
+            android:visibility="visible"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:onClick="offer"/>
+
+
+  
+</LinearLayout>  
+
+    <TextView 
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    
+    
+    
+</RelativeLayout>

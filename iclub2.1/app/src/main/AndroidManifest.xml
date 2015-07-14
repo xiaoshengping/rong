@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.administrator.iclub21" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 拍照权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!-- 读写sdk权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <!-- 分享 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <application
+        android:name=".http.MyAppliction"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".util.HomeActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name=".util.LoginActivity"
+            android:label="@string/title_activity_login" >
+        </activity>
+        <activity android:name=".util.RegisterActivity" />
+        <activity
+            android:name=".util.RoleActivity"
+            android:label="@string/title_activity_role" >
+        </activity>
+        <activity
+            android:name=".util.ResumeActivity"
+            android:label="@string/title_activity_resume" >
+        </activity>
+        <activity
+            android:name=".util.RoleTalentsActivity"
+            android:label="@string/title_activity_role_talents" >
+        </activity>
+        <activity
+            android:name=".util.PinnedSectionListActivity"
+            android:label="@string/title_activity_pinned_section_list" >
+        </activity>
+        <activity
+            android:name=".util.ResumeMessageActivity"
+            android:label="@string/title_activity_resume_message" >
+        </activity>
+        <activity
+            android:name=".util.AddResumeActivity"
+            android:label="@string/title_activity_add_resume" >
+        </activity>
+        <activity
+            android:name=".util.ResumeListParticularActivity"
+            android:label="@string/title_activity_resume_list_particular" >
+        </activity>
+        <activity
+            android:name=".util.InformationActivity"
+            android:label="@string/title_activity_information" >
+        </activity>
+        <activity
+            android:name=".util.AmendPswActivity"
+            android:label="@string/title_activity_amend_psw" >
+        </activity>
+        <activity
+            android:name=".util.AmendAboutActivity"
+            android:label="@string/title_activity_amend_about" >
+        </activity>
+        <activity
+            android:name=".util.AboutFunctionActivity"
+            android:label="@string/title_activity_about_function" >
+        </activity>
+        <activity
+            android:name=".util.MerchantJionActivity"
+            android:label="@string/title_activity_merchant_jion" >
+        </activity>
+        <activity
+            android:name=".util.MerchantActivity"
+            android:label="@string/title_activity_merchant" >
+        </activity>
+        <activity
+            android:name=".util.AddRecruitmentActivity"
+            android:label="@string/title_activity_add_recruitment" >
+        </activity>
+        <activity
+            android:name=".util.ExperienceWorkActivity"
+            android:label="@string/title_activity_experience_work" >
+        </activity>
+        <activity
+            android:name=".util.CompanyEditActivity"
+            android:label="@string/title_activity_company_edit" >
+        </activity>
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+            <intent-filter>
+                <data android:scheme="tencent100371282" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cn.sharesdk.demo.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".util.ShareActivity"
+            android:label="@string/title_activity_share" >
+        </activity>
+        <activity
+            android:name=".util.CompanyInviteMessageActivity"
+            android:label="@string/title_activity_company_invite_message" >
+        </activity>
+        <activity
+            android:name=".util.CooperationCommentActivity"
+            android:label="@string/title_activity_cooperation_comment" >
+        </activity>
+
+
+        <activity android:name="com.example.administrator.iclub21.util.SelectedCityOrPositionActivity"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity android:name="com.example.administrator.iclub21.bean.talent.SpaceImageDetailActivity"
+            android:theme="@android:style/Theme.Translucent"></activity>
+        <activity android:name="com.example.administrator.iclub21.bean.talent.PicturesshowMoreActivity"></activity>
+        <activity android:name="com.example.administrator.iclub21.bean.talent.MusicActivity"
+            android:theme="@android:style/Theme.Translucent"></activity>
+        <activity android:name="com.example.administrator.iclub21.bean.artist.ArtistConditionSelectActivity"
+            android:theme="@android:style/Theme.Translucent"></activity>
+        <activity android:name="com.example.administrator.iclub21.bean.artist.ArtistSeekActivity"></activity>
+        <activity android:name="com.example.administrator.iclub21.util.ArtistDetailActivity"></activity>
+        <activity android:name=".util.TalendDetailsActivity"></activity>
+        <activity android:name=".util.JobDetailsActivity"></activity>
+
+
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:noHistory="true"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent222222" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.example.administrator.iclub21.calendar.CalendarActivity"></activity>
+
+
+        <activity android:name="com.example.administrator.iclub21.util.ReputationActivity"></activity>
+
+
+    </application>
+
+</manifest>

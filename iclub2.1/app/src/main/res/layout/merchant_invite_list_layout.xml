@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/paren_layout_match_horgrivity">
+    <ImageView
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/talent_list_image"
+        android:src="@mipmap/ic_launcher"
+        style="@style/image_paren"
+        />
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        style="@style/paren_layout_match_vertirivity"
+        >
+        <LinearLayout
+            style="@style/paren_layout_width_horgrivity"
+            >
+            <TextView
+                android:id="@+id/talent_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize15"
+                android:text="name"
+                style="@style/textview_paren_width"
+                />
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/talent_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/talent_age_list"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize12"
+            android:text="age"
+            android:padding="2dp"
+            android:background="@mipmap/age_icon"
+            android:layout_marginTop="5dp"
+            android:layout_width="50dp"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        style="@style/paren_layout_match_vertirivity"
+        >
+        <TextView
+            android:id="@+id/talent_job"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize14"
+            android:text="zwei"
+            style="@style/textview_paren_width"
+            />
+        <TextView
+            android:id="@+id/talent_time"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize13"
+            android:text="city"
+            style="@style/textview_paren_width"/>
+
+
+    </LinearLayout>
+</LinearLayout>

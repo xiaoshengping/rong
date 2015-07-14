@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/searchbox_back_ll"
+        android:orientation="horizontal"
+        android:background="@mipmap/iculd_beijin_icon">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:gravity="center_vertical"
+            android:background="#40000000"
+            android:id="@+id/search_ll">
+            <EditText
+                android:id="@+id/search_import_et"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="搜索职位"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:drawableLeft="@mipmap/seek_icon"
+                android:gravity="center"
+                android:background="@drawable/artist_seek_ex_shape"
+                android:padding="9dp"
+                android:layout_marginRight="15dp"/>
+            <TextView
+                android:id="@+id/searchbox_seek_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消"
+                android:textSize="19sp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:textColor="#ffffff"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:padding="0dp"-->
+        <!--android:background="#00ffffff"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:id="@+id/search_ll">-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:background="@drawable/searchbox_shape"-->
+        <!--android:padding="2dp"-->
+        <!--android:gravity="center_vertical">-->
+        <!--<EditText-->
+            <!--android:id="@+id/search_import_et"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#00ffffff"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:hint="请输入"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:textColorHint="#80ABA6A6"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/eliminate_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:background="#00ffffff"-->
+            <!--android:gravity="center"-->
+            <!--android:text="×"-->
+            <!--android:textSize="20sp"-->
+            <!--android:paddingBottom="2dp"-->
+            <!--android:paddingLeft="5dp"-->
+            <!--android:paddingRight="5dp"-->
+            <!--android:textColor="#ffffff"/>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/seek_ib"-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:background="@mipmap/seek_icon"-->
+        <!--android:layout_marginRight="20dp"/>-->
+
+<!--</LinearLayout>-->
+</LinearLayout>

@@ -1,0 +1,121 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/iculd_beijin_icon"
+    tools:context="com.example.administrator.iclub21.util.AmendAboutActivity">
+    <include layout="@layout/register_tailt_layout"/>
+    <LinearLayout
+        android:id="@+id/about_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    <ImageView
+        style="@style/paren_layout_width"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="150dp"
+        android:src="@mipmap/logo" />
+    <TextView
+        android:text="iClub2.2.0"
+        android:textSize="@dimen/textSize15"
+        android:textColor="@color/white"
+        style="@style/paren_layout_width"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="150dp"
+        />
+    <LinearLayout
+        android:id="@+id/about_function_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/about_function_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+
+            android:text="功能介绍"
+            android:layout_marginLeft="18dp"
+            android:textSize="@dimen/textSize18"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/about_idea_layout"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/about_idea_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="意见反馈"
+            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/textSize18"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/feedback_layout"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+            <TextView
+                android:id="@+id/about_retrun_tv"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:background="@mipmap/return_icon"
+                android:layout_width="20dp"
+                android:layout_height="25dp" />
+            <TextView
+               android:text="意见反馈"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/textSize18"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                style="@style/paren_layout_width"
+                />
+            <TextView
+                android:id="@+id/about_commit_tv"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:text="完成"
+                android:textSize="@dimen/textSize18"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentRight="true"
+                style="@style/paren_layout_width"
+                />
+
+
+        </RelativeLayout>
+
+        <EditText
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:hint="您的宝贵意见对我们非常重要，我们会全力以赴做的更好！"
+            android:id="@+id/about_idea_edit"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

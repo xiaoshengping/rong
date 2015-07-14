@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="areaPlantes">
+        <item>全部</item>
+        <item>中国大陆</item>
+        <item>港澳台</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="sexPlantes">
+        <item>全部</item>
+        <item>男</item>
+        <item>女</item>
+
+    </string-array>
+
+
+    <string-array name="typePlantes">
+        <item>全部</item>
+        <item>歌手</item>
+        <item>演员</item>
+
+    </string-array>
+
+    <string-array name="spingarr">
+        <item>必填</item>
+        <item>男</item>
+        <item>女</item>
+
+    </string-array>
+
+
+    <declare-styleable name="slideswitch">
+        <attr name="themeColor" format="color" />
+        <attr name="isOpen" format="boolean" />
+        <attr name="shape">
+            <enum name="rect" value="1" />
+            <enum name="circle" value="2" />
+        </attr>
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#00ffffff">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:orientation="horizontal">
+        <ImageView
+            xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+            android:id="@+id/picturesshowmore1_ib"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"
+            android:background="#00ffffff"
+            android:scaleType="centerCrop"/>
+        <!--<View
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"/>
+        <ImageButton
+            xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+            android:id="@+id/picturesshowmore2_ib"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"
+            android:background="#00ffffff"
+            android:scaleType="centerCrop"/>
+        <View
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"/>
+        <ImageButton
+            xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+            android:id="@+id/picturesshowmore3_ib"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"
+            android:background="#00ffffff"
+            android:scaleType="centerCrop"/>-->
+
+    </LinearLayout>
+
+</LinearLayout>

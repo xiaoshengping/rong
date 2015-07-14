@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/music_title_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="7dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="14dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:background="#20ffffff">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/music_piece"/>
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="音乐作品"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp"
+                android:textColor="#b0c5ec"/>
+            <TextView
+                android:id="@+id/music_direction_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="5dp"
+                android:paddingBottom="4dp"
+                android:text="@string/up_arrow"
+                android:textSize="@dimen/up_down_arrow_height"
+                android:textColor="#b0c5ec"
+                android:scaleX="@dimen/arrow_stretch"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#08ffffff"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#10000000"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:id="@+id/music_ll"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:background="#10000000">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="歌曲"
+            android:textColor="#EDEAF1"
+            android:id="@+id/tips"
+            android:textSize="15sp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/music_play"
+            android:layout_weight="1"
+            android:background="@drawable/musicback_shape"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

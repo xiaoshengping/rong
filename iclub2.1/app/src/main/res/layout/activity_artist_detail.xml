@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/iculd_beijin_icon">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                layout="@layout/artist_detail_head"></include>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="@dimen/artist_detail_wire"
+                    android:layout_height="match_parent"
+                    android:background="@color/artist_detail_colors"
+                    android:layout_marginLeft="21dp"
+                    android:layout_alignTop="@+id/artist_detail_lv"
+                    android:layout_alignBottom="@+id/artist_detail_lv"/>
+                <ListView
+                    android:id="@+id/artist_detail_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:dividerHeight="0px"
+                    android:divider="#00ffffff">
+
+                   <!-- <LinearLayout
+                        android:layout_width="w"
+                        android:layout_height=""></LinearLayout>-->
+
+                </ListView>
+            </RelativeLayout>
+            <include
+                layout="@layout/artist_detail_stern"></include>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#50000000">
+
+        <TextView
+            android:id="@+id/title_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="职位详情"
+            android:textColor="#00DEDDE2"
+            android:textSize="24sp"
+            android:padding="10dp"
+            android:layout_centerInParent="true"/>
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="投递"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textColor="#DEDDE2"
+            android:onClick="send"
+            android:background="#00ffffff"
+            android:visibility="invisible"/>
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="ㄑ"
+            android:textSize="26sp"
+            android:layout_marginLeft="0dp"
+            android:textColor="#DEDDE2"
+            android:onClick="back"
+            android:background="#00ffffff"/>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

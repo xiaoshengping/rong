@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- 退出游戏的背景图 -->
+    <ImageView android:id="@+id/exitGameBackground"
+        android:layout_centerInParent="true"
+        android:layout_height="250dp"
+        android:layout_width="300dp"
+        android:src="#40000000" />
+    <TextView
+        android:id="@+id/tailte_tv"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="#ffffff"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="拍摄上传"
+        android:layout_alignTop="@+id/exitGameBackground"
+        android:layout_centerHorizontal="true" />
+
+    <!-- 取消按钮 -->
+    <TextView
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="本地视频"
+        android:layout_height="50dp"
+        android:layout_width="250dp"
+        android:background="#ffffff"
+        android:id="@+id/btn_ok"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/tailte_tv"
+        android:layout_centerHorizontal="true" />
+
+
+    <!-- 确认按钮 -->
+    <TextView
+
+        android:id="@+id/btn_cancel"
+        android:gravity="center"
+        android:layout_height="50dp"
+        android:layout_width="250dp"
+        android:background="#ffffff"
+        android:text="取消"
+         android:layout_marginTop="10dp"
+        android:layout_below="@+id/btn_ok"
+        android:layout_alignLeft="@+id/btn_ok"
+        android:layout_alignStart="@+id/btn_ok" />
+</RelativeLayout>

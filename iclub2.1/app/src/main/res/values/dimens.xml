@@ -1,0 +1,28 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="textSize18">18sp</dimen>
+    <dimen name="textSize17">17sp</dimen>
+    <dimen name="textSize16">16sp</dimen>
+    <dimen name="textSize15">15sp</dimen>
+    <dimen name="textSize14">14sp</dimen>
+    <dimen name="textSize13">13sp</dimen>
+    <dimen name="textSize12">12sp</dimen>
+    <dimen name="textSize11">11sp</dimen>
+    <dimen name="textSize10">10sp</dimen>
+
+    <dimen name="ssv_height">200dp</dimen>
+
+    <dimen name="title_bar">0dp</dimen>
+
+    <dimen name="star_size">16sp</dimen><!--评分条星星字高-->
+    <dimen name="artist_detail_wire">1dp</dimen><!--艺人详情分割条宽-->
+    <dimen name="up_down_arrow_height">14sp</dimen>
+    <item name="arrow_stretch" type="dimen" format="float">2.4</item>
+
+    <dimen name="reputation_head_textm">25dp</dimen>
+    <dimen name="reputation_head_texth">18sp</dimen>
+
+
+</resources>

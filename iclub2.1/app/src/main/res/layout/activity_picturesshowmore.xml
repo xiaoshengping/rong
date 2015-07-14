@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:background="@mipmap/iculd_beijin_icon">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#50000000">
+
+        <TextView
+            android:id="@+id/title_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#DEDDE2"
+            android:textSize="24sp"
+            android:padding="10dp"
+            android:layout_centerInParent="true"/>
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="ㄑ"
+            android:textSize="26sp"
+            android:layout_marginLeft="0dp"
+            android:textColor="#DEDDE2"
+            android:onClick="back"
+            android:background="#00ffffff"/>
+
+    </RelativeLayout>
+    <!--<ListView
+        android:id="@+id/prcturesshowmore_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="#00000000"
+        android:divider="#00ffffff"
+        android:dividerHeight="2dp"></ListView>-->
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="5dp"
+        android:horizontalSpacing="5dp"
+        android:columnWidth="90dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:layout_margin="5dp"/>
+
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_layout"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+     <TextView
+         android:id="@+id/list_retrun_tv"
+         android:layout_marginTop="15dp"
+         android:layout_marginLeft="20dp"
+         android:background="@mipmap/return_icon"
+         android:layout_width="20dp"
+         android:layout_height="25dp" />
+     <TextView
+         android:id="@+id/text_tv"
+         android:layout_marginTop="15dp"
+         android:textSize="@dimen/textSize18"
+         android:text="微简历"
+         android:textColor="@color/white"
+         android:layout_centerHorizontal="true"
+         style="@style/paren_layout_width"
+         />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/list_compile_text"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:text="编辑"
+        android:textSize="@dimen/textSize18"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        style="@style/paren_layout_width"
+        />
+
+</RelativeLayout>

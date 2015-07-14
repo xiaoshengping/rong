@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="娱乐招聘"
+        android:textColor="#00DEDDE2"
+        android:textSize="24sp"
+        android:padding="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/header_ll">
+    </LinearLayout>
+    <include
+        layout="@layout/recruiment_list_title"/>
+    <!--<ImageView
+        android:id="@+id/recruitment_list_header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/iculd_beijin_icon"/>-->
+    <!--<com.example.administrator.iclub21.bean.recruitment.SlideShowView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"></com.example.administrator.iclub21.bean.recruitment.SlideShowView>
+-->
+
+</LinearLayout>

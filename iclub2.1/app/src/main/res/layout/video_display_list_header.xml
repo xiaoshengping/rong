@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="0dp"
+                android:background="#00000000">
+
+                <ImageView
+                    android:id="@+id/talen_back_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:src="@mipmap/taback"
+                    android:scaleType="fitXY"
+                    />
+
+                <!--<com.example.administrator.iclub21.bean.talent.CircleImageView
+                    xmlns:myxmlns="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                    android:id="@+id/talent_head_civ"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@mipmap/ic_launcher"
+                    myxmlns:border_width="1dp"
+                    myxmlns:border_color="#00ffffff"
+                    android:layout_margin="14dp"/>-->
+
+                <com.example.administrator.iclub21.bean.talent.CircleImageView
+                    xmlns:myxmlns="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                    android:id="@+id/talent_head_civ"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/talent_head"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="-66dp"
+                    myxmlns:border_width="3dp"
+                    myxmlns:border_color="#80ffffff"
+                    android:layout_below="@+id/talen_back_iv"/>
+                <TextView
+                    android:id="@+id/talent_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Anty"
+                    android:textSize="20sp"
+                    android:textColor="#EAE6ED"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_below="@+id/talen_back_iv"
+                    android:layout_toRightOf="@+id/talent_head_civ"/>
+
+                <ImageView
+                    android:id="@+id/talent_sex_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/man_icon"
+                    android:layout_alignBottom="@+id/talent_name_tv"
+                    android:layout_alignTop="@+id/talent_name_tv"
+                    android:layout_toRightOf="@+id/talent_name_tv"/>
+                <TextView
+                    android:id="@+id/talent_pageview_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="浏览数:112"
+                    android:textColor="#C173A4"
+                    android:textSize="13sp"
+                    android:layout_below="@+id/talen_back_iv"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="20dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/talen_view_count_shape"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_below="@+id/talent_head_civ"
+                    android:layout_marginTop="18dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="年龄"
+                            android:textSize="10sp"
+                            android:textColor="#8E99C3"/>
+                        <TextView
+                            android:id="@+id/talent_age_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="28"
+                            android:textColor="#EAE6ED"
+                            android:textSize="18sp"
+                            android:layout_margin="10dp"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="20dp"
+                        android:background="#30ffffff"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="工作地点"
+                            android:textSize="14sp"
+                            android:textColor="#8E99C3"/>
+                        <TextView
+                            android:id="@+id/talent_workplace_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="广州"
+                            android:textColor="#EAE6ED"
+                            android:textSize="18sp"
+                            android:layout_margin="10dp"/>
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="20dp"
+                        android:background="#30ffffff"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="职位"
+                            android:textSize="14sp"
+                            android:textColor="#8E99C3"/>
+                        <TextView
+                            android:id="@+id/talent_position_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="酒吧DJ"
+                            android:textColor="#EAE6ED"
+                            android:textSize="18sp"
+                            android:layout_margin="10dp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:orientation="vertical"
+                android:background="#20ffffff"
+                android:layout_marginTop="7dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/self_introduction"/>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="自我介绍"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="15sp"
+                        android:textColor="#b0c5ec"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#08ffffff"/>
+
+                <TextView
+                    android:id="@+id/self_introduction_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/jobRequirements"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:text="发地方经济带上来看附件案件 阿里看的是减肥减肥了空间放辣椒 离开见附件理解爱疯了 啊解放路口叫了声"
+                    android:textSize="15sp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:textColor="#D2C8DC"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:orientation="vertical"
+                android:background="#20ffffff"
+                android:layout_marginTop="7dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/work_experience"/>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工作经历"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="15sp"
+                        android:textColor="#b0c5ec"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#08ffffff"/>
+
+                <TextView
+                    android:id="@+id/work_experience_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/jobRequirements"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:text="发地方经济带上来看附件案件 阿里看的是减肥减肥了空间放辣椒 离开见附件理解爱疯了 啊解放路口叫了声"
+                    android:textSize="15sp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:textColor="#D2C8DC"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:orientation="vertical"
+                android:background="#20ffffff"
+                android:layout_marginTop="7dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/contact_information"/>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="联系方式"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="15sp"
+                        android:textColor="#b0c5ec"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#08ffffff"/>
+
+                <TextView
+                    android:id="@+id/contact_information_tips_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:text="(登录后成为招聘商家才能看到人才联系方式)"
+                    android:textSize="15sp"
+                    android:textColor="#A53FFE"/>
+
+
+                <RelativeLayout
+                    android:id="@+id/contact_information_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:visibility="visible">
+                    <TextView
+                        android:id="@+id/qq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="QQ"
+                        android:textSize="15sp"
+                        android:textColor="#D2C8DC"/>
+                    <TextView
+                        android:id="@+id/qq_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/qq"
+                        android:layout_alignLeft="@+id/phone_tv"
+                        android:text="******"
+                        android:textSize="15sp"
+                        android:textColor="#D2C8DC"/>
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textSize="15sp"
+                        android:layout_below="@+id/qq_tv"
+                        android:layout_marginTop="12dp"
+                        android:textColor="#D2C8DC"/>
+                    <TextView
+                        android:id="@+id/email_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/email"
+                        android:layout_alignBottom="@+id/email"
+                        android:layout_alignLeft="@+id/phone_tv"
+                        android:text="******"
+                        android:textSize="15sp"
+                        android:textColor="#D2C8DC"/>
+                    <TextView
+                        android:id="@+id/phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="手机号码"
+                        android:textSize="15sp"
+                        android:layout_below="@+id/email_tv"
+                        android:layout_marginTop="12dp"
+                        android:textColor="#D2C8DC"/>
+                    <TextView
+                        android:id="@+id/phone_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/phone"
+                        android:layout_alignBottom="@+id/phone"
+                        android:layout_marginLeft="16dp"
+                        android:text="******"
+                        android:textSize="15sp"
+                        android:textColor="#D2C8DC"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:orientation="vertical"
+                android:background="#20ffffff"
+                android:layout_marginTop="7dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/picturesshow"/>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="图片介绍"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="15sp"
+                        android:textColor="#b0c5ec"/>
+                    <TextView
+                        android:id="@+id/picturesshow_more_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="更多"
+                        android:gravity="right"
+                        android:textSize="15sp"
+                        android:textColor="#F1EAF1"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#08ffffff"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
+                    android:orientation="horizontal">
+                    <com.example.administrator.iclub21.bean.talent.RoundAngleImageView
+                        xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                        android:id="@+id/picturesshow1_iv"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="80dp"
+                        app:roundWidth = "10dp"
+                        app:roundHeight = "10dp"
+                        android:background="#00ffffff"
+                        android:scaleType="centerCrop"/>
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="wrap_content"
+                        android:background="#00ffffff"/>
+                    <com.example.administrator.iclub21.bean.talent.RoundAngleImageView
+                        xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                        android:id="@+id/picturesshow2_iv"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="80dp"
+                        app:roundWidth = "10dp"
+                        app:roundHeight = "10dp"
+                        android:background="#00ffffff"
+                        android:scaleType="centerCrop"/>
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="wrap_content"
+                        android:background="#00ffffff"/>
+                    <com.example.administrator.iclub21.bean.talent.RoundAngleImageView
+                        xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                        android:id="@+id/picturesshow3_iv"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="80dp"
+                        app:roundWidth = "10dp"
+                        app:roundHeight = "10dp"
+                        android:background="#00ffffff"
+                        android:scaleType="centerCrop"/>
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="wrap_content"
+                        android:background="#00ffffff"/>
+                    <com.example.administrator.iclub21.bean.talent.RoundAngleImageView
+                        xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                        android:id="@+id/picturesshow4_iv"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="80dp"
+                        app:roundWidth = "10dp"
+                        app:roundHeight = "10dp"
+                        android:background="#00ffffff"
+                        android:scaleType="centerCrop"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

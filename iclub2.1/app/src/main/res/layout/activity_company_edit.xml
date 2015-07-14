@@ -1,0 +1,94 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/iculd_beijin_icon"
+    tools:context="com.example.administrator.iclub21.util.CompanyEditActivity">
+    <LinearLayout
+        android:id="@+id/edit_company_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/login_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:id="@+id/edit_company_retrun_tv"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:background="@mipmap/return_icon"
+                android:layout_width="20dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:id="@+id/edit_company_text_tv"
+                android:layout_marginTop="15dp"
+                android:textSize="@dimen/textSize18"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                style="@style/paren_layout_width"
+                />
+            <TextView
+                android:id="@+id/edit_company_save_text"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:text="保存"
+                android:textSize="@dimen/textSize18"
+                android:textColor="@color/white"
+                android:layout_alignParentRight="true"
+                style="@style/paren_layout_width"
+                />
+
+
+        </RelativeLayout>
+        <EditText
+            android:visibility="gone"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/edit_company_name_et"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:visibility="gone"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:phoneNumber="true"
+            android:id="@+id/edit_company_phone_et"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:visibility="gone"
+            android:inputType="textEmailAddress"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/edit_company_email_et"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:visibility="gone"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/edit_company_http_et"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:visibility="gone"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/edit_company_address_et"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

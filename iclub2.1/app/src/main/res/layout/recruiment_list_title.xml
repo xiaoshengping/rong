@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:background="@drawable/recruitment_label_shape"
+    android:padding="-10dp"
+    android:id="@+id/recruiment_list_title">
+
+    <Button
+        android:id="@+id/selected_city"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:textColor="#EAE8ED"
+        android:textSize="16sp"
+        android:text="选择城市"/>
+
+    <View
+        android:id="@+id/v1"
+        android:rotation="20"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/list_title_wire"/>
+
+    <Button
+        android:id="@+id/selected_position"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:textColor="#EAE8ED"
+        android:textSize="16sp"
+        android:text="选择职位"/>
+
+</LinearLayout>

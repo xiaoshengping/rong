@@ -1,0 +1,42 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/iculd_beijin_icon"
+    tools:context="com.example.administrator.iclub.fragment.TalentFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <ListView
+            android:id="@+id/talent_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#00ffffff"
+            android:dividerHeight="2dp"/>
+
+        <RelativeLayout
+            android:id="@+id/talen_title_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#50000000">
+
+            <TextView
+                android:id="@+id/reagment_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="人才"
+                android:textColor="#DEDDE2"
+                android:textSize="24sp"
+                android:padding="10dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>

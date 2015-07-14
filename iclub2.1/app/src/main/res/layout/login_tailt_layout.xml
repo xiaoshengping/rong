@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_layout"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+     <TextView
+         android:id="@+id/login_reten_tv"
+         android:layout_marginTop="15dp"
+         android:layout_marginLeft="20dp"
+         android:background="@mipmap/return_icon"
+         android:layout_width="20dp"
+         android:layout_height="25dp" />
+     <TextView
+         android:layout_marginTop="15dp"
+         android:text="登录"
+         android:textSize="@dimen/textSize18"
+         android:textColor="@color/white"
+         android:layout_centerHorizontal="true"
+         style="@style/paren_layout_width"
+         />
+
+</RelativeLayout>

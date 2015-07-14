@@ -1,0 +1,308 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:slideswitch="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/iculd_beijin_icon"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.iclub21.util.AddResumeActivity">
+    <include layout="@layout/addseume_tailt_layout"/>
+    <ScrollView
+        android:scrollbars="none"
+        android:id="@+id/compile_zliao_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/compile_tv"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/updata_image"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:id="@+id/touxiang_image"
+                    android:layout_marginLeft="60dp"
+                    android:src="@mipmap/mine_head_default"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp" />
+                <TextView
+                    android:text="上传头像"
+                    android:layout_marginLeft="80dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:text="姓名"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/resumeZhName_et"
+
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:layout_marginLeft="50dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:text="年龄"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/resume_age_tv"
+                        android:textColor="@color/white"
+                        android:text="必填"
+                        android:textSize="@dimen/textSize18"
+                        android:textColorHint="@color/white"
+                        android:layout_marginLeft="50dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:text="性别"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                      <RadioGroup
+                          android:id="@+id/sex_radio_group"
+                          android:orientation="horizontal"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content">
+                          <RadioButton
+                              android:id="@+id/boy_radio_button"
+                              android:text="男"
+                              android:checked="true"
+                              android:gravity="center"
+                              android:textSize="@dimen/textSize16"
+                              android:textColor="@color/white"
+                              android:layout_marginLeft="40dp"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              />
+                          <RadioButton
+                               android:id="@+id/girl_radio_button"
+                              android:text="女"
+                              android:textColor="@color/white"
+                              android:textSize="@dimen/textSize16"
+                              android:gravity="center"
+                              android:layout_marginLeft="10dp"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+
+                              />
+
+                      </RadioGroup>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/job_classfite_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:text="职业类别"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:hint="必填"
+                        android:textColorHint="@color/white"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+
+                        android:text="职业名称"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/resumeJobName_et"
+
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:text="工作地点"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:hint="必填"
+                        android:textColorHint="@color/white"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:text="QQ"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/resumeQq_et"
+                        android:inputType="number"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:layout_marginLeft="55dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:text="Email"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/resumeEmail_et"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:layout_marginLeft="40dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:text="手机号码"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:id="@+id/phone_editText_et"
+                        android:visibility="gone"
+                        android:inputType="phone"
+                        android:hint="必填"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/phone_textView_tv"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/experience_layout"/>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+                <TextView
+                    android:id="@+id/add_iamge_tv"
+                    android:text="图片介绍"
+                    android:textSize="@dimen/textSize15"
+                    android:paddingRight="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/white"
+                    android:drawableRight="@mipmap/right_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/add_video_tv"
+                    android:layout_marginTop="5dp"
+                    android:text="视频展示"
+                    android:drawableRight="@mipmap/right_icon"
+                    android:textSize="@dimen/textSize15"
+                    android:paddingRight="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/add_music_tv"
+                    android:text="音乐制作"
+                    android:drawableRight="@mipmap/right_icon"
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/textSize15"
+                    android:paddingRight="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

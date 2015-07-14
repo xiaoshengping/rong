@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/iculd_beijin_icon"
+    tools:context="com.example.administrator.iclub21.util.RegisterActivity">
+    <include layout="@layout/register_tailt_layout"/>
+
+    <ImageView
+        style="@style/paren_layout_width"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="150dp"
+        android:src="@mipmap/logo" />
+    <EditText
+        android:id="@+id/register_phone"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginLeft="60dp"
+        android:drawableLeft="@mipmap/login_phone_icon"
+        android:drawablePadding="5dp"
+        android:hint="手机号码"
+        android:phoneNumber="true"
+        android:textColorHint="@color/white" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/captcha_edit"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginLeft="60dp"
+        android:drawablePadding="5dp"
+        android:hint="验证码"
+        android:phoneNumber="true"
+        android:textColorHint="@color/white" />
+        <Button
+            android:id="@+id/captcha_button"
+            android:text="发送验证码"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+    <EditText
+        android:id="@+id/set_psw_edit"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginLeft="60dp"
+        android:drawablePadding="5dp"
+        android:hint="设置密码"
+        android:password="true"
+        android:textColorHint="@color/white" />
+    <EditText
+        android:id="@+id/verify_psw_edit"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginLeft="60dp"
+        android:drawablePadding="5dp"
+        android:hint="重复密码"
+        android:password="true"
+        android:textColorHint="@color/white" />
+</LinearLayout>

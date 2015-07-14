@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#30ffffff"
+    android:layout_marginBottom="5dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/reputation_head_textm"
+        android:text="真 实 性"
+        android:textColor="#D7D5FE"
+        android:textSize="@dimen/reputation_head_texth" />
+    <TextView
+        android:id="@+id/authenticity_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/reputation_head_textm"
+        android:text="未知"
+        android:textColor="#71B5B8"
+        android:textSize="@dimen/reputation_head_texth"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#30ffffff"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/reputation_head_textm"
+            android:text="诚 信 度"
+
+            android:textColor="#D7D5FE"
+            android:textSize="@dimen/reputation_head_texth"/>
+        <TextView
+            android:id="@+id/integrity_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/reputation_head_textm"
+            android:text="未知"
+            android:textColor="#71B5B8"
+            android:textSize="@dimen/reputation_head_texth"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#30ffffff"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/reputation_head_textm"
+            android:text="合作记录"
+            android:textColor="#D7D5FE"
+            android:textSize="@dimen/reputation_head_texth"/>
+        <TextView
+            android:id="@+id/record_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/reputation_head_textm"
+            android:text="未知"
+            android:textColor="#71B5B8"
+            android:textSize="@dimen/reputation_head_texth"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#30ffffff"
+        android:text="  合作评论"
+        android:textColor="#D7D5FE"
+        android:textSize="18dp"
+        android:paddingLeft="18dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:drawableLeft="@mipmap/comment"/>
+
+
+</LinearLayout>

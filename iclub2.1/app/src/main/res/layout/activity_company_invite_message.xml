@@ -1,0 +1,398 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/iculd_beijin_icon"
+    tools:context="com.example.administrator.iclub21.util.CompanyInviteMessageActivity"
+   >
+    <include
+        android:id="@+id/company_invite_tailot"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        layout="@layout/invite_tail_layout"/>
+    <ScrollView
+        android:layout_below="@+id/company_invite_tailot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="职业"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/job_invite_name_tv"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="职位名称"
+                android:drawablePadding="15dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+       <LinearLayout
+           android:layout_marginTop="10dp"
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:layout_marginLeft="20dp"
+               android:text="邀约日期"
+               android:textColor="@color/white"
+               android:textSize="@dimen/textSize18"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+           <TextView
+               android:id="@+id/invite_schedule_tv"
+
+               android:layout_marginLeft="20dp"
+               android:text="日期内容"
+               android:textColor="@color/white"
+               android:textSize="@dimen/textSize18"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+           <TextView
+               android:layout_marginLeft="20dp"
+               android:text="详情"
+               android:textColor="@color/white"
+               android:textSize="@dimen/textSize15"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+
+       </LinearLayout>
+
+
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="14dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/company_invity_name_tv"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:text="公司名字"
+                android:drawablePadding="15dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+              >
+
+                <TextView
+
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="网址"
+                    android:drawablePadding="20dp"
+
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/web_invite_tv"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="网址内容"
+                    android:drawablePadding="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="电话"
+                    android:drawablePadding="20dp"
+
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/phone_invity_tv"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="电话号码"
+                    android:drawablePadding="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="邮箱"
+                    android:drawablePadding="20dp"
+
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/email_invite_tv"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="邮箱内容"
+                    android:drawablePadding="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="地址"
+                    android:drawablePadding="20dp"
+
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/address_invite_tv"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="地址详情"
+                    android:drawablePadding="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+      <LinearLayout
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <LinearLayout
+              android:layout_weight="1"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <TextView
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginTop="10dp"
+                  android:text="诚信度"
+                  android:textColor="@color/white"
+                  android:textSize="@dimen/textSize18"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  />
+              <TextView
+                  android:id="@+id/honesty_degree_tv"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginTop="10dp"
+                  android:text="80"
+                  android:gravity="center"
+                  android:textColor="@color/white"
+                  android:textSize="@dimen/textSize16"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  />
+
+          </LinearLayout>
+          <LinearLayout
+              android:layout_weight="1"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <TextView
+
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginTop="10dp"
+                  android:text="真实性"
+                  android:gravity="center"
+                  android:textColor="@color/white"
+                  android:textSize="@dimen/textSize18"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                 />
+              <TextView
+                  android:id="@+id/truth_invite_tv"
+                 android:layout_marginLeft="10dp"
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginTop="10dp"
+                  android:text="100"
+                  android:gravity="center"
+                  android:textColor="@color/white"
+                  android:textSize="@dimen/textSize16"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  />
+
+          </LinearLayout>
+          <LinearLayout
+              android:layout_weight="1"
+              android:gravity="center"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              >
+              <TextView
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginTop="10dp"
+                  android:text="合作数次"
+                  android:gravity="center"
+                  android:textColor="@color/white"
+                  android:textSize="@dimen/textSize18"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  />
+              <TextView
+                  android:id="@+id/cooperation_number_tv"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginTop="10dp"
+                  android:text="10"
+                  android:gravity="center"
+                  android:textColor="@color/white"
+                  android:textSize="@dimen/textSize16"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  />
+
+          </LinearLayout>
+      </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="14dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:text="合作评论"
+            android:drawablePadding="15dp"
+            android:drawableLeft="@mipmap/cooperation_comment_icon"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+     </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/comment_layout"
+        android:gravity="center"
+        android:background="#000000"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        >
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:text="请在七天内回复"
+            android:drawablePadding="15dp"
+            android:drawableLeft="@mipmap/adopt_invite_icon"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             />
+
+           <Button
+               android:id="@+id/adopt_invite_bt"
+               android:layout_marginLeft="5dp"
+               android:layout_weight="1"
+               android:text="接受"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/refuse_invite_bt"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="拒绝"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,143 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.iclub.fragment.ArtistFragment"
+    android:background="@mipmap/iculd_beijin_icon">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="娱乐招聘"
+            android:textColor="#00DEDDE2"
+            android:textSize="24sp"
+            android:padding="10dp"/>
+
+
+        <ScrollView
+            android:id="@+id/fascrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:orientation="vertical"
+                    android:id="@+id/header_ll"
+                    android:layout_marginBottom="6dp">
+                </LinearLayout>
+                <!--<android.support.v4.view.ViewPager
+                    android:id="@+id/artist_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+
+                    />-->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="48dp"
+                    android:background="@drawable/recruitment_label_shape"
+                    android:padding="-10dp">
+                    <TextView
+                        android:id="@+id/artist_area_tv"
+                        android:text="区域"
+                        android:textSize="@dimen/textSize15"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <View
+                        android:id="@+id/v1"
+                        android:rotation="20"
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/list_title_wire"/>
+                    <TextView
+                        android:id="@+id/artist_sex_tv"
+                        android:text="性别"
+                        android:textSize="@dimen/textSize15"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="3dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <View
+                        android:id="@+id/v2"
+                        android:rotation="20"
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/list_title_wire"/>
+
+                    <TextView
+                        android:id="@+id/artist_tupe_tv"
+                        android:text="类型"
+                        android:textSize="@dimen/textSize15"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="3dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+                <com.example.administrator.iclub21.bean.artist.MyGridView
+                    android:id="@+id/artist_list_gridView"
+                    android:numColumns="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/reagment_title_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#50000000">
+
+        <TextView
+            android:id="@+id/artist_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="艺人"
+            android:textColor="#DEDDE2"
+            android:textSize="24sp"
+            android:padding="10dp"/>
+
+        <ImageButton
+            android:id="@+id/artist_title_search_ib"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/seek_icon"
+            android:background="#00ffffff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitCenter"
+            android:padding="12dp"/>
+        <Button
+            android:id="@+id/back_b"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="ㄑ"
+            android:textSize="26sp"
+            android:layout_marginLeft="0dp"
+            android:textColor="#DEDDE2"
+            android:background="#00ffffff"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+</RelativeLayout>

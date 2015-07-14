@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.iclub21.fragment.InviteParticularFragment">
+
+    <RadioGroup
+        android:id="@+id/merchant_invite_radio_rg"
+        android:background="#242424"
+        android:gravity="center"
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <RadioButton
+            android:id="@+id/resume_radio_bt"
+            android:text="邀约历史"
+            android:layout_weight="1"
+            android:textSize="@dimen/textSize12"
+            android:checked="true"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/resume_radio_button_selector"
+            style="@style/paren_radiogrud"
+            />
+        <RadioButton
+            android:id="@+id/nvite_radio_bt"
+            android:text="接受邀约"
+            android:layout_weight="1"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/invite_radio_button_selector"
+            style="@style/paren_radiogrud"
+            />
+        <RadioButton
+            android:id="@+id/reputation_radio_bt"
+            android:text="合作成功"
+            android:layout_weight="1"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/reputation_radio_button_selector"
+            style="@style/paren_radiogrud"
+            />
+    </RadioGroup>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/merchant_invite_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/resume_radio_rg" />
+
+</LinearLayout>

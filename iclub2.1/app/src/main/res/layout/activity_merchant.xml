@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/iculd_beijin_icon"
+    tools:context="com.example.administrator.iclub21.util.MerchantActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/merchant_fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/merchant_radio_rg" />
+    <RadioGroup
+        android:id="@+id/merchant_radio_rg"
+        android:background="#242424"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <RadioButton
+            android:id="@+id/huste_radio_button"
+            android:text="历史招聘"
+            android:textSize="@dimen/textSize12"
+
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/resume_radio_button_selector_1"
+            style="@style/paren_radiogrud"
+            />
+        <RadioButton
+            android:text="公司信息"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/company_radio_button_selector"
+            style="@style/paren_radiogrud"
+            />
+        <RadioButton
+            android:text="邀约详情"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/invite_particular_selector"
+            style="@style/paren_radiogrud"
+            />
+        <RadioButton
+            android:text="消息通知"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/message_radio_button_selector"
+            style="@style/paren_radiogrud"
+            />
+
+    </RadioGroup>
+
+
+</RelativeLayout>

@@ -1,0 +1,100 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/iculd_beijin_icon"
+    tools:context="com.example.administrator.iclub.fragment.RecruitmentFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/recruitment_listView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:dividerHeight="0dp"
+                >
+
+            </ListView>
+
+        </LinearLayout>
+
+        <!-- TODO: Update blank fragment layout -->
+        <!--<TextView android:layout_width="match_parent" android:layout_height="match_parent"
+            android:text="@string/hello_blank_fragment"
+            android:id="@+id/tv1"/>
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"/>-->
+        <RelativeLayout
+            android:id="@+id/reagment_title_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#50000000">
+
+            <TextView
+                android:id="@+id/reagment_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="娱乐招聘"
+                android:textColor="#DEDDE2"
+                android:textSize="24sp"
+                android:padding="10dp"
+                />
+
+            <ImageButton
+                android:id="@+id/reagment_title_search_ib"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/seek_icon"
+                android:background="#00ffffff"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:scaleType="fitCenter"
+                android:padding="12dp"/>
+            <Button
+                android:id="@+id/back_b"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:text="ㄑ"
+                android:textSize="26sp"
+                android:layout_marginLeft="0dp"
+                android:textColor="#DEDDE2"
+                android:background="#00ffffff"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#50000000"
+            android:visibility="gone">
+            <ProgressBar
+
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_centerInParent="true"
+
+                android:visibility="visible"
+                />
+        </RelativeLayout>
+
+        <include
+            layout="@layout/recruiment_list_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_below="@id/reagment_title_rl"/>
+    </RelativeLayout>
+</FrameLayout>

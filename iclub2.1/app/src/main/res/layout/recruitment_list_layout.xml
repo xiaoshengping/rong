@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:paddingBottom="6dp">
+
+    <!--<include
+        layout="@layout/recruiment_list_title"/>-->
+
+    <LinearLayout
+        android:id="@+id/recruitment_list_ll"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="6dp"
+        android:background="#40000000">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/recruitment_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="酒吧singer"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="20sp"
+                android:textColor="#9CACD4"
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"/>
+            <TextView
+                android:id="@+id/recruitment_puttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09-02"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="14sp"
+                android:textColor="#DDD0E3"/>
+            <TextView
+                android:id="@+id/recruitment_companyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广州娱乐文化传播有限公司"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="15sp"
+                android:textColor="#DDD0E3"
+                android:paddingTop="8dp"
+                android:paddingBottom="18dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="right">
+
+            <TextView
+                android:id="@+id/recruitment_label"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/label"
+                android:text="热"
+
+                android:textColor="#00F8C02C"/>
+            <TextView
+                android:id="@+id/recruitment_workPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广州"
+                android:textSize="14sp"
+                android:textColor="#DDD0E3"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+            <include
+                layout="@layout/ratingbar_star_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <!--<RatingBar
+                style="?android:attr/ratingBarStyleSmall"
+                android:id="@+id/recruitment_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="3"
+                android:isIndicator="true" />-->
+            <!--<RatingBar-->
+                <!--style="@style/roomRatingBar"-->
+                <!--android:id="@+id/recruitment_star"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:numStars="5"-->
+                <!--android:rating="3"-->
+                <!--android:isIndicator="true"/>-->
+
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

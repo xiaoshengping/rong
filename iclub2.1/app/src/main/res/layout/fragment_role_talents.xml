@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/iculd_beijin_icon"
+    tools:context="com.example.administrator.iclub21.fragment.RoleTalentsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/cloess_talents_tv"
+       android:background="@mipmap/resume_claoss_button_icon"
+        android:visibility="gone"
+        android:textSize="@dimen/textSize18"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+    <ImageView
+        android:id="@+id/talents_image"
+        android:scaleType="fitXY"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <LinearLayout
+        android:id="@+id/cwei_talents_layou"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@mipmap/resume_button_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:text="成为"
+        android:gravity="center"
+        android:textSize="@dimen/textSize15"
+        android:textColor="@color/white"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+
+        android:text="人才"
+        android:gravity="center"
+        android:textSize="@dimen/textSize15"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+         />
+    </LinearLayout>
+</RelativeLayout>
