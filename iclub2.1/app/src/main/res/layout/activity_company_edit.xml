@@ -11,28 +11,28 @@
         <RelativeLayout
             android:id="@+id/login_layout"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="50dp">
             <TextView
                 android:id="@+id/edit_company_retrun_tv"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="20dp"
                 android:background="@mipmap/return_icon"
-                android:layout_width="20dp"
-                android:layout_height="25dp" />
+                android:layout_width="14dp"
+                android:layout_height="20dp" />
             <TextView
                 android:id="@+id/edit_company_text_tv"
                 android:layout_marginTop="15dp"
-                android:textSize="@dimen/textSize18"
+                android:textSize="@dimen/textSize16"
                 android:textColor="@color/white"
                 android:layout_centerHorizontal="true"
                 style="@style/paren_layout_width"
                 />
             <TextView
                 android:id="@+id/edit_company_save_text"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="16dp"
                 android:text="保存"
-                android:textSize="@dimen/textSize18"
+                android:textSize="@dimen/textSize16"
                 android:textColor="@color/white"
                 android:layout_alignParentRight="true"
                 style="@style/paren_layout_width"
@@ -42,51 +42,87 @@
         </RelativeLayout>
         <EditText
             android:visibility="gone"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/edit_company_name_et"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
+            android:background="@drawable/rounded_edittext"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:drawablePadding="10dp"
+            android:layout_height="40dp" />
         <EditText
             android:visibility="gone"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
             android:phoneNumber="true"
             android:id="@+id/edit_company_phone_et"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_edittext"
+            />
         <EditText
             android:visibility="gone"
             android:inputType="textEmailAddress"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
             android:id="@+id/edit_company_email_et"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_edittext" />
         <EditText
             android:visibility="gone"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
             android:id="@+id/edit_company_http_et"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <EditText
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_edittext"/>
+        <LinearLayout
+            android:id="@+id/address_layout"
             android:visibility="gone"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:id="@+id/edit_company_address_et"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="省、市、区"
+                android:gravity="center"
+                android:textSize="@dimen/textSize15"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textSize="@dimen/textSize15"
+                android:text="详细地址"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/edit_company_address_et"
+                android:textColor="@color/white"
+                android:gravity="top"
+                android:textColorHint="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="#3Affffff"
+                 />
+        </LinearLayout>
+
     </LinearLayout>
 
 

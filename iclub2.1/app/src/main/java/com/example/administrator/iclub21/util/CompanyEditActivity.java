@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.iclub21.R;
@@ -33,6 +34,8 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
     private EditText editCompanyHttpEt;
     @ViewInject(R.id.edit_company_address_et)
     private EditText editCompanyAddressEt;
+    @ViewInject(R.id.address_layout)
+    private LinearLayout addressLayout;
 
     @ViewInject(R.id.edit_company_retrun_tv)
     private TextView editCompanyRetrunTv;
@@ -83,11 +86,6 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
                 editCompanyNameEv.setText(bMerchantValueBean.getBEcompanyName());
             }else {
                 editCompanyNameEv.setHint("请输入公司名称");
-//                phone=bMerchantValueBean.getBEphone();
-//                email=bMerchantValueBean.getBEemail();
-//                web=bMerchantValueBean.getBEweb();
-//                address=bMerchantValueBean.getBEaddress();
-//                name=editCompanyNameEv.getText().toString();
             }
 
 
@@ -102,11 +100,6 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
                 editCompanyPhoneEt.setHint("请输入电话");
             }
 
-//            name=bMerchantValueBean.getBEcompanyName();
-//            email=bMerchantValueBean.getBEemail();
-//            web=bMerchantValueBean.getBEweb();
-//            address=bMerchantValueBean.getBEaddress();
-
         }else if (data.equals("email")){
              editCompanyEmailEt.setVisibility(View.VISIBLE);
             editCompanyEmailEt.setHint("请输入Email");
@@ -116,7 +109,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
             editCompanyHttpEt.setHint("请输入官网");
             editCompanyTextTv.setText("官网");
         }else if (data.equals("adress")){
-            editCompanyAddressEt.setVisibility(View.VISIBLE);
+            addressLayout.setVisibility(View.VISIBLE);
             editCompanyTextTv.setText("公司地址");
 
         }
@@ -133,7 +126,6 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
         editCompanyTextTv.setOnClickListener(this);
         editCompanySaveTv.setOnClickListener(this);
         myAppliction= (MyAppliction) getApplication();
-
 
     }
     private void intiHttpData() {
