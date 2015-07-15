@@ -6,19 +6,21 @@
     tools:context="com.example.administrator.iclub21.util.AddRecruitmentActivity">
     <include layout="@layout/add_recruitment_tailt_layout"/>
     <LinearLayout
+        android:background="#20ffffff"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
       <LinearLayout
+          android:layout_marginTop="10dp"
           android:orientation="horizontal"
           android:layout_width="match_parent"
           android:layout_height="wrap_content">
           <TextView
               android:layout_marginLeft="20dp"
               android:text="职位类别"
-              android:textColor="@color/white"
-              android:textSize="@dimen/textSize15"
+              android:textColor="@color/whiteOne"
+              android:textSize="@dimen/textSize14"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content" />
           <TextView
@@ -30,15 +32,23 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content" />
       </LinearLayout>
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/line_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_marginLeft="20dp"
             android:text="职位名称"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize15"
+            android:textColor="@color/whiteOne"
+            android:textSize="@dimen/textSize14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
@@ -47,25 +57,34 @@
             android:textColorHint="@color/white"
             android:layout_marginLeft="50dp"
             android:textColor="@color/white"
+            android:background="@null"
             android:textSize="@dimen/textSize15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/line_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_marginLeft="20dp"
             android:text="薪金"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize15"
+            android:textColor="@color/whiteOne"
+            android:textSize="@dimen/textSize14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/workPay_edit"
             android:hint="必填"
+            android:background="@null"
             android:textColorHint="@color/white"
             android:layout_marginLeft="80dp"
             android:textColor="@color/white"
@@ -73,16 +92,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/line_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     <LinearLayout
-
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_marginLeft="20dp"
             android:text="工作地点"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize15"
+            android:textColor="@color/whiteOne"
+            android:textSize="@dimen/textSize14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
@@ -94,20 +120,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/line_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_marginLeft="20dp"
             android:text="招聘人数"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize15"
+            android:textColor="@color/whiteOne"
+            android:textSize="@dimen/textSize14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <EditText
             android:id="@+id/recruitingNumbers_edit"
             android:hint="必填"
+            android:background="@null"
             android:textColorHint="@color/white"
             android:layout_marginLeft="50dp"
             android:textColor="@color/white"
@@ -115,49 +151,66 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
+        android:background="#20ffffff"
         android:id="@+id/jobRequirements_layout"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_marginLeft="20dp"
             android:text="经验要求"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize15"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/whiteOne"
+            android:textSize="@dimen/textSize14"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:background="@mipmap/line_icon"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/experience_require_tv"
             android:text="亲，请填写经验要求哦(必填)"
             android:layout_marginLeft="20dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:textSize="@dimen/textSize15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+        android:background="#20ffffff"
         android:id="@+id/jobInfo_layout"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:text="职位描述"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize15"
+            android:textColor="@color/whiteOne"
+            android:textSize="@dimen/textSize14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:background="@mipmap/line_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/work_describe_tv"
             android:text="亲，请填写职位描述哦(必填)"
             android:layout_marginLeft="20dp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize15"
+            android:textSize="@dimen/textSize14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -166,7 +219,11 @@
         android:text="删除"
         android:visibility="gone"
         android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@mipmap/delete_icon_button"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:textSize="@dimen/textSize15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

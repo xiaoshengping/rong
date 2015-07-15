@@ -7,6 +7,8 @@
     <include layout="@layout/company_tailt_layout"/>
     <ListView
         android:id="@+id/recruiment_history_list_lv"
+        android:dividerHeight="5dp"
+        android:divider="#00ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
