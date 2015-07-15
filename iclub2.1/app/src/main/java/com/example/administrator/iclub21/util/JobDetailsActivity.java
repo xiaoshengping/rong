@@ -195,6 +195,13 @@ public class JobDetailsActivity extends Activity {
 
     }
 
+    //公司详情
+    public void company_details(View v){
+
+
+
+    }
+
     public void back(View v){
 
         finish();

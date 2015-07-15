@@ -1,7 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#30ffffff">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:paddingLeft="15dp"
+        android:layout_marginBottom="8dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
+            <ImageView
+                android:id="@+id/head_portrait_iv"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="#000000"
+                />
+            <TextView
+                android:id="@+id/comment_neme_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/head_portrait_iv"
+                android:layout_toRightOf="@+id/head_portrait_iv"
+                android:text="广州文化娱乐传媒有限公司"
+                android:layout_marginLeft="15dp"
+                android:textSize="18sp"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:id="@+id/comment_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/comment_neme_tv"
+                android:layout_alignLeft="@+id/comment_neme_tv"
+                android:text="今天12：30"
+                android:textSize="12sp"
+                android:textColor="#8E9FBD"
+                android:layout_marginTop="6dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/comment_body_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:text="阿达来开发建设的房间大家，拉到就放到。阿打算发发发斯蒂芬"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_marginBottom="8dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#80ffffff"
+        android:layout_marginLeft="25dp"/>
 
 </LinearLayout>

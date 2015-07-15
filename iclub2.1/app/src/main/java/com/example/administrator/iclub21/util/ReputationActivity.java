@@ -11,6 +11,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.ReputationAdapter;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
+import com.example.administrator.iclub21.bean.talent.CommentBean;
 import com.example.administrator.iclub21.bean.talent.ReputationValueBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -18,6 +19,8 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2015/7/9.
@@ -44,20 +47,16 @@ public class ReputationActivity extends Activity {
         binding();
         Bundle bundle = getIntent().getExtras();
         id = bundle.getInt("Personid");
-        View header = View.inflate(this, R.layout.reputation_head, null);//Õ∑≤øƒ⁄»›
+        View header = View.inflate(this, R.layout.reputation_head, null);//Â§¥ÈÉ®ÂÜÖÂÆπ
         authenticity_tv = (TextView)header.findViewById(R.id.authenticity_tv);
         integrity_tv = (TextView)header.findViewById(R.id.integrity_tv);
         record_tv = (TextView)header.findViewById(R.id.record_tv);
-        reputation_list.addHeaderView(header);//ÃÌº”Õ∑≤ø
+        reputation_list.addHeaderView(header);//Ê∑ªÂä†Â§¥ÈÉ®
 
-
-        adapter = new ReputationAdapter(this);
-        reputation_list.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
         initReputationValue();
     }
 
-    //≥ı ºªØ–≈”˛÷µ
+    //ÂàùÂßãÂåñ‰ø°Ë™âÂÄº
     private void initReputationValue(){
         HttpUtils httpUtils=new HttpUtils();
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getReputationValue(id), new RequestCallBack<String>() {
@@ -69,11 +68,45 @@ public class ReputationActivity extends Activity {
                     });
                     if (reputationValueBean.getState().equals("success")) {
 
-                        if(reputationValueBean.getValue()!=null) {
+                        if (reputationValueBean.getValue() != null) {
                             ReputationValueBean reputationValueDate = reputationValueBean.getValue().get(0);
                             authenticity_tv.setText(reputationValueDate.getAuthenticiy());
                             integrity_tv.setText(reputationValueDate.getIntegrity());
                             record_tv.setText(reputationValueDate.getTransactionRecord());
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+            }
+        });
+        initcCollaborateComment();
+    }
+
+    //ÂàùÂßãÂåñÂêà‰ΩúËØÑËÆ∫
+    private void initcCollaborateComment(){
+        HttpUtils httpUtils=new HttpUtils();
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result = responseInfo.result;
+                if (result != null) {
+                    ArtistParme<CommentBean> commentBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<CommentBean>>() {
+                    });
+                    if (commentBean.getState().equals("success")) {
+
+                        if(commentBean.getValue()!=null) {
+                            List<CommentBean> commentDate = commentBean.getValue();
+                            adapter = new ReputationAdapter(ReputationActivity.this,commentDate);
+                            reputation_list.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
                         }
 
                     }

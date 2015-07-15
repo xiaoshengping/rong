@@ -267,5 +267,8 @@ public class AppUtilsUrl  {
     public static String getReputationValue(int personid){
         return BaseUrl+"grade.action?personid="+personid;
     }
+    public static String getComment(int personid){
+        return BaseUrl+"getCommentByBePerson.action?personid="+personid+"&offset=0&limit=15";
+    }
 
 }
