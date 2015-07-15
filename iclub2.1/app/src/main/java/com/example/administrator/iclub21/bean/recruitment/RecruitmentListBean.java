@@ -8,22 +8,22 @@ import java.io.Serializable;
 public class RecruitmentListBean implements Serializable {
 
     private int jobId;//id
-    private int rank;//ÅÅĞò£¨Ô½´óÅÅÔ½Ç°£©
-    private String position;//Ö°Î»Ãû
-    private int star;// 3, ĞÇ¼¶£¨ÕâÑù±íÊ¾Èı¿ÅĞÇ£©
-    private String puttime;//¡°2014-10-10¡±, ·¢²¼Ê±¼ä
-    private int viewCount;// ä¯ÀÀÊı
-    private String workPay;// ¡°18888Ôª¡±, Ğ½½ğ
-    private String companyName;// ¡°¹ã¶«¾«Æ·ÀñÆ·ÖÆ×÷ÉÌ¡±, ¹«Ë¾Ãû
-    private String workPlace;//¡°¹ãÖİ¡±, ¹¤×÷µØµã
-    private String recruitingNumbers;// ¡°1¡±, ÕĞÆ¸ÈËÊı
-    private String jobRequirements;// ¡°Õâ¸öÊÇ²âÊÔDJÄ¬ÈÏÍ¼µÄ£¡¡±, ¾­ÑéÒªÇó
-    private String jobInfo;//¡°Ö°Î»ÃèÊõÅ¶¡±, Ö°Î»ÃèÊõ
-    private String label;//¡±hot¡± ±êÇ©
-    private String phone;// ¡°020-56984756¡±, µç»°
-    private String email;// ¡°iclubapps@163.com¡±, Email
-    private String web;//¡°www.iclubapps.com¡±, ¹ÙÍø
-    private String address;//¡°¹ã¶«¹ãÖİÔ½ĞãÇøÖĞÉ½ËÄÂ·148ºÅ907ÊÒ¡±, µØÖ·
+    private int rank;//æ’åºï¼ˆè¶Šå¤§æ’è¶Šå‰ï¼‰
+    private String position;//èŒä½å
+    private int star;// 3, æ˜Ÿçº§ï¼ˆè¿™æ ·è¡¨ç¤ºä¸‰é¢—æ˜Ÿï¼‰
+    private String puttime;//â€œ2014-10-10â€, å‘å¸ƒæ—¶é—´
+    private int viewCount;// æµè§ˆæ•°
+    private String workPay;// â€œ18888å…ƒâ€, è–ªé‡‘
+    private String companyName;// â€œå¹¿ä¸œç²¾å“ç¤¼å“åˆ¶ä½œå•†â€, å…¬å¸å
+    private String workPlace;//â€œå¹¿å·â€, å·¥ä½œåœ°ç‚¹
+    private String recruitingNumbers;// â€œ1â€, æ‹›è˜äººæ•°
+    private String jobRequirements;// â€œè¿™ä¸ªæ˜¯æµ‹è¯•DJé»˜è®¤å›¾çš„ï¼â€, ç»éªŒè¦æ±‚
+    private String jobInfo;//â€œèŒä½ææœ¯å“¦â€, èŒä½ææœ¯
+    private String label;//â€hotâ€ æ ‡ç­¾
+    private String phone;// â€œ020-56984756â€, ç”µè¯
+    private String email;// â€œiclubapps@163.comâ€, Email
+    private String web;//â€œwww.iclubapps.comâ€, å®˜ç½‘
+    private String address;//â€œå¹¿ä¸œå¹¿å·è¶Šç§€åŒºä¸­å±±å››è·¯148å·907å®¤â€, åœ°å€
     private int jobcategory;// 1
 
     public String getWorkPlace() {
