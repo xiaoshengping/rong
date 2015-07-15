@@ -78,24 +78,24 @@ public class CircleImageView extends ImageView {
         }
         final int width = getWidth();
         final int height = getHeight();
-        /** ±£´ælayer */
+        /** ä¿å­˜layer */
         int layer = paramCanvas.saveLayer(0.0F, 0.0F, width, height, null, 31);
-        /** ÉèÖÃdrawableµÄ´óĞ¡ */
+        /** è®¾ç½®drawableçš„å¤§å° */
         localDrawable.setBounds(0, 0, width, height);
-        /** ½«drawable°ó¶¨µ½bitmap(this.mask)ÉÏÃæ£¨drawableÖ»ÄÜÍ¨¹ıbitmapÏÔÊ¾³öÀ´£© */
+        /** å°†drawableç»‘å®šåˆ°bitmap(this.mask)ä¸Šé¢ï¼ˆdrawableåªèƒ½é€šè¿‡bitmapæ˜¾ç¤ºå‡ºæ¥ï¼‰ */
         localDrawable.draw(paramCanvas);
         if ((this.mask == null) || (this.mask.isRecycled())) {
             this.mask = createOvalBitmap(width, height);
         }
-        /** ½«bitmap»­µ½canvasÉÏÃæ */
+        /** å°†bitmapç”»åˆ°canvasä¸Šé¢ */
         paramCanvas.drawBitmap(this.mask, 0.0F, 0.0F, this.paint);
-        /** ½«»­²¼¸´ÖÆµ½layerÉÏ */
+        /** å°†ç”»å¸ƒå¤åˆ¶åˆ°layerä¸Š */
         paramCanvas.restoreToCount(layer);
         drawBorder(paramCanvas, width, height);
     }
 
     /**
-     * »æÖÆ×îÍâÃæµÄ±ß¿ò
+     * ç»˜åˆ¶æœ€å¤–é¢çš„è¾¹æ¡†
      *
      * @param canvas
      * @param width
@@ -111,7 +111,7 @@ public class CircleImageView extends ImageView {
         mBorderPaint.setColor(mBorderColor);
         mBorderPaint.setStrokeWidth(mBorderWidth);
         /**
-         * ×ø±êx£ºview¿í¶ÈµÄÒ»°ã ×ø±êy£ºview¸ß¶ÈµÄÒ»°ã °ë¾¶r£ºÒòÎªÊÇviewµÄ¿í¶È-borderµÄÒ»°ë
+         * åæ ‡xï¼šviewå®½åº¦çš„ä¸€èˆ¬ åæ ‡yï¼šviewé«˜åº¦çš„ä¸€èˆ¬ åŠå¾„rï¼šå› ä¸ºæ˜¯viewçš„å®½åº¦-borderçš„ä¸€åŠ
          */
         canvas.drawCircle(width >> 1, height >> 1, (width - mBorderWidth) >> 1, mBorderPaint);
 //        canvas.drawCircle(width >> 1, height >> 1, (width - mBorderWidth) >> 1, mBorderPaint);
@@ -119,9 +119,9 @@ public class CircleImageView extends ImageView {
     }
 
     /**
-     * »ñÈ¡Ò»¸öbitmap£¬Ä¿µÄÊÇÓÃÀ´³ĞÔØdrawable;
+     * è·å–ä¸€ä¸ªbitmapï¼Œç›®çš„æ˜¯ç”¨æ¥æ‰¿è½½drawable;
      * <p>
-     * ½«Õâ¸öbitmap·ÅÔÚcanvasÉÏÃæ³ĞÔØ£¬²¢ÔÚÆäÉÏÃæ»­Ò»¸öÍÖÔ²(ÆäÊµÒ²ÊÇÒ»¸öÔ²£¬ÒòÎªwidth=height)À´¹Ì¶¨ÏÔÊ¾ÇøÓò
+     * å°†è¿™ä¸ªbitmapæ”¾åœ¨canvasä¸Šé¢æ‰¿è½½ï¼Œå¹¶åœ¨å…¶ä¸Šé¢ç”»ä¸€ä¸ªæ¤­åœ†(å…¶å®ä¹Ÿæ˜¯ä¸€ä¸ªåœ†ï¼Œå› ä¸ºwidth=height)æ¥å›ºå®šæ˜¾ç¤ºåŒºåŸŸ
      *
      * @param width
      * @param height
@@ -134,8 +134,8 @@ public class CircleImageView extends ImageView {
         Paint localPaint = new Paint();
         final int padding = mBorderWidth-1;
         /**
-         * ÉèÖÃÍÖÔ²µÄ´óĞ¡(ÒòÎªÍÖÔ²µÄ×îÍâ±ß»áºÍborderµÄ×îÍâ±ßÖØºÏµÄ£¬Èç¹ûÍ¼Æ¬×îÍâ±ßµÄÑÕÉ«ºÜÉî£¬ÓĞ¿´³öÓĞÀâ±ßµÄĞ§¹û£¬ËùÒÔÎªÁËÈÃÌåÑé¸ü¼ÓºÃ£¬
-         * ÈÃÆäËõ½øpadding px)
+         * è®¾ç½®æ¤­åœ†çš„å¤§å°(å› ä¸ºæ¤­åœ†çš„æœ€å¤–è¾¹ä¼šå’Œborderçš„æœ€å¤–è¾¹é‡åˆçš„ï¼Œå¦‚æœå›¾ç‰‡æœ€å¤–è¾¹çš„é¢œè‰²å¾ˆæ·±ï¼Œæœ‰çœ‹å‡ºæœ‰æ£±è¾¹çš„æ•ˆæœï¼Œæ‰€ä»¥ä¸ºäº†è®©ä½“éªŒæ›´åŠ å¥½ï¼Œ
+         * è®©å…¶ç¼©è¿›padding px)
          */
         RectF localRectF = new RectF(padding, padding, width - padding, height - padding);
         localCanvas.drawOval(localRectF, localPaint);

@@ -37,7 +37,7 @@ public class Player implements OnBufferingUpdateListener, OnCompletionListener,
     }
 
     /*******************************************************
-     * Í¨¹ý¶¨Ê±Æ÷ºÍHandlerÀ´¸üÐÂ½ø¶ÈÌõ
+     * é€šè¿‡å®šæ—¶å™¨å’ŒHandleræ¥æ›´æ–°è¿›åº¦æ¡
      ******************************************************/
     TimerTask mTimerTask = new TimerTask() {
         @Override
@@ -62,17 +62,17 @@ public class Player implements OnBufferingUpdateListener, OnCompletionListener,
     };
 
     /**
-     * À´µç»°ÁË
+     * æ¥ç”µè¯äº†
      */
     public void callIsComing() {
         if (mediaPlayer.isPlaying()) {
-            playPosition = mediaPlayer.getCurrentPosition();// »ñµÃµ±Ç°²¥·ÅÎ»ÖÃ
+            playPosition = mediaPlayer.getCurrentPosition();// èŽ·å¾—å½“å‰æ’­æ”¾ä½ç½®
             mediaPlayer.stop();
         }
     }
 
     /**
-     * Í¨»°½áÊø
+     * é€šè¯ç»“æŸ
      */
     public void callIsDown() {
         if (playPosition > 0) {
@@ -82,33 +82,33 @@ public class Player implements OnBufferingUpdateListener, OnCompletionListener,
     }
 
     /**
-     * ²¥·Å
+     * æ’­æ”¾
      */
     public void play() {
         playNet(0);
     }
 
     /**
-     * ÖØ²¥
+     * é‡æ’­
      */
     public void replay() {
         if (mediaPlayer.isPlaying()) {
-            mediaPlayer.seekTo(0);// ´Ó¿ªÊ¼Î»ÖÃ¿ªÊ¼²¥·ÅÒôÀÖ
+            mediaPlayer.seekTo(0);// ä»Žå¼€å§‹ä½ç½®å¼€å§‹æ’­æ”¾éŸ³ä¹
         } else {
             playNet(0);
         }
     }
 
     /**
-     * ÔÝÍ£
+     * æš‚åœ
      */
     public boolean pause() {
-        if (mediaPlayer.isPlaying()) {// Èç¹ûÕýÔÚ²¥·Å
-            mediaPlayer.pause();// ÔÝÍ£
+        if (mediaPlayer.isPlaying()) {// å¦‚æžœæ­£åœ¨æ’­æ”¾
+            mediaPlayer.pause();// æš‚åœ
             pause = true;
         } else {
-            if (pause) {// Èç¹û´¦ÓÚÔÝÍ£×´Ì¬
-                mediaPlayer.start();// ¼ÌÐø²¥·Å
+            if (pause) {// å¦‚æžœå¤„äºŽæš‚åœçŠ¶æ€
+                mediaPlayer.start();// ç»§ç»­æ’­æ”¾
                 pause = false;
             }
         }
@@ -116,7 +116,7 @@ public class Player implements OnBufferingUpdateListener, OnCompletionListener,
     }
 
     /**
-     * Í£Ö¹
+     * åœæ­¢
      */
     public void stop() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
@@ -126,7 +126,7 @@ public class Player implements OnBufferingUpdateListener, OnCompletionListener,
 
     @Override
     /**
-     * Í¨¹ýonPrepared²¥·Å
+     * é€šè¿‡onPreparedæ’­æ”¾
      */
     public void onPrepared(MediaPlayer arg0) {
         arg0.start();
@@ -147,23 +147,23 @@ public class Player implements OnBufferingUpdateListener, OnCompletionListener,
     }
 
     /**
-     * ²¥·ÅÒôÀÖ
+     * æ’­æ”¾éŸ³ä¹
      *
      * @param playPosition
      */
     private void playNet(int playPosition) {
         try {
-            mediaPlayer.reset();// °Ñ¸÷Ïî²ÎÊý»Ö¸´µ½³õÊ¼×´Ì¬
+            mediaPlayer.reset();// æŠŠå„é¡¹å‚æ•°æ¢å¤åˆ°åˆå§‹çŠ¶æ€
             /**
-             * Í¨¹ýMediaPlayer.setDataSource()
-             * µÄ·½·¨,½«URL»òÎÄ¼þÂ·¾¶ÒÔ×Ö·û´®µÄ·½Ê½´«Èë.Ê¹ÓÃsetDataSource ()·½·¨Ê±,Òª×¢ÒâÒÔÏÂÈýµã:
-             * 1.¹¹½¨Íê³ÉµÄMediaPlayer ±ØÐëÊµÏÖNull ¶ÔÏñµÄ¼ì²é.
-             * 2.±ØÐëÊµÏÖ½ÓÊÕIllegalArgumentException ÓëIOException
-             * µÈÒì³£,ÔÚºÜ¶àÇé¿öÏÂ,ÄãËùÓÃµÄÎÄ¼þµ±ÏÂ²¢²»´æÔÚ. 3.ÈôÊ¹ÓÃURL À´²¥·ÅÔÚÏßÃ½ÌåÎÄ¼þ,¸ÃÎÄ¼þÓ¦¸ÃÒªÄÜÖ§³Öpragressive
-             * ÏÂÔØ.
+             * é€šè¿‡MediaPlayer.setDataSource()
+             * çš„æ–¹æ³•,å°†URLæˆ–æ–‡ä»¶è·¯å¾„ä»¥å­—ç¬¦ä¸²çš„æ–¹å¼ä¼ å…¥.ä½¿ç”¨setDataSource ()æ–¹æ³•æ—¶,è¦æ³¨æ„ä»¥ä¸‹ä¸‰ç‚¹:
+             * 1.æž„å»ºå®Œæˆçš„MediaPlayer å¿…é¡»å®žçŽ°Null å¯¹åƒçš„æ£€æŸ¥.
+             * 2.å¿…é¡»å®žçŽ°æŽ¥æ”¶IllegalArgumentException ä¸ŽIOException
+             * ç­‰å¼‚å¸¸,åœ¨å¾ˆå¤šæƒ…å†µä¸‹,ä½ æ‰€ç”¨çš„æ–‡ä»¶å½“ä¸‹å¹¶ä¸å­˜åœ¨. 3.è‹¥ä½¿ç”¨URL æ¥æ’­æ”¾åœ¨çº¿åª’ä½“æ–‡ä»¶,è¯¥æ–‡ä»¶åº”è¯¥è¦èƒ½æ”¯æŒpragressive
+             * ä¸‹è½½.
              */
             mediaPlayer.setDataSource(videoUrl);
-            mediaPlayer.prepare();// ½øÐÐ»º³å
+            mediaPlayer.prepare();// è¿›è¡Œç¼“å†²
             mediaPlayer.setOnPreparedListener(new MyPreparedListener(
                     playPosition));
         } catch (Exception e) {
@@ -181,7 +181,7 @@ public class Player implements OnBufferingUpdateListener, OnCompletionListener,
 
         @Override
         public void onPrepared(MediaPlayer mp) {
-            mediaPlayer.start();// ¿ªÊ¼²¥·Å
+            mediaPlayer.start();// å¼€å§‹æ’­æ”¾
             if (playPosition > 0) {
                 mediaPlayer.seekTo(playPosition);
             }
