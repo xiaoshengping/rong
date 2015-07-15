@@ -1,5 +1,6 @@
 package com.example.administrator.iclub21.util;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -174,6 +175,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
 
     }
 
+    @SuppressLint("ResourceAsColor")
     private void intiView() {
         httpUtils=new HttpUtils();
         requestParams=new RequestParams();
@@ -191,13 +193,18 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             positionEdit.setText(recruitmentHistoryValueBean.getPosition());
             if (!TextUtils.isEmpty(recruitmentHistoryValueBean.getJobRequirements())){
                 experienceRequireTv.setText(recruitmentHistoryValueBean.getJobRequirements());
+                experienceRequireTv.setTextColor(getResources().getColor(R.color.white));
+
             }else {
                 experienceRequireTv.setText("亲，请填写经验要求哦(必填)");
+                experienceRequireTv.setTextColor(getResources().getColor(R.color.textColor9a4274));
             }
             if (!TextUtils.isEmpty(recruitmentHistoryValueBean.getJobInfo())){
                 workDescribeTv.setText(recruitmentHistoryValueBean.getJobInfo());
+                workDescribeTv.setTextColor(getResources().getColor(R.color.white));
             }else {
                 workDescribeTv.setText("亲，请填写职位描述哦(必填)");
+                workDescribeTv.setTextColor(getResources().getColor(R.color.textColor9a4274));
             }
             workPayEdit.setText(recruitmentHistoryValueBean.getWorkPay());
             recruitingNumbersEdit.setText(recruitmentHistoryValueBean.getRecruitingNumbers());
