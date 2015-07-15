@@ -78,7 +78,7 @@ public class SelectedCityOrPositionActivity extends Activity {
                         intent.putExtra("Position", -1);
                         intent.putExtra("CityName", areaBean.getCityName(0));
                         /*给上一个Activity返回结果*/
-                        SelectedCityOrPositionActivity.this.setResult(RESULT_OK, intent);
+                        SelectedCityOrPositionActivity.this.setResult(12, intent);
                         /*结束本Activity*/
                         SelectedCityOrPositionActivity.this.finish();
                     }
@@ -88,7 +88,7 @@ public class SelectedCityOrPositionActivity extends Activity {
                     intent.putExtra("Position", -1);
                     intent.putExtra("CityName", areaBean.getCityName(position));
                 /*给上一个Activity返回结果*/
-                    SelectedCityOrPositionActivity.this.setResult(RESULT_OK, intent);
+                    SelectedCityOrPositionActivity.this.setResult(12, intent);
 /*结束本Activity*/
                     SelectedCityOrPositionActivity.this.finish();
                 } else if (status == areaBean.POSITION) {
@@ -98,7 +98,7 @@ public class SelectedCityOrPositionActivity extends Activity {
                         intent.putExtra("Position", areaBean.getPositionNum(position-1));
                         intent.putExtra("PositionName", areaBean.getPosition(position-1));
                 /*给上一个Activity返回结果*/
-                        SelectedCityOrPositionActivity.this.setResult(RESULT_OK, intent);
+                        SelectedCityOrPositionActivity.this.setResult(12, intent);
 /*结束本Activity*/
                         SelectedCityOrPositionActivity.this.finish();
                     }
@@ -167,7 +167,7 @@ public class SelectedCityOrPositionActivity extends Activity {
                 Intent intent = new Intent();
                 intent.putExtra("City", -1);
                 intent.putExtra("Position", -1);
-                SelectedCityOrPositionActivity.this.setResult(RESULT_OK, intent);
+                SelectedCityOrPositionActivity.this.setResult(12, intent);
                 SelectedCityOrPositionActivity.this.finish();
                 overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_buttom);
             }else if(status == areaBean.CITY){
@@ -180,7 +180,7 @@ public class SelectedCityOrPositionActivity extends Activity {
                 Intent intent = new Intent();
                 intent.putExtra("City", -1);
                 intent.putExtra("Position", -1);
-                SelectedCityOrPositionActivity.this.setResult(RESULT_OK, intent);
+                SelectedCityOrPositionActivity.this.setResult(12, intent);
                 SelectedCityOrPositionActivity.this.finish();
                 overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_right);
             }
@@ -196,7 +196,7 @@ public class SelectedCityOrPositionActivity extends Activity {
             Intent intent = new Intent();
             intent.putExtra("City", -1);
             intent.putExtra("Position", -1);
-            SelectedCityOrPositionActivity.this.setResult(RESULT_OK, intent);
+            SelectedCityOrPositionActivity.this.setResult(12, intent);
             SelectedCityOrPositionActivity.this.finish();
             overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_buttom);
         }else if(status == areaBean.CITY){
@@ -209,7 +209,7 @@ public class SelectedCityOrPositionActivity extends Activity {
             Intent intent = new Intent();
             intent.putExtra("City", -1);
             intent.putExtra("Position", -1);
-            SelectedCityOrPositionActivity.this.setResult(RESULT_OK, intent);
+            SelectedCityOrPositionActivity.this.setResult(12, intent);
             SelectedCityOrPositionActivity.this.finish();
             overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_right);
         }

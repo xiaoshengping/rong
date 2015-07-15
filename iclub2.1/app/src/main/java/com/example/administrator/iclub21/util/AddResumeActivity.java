@@ -32,6 +32,8 @@ import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.ParmeBean;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.bean.SaveResumeValueBean;
+import com.example.administrator.iclub21.bean.recruitment.AreaBean;
+import com.example.administrator.iclub21.calendar.CalendarActivity;
 import com.example.administrator.iclub21.http.ImageUtil;
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
@@ -139,6 +141,18 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
     @ViewInject(R.id.job_classfite_layout)
     private LinearLayout jodClassfiteLayout;
+    @ViewInject(R.id.job_city_layout)
+    private LinearLayout job_city_layout;
+
+
+
+    //日程安排
+    @ViewInject(R.id.schedule_ll)
+    private LinearLayout schedule_ll;
+    @ViewInject(R.id.job_classfite_tv)
+    private TextView job_classfite_tv;
+    @ViewInject(R.id.job_city_tv)
+    private TextView job_city_tv;
 
 
     //年龄
@@ -173,6 +187,11 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private  int dayOfMonth;
     private String  age;
 
+    private AreaBean areaBean = new AreaBean();
+
+    private int job_classfite_num = -1;//职业类别
+    private int job_city_num = -1;//工作地点
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -199,6 +218,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         addImage.setOnClickListener(this);
         addVideoTv.setOnClickListener(this);
         jodClassfiteLayout.setOnClickListener(this);
+        job_city_layout.setOnClickListener(this);
+        schedule_ll.setOnClickListener(this);
         addMusicTv.setOnClickListener(this);
         resumeAge.setOnClickListener(this);
         addResumeReturnTv.setOnClickListener(this);
@@ -369,7 +390,16 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 startActivityForResult(musicIntent, 11);
                 break;
             case R.id.job_classfite_layout:
-
+                Intent intentClassfite = new Intent(AddResumeActivity.this, SelectedCityOrPositionActivity.class);  //方法1
+                intentClassfite.putExtra("Status", areaBean.POSITION);
+                startActivityForResult(intentClassfite, 12);
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_not);
+                break;
+            case R.id.job_city_layout:
+                Intent intentCity = new Intent(AddResumeActivity.this, SelectedCityOrPositionActivity.class);  //方法1
+                intentCity.putExtra("Status", areaBean.PROVINCE);
+                startActivityForResult(intentCity, 12);
+                overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_not);
                 break;
             case R.id.addresume_save_tv:
                          intiSaveData();
@@ -380,9 +410,39 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 startActivity(intent);*/
                 finish();
                 break;
+            case R.id.schedule_ll://日程安排
+                Intent intentSchedule = new Intent(AddResumeActivity.this, CalendarActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("userType",2);
+                intentSchedule.putExtras(bundle);
+                startActivity(intentSchedule);
+                break;
 
         }
     }
+
+//    public void onActivityResult(int requestCode,int resultCode,Intent data){
+//        super.onActivityResult(requestCode,resultCode,data);
+//   /*取得来自SecondActivity页面的数据，并显示到画面*/
+//        Bundle bundle = data.getExtras();
+//
+//         /*获取Bundle中的数据，注意类型和key*/
+//        int city = bundle.getInt("City");
+//        String cName = bundle.getString("CityName");
+//        if(city>=0) {
+//            selected_city.setText(cName);
+//            citynum = city;
+//            initTalentData(citynum,jobnum);
+//        }
+//        int job = bundle.getInt("Position");
+//        String pName = bundle.getString("PositionName");
+//        if(job>=0&&job!=10){
+//            selected_position.setText(pName);
+//            jobnum = job;
+//            initTalentData(citynum, jobnum);
+////            initRecruitmentListData(citynum,jobnum,"");
+//        }
+//    }
 
     private void intiCompileData() {
         if (TextUtils.isEmpty(touXiangPath) || TextUtils.isEmpty(userName)
@@ -587,6 +647,25 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 break;
             case 11:
                 userMusicPath = data.getStringExtra("usermusicPath").toString();
+                break;
+            case 12:
+                /*取得来自SecondActivity页面的数据，并显示到画面*/
+                Bundle bundle = data.getExtras();
+
+                /*获取Bundle中的数据，注意类型和key*/
+                int city = bundle.getInt("City");//地区号
+                String cName = bundle.getString("CityName");//地区名
+                if(city>=0) {
+                    job_city_tv.setText(cName+"（城市编号："+city+"）");
+                    job_city_num = city;
+                }
+                int job = bundle.getInt("Position");//职业号
+                String pName = bundle.getString("PositionName");//职业名
+                if(job>=0&&job!=10){
+                    job_classfite_tv.setText(pName+"（职业编号："+job+"）");
+                    job_classfite_num = job;
+                }
+                break;
 
         }
         super.onActivityResult(requestCode, resultCode, data);
