@@ -1,7 +1,5 @@
 package com.example.administrator.iclub21.bean;
 
-import com.example.administrator.iclub21.fragment.TalentFragment;
-
 import java.io.Serializable;
 
 /**
