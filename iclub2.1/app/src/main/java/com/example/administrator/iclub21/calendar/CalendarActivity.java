@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,6 +50,9 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     private LinearLayout preImgBtn, nextImgBtn;
     private TextView monthText;
     private ImageButton closeImgBtn;
+    private TextView calendar_tips_tv;
+    private LinearLayout calendar_tips_ll;
+    private Button calendar_confirm_b;
 
     private DbUtils dbu;
     private Day user;
@@ -72,25 +76,13 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_calendar);
 
-        //初始化界面状态
-        init();
         Bundle bundle = getIntent().getExtras();
         userType = bundle.getInt("userType");
         id = bundle.getString("Personid");
         resumeid = bundle.getInt("Resumeid");
-//        Toast.makeText(CalendarActivity.this, resumeid+"", Toast.LENGTH_LONG).show();
-//       initRoute();
 
-//        tv = (TextView) findViewById(R.id.tv);
-
-        mViewPager = (ViewPager) this.findViewById(R.id.vp_calendar);
-        preImgBtn = (LinearLayout) this.findViewById(R.id.btnPreMonth);
-        nextImgBtn = (LinearLayout) this.findViewById(R.id.btnNextMonth);
-        monthText = (TextView) this.findViewById(R.id.tvCurrentMonth);
-//        closeImgBtn = (ImageButton) this.findViewById(R.id.btnClose);
-        preImgBtn.setOnClickListener((View.OnClickListener) this);
-        nextImgBtn.setOnClickListener((View.OnClickListener) this);
-//        closeImgBtn.setOnClickListener((View.OnClickListener) this);
+        //初始化界面状态
+        init();
 
         CalendarCard[] views = new CalendarCard[3];
         for (int i = 0; i < 3; i++) {
@@ -101,14 +93,38 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
         dbu = DbUtils.create(this);
         user = new Day(); //这里需要注意的是User对象必须有id属性，或者有通过@ID注解的属性
+    }
 
+    private void binding(){
+        mViewPager = (ViewPager) this.findViewById(R.id.vp_calendar);
+        preImgBtn = (LinearLayout) this.findViewById(R.id.btnPreMonth);
+        nextImgBtn = (LinearLayout) this.findViewById(R.id.btnNextMonth);
+        monthText = (TextView) this.findViewById(R.id.tvCurrentMonth);
+        calendar_tips_ll = (LinearLayout)this.findViewById(R.id.calendar_tips_ll);
+        calendar_confirm_b = (Button)this.findViewById(R.id.calendar_confirm_b);
+//        closeImgBtn = (ImageButton) this.findViewById(R.id.btnClose);
+        preImgBtn.setOnClickListener((View.OnClickListener) this);
+        nextImgBtn.setOnClickListener((View.OnClickListener) this);
+//        closeImgBtn.setOnClickListener((View.OnClickListener) this);
+    }
 
-
-//        initRoute();
-
-
+    private void init(){
+        binding();
+        i="";
+        if(userType==2){
+            calendar_tips_ll.setVisibility(View.INVISIBLE);
+            calendar_confirm_b.setVisibility(View.INVISIBLE);
+        }
+//        List<DayBean> list = new ArrayList<DayBean>();
+//        DayBean dayBean = new DayBean();
+//        dayBean.setDay("2015-08-");
+//        dayBean.setStatus("0");
+//        list.add(dayBean);
+//        dayBeanslist = list;
+//        monthText
 
     }
+
 
     private void setViewPager() {
         mViewPager.setAdapter(adapter);
@@ -239,7 +255,11 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
             preImgBtn.setVisibility(View.VISIBLE);
             nextImgBtn.setVisibility(View.INVISIBLE);
         }
-        initRoute(date.year + "-" + (date.month > 9 ? date.month : ("0" + date.month)));
+        if(userType==1) {
+            initRoute(date.year + "-" + (date.month > 9 ? date.month : ("0" + date.month)));
+        }else if(userType==2){
+
+        }
     }
 
     /**
@@ -270,45 +290,36 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     }
 
 
-    private void init(){
-        i="";
-//        List<DayBean> list = new ArrayList<DayBean>();
-//        DayBean dayBean = new DayBean();
-//        dayBean.setDay("2015-08-");
-//        dayBean.setStatus("0");
-//        list.add(dayBean);
-//        dayBeanslist = list;
-//        monthText
 
-    }
 
     //商家进入初始化日历
-    private void initRoute(String yearAndMonth){
-        HttpUtils httpUtils=new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRoute(id, yearAndMonth), new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                String result = responseInfo.result;
-                if (result != null) {
-                    ArtistParme<DayBean> dayBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<DayBean>>() {
-                    });
-                    if (dayBean.getState().equals("success")) {
-                        dayBeanslist = dayBean.getValue();
-                        updateCalendarView(7);
-                        tipsType = -1;
+    private void initRoute(String yearAndMonth ){
+            HttpUtils httpUtils = new HttpUtils();
+            httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRoute(id, yearAndMonth), new RequestCallBack<String>() {
+                @Override
+                public void onSuccess(ResponseInfo<String> responseInfo) {
+                    String result = responseInfo.result;
+                    if (result != null) {
+                        ArtistParme<DayBean> dayBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<DayBean>>() {
+                        });
+                        if (dayBean.getState().equals("success")) {
+                            dayBeanslist = dayBean.getValue();
+                            updateCalendarView(7);
+                            tipsType = -1;
+                        }
+
                     }
+
 
                 }
 
+                @Override
+                public void onFailure(HttpException e, String s) {
+                    tipsType = BEDEFEATED;
+//                monthText.setText(s);
+                }
+            });
 
-            }
-
-            @Override
-            public void onFailure(HttpException e, String s) {
-                tipsType = BEDEFEATED;
-                monthText.setText(s);
-            }
-        });
     }
 
     //邀约

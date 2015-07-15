@@ -210,6 +210,7 @@
                         android:layout_marginTop="3sp"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/calendar_tips_ll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -220,6 +221,7 @@
                         android:layout_height="20sp"
                         android:background="@drawable/yellow_dot_shape"/>
                     <TextView
+                        android:id="@+id/calendar_tips_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -232,6 +234,7 @@
 
 
         <Button
+            android:id="@+id/calendar_confirm_b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="确定"

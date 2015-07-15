@@ -20,17 +20,17 @@ import java.util.List;
 
 public class CalendarCard extends View {  
   
-    private static final int TOTAL_COL = 7; // 7ÁĞ  
-    private static final int TOTAL_ROW = 6; // 6ĞĞ  
+    private static final int TOTAL_COL = 7; // 7åˆ—  
+    private static final int TOTAL_ROW = 6; // 6è¡Œ  
   
-    private Paint mCirclePaint; // »æÖÆÔ²ĞÎµÄ»­±Ê  
-    private Paint mTextPaint; // »æÖÆÎÄ±¾µÄ»­±Ê  
-    private int mViewWidth; // ÊÓÍ¼µÄ¿í¶È  
-    private int mViewHeight; // ÊÓÍ¼µÄ¸ß¶È  
-    private int mCellSpace; // µ¥Ôª¸ñ¼ä¾à  
-    private Row rows[] = new Row[TOTAL_ROW]; // ĞĞÊı×é£¬Ã¿¸öÔªËØ´ú±íÒ»ĞĞ  
-    private static CustomDate mShowDate; // ×Ô¶¨ÒåµÄÈÕÆÚ£¬°üÀ¨year,month,day
-    private OnCellClickListener mCellClickListener; // µ¥Ôª¸ñµã»÷»Øµ÷ÊÂ¼ş  
+    private Paint mCirclePaint; // ç»˜åˆ¶åœ†å½¢çš„ç”»ç¬”  
+    private Paint mTextPaint; // ç»˜åˆ¶æ–‡æœ¬çš„ç”»ç¬”  
+    private int mViewWidth; // è§†å›¾çš„å®½åº¦  
+    private int mViewHeight; // è§†å›¾çš„é«˜åº¦  
+    private int mCellSpace; // å•å…ƒæ ¼é—´è·  
+    private Row rows[] = new Row[TOTAL_ROW]; // è¡Œæ•°ç»„ï¼Œæ¯ä¸ªå…ƒç´ ä»£è¡¨ä¸€è¡Œ  
+    private static CustomDate mShowDate; // è‡ªå®šä¹‰çš„æ—¥æœŸï¼ŒåŒ…æ‹¬year,month,day
+    private OnCellClickListener mCellClickListener; // å•å…ƒæ ¼ç‚¹å‡»å›è°ƒäº‹ä»¶  
     private int touchSlop; //  
     private boolean callBackCellSpace;  
   
@@ -51,15 +51,15 @@ public class CalendarCard extends View {
     
   
     /** 
-     * µ¥Ôª¸ñµã»÷µÄ»Øµ÷½Ó¿Ú 
+     * å•å…ƒæ ¼ç‚¹å‡»çš„å›è°ƒæ¥å£ 
      *  
      * @author wuwenjie 
      *  
      */  
     public interface OnCellClickListener {  
-        void clickDate(CustomDate date); // »Øµ÷µã»÷µÄÈÕÆÚ
+        void clickDate(CustomDate date); // å›è°ƒç‚¹å‡»çš„æ—¥æœŸ
   
-        void changeDate(CustomDate date); // »Øµ÷»¬¶¯ViewPager¸Ä±äµÄÈÕÆÚ
+        void changeDate(CustomDate date); // å›è°ƒæ»‘åŠ¨ViewPageræ”¹å˜çš„æ—¥æœŸ
         
     }  
   
@@ -91,7 +91,7 @@ public class CalendarCard extends View {
         mCirclePaint = new Paint(Paint.ANTI_ALIAS_FLAG);  
 
 
-//        mCirclePaint.setColor(Color.parseColor("#F24949")); // ºìÉ«Ô²ĞÎ
+//        mCirclePaint.setColor(Color.parseColor("#F24949")); // çº¢è‰²åœ†å½¢
         touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();  
   
         initDate();  
@@ -103,11 +103,11 @@ public class CalendarCard extends View {
     }
   
     private void fillDate() {  
-        int monthDay = DateUtil.getCurrentMonthDay(); // ½ñÌì
+        int monthDay = DateUtil.getCurrentMonthDay(); // ä»Šå¤©
         int lastMonthDays = DateUtil.getMonthDays(mShowDate.year,
-                mShowDate.month - 1); // ÉÏ¸öÔÂµÄÌìÊı  
+                mShowDate.month - 1); // ä¸Šä¸ªæœˆçš„å¤©æ•°  
         int currentMonthDays = DateUtil.getMonthDays(mShowDate.year,
-                mShowDate.month); // µ±Ç°ÔÂµÄÌìÊı  
+                mShowDate.month); // å½“å‰æœˆçš„å¤©æ•°  
         int firstDayWeek = DateUtil.getWeekDayFromDate(mShowDate.year,
                 mShowDate.month);  
         boolean isCurrentMonth = false;  
@@ -118,11 +118,11 @@ public class CalendarCard extends View {
         for (int j = 0; j < TOTAL_ROW; j++) {  
             rows[j] = new Row(j);  
             for (int i = 0; i < TOTAL_COL; i++) {  
-                int position = i + j * TOTAL_COL; // µ¥Ôª¸ñÎ»ÖÃ
+                int position = i + j * TOTAL_COL; // å•å…ƒæ ¼ä½ç½®
 
 
 
-                // Õâ¸öÔÂµÄ
+                // è¿™ä¸ªæœˆçš„
                 if (position >= firstDayWeek  
                         && position < firstDayWeek + currentMonthDays) {  
                     day++;
@@ -179,7 +179,7 @@ public class CalendarCard extends View {
                             DbUtils dbu = DbUtils.create(mContext);
                             try {
                                 list = dbu.findAll(Selector.from(Day.class).where(WhereBuilder.b("id", "!=", -1).and("day", "=", mShowDate.year + "-" + (mShowDate.month > 9 ? mShowDate.month : ("0" + mShowDate.month)) + "-" + (day > 9 ? day : ("0" + day)))).orderBy("id").limit(10));
-//                            list = dbu.findAll(Selector.from(Day.class).where(WhereBuilder.b("id", "£¡=", -1).and("day","=",mShowDate.year+"-"+(mShowDate.month > 9 ? mShowDate.month : ("0" + mShowDate.month))+"-"+(day > 9 ? day : ("0" + day)))).orderBy("id").limit(10));
+//                            list = dbu.findAll(Selector.from(Day.class).where(WhereBuilder.b("id", "ï¼=", -1).and("day","=",mShowDate.year+"-"+(mShowDate.month > 9 ? mShowDate.month : ("0" + mShowDate.month))+"-"+(day > 9 ? day : ("0" + day)))).orderBy("id").limit(10));
                             } catch (DbException e) {
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
@@ -193,13 +193,13 @@ public class CalendarCard extends View {
                         }
                     }
 
-                    // ¹ıÈ¥Ò»¸öÔÂ
+                    // è¿‡å»ä¸€ä¸ªæœˆ
                 } else if (position < firstDayWeek) {
                     rows[j].cells[i] = new Cell(new CustomDate(mShowDate.year,
                             mShowDate.month - 1, lastMonthDays
                                     - (firstDayWeek - position - 1)),
                             State.PAST_MONTH_DAY, i, j,colos);
-                    // ÏÂ¸öÔÂ
+                    // ä¸‹ä¸ªæœˆ
                 } else if (position >= firstDayWeek + currentMonthDays) {
                     rows[j].cells[i] = new Cell((new CustomDate(mShowDate.year,
                             mShowDate.month + 1, position - firstDayWeek
@@ -261,7 +261,7 @@ public class CalendarCard extends View {
     }  
   
     /** 
-     * ¼ÆËãµã»÷µÄµ¥Ôª¸ñ 
+     * è®¡ç®—ç‚¹å‡»çš„å•å…ƒæ ¼ 
      * @param col 
      * @param row 
      */  
@@ -280,13 +280,13 @@ public class CalendarCard extends View {
             date.week = col;  
             mCellClickListener.clickDate(date);  
   
-            // Ë¢ĞÂ½çÃæ  
+            // åˆ·æ–°ç•Œé¢  
             update();  
         }  
     }  
   
     /** 
-     * ×éÔªËØ 
+     * ç»„å…ƒç´  
      *  
      * @author wuwenjie 
      *  
@@ -300,7 +300,7 @@ public class CalendarCard extends View {
   
         public Cell[] cells = new Cell[TOTAL_COL];  
   
-        // »æÖÆµ¥Ôª¸ñ  
+        // ç»˜åˆ¶å•å…ƒæ ¼  
         public void drawCells(Canvas canvas) {  
             for (int i = 0; i < cells.length; i++) {  
                 if (cells[i] != null) {  
@@ -312,7 +312,7 @@ public class CalendarCard extends View {
     }  
   
     /** 
-     * µ¥Ôª¸ñÔªËØ 
+     * å•å…ƒæ ¼å…ƒç´  
      *  
      * @author wuwenjie 
      *  
@@ -335,7 +335,7 @@ public class CalendarCard extends View {
   
         public void drawSelf(Canvas canvas) {
             switch (state) {
-            case TODAY: // ½ñÌì
+            case TODAY: // ä»Šå¤©
                 mCirclePaint.setStyle(Paint.Style.STROKE);
                 mCirclePaint.setStrokeWidth(2);
                 mCirclePaint.setColor(Color.parseColor(colos));
@@ -344,16 +344,16 @@ public class CalendarCard extends View {
                         (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,  
                         mCirclePaint);  
                 break;
-                case SETUP://ÉèÖÃ
+                case SETUP://è®¾ç½®
                     mCirclePaint.setStyle(Paint.Style.FILL);
-                    mCirclePaint.setColor(Color.parseColor(colos));
+                    mCirclePaint.setColor(Color.parseColor("#5DC890"));
                     mTextPaint.setColor(Color.parseColor(textColor));
                     canvas.drawCircle((float) (mCellSpace * (i + 0.5)),
                             (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,
                             mCirclePaint);
 
                     break;
-                case ORDER: // Ô¤Ô¼
+                case ORDER: // é¢„çº¦
                     mCirclePaint.setStyle(Paint.Style.FILL);
                     mCirclePaint.setColor(Color.parseColor("#FFFF00"));
                     mTextPaint.setColor(Color.parseColor(textColor));
@@ -361,14 +361,14 @@ public class CalendarCard extends View {
                             (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,
                             mCirclePaint);
                     break;
-                case CURRENT_MONTH_DAY: // µ±Ç°ÔÂÈÕÆÚ
+                case CURRENT_MONTH_DAY: // å½“å‰æœˆæ—¥æœŸ
                 mTextPaint.setColor(Color.parseColor(textColor));
                 break;  
-            case PAST_MONTH_DAY: // ¹ıÈ¥Ò»¸öÔÂ
-            case NEXT_MONTH_DAY: // ÏÂÒ»¸öÔÂ  
+            case PAST_MONTH_DAY: // è¿‡å»ä¸€ä¸ªæœˆ
+            case NEXT_MONTH_DAY: // ä¸‹ä¸€ä¸ªæœˆ  
                 mTextPaint.setColor(Color.parseColor("#fffffe"));
                 break;  
-            case UNREACH_DAY: // »¹Î´µ½µÄÌì  
+            case UNREACH_DAY: // è¿˜æœªåˆ°çš„å¤©  
                 mTextPaint.setColor(Color.GRAY);
                 break;
             default:  
@@ -377,7 +377,7 @@ public class CalendarCard extends View {
 
 
 
-            // »æÖÆÎÄ×Ö  
+            // ç»˜åˆ¶æ–‡å­—  
             String content = date.day + "";  
             canvas.drawText(content,  
                     (float) ((i + 0.5) * mCellSpace - mTextPaint  
@@ -389,13 +389,13 @@ public class CalendarCard extends View {
   
     /** 
      *  
-     * @author wuwenjie µ¥Ôª¸ñµÄ×´Ì¬ µ±Ç°ÔÂÈÕÆÚ£¬¹ıÈ¥µÄÔÂµÄÈÕÆÚ£¬ÏÂ¸öÔÂµÄÈÕÆÚ 
+     * @author wuwenjie å•å…ƒæ ¼çš„çŠ¶æ€ å½“å‰æœˆæ—¥æœŸï¼Œè¿‡å»çš„æœˆçš„æ—¥æœŸï¼Œä¸‹ä¸ªæœˆçš„æ—¥æœŸ 
      */  
     enum State {  
         TODAY,SETUP,ORDER,CURRENT_MONTH_DAY, PAST_MONTH_DAY, NEXT_MONTH_DAY, UNREACH_DAY;
     }  
   
-    // ´Ó×óÍùÓÒ»®£¬ÉÏÒ»¸öÔÂ  
+    // ä»å·¦å¾€å³åˆ’ï¼Œä¸Šä¸€ä¸ªæœˆ  
     public void leftSlide() {  
         if (mShowDate.month == 1) {  
             mShowDate.month = 12;  
@@ -406,7 +406,7 @@ public class CalendarCard extends View {
         update();  
     }  
   
-    // ´ÓÓÒÍù×ó»®£¬ÏÂÒ»¸öÔÂ  
+    // ä»å³å¾€å·¦åˆ’ï¼Œä¸‹ä¸€ä¸ªæœˆ  
     public void rightSlide() {  
         if (mShowDate.month == 12) {  
             mShowDate.month = 1;  

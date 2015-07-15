@@ -32,24 +32,24 @@ import java.util.concurrent.TimeUnit;
  */
 public class SlideShowView extends FrameLayout {
 
-//ÂÖ²¥Í¼Í¼Æ¬ÊıÁ¿
+//è½®æ’­å›¾å›¾ç‰‡æ•°é‡
     private final static int IMAGE_COUNT = 5;
-//×Ô¶¯ÂÖ²¥µÄÊ±¼ä¼ä¸ô
+//è‡ªåŠ¨è½®æ’­çš„æ—¶é—´é—´éš”
     private final static int TIME_INTERVAL = 5;
-//×Ô¶¯ÂÖ²¥ÆôÓÃ¿ª¹Ø
+//è‡ªåŠ¨è½®æ’­å¯ç”¨å¼€å…³
     private final static boolean isAutoPlay = true;
 
-//×Ô¶¨ÒåÂÖ²¥Í¼µÄ×ÊÔ´ID
+//è‡ªå®šä¹‰è½®æ’­å›¾çš„èµ„æºID
     private int[] imagesResIds;
-//·ÅÂÖ²¥Í¼Æ¬µÄImageView µÄlist
+//æ”¾è½®æ’­å›¾ç‰‡çš„ImageView çš„list
     private List<ImageView> imageViewsList;
-//·ÅÔ²µãµÄViewµÄlist
+//æ”¾åœ†ç‚¹çš„Viewçš„list
     private List<View> dotViewsList;
 
     private ViewPager viewPager;
-//µ±Ç°ÂÖ²¥Ò³
+//å½“å‰è½®æ’­é¡µ
     private int currentItem  = 0;
-//¶¨Ê±ÈÎÎñ
+//å®šæ—¶ä»»åŠ¡
     private ScheduledExecutorService scheduledExecutorService;
 //Handler
     private Handler handler = new Handler(){
@@ -116,20 +116,20 @@ public class SlideShowView extends FrameLayout {
 
 
     /**
- * ¿ªÊ¼ÂÖ²¥Í¼ÇĞ»»
+ * å¼€å§‹è½®æ’­å›¾åˆ‡æ¢
  */
     private void startPlay(){
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleAtFixedRate(new SlideShowTask(), 1, 4, TimeUnit.SECONDS);
     }
 /**
- * Í£Ö¹ÂÖ²¥Í¼ÇĞ»»
+ * åœæ­¢è½®æ’­å›¾åˆ‡æ¢
  */
     private void stopPlay(){
         scheduledExecutorService.shutdown();
     }
 /**
- * ³õÊ¼»¯Ïà¹ØData
+ * åˆå§‹åŒ–ç›¸å…³Data
  */
 
 
@@ -150,7 +150,7 @@ public class SlideShowView extends FrameLayout {
 
     private View view;
 /**
- * ³õÊ¼»¯ViewsµÈUI
+ * åˆå§‹åŒ–Viewsç­‰UI
  */
     private void initUI(Context context){
         view = LayoutInflater.from(context).inflate(R.layout.layout_slideshow, this, true);
@@ -183,7 +183,7 @@ public class SlideShowView extends FrameLayout {
         viewPager.setAdapter(new MyPagerAdapter());
         viewPager.setOnPageChangeListener(new MyPageChangeListener());
     }
-    //ÒÕÈËÏêÇé
+    //è‰ºäººè¯¦æƒ…
     private void initArtistUI(Context context){
         view = LayoutInflater.from(context).inflate(R.layout.layout_slideshow, this, true);
 
@@ -216,7 +216,7 @@ public class SlideShowView extends FrameLayout {
         viewPager.setOnPageChangeListener(new MyPageChangeListener());
     }
 
-    //ÒÕÈËÄ£¿é
+    //è‰ºäººæ¨¡å—
     private void initArtistFragmentUI(Context context){
         view = LayoutInflater.from(context).inflate(R.layout.layout_slideshow, this, true);
 
@@ -385,7 +385,7 @@ public class SlideShowView extends FrameLayout {
     }
 
 /**
- * Ìî³äViewPagerµÄÒ³ÃæÊÊÅäÆ÷
+ * å¡«å……ViewPagerçš„é¡µé¢é€‚é…å™¨
  * @author caizhiming
  */
     private class MyPagerAdapter  extends PagerAdapter {
@@ -441,8 +441,8 @@ public class SlideShowView extends FrameLayout {
 
     }
 /**
- * ViewPagerµÄ¼àÌıÆ÷
- * µ±ViewPagerÖĞÒ³ÃæµÄ×´Ì¬·¢Éú¸Ä±äÊ±µ÷ÓÃ
+ * ViewPagerçš„ç›‘å¬å™¨
+ * å½“ViewPagerä¸­é¡µé¢çš„çŠ¶æ€å‘ç”Ÿæ”¹å˜æ—¶è°ƒç”¨
  * @author caizhiming
  */
     private class MyPageChangeListener implements OnPageChangeListener{
@@ -453,18 +453,18 @@ public class SlideShowView extends FrameLayout {
         public void onPageScrollStateChanged(int arg0) {
 // TODO Auto-generated method stub
             switch (arg0) {
-                case 1:// ÊÖÊÆ»¬¶¯£¬¿ÕÏĞÖĞ
+                case 1:// æ‰‹åŠ¿æ»‘åŠ¨ï¼Œç©ºé—²ä¸­
                     isAutoPlay = false;
                     break;
-                case 2:// ½çÃæÇĞ»»ÖĞ
+                case 2:// ç•Œé¢åˆ‡æ¢ä¸­
                     isAutoPlay = true;
                     break;
-                case 0:// »¬¶¯½áÊø£¬¼´ÇĞ»»Íê±Ï»òÕß¼ÓÔØÍê±Ï
-// µ±Ç°Îª×îºóÒ»ÕÅ£¬´ËÊ±´ÓÓÒÏò×ó»¬£¬ÔòÇĞ»»µ½µÚÒ»ÕÅ
+                case 0:// æ»‘åŠ¨ç»“æŸï¼Œå³åˆ‡æ¢å®Œæ¯•æˆ–è€…åŠ è½½å®Œæ¯•
+// å½“å‰ä¸ºæœ€åä¸€å¼ ï¼Œæ­¤æ—¶ä»å³å‘å·¦æ»‘ï¼Œåˆ™åˆ‡æ¢åˆ°ç¬¬ä¸€å¼ 
                     if (viewPager.getCurrentItem() == viewPager.getAdapter().getCount() - 1 && !isAutoPlay) {
                         viewPager.setCurrentItem(0);
                     }
-// µ±Ç°ÎªµÚÒ»ÕÅ£¬´ËÊ±´Ó×óÏòÓÒ»¬£¬ÔòÇĞ»»µ½×îºóÒ»ÕÅ
+// å½“å‰ä¸ºç¬¬ä¸€å¼ ï¼Œæ­¤æ—¶ä»å·¦å‘å³æ»‘ï¼Œåˆ™åˆ‡æ¢åˆ°æœ€åä¸€å¼ 
                     else if (viewPager.getCurrentItem() == 0 && !isAutoPlay) {
                     viewPager.setCurrentItem(viewPager.getAdapter().getCount() - 1);
                 }
@@ -495,7 +495,7 @@ public class SlideShowView extends FrameLayout {
     }
 
 /**
- *Ö´ĞĞÂÖ²¥Í¼ÇĞ»»ÈÎÎñ
+ *æ‰§è¡Œè½®æ’­å›¾åˆ‡æ¢ä»»åŠ¡
  *@author caizhiming
  */
     private class SlideShowTask implements Runnable{
@@ -512,7 +512,7 @@ public class SlideShowView extends FrameLayout {
     }
 /**
  263.
- * Ïú»ÙImageView×ÊÔ´£¬»ØÊÕÄÚ´æ
+ * é”€æ¯ImageViewèµ„æºï¼Œå›æ”¶å†…å­˜
  264.
  * @author caizhiming
 265.
@@ -523,7 +523,7 @@ public class SlideShowView extends FrameLayout {
             ImageView imageView = imageViewsList.get(i);
             Drawable drawable = imageView.getDrawable();
             if (drawable != null) {
-//½â³ıdrawable¶ÔviewµÄÒıÓÃ
+//è§£é™¤drawableå¯¹viewçš„å¼•ç”¨
                 drawable.setCallback(null);
             }
         }
