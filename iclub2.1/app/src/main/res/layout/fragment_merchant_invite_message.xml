@@ -3,6 +3,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.administrator.iclub21.fragment.MerchantInviteMessageFragment">
     <ListView
+        android:dividerHeight="3dp"
+        android:divider="#00ffffff"
         android:id="@+id/merchant_invite_message_list_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

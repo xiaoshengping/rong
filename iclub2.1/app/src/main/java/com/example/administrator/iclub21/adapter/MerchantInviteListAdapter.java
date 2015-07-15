@@ -56,7 +56,7 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
             viewHodle.talentSexIv.setBackgroundResource(R.mipmap.girl_icon);
 
         }
-        viewHodle.talentAgeTv.setText(data.get(position).getInviteResume().getResumeAge()+"");
+        viewHodle.talentAgeTv.setText(data.get(position).getInviteResume().getResumeAge()+"岁");
 
 
 

@@ -4,6 +4,8 @@
     tools:context="com.example.administrator.iclub21.fragment.MerchantAcceptInviteFragment">
 
     <ListView
+        android:divider="#00ffffff"
+        android:dividerHeight="3dp"
         android:id="@+id/merchant_invite_message_list_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

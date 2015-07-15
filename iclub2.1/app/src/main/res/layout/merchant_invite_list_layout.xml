@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#30000000"
     style="@style/paren_layout_match_horgrivity">
     <ImageView
         android:layout_marginTop="8dp"
@@ -12,14 +13,16 @@
     <LinearLayout
         android:layout_weight="1"
         android:layout_marginLeft="10dp"
-        style="@style/paren_layout_match_vertirivity"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         >
         <LinearLayout
             style="@style/paren_layout_width_horgrivity"
             >
             <TextView
                 android:id="@+id/talent_name"
-                android:textColor="@color/white"
+                android:textColor="@color/whiteOne"
                 android:textSize="@dimen/textSize15"
                 android:text="name"
                 style="@style/textview_paren_width"
@@ -33,7 +36,7 @@
         </LinearLayout>
         <TextView
             android:id="@+id/talent_age_list"
-            android:textColor="@color/white"
+            android:textColor="@color/textColor2f967a"
             android:textSize="@dimen/textSize12"
             android:text="age"
             android:padding="2dp"
@@ -48,19 +51,20 @@
 
     <LinearLayout
         android:layout_weight="1"
-        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
         style="@style/paren_layout_match_vertirivity"
         >
         <TextView
             android:id="@+id/talent_job"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize14"
+            android:textColor="@color/textColor9a4274"
+            android:textSize="@dimen/textSize13"
             android:text="zwei"
             style="@style/textview_paren_width"
             />
         <TextView
             android:id="@+id/talent_time"
-            android:textColor="@color/white"
+            android:textColor="@color/textColor9a4274"
             android:textSize="@dimen/textSize13"
             android:text="city"
             style="@style/textview_paren_width"/>
