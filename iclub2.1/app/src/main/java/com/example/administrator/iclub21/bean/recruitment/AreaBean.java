@@ -13,9 +13,9 @@ public class AreaBean {
     private static String[] sArea;
     private String[] sProvince;
     private static String[] sCity;
-    public int CITY = 1;//cv'城市
-    public int PROVINCE = 2;//省份
-    public int POSITION = 3;//职位
+    public int CITY = 1;//cv'鍩庡競
+    public int PROVINCE = 2;//鐪佷唤
+    public int POSITION = 3;//鑱屼綅
 
     public int getAreaCount(Context context){
         sArea = context.getString(R.string.area).split(";");
