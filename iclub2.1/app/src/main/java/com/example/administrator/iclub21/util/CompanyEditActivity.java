@@ -1,16 +1,22 @@
 package com.example.administrator.iclub21.util;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.BMerchantValueBean;
+import com.example.administrator.iclub21.bean.ParmeBean;
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -33,6 +39,8 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
     private EditText editCompanyHttpEt;
     @ViewInject(R.id.edit_company_address_et)
     private EditText editCompanyAddressEt;
+    @ViewInject(R.id.address_layout)
+    private LinearLayout addressLayout;
 
     @ViewInject(R.id.edit_company_retrun_tv)
     private TextView editCompanyRetrunTv;
@@ -62,8 +70,8 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
     }
 
     private void init() {
-       requestParams=new RequestParams();
         intiView();
+       // intitbMerchantData();
         intiData();
 
 
@@ -83,11 +91,6 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
                 editCompanyNameEv.setText(bMerchantValueBean.getBEcompanyName());
             }else {
                 editCompanyNameEv.setHint("请输入公司名称");
-//                phone=bMerchantValueBean.getBEphone();
-//                email=bMerchantValueBean.getBEemail();
-//                web=bMerchantValueBean.getBEweb();
-//                address=bMerchantValueBean.getBEaddress();
-//                name=editCompanyNameEv.getText().toString();
             }
 
 
@@ -102,22 +105,33 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
                 editCompanyPhoneEt.setHint("请输入电话");
             }
 
-//            name=bMerchantValueBean.getBEcompanyName();
-//            email=bMerchantValueBean.getBEemail();
-//            web=bMerchantValueBean.getBEweb();
-//            address=bMerchantValueBean.getBEaddress();
-
         }else if (data.equals("email")){
              editCompanyEmailEt.setVisibility(View.VISIBLE);
-            editCompanyEmailEt.setHint("请输入Email");
             editCompanyTextTv.setText("Email");
+            if (!TextUtils.isEmpty(bMerchantValueBean.getBEemail())){
+                editCompanyEmailEt.setText(bMerchantValueBean.getBEemail());
+
+            }else {
+                editCompanyEmailEt.setHint("请输入Email");
+            }
+
+
         }else if (data.equals("http")){
             editCompanyHttpEt.setVisibility(View.VISIBLE);
-            editCompanyHttpEt.setHint("请输入官网");
+
             editCompanyTextTv.setText("官网");
+            if (!TextUtils.isEmpty(bMerchantValueBean.getBEweb())){
+                editCompanyHttpEt.setText(bMerchantValueBean.getBEweb());
+
+            }else {
+                editCompanyHttpEt.setHint("请输入官网");
+            }
         }else if (data.equals("adress")){
-            editCompanyAddressEt.setVisibility(View.VISIBLE);
+            addressLayout.setVisibility(View.VISIBLE);
             editCompanyTextTv.setText("公司地址");
+            if (!TextUtils.isEmpty(bMerchantValueBean.getBEaddress())){
+                editCompanyAddressEt.setText(bMerchantValueBean.getBEaddress());
+            }
 
         }
 
@@ -129,13 +143,56 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
     }
 
     private void intiView() {
+        requestParams=new RequestParams();
         editCompanyRetrunTv.setOnClickListener(this);
         editCompanyTextTv.setOnClickListener(this);
         editCompanySaveTv.setOnClickListener(this);
         myAppliction= (MyAppliction) getApplication();
 
+    }
+
+    private void intitbMerchantData() {
+        SQLhelper sqLhelper=new SQLhelper(CompanyEditActivity.this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        String uid=null;
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+
+        }
+        if (!TextUtils.isEmpty(uid)){
+            HttpUtils httpUtils=new HttpUtils();
+            requestParams.addBodyParameter("uid", uid);
+            httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAcquireMerchant(), requestParams, new RequestCallBack<String>() {
+                @Override
+                public void onSuccess(ResponseInfo<String> responseInfo) {
+                    String result = responseInfo.result;
+                    if (!TextUtils.isEmpty(result)) {
+                        ParmeBean<BMerchantValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<BMerchantValueBean>>() {
+                        });
+                        bMerchantValueBean = parmeBean.getValue();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(HttpException e, String s) {
+
+                }
+            });
+
+
+        }
+
+        cursor.close();
+        db.close();
+
 
     }
+
+
+
+
     private void intiHttpData() {
         HttpUtils httpUtils=new HttpUtils();
         requestParams.addBodyParameter("uid", "15088138598");
@@ -203,11 +260,12 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 Log.e("responseInfo111111111", responseInfo.result);
+                intitbMerchantData();
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("onFailure",s);
+                Log.e("onFailureonFailure",s);
             }
         });
 

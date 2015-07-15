@@ -1,6 +1,5 @@
 package com.example.administrator.iclub21.util;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -175,7 +174,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
 
     }
 
-    @SuppressLint("ResourceAsColor")
+
     private void intiView() {
         httpUtils=new HttpUtils();
         requestParams=new RequestParams();
@@ -221,8 +220,10 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 if (!TextUtils.isEmpty(merchantWork)){
 
                     experienceRequireTv.setText(merchantWork);
+                    experienceRequireTv.setTextColor(getResources().getColor(R.color.white));
                 }else {
                     experienceRequireTv.setText("亲，请填写经验要求哦(必填)");
+                    experienceRequireTv.setTextColor(getResources().getColor(R.color.textColor9a4274));
                 }
 
                 break;
@@ -230,8 +231,10 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                     merchantInfo = data.getStringExtra("merchantInfo").toString();
                     if (!TextUtils.isEmpty(merchantInfo)){
                         workDescribeTv.setText(merchantInfo);
+                        workDescribeTv.setTextColor(getResources().getColor(R.color.white));
                     }else {
                         workDescribeTv.setText("亲，请填写职位描述哦(必填)");
+                        workDescribeTv.setTextColor(getResources().getColor(R.color.textColor9a4274));
                     }
                     break;
             }
