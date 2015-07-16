@@ -8,10 +8,17 @@
     <ListView
         android:id="@+id/reputation_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:divider="#30ffffff"
         android:dividerHeight="1px"   >
 
     </ListView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="暂无评论"
+        android:textColor="#00000000"
+        android:gravity="center"
+        android:background="#30ffffff"/>
 
 </LinearLayout>

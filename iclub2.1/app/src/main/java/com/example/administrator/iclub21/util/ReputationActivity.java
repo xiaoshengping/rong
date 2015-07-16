@@ -34,7 +34,7 @@ public class ReputationActivity extends Activity {
     private int type = -1;
 //    private
     private TextView authenticity_tv,integrity_tv,record_tv;
-    private TextView company_url,company_phone,company_mailbox,company_location;
+    private TextView company_url,company_phone,company_mailbox,company_location,company_name_tv;
     private RecruitmentListBean recruitmentListBean;
 
     @Override
@@ -70,6 +70,7 @@ public class ReputationActivity extends Activity {
             company_phone = (TextView)header.findViewById(R.id.company_phone);
             company_mailbox = (TextView)header.findViewById(R.id.company_mailbox);
             company_location = (TextView)header.findViewById(R.id.company_location);
+            company_name_tv = (TextView)header.findViewById(R.id.company_name_tv);
             reputation_list.addHeaderView(header);//添加头部
 
             recruitmentListBean = (RecruitmentListBean) getIntent().getSerializableExtra("Detail");
@@ -78,6 +79,8 @@ public class ReputationActivity extends Activity {
             company_phone.setText(recruitmentListBean.getPhone());
             company_mailbox.setText(recruitmentListBean.getEmail());
             company_location.setText(recruitmentListBean.getAddress());
+            company_name_tv.setText(recruitmentListBean.getCompanyName());
+            company_name_tv.setText(id+"");
 
         }
 

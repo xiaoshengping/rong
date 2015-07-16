@@ -13,7 +13,7 @@ public class AppUtilsUrl  {
 
     }
     public static String getArtistList(String area,String sex,String artistCategory){
-        return BaseUrl+"artistFind.action?"+area+sex+artistCategory+"limit=4&"+"offset=0";
+        return BaseUrl+"artistFind.action?"+area+sex+artistCategory+"limit=10&"+"offset=0";
 
 
     }

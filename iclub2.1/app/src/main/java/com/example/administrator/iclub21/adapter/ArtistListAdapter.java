@@ -44,8 +44,14 @@ public class ArtistListAdapter extends AppBaseAdapter<ArtistListBean> {
     }
 
     private void initData(int position) {
+
+//        BitmapDisplayConfig bigPicDisplayConfig = new BitmapDisplayConfig(); // 显示原始图片,不压缩, 尽量不要使用, 图片太大时容易 OOM。
+//        bigPicDisplayConfig.setShowOriginal(false);
+//        bigPicDisplayConfig.setBitmapConfig(); //设置图片的最大尺寸, 不设置时更具控件属性自适应
+//        bigPicDisplayConfig.setBitmapMaxSize(BitmapCommonUtils.getScreenSize(context));
+
         BitmapUtils bitmapUtils=new BitmapUtils(context);
-        bitmapUtils.display(viewHolde.personPicture, AppUtilsUrl.ImageBaseUrl+data.get(position).getArtistPicture().get(position).getName());
+        bitmapUtils.display(viewHolde.personPicture, AppUtilsUrl.ImageBaseUrl+data.get(position).getArtistPicture().get(0).getName());
         viewHolde.nameTextV.setText(data.get(position).getName());
 
     }

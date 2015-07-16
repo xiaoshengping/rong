@@ -12,6 +12,7 @@
         android:paddingLeft="18dp"
         android:paddingRight="18dp">
         <TextView
+            android:id="@+id/company_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="广州奔跑娱乐有限公司"

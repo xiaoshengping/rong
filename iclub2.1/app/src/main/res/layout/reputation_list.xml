@@ -16,11 +16,14 @@
             android:layout_height="wrap_content"
             >
 
-            <ImageView
+            <com.example.administrator.iclub21.bean.talent.RoundAngleImageView
+                xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
                 android:id="@+id/head_portrait_iv"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="#000000"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                app:roundWidth = "23dp"
+                app:roundHeight = "23dp"
+                android:background="#ffffff"
                 />
             <TextView
                 android:id="@+id/comment_neme_tv"

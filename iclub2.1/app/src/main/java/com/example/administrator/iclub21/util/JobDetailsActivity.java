@@ -202,7 +202,7 @@ public class JobDetailsActivity extends Activity {
         Intent intent = new Intent(JobDetailsActivity.this, ReputationActivity.class);
         Bundle bundle = new Bundle();
         bundle.putInt("UserType",2);
-        bundle.putInt("Personid", 59);
+        bundle.putInt("Personid", recruitmentListBean.getPersonid());
         bundle.putSerializable("Detail", recruitmentListBean);
 //        bundle.putInt("Resumeid",talentValueBean.getResumeid());
 //        Toast.makeText(this, talentValueBean.getPersonid()+"", Toast.LENGTH_LONG).show();
