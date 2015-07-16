@@ -5,10 +5,10 @@
     android:layout_height="50dp">
      <TextView
          android:id="@+id/company_message_retrun_tv"
-         android:layout_marginTop="15dp"
+         android:layout_marginTop="10dp"
          android:layout_marginLeft="20dp"
          android:background="@mipmap/return_icon"
-         android:layout_width="14dp"
+         android:layout_width="10dp"
          android:layout_height="20dp" />
      <TextView
          android:id="@+id/text_tv"

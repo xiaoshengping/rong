@@ -22,12 +22,15 @@ import android.widget.ToggleButton;
 import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.bean.talent.CircleImageView;
+import com.example.administrator.iclub21.bean.talent.PicturesshowMoreActivity;
+import com.example.administrator.iclub21.bean.talent.SpaceImageDetailActivity;
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.view.WordWrapView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ResumeListParticularActivity extends ActionBarActivity implements View.OnClickListener ,CompoundButton.OnCheckedChangeListener {
@@ -70,6 +73,8 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     private TextView showPictureTv;
     @ViewInject(R.id.listparticual_picture_layout)
     private LinearLayout listPictureLayout;
+    @ViewInject(R.id.more_button)
+    private TextView moreButton;
 
 
 
@@ -110,6 +115,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         musicToggleButton.setOnCheckedChangeListener(this);
         videoToggleButton.setOnCheckedChangeListener(this);
         //showMusicTextView.setOnClickListener(this);
+        moreButton.setOnClickListener(this);
         showVideoTextView.setOnClickListener(this);
 
 
@@ -160,6 +166,22 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                 pictureImage.setMinimumHeight(200);
                 wordWrapView.addView(pictureImage);
                 MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(i).getPath(), pictureImage, MyAppliction.RoundedOptionsOne);
+                final int finalI = i;
+                pictureImage.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         Intent intent = new Intent(ResumeListParticularActivity.this, SpaceImageDetailActivity.class);
+                         Bundle bundle=new Bundle();
+                         bundle.putParcelableArrayList("list", (ArrayList) resumeValueBean.getResumePicture());
+                         bundle.putInt("num", finalI);
+                         bundle.putInt("MaxNum",resumeValueBean.getResumePicture().size() );
+                         intent.putExtras(bundle);
+                         startActivity(intent);
+                         overridePendingTransition(R.anim.spaceimagedetail_in,R.anim.out_to_not);
+                     }
+                 });
+
+
             }
 
         }else {
@@ -303,6 +325,15 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                 Uri videoUri = Uri.parse(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumeMovie().get(0).getPath());
                 videoIntent.setDataAndType(videoUri , "video/mp4");
                 startActivity(videoIntent);
+                break;
+            case R.id.more_button:
+                Intent intentMore = new Intent(ResumeListParticularActivity.this, PicturesshowMoreActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("list", (ArrayList) resumeValueBean.getResumePicture());
+                intentMore.putExtras(bundle);
+                startActivity(intentMore);
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_not);
+
                 break;
 
 
