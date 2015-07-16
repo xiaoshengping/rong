@@ -21,6 +21,7 @@ import android.widget.ToggleButton;
 
 import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
+import com.example.administrator.iclub21.bean.talent.CircleImageView;
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.view.WordWrapView;
@@ -31,8 +32,8 @@ import java.util.HashMap;
 
 public class ResumeListParticularActivity extends ActionBarActivity implements View.OnClickListener ,CompoundButton.OnCheckedChangeListener {
       //基本信息
-   @ViewInject(R.id.resumeUserbg_iv)
-    private ImageView resumeUserbgIv;
+  // @ViewInject(R.id.resumeUserbg_iv)
+   // private ImageView resumeUserbgIv;
     @ViewInject(R.id.resumeZhName_tv)
     private TextView resumeZhName;
     @ViewInject(R.id.resumeSex_iv)
@@ -56,7 +57,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     @ViewInject(R.id.resumeMobile_tv)
     private TextView resumeMobileTv;
     @ViewInject(R.id.usericon_background_iv)
-    private ImageView userIconIv;
+    private CircleImageView userIconIv;
 
    //编辑和返回
     @ViewInject(R.id.list_retrun_tv)
@@ -176,6 +177,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                    musicTextView.setCompoundDrawables(null, null, drawable, null);
                    musicTextView.setTextColor(Color.WHITE);
                    musicTextView.setCompoundDrawablePadding(400);
+
                    showMusicWordWrapView.addView(musicTextView);
                    final int finalI = j;
                    musicTextView.setOnClickListener(new View.OnClickListener() {

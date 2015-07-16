@@ -10,7 +10,7 @@
           android:scrollbars="none"
           android:layout_width="match_parent"
           android:layout_height="wrap_content">
-    <LinearLayout
+  <!--  <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -26,6 +26,7 @@
         android:background="@mipmap/resume_background_icon"
         android:layout_width="match_parent"
         android:layout_height="250dp" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_below="@+id/resumeUserbg_iv"
@@ -454,6 +455,544 @@
          </LinearLayout>
 
     </LinearLayout>
-    </LinearLayout>
+    </LinearLayout>-->
+          <LinearLayout
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="0dp"
+              android:background="#00000000">
+
+              <ImageView
+                  android:id="@+id/talen_back_iv"
+                  android:layout_width="match_parent"
+                  android:layout_height="230dp"
+                  android:src="@mipmap/resume_background_icon"
+                  android:scaleType="fitXY"
+                  />
+
+              <com.example.administrator.iclub21.bean.talent.CircleImageView
+                  xmlns:myxmlns="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                  android:id="@+id/usericon_background_iv"
+                  android:layout_width="100dp"
+                  android:layout_height="100dp"
+                  android:src="@mipmap/talent_head"
+                  android:scaleType="fitXY"
+                  android:layout_marginLeft="18dp"
+                  android:layout_marginTop="-66dp"
+                  myxmlns:border_width="3dp"
+                  myxmlns:border_color="#80ffffff"
+                  android:layout_below="@+id/talen_back_iv"/>
+              <TextView
+                  android:id="@+id/resumeZhName_tv"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Anty"
+                  android:textSize="@dimen/textSize16"
+                  android:textColor="#EAE6ED"
+                  android:layout_marginLeft="2dp"
+                  android:layout_marginTop="2dp"
+                  android:layout_below="@+id/talen_back_iv"
+                  android:layout_toRightOf="@+id/usericon_background_iv"/>
+
+              <ImageView
+                  android:id="@+id/resumeSex_iv"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:scaleType="fitCenter"
+                  android:layout_marginLeft="5dp"
+                  android:layout_alignBottom="@+id/resumeZhName_tv"
+                  android:layout_alignTop="@+id/resumeZhName_tv"
+                  android:layout_toRightOf="@+id/resumeZhName_tv"/>
+              <TextView
+                  android:id="@+id/resume_ViewCount_tv"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="浏览数:112"
+                  android:textColor="#C173A4"
+                  android:textSize="13sp"
+                  android:layout_below="@+id/talen_back_iv"
+                  android:layout_alignParentRight="true"
+                  android:layout_marginTop="6dp"
+                  android:layout_marginRight="20dp"
+                  android:paddingTop="2dp"
+                  android:paddingBottom="2dp"
+                  android:paddingLeft="10dp"
+                  android:paddingRight="10dp"
+                  android:background="@drawable/talen_view_count_shape"/>
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center_vertical"
+                  android:layout_below="@+id/usericon_background_iv"
+                  android:layout_marginTop="18dp">
+                  <LinearLayout
+                      android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:gravity="center_horizontal">
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="年龄"
+                          android:textSize="@dimen/textSize12"
+                          android:textColor="#8E99C3"/>
+                      <TextView
+                          android:id="@+id/resumeAge_tv"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="28"
+                          android:textColor="#EAE6ED"
+                          android:textSize="@dimen/textSize14"
+                          android:layout_margin="10dp"/>
+
+                  </LinearLayout>
+
+                  <View
+                      android:layout_width="1dp"
+                      android:layout_height="20dp"
+                      android:background="#30ffffff"/>
+
+                  <LinearLayout
+                      android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:gravity="center_horizontal">
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="工作地点"
+                          android:textSize="@dimen/textSize12"
+                          android:textColor="#8E99C3"/>
+                      <TextView
+                          android:id="@+id/resume_WorkPlace_tv"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="广州"
+                          android:textColor="#EAE6ED"
+                          android:textSize="@dimen/textSize14"
+                          android:layout_margin="10dp"/>
+
+                  </LinearLayout>
+                  <View
+                      android:layout_width="1dp"
+                      android:layout_height="20dp"
+                      android:background="#30ffffff"/>
+                  <LinearLayout
+                      android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:gravity="center_horizontal">
+
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="职位"
+                          android:textSize="@dimen/textSize12"
+                          android:textColor="#8E99C3"/>
+                      <TextView
+                          android:id="@+id/resumeJobName_isd_tv"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="酒吧DJ"
+                          android:textColor="#EAE6ED"
+                          android:textSize="@dimen/textSize14"
+                          android:layout_margin="10dp"/>
+
+                  </LinearLayout>
+              </LinearLayout>
+
+
+          </RelativeLayout>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="0dp"
+              android:orientation="vertical"
+              android:background="#20ffffff"
+              android:layout_marginTop="7dp">
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_vertical"
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginTop="14dp"
+                  android:layout_marginLeft="14dp"
+                  android:layout_marginRight="14dp">
+
+                  <ImageView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:src="@mipmap/self_introduction"/>
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="自我介绍"
+                      android:layout_marginLeft="5dp"
+                      android:textSize="15sp"
+                      android:textColor="#b0c5ec"/>
+
+              </LinearLayout>
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"
+                  android:background="#08ffffff"/>
+
+              <TextView
+                  android:id="@+id/resumeInfo_tv"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/jobRequirements"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginBottom="14dp"
+                  android:layout_marginLeft="14dp"
+                  android:layout_marginRight="14dp"
+                  android:textSize="@dimen/textSize14"
+                  android:lineSpacingMultiplier="1.5"
+                  android:textColor="#D2C8DC"/>
+
+
+          </LinearLayout>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="0dp"
+              android:orientation="vertical"
+              android:background="#20ffffff"
+              android:layout_marginTop="7dp">
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_vertical"
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginTop="14dp"
+                  android:layout_marginLeft="14dp"
+                  android:layout_marginRight="14dp">
+
+                  <ImageView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:src="@mipmap/work_experience"/>
+
+                  <TextView
+
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="工作经历"
+                      android:layout_marginLeft="5dp"
+                      android:textSize="15sp"
+                      android:textColor="#b0c5ec"/>
+
+              </LinearLayout>
+
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"
+                  android:background="#08ffffff"/>
+
+              <TextView
+                  android:id="@+id/resume_WorkExperience_tv"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/jobRequirements"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginBottom="14dp"
+                  android:layout_marginLeft="14dp"
+                  android:layout_marginRight="14dp"
+                  android:textSize="@dimen/textSize14"
+                  android:lineSpacingMultiplier="1.5"
+                  android:textColor="#D2C8DC"/>
+
+          </LinearLayout>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="#20ffffff"
+              android:layout_marginTop="7dp">
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_vertical"
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginTop="14dp"
+                  android:layout_marginLeft="14dp"
+                  android:layout_marginRight="14dp">
+
+                  <ImageView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:src="@mipmap/contact_information"/>
+
+                  <TextView
+
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="联系方式"
+                      android:layout_marginLeft="5dp"
+                      android:textSize="15sp"
+                      android:textColor="#b0c5ec"/>
+
+              </LinearLayout>
+
+              <View
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"
+                  android:background="#08ffffff"/>
+              <LinearLayout
+                  android:layout_marginTop="5dp"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:text="QQ"
+                      android:layout_marginLeft="10dp"
+                      android:textSize="@dimen/textSize14"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+                  <TextView
+                      android:id="@+id/resumeQq_tv"
+                      android:text="QQ"
+                      android:layout_marginLeft="47dp"
+                      android:textSize="@dimen/textSize14"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_marginTop="5dp"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:text="Email"
+                      android:layout_marginLeft="10dp"
+                      android:textSize="@dimen/textSize14"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+                  <TextView
+                      android:id="@+id/resumeEmail_tv"
+                      android:text="Email"
+                      android:layout_marginLeft="32dp"
+                      android:textSize="@dimen/textSize14"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+
+              </LinearLayout>
+              <LinearLayout
+                  android:layout_marginTop="5dp"
+                  android:layout_marginBottom="10dp"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:text="手机号码"
+                      android:layout_marginLeft="10dp"
+                      android:textSize="@dimen/textSize14"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+                  <TextView
+                      android:id="@+id/resumeMobile_tv"
+                      android:text="手机号码"
+                      android:layout_marginLeft="10dp"
+                      android:textSize="@dimen/textSize14"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+
+              </LinearLayout>
+          </LinearLayout>
+          <LinearLayout
+              android:layout_marginTop="10dp"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <LinearLayout
+
+                  android:background="#20ffffff"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="50dp">
+                  <TextView
+                      android:text="图片介绍"
+                      android:gravity="center"
+                      android:drawablePadding="5dp"
+                      android:layout_marginLeft="14dp"
+                      android:layout_marginTop="15dp"
+                      android:drawableLeft="@mipmap/picture_recommend_icon"
+                      android:textSize="@dimen/textSize15"
+                      android:textColor="@color/whiteOne"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+                  <TextView
+                      android:text="更多"
+                      android:layout_marginTop="15dp"
+                      android:layout_marginLeft="190dp"
+                      android:textSize="@dimen/textSize15"
+                      android:textColor="@color/white"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+              </LinearLayout>
+              <LinearLayout
+                  android:id="@+id/listparticual_picture_layout"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:id="@+id/show_picture_tv"
+                      android:text="无相关照片"
+                      android:gravity="center"
+                      android:visibility="gone"
+                      android:layout_marginTop="5dp"
+                      android:textSize="@dimen/textSize12"
+                      android:textColor="@color/white"
+                      android:layout_width="match_parent"
+                      android:layout_height="80dp" />
+                  <com.example.administrator.iclub21.view.WordWrapView
+                      android:id="@+id/view_wordwrap"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+
+              </LinearLayout>
+
+
+
+          </LinearLayout>
+          <LinearLayout
+              android:background="#20ffffff"
+              android:layout_marginTop="10dp"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:text="视频展示"
+                      android:gravity="center"
+                      android:drawablePadding="5dp"
+                      android:layout_marginLeft="14dp"
+                      android:drawableLeft="@mipmap/video_icon"
+                      android:textSize="@dimen/textSize15"
+                      android:textColor="@color/whiteOne"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+                  <ToggleButton
+                      android:drawableRight="@drawable/toggle_button_selector"
+                      android:background="@null"
+                      android:textOff="@null"
+                      android:textOn="@null"
+                      android:layout_marginRight="40dp"
+                      android:id="@+id/video_togglButton"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content" />
+              </LinearLayout>
+              <RelativeLayout
+                  android:id="@+id/listparticual_video_layout"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:id="@+id/on_video_textview"
+                      android:visibility="gone"
+                      android:text="无相关视频"
+                      android:gravity="center"
+                      android:layout_marginTop="5dp"
+                      android:textSize="@dimen/textSize12"
+                      android:textColor="@color/white"
+                      android:layout_width="match_parent"
+                      android:layout_height="100dp" />
+                  <ImageView
+                      android:visibility="gone"
+                      android:scaleType="fitXY"
+                      android:id="@+id/show_video_imageView"
+                      android:layout_marginLeft="30dp"
+                      android:layout_marginRight="30dp"
+                      android:layout_width="match_parent"
+                      android:layout_height="150dp" />
+                  <TextView
+                      android:visibility="gone"
+                      android:id="@+id/show_video_button_tv"
+                      android:layout_centerHorizontal="true"
+                      android:layout_centerVertical="true"
+                      android:background="@mipmap/video_button_icon"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+              </RelativeLayout>
+
+          </LinearLayout>
+          <LinearLayout
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="30dp"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+              <LinearLayout
+                  android:background="#20ffffff"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:text="音乐作品"
+                      android:gravity="center"
+                      android:drawablePadding="5dp"
+                      android:layout_marginLeft="10dp"
+                      android:drawableLeft="@mipmap/music_icon"
+                      android:textSize="@dimen/textSize15"
+                      android:textColor="@color/whiteOne"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+                  <ToggleButton
+                      android:drawableRight="@drawable/toggle_button_selector"
+                      android:background="@null"
+                      android:textOff="@null"
+                      android:textOn="@null"
+                      android:checked="true"
+                      android:layout_marginRight="40dp"
+                      android:id="@+id/music_togglButton"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content" />
+              </LinearLayout>
+              <LinearLayout
+                  android:id="@+id/listparticual_music_layout"
+                  android:orientation="vertical"
+                  android:background="#30000000"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+                      android:visibility="gone"
+                      android:id="@+id/no_music_tv"
+                      android:text="无相关音乐"
+                      android:gravity="center"
+                      android:layout_marginTop="5dp"
+                      android:textSize="@dimen/textSize12"
+                      android:textColor="@color/white"
+                      android:layout_width="match_parent"
+                      android:layout_height="50dp" />
+                  <com.example.administrator.iclub21.view.WordWrapView
+                      android:id="@+id/show_music_tv"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" />
+              </LinearLayout>
+
+           </LinearLayout>
+          </LinearLayout>
       </ScrollView>
 </LinearLayout>

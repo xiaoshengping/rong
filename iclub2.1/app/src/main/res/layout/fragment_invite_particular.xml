@@ -2,34 +2,45 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@mipmap/iculd_beijin_icon"
     tools:context="com.example.administrator.iclub21.fragment.InviteParticularFragment">
 
     <RadioGroup
         android:id="@+id/merchant_invite_radio_rg"
-        android:background="#242424"
+        android:background="@mipmap/invite_radiogroup_icon"
         android:gravity="center"
-
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="wrap_content">
         <RadioButton
             android:id="@+id/resume_radio_bt"
             android:text="邀约历史"
-            android:layout_weight="1"
             android:textSize="@dimen/textSize12"
             android:checked="true"
+            android:layout_weight="1"
             android:textColor="@color/home_color_seletor"
-            android:drawableTop="@drawable/resume_radio_button_selector"
-            style="@style/paren_radiogrud"
+            android:background="@drawable/invite_history_selecte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:button="@null"
+
             />
         <RadioButton
             android:id="@+id/nvite_radio_bt"
             android:text="接受邀约"
-            android:layout_weight="1"
             android:textSize="@dimen/textSize12"
+            android:layout_weight="1"
             android:textColor="@color/home_color_seletor"
-            android:drawableTop="@drawable/invite_radio_button_selector"
-            style="@style/paren_radiogrud"
+            android:background="@drawable/invite_accept_selecte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:button="@null"
             />
         <RadioButton
             android:id="@+id/reputation_radio_bt"
@@ -37,8 +48,11 @@
             android:layout_weight="1"
             android:textSize="@dimen/textSize12"
             android:textColor="@color/home_color_seletor"
-            android:drawableTop="@drawable/reputation_radio_button_selector"
-            style="@style/paren_radiogrud"
+            android:background="@drawable/invite_succeed_selecte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:button="@null"
             />
     </RadioGroup>
     <LinearLayout
