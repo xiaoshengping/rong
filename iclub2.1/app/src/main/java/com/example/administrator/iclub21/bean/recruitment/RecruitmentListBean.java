@@ -25,6 +25,15 @@ public class RecruitmentListBean implements Serializable {
     private String web;//“www.iclubapps.com”, 官网
     private String address;//“广东广州越秀区中山四路148号907室”, 地址
     private int jobcategory;// 1
+    private int personid;
+
+    public int getPersonid() {
+        return personid;
+    }
+
+    public void setPersonid(int personid) {
+        this.personid = personid;
+    }
 
     public String getWorkPlace() {
         return workPlace;
@@ -184,7 +193,7 @@ public class RecruitmentListBean implements Serializable {
                 ", workPay='" + workPay + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", workPlace='" + workPlace + '\'' +
-                ", recruitingNumbers=" + recruitingNumbers +
+                ", recruitingNumbers='" + recruitingNumbers + '\'' +
                 ", jobRequirements='" + jobRequirements + '\'' +
                 ", jobInfo='" + jobInfo + '\'' +
                 ", label='" + label + '\'' +
@@ -192,6 +201,7 @@ public class RecruitmentListBean implements Serializable {
                 ", email='" + email + '\'' +
                 ", web='" + web + '\'' +
                 ", jobcategory=" + jobcategory +
+                ", personid=" + personid +
                 '}';
     }
 }
