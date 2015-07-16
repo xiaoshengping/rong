@@ -1,6 +1,7 @@
 package com.example.administrator.iclub21.util;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -198,7 +199,15 @@ public class JobDetailsActivity extends Activity {
     //公司详情
     public void company_details(View v){
 
-
+        Intent intent = new Intent(JobDetailsActivity.this, ReputationActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("UserType",2);
+        bundle.putInt("Personid", 59);
+        bundle.putSerializable("Detail", recruitmentListBean);
+//        bundle.putInt("Resumeid",talentValueBean.getResumeid());
+//        Toast.makeText(this, talentValueBean.getPersonid()+"", Toast.LENGTH_LONG).show();
+        intent.putExtras(bundle);
+        startActivity(intent);
 
     }
 

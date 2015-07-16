@@ -358,7 +358,7 @@ public class TalendDetailsActivity extends Activity {
     public void reputation_value(View v){
         Intent intent = new Intent(TalendDetailsActivity.this, ReputationActivity.class);
         Bundle bundle = new Bundle();
-//        bundle.putInt("userType",1);
+        bundle.putInt("UserType",1);
         bundle.putInt("Personid", talentValueBean.getPersonid());
 //        bundle.putInt("Resumeid",talentValueBean.getResumeid());
 //        Toast.makeText(this, talentValueBean.getPersonid()+"", Toast.LENGTH_LONG).show();

@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil {
-	public static String[] weekName = { "ÖÜÈÕ", "ÖÜÒ»", "ÖÜ¶ş", "ÖÜÈı", "ÖÜËÄ", "ÖÜÎå","ÖÜÁù" };  
+	public static String[] weekName = { "å‘¨æ—¥", "å‘¨ä¸€", "å‘¨äºŒ", "å‘¨ä¸‰", "å‘¨å››", "å‘¨äº”","å‘¨å…­" };  
 	  
     public static int getMonthDays(int year, int month) {  
         if (month > 12) {  
@@ -23,7 +23,7 @@ public class DateUtil {
         int days = 0;  
   
         if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {  
-            arr[1] = 29; // ÈòÄê2ÔÂ29Ìì  
+            arr[1] = 29; // é—°å¹´2æœˆ29å¤©  
         }  
   
         try {  
