@@ -920,7 +920,14 @@
                       android:textColor="@color/white"
                       android:layout_width="match_parent"
                       android:layout_height="100dp" />
-                  <ImageView
+                     <ListView
+                         android:id="@+id/resume_video_list_view"
+                         android:dividerHeight="3dp"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"/>
+
+
+                 <!-- <ImageView
                       android:visibility="gone"
                       android:scaleType="fitXY"
                       android:id="@+id/show_video_imageView"
@@ -935,7 +942,7 @@
                       android:layout_centerVertical="true"
                       android:background="@mipmap/video_button_icon"
                       android:layout_width="wrap_content"
-                      android:layout_height="wrap_content" />
+                      android:layout_height="wrap_content" />-->
               </RelativeLayout>
 
           </LinearLayout>

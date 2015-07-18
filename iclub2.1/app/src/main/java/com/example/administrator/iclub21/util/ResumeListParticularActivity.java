@@ -15,11 +15,13 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.administrator.iclub21.R;
+import com.example.administrator.iclub21.adapter.ResumeVideoAdapter;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.bean.talent.CircleImageView;
 import com.example.administrator.iclub21.bean.talent.PicturesshowMoreActivity;
@@ -86,16 +88,18 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
 
     private WordWrapView showMusicWordWrapView;
     //视频
-    @ViewInject(R.id.show_video_button_tv)
+   /* @ViewInject(R.id.show_video_button_tv)
     private TextView showVideoTextView;
     @ViewInject(R.id.show_video_imageView)
-    private ImageView showVideoImage;
+    private ImageView showVideoImage;*/
     @ViewInject(R.id.on_video_textview)
     private TextView noShowViewTv;
     @ViewInject(R.id.video_togglButton)
     private ToggleButton videoToggleButton;
     @ViewInject(R.id.listparticual_video_layout)
     private RelativeLayout listViewLayout;
+    @ViewInject(R.id.resume_video_list_view)
+    private ListView videoListView;
 
     private WordWrapView wordWrapView;
 
@@ -116,7 +120,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         videoToggleButton.setOnCheckedChangeListener(this);
         //showMusicTextView.setOnClickListener(this);
         moreButton.setOnClickListener(this);
-        showVideoTextView.setOnClickListener(this);
+        //showVideoTextView.setOnClickListener(this);
 
 
 
@@ -226,18 +230,19 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     private void videoData() {
 
         if (resumeValueBean.getResumeMovie()!=null&&resumeValueBean.getResumeMovie().size()!=0){
+            ResumeVideoAdapter resumeVideoAdapter=new ResumeVideoAdapter(resumeValueBean.getResumeMovie(),this);
+            videoListView.setAdapter(resumeVideoAdapter);
+            resumeVideoAdapter.notifyDataSetChanged();
+
             String imagpath= AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumeMovie().get(0).getPath();
             Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
             if (bitmap!=null){
-                showVideoImage.setImageBitmap(bitmap);
-                showVideoTextView.setVisibility(View.VISIBLE);
-            }else {
-                showVideoImage.setBackgroundResource(R.mipmap.ic_launcher);
+                videoListView.setVisibility(View.VISIBLE);
             }
 
         }else {
             noShowViewTv.setVisibility(View.VISIBLE);
-            showVideoTextView.setVisibility(View.GONE);
+            videoListView.setVisibility(View.GONE);
         }
 
 
@@ -346,11 +351,11 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
             case R.id.video_togglButton:
                 if (isChecked) {
                     listViewLayout.setVisibility(View.VISIBLE);
-                    showVideoImage.setVisibility(View.VISIBLE);
+                    videoListView.setVisibility(View.VISIBLE);
                     videoData();
                 }else {
                     listViewLayout.setVisibility(View.GONE);
-                    showVideoTextView.setVisibility(View.GONE);
+                    videoListView.setVisibility(View.GONE);
                 }
                 break;
             case R.id.music_togglButton:
