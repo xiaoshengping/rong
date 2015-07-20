@@ -73,7 +73,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center_vertical"
         android:drawableRight="@mipmap/music_play"
-        android:background="@drawable/artist_musicback_shape"/>
+        android:background="@drawable/musicback_shape"/>
 
 
 </LinearLayout>

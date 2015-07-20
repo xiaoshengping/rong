@@ -7,4 +7,9 @@
         <attr name="roundWidth" format="dimension" />
         <attr name="roundHeight" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="MyTitleBar">
+        <attr name="title_name_text" format="string" />
+        <attr name="title_left_show" format="boolean"/>
+        <attr name="title_right_show" format="boolean"/>
+    </declare-styleable>
 </resources>

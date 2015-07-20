@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="音乐作品"
                 android:layout_marginLeft="5dp"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:textColor="#b0c5ec"/>
             <TextView
                 android:id="@+id/music_direction_tv"

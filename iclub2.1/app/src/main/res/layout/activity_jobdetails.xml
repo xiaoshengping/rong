@@ -18,14 +18,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="职位详情"
-                android:textColor="#00DEDDE2"
-                android:textSize="24sp"
-                android:padding="10dp"
-                android:layout_centerInParent="true"/>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -39,7 +32,7 @@
                     android:text="演出乐手"
                     android:singleLine="true"
                     android:ellipsize="end"
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textColor="#FCFCFD"/>
                 <TextView
                     android:id="@+id/puttime_tv"
@@ -48,7 +41,7 @@
                     android:text="发布时间：2014-12-10"
                     android:layout_below="@+id/position_tv"
                     android:layout_marginTop="15dp"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textColor="#c979a8"/>
                 <TextView
                     android:id="@+id/viewCount_tv"
@@ -61,7 +54,7 @@
                     android:paddingBottom="2dp"
                     android:text="浏览量:124"
                     android:layout_alignParentRight="true"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textColor="#c979a8"
                     android:layout_alignBottom="@+id/puttime_tv"/>
 
@@ -181,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="经验要求"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textColor="#b0c5ec"/>
                 <TextView
                     android:id="@+id/jobRequirements_tv"
@@ -207,7 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="经验要求"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textColor="#b0c5ec"/>
                 <TextView
                     android:id="@+id/jobInfo_tv"
@@ -346,18 +339,19 @@
                 android:onClick="company_details"/>
 
         </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#50000000">
+            android:layout_height="@dimen/title_h"
+            android:background="#00000000">
 
             <TextView
                 android:id="@+id/title_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="职位详情"
-                android:textColor="#DEDDE2"
-                android:textSize="24sp"
+                android:textColor="#00DEDDE2"
+                android:textSize="@dimen/title_text_h"
                 android:padding="10dp"
                 android:layout_centerInParent="true"/>
             <Button
@@ -367,8 +361,8 @@
                 android:layout_alignParentRight="true"
                 android:text="投递"
                 android:padding="10dp"
-                android:textSize="20sp"
-                android:textColor="#DEDDE2"
+                android:textSize="18sp"
+                android:textColor="#00DEDDE2"
                 android:onClick="send"
                 android:background="#00ffffff"/>
             <Button
@@ -377,7 +371,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
                 android:text="ㄑ"
-                android:textSize="26sp"
+                android:textSize="@dimen/title_text_h"
                 android:layout_marginLeft="0dp"
                 android:textColor="#DEDDE2"
                 android:onClick="back"

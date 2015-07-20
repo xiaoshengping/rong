@@ -107,7 +107,7 @@
         android:layout_marginBottom="15dp">
         <TextView
             android:layout_width="2dp"
-            android:layout_height="wrap_content"
+            android:layout_height="14sp"
             android:background="#ffffff"/>
         <TextView
             android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
             android:paddingLeft="15dp"
             android:text="基本信息"
             android:textColor="#ffffff"
-            android:textSize="14sp"/>
+            android:textSize="18sp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/artist_detail_wire"
@@ -129,7 +129,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:text="爱多久放假了放假了解放垃圾分类卡机了发掘发了发垃圾分类上发生发生"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textColor="#ffffff"
         android:lineSpacingMultiplier="1.5"/>
     <LinearLayout
@@ -141,7 +141,7 @@
         android:layout_marginBottom="15dp">
         <TextView
             android:layout_width="2dp"
-            android:layout_height="wrap_content"
+            android:layout_height="14sp"
             android:background="#ffffff"/>
         <TextView
             android:layout_width="wrap_content"
@@ -150,7 +150,7 @@
             android:paddingLeft="15dp"
             android:text="主要作品"
             android:textColor="#ffffff"
-            android:textSize="14sp"/>
+            android:textSize="18sp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/artist_detail_wire"
@@ -169,10 +169,10 @@
             android:text="音乐(2)"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:textColor="#c44667"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:background="@drawable/artistdetail_button_shape"/>
         <TextView
             android:id="@+id/video_tv"
@@ -181,10 +181,10 @@
             android:text="视频(1)"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:textColor="#ffffff"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:background="#00ffffff"
             android:layout_marginLeft="20dp"/>
     </LinearLayout>

@@ -4,11 +4,11 @@
     android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/title_h"
         android:gravity="center"
         android:text="娱乐招聘"
         android:textColor="#00DEDDE2"
-        android:textSize="24sp"
+        android:textSize="@dimen/title_text_h"
         android:padding="10dp"
         />
 

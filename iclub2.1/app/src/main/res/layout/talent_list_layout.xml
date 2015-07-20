@@ -3,7 +3,7 @@
     style="@style/paren_layout_match_horgrivity"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:background="#30000000"
+    android:background="#20000000"
     android:paddingLeft="6dp"
     android:paddingRight="10dp">
 

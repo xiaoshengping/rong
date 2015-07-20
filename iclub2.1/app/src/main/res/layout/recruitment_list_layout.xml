@@ -11,10 +11,10 @@
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:layout_marginBottom="6dp"
-        android:background="#40000000">
+        android:background="#30000000">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                 android:ellipsize="end"
                 android:textSize="20sp"
                 android:textColor="#9CACD4"
-                android:paddingTop="20dp"
+                android:paddingTop="15dp"
                 android:paddingBottom="10dp"/>
             <TextView
                 android:id="@+id/recruitment_puttime"
@@ -51,7 +51,7 @@
                 android:textSize="15sp"
                 android:textColor="#DDD0E3"
                 android:paddingTop="8dp"
-                android:paddingBottom="18dp"/>
+                android:paddingBottom="15dp"/>
 
         </LinearLayout>
         <LinearLayout

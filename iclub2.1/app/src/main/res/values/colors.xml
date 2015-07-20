@@ -16,9 +16,11 @@
     <color name="list_title_wire">#30000000</color><!--列表条件选择分隔条色值-->
     <color name="artist_detail_colors">#50ffffff</color><!--艺人详情分割条色值-->
 
-    <color name="whiter">#ffffff</color>
+    <!--<color name="whiter">#ffffff</color>-->
     <color name="canlendar_text_color">#CED0D5</color>
 
+    <color name="ic_white">#ffffff</color>
 
+    <color name="title_c">#50000000</color>
 
 </resources>
