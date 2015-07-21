@@ -7,12 +7,24 @@
         android:layout_centerInParent="true"
         android:layout_height="150dp"
         android:layout_width="300dp"
-        android:src="#40000000" />
+        android:src="#1b052b" />
+    <TextView
+        android:id="@+id/tv"
+        android:text="提示"
+        android:layout_alignLeft="@+id/exitGameBackground"
+        android:layout_alignParentTop="@+id/exitGameBackground"
+        android:background="#000000"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_alignTop="@+id/exitGameBackground"
+        />
        <TextView
            android:id="@+id/tailte_tv"
            android:layout_alignLeft="@+id/exitGameBackground"
            android:layout_alignParentTop="@+id/exitGameBackground"
-           android:layout_marginTop="30dp"
+           android:layout_marginTop="45dp"
            android:gravity="center"
            android:textColor="@color/white"
            android:layout_width="300dp"
@@ -24,24 +36,25 @@
     <TextView
         android:layout_alignBottom="@+id/exitGameBackground"
         android:layout_alignLeft="@+id/exitGameBackground"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="35dp"
-
+        android:textColor="@color/textColor9a4274"
         android:id="@+id/btn_cancel"
        android:gravity="center"
-        android:layout_height="50dp"
-        android:layout_width="70dp"
-        android:background="#90000000" />
+        android:layout_height="40dp"
+        android:layout_width="90dp"
+        android:background="#ffffff" />
 
 
     <!-- 确认按钮 -->
     <TextView android:layout_alignBottom="@+id/exitGameBackground"
         android:id="@+id/btn_ok"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginRight="35dp"
         android:gravity="center"
+        android:textColor="@color/textColor9a4274"
         android:layout_alignRight="@+id/exitGameBackground"
-        android:layout_height="50dp"
-        android:layout_width="70dp"
-        android:background="#50000000" />
+        android:layout_height="40dp"
+        android:layout_width="90dp"
+        android:background="#ffffff" />
 </RelativeLayout>

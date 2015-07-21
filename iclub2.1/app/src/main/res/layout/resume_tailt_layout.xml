@@ -8,12 +8,12 @@
          android:layout_marginTop="15dp"
          android:layout_marginLeft="20dp"
          android:background="@mipmap/return_icon"
-         android:layout_width="20dp"
-         android:layout_height="25dp" />
+         android:layout_width="10dp"
+         android:layout_height="20dp" />
      <TextView
          android:id="@+id/text_tv"
          android:layout_marginTop="15dp"
-         android:textSize="@dimen/textSize18"
+         android:textSize="@dimen/textSize16"
          android:text="微简历"
          android:textColor="@color/white"
          android:layout_centerHorizontal="true"
