@@ -8,17 +8,22 @@
     <EditText
         android:id="@+id/comment_context_et"
         android:gravity="top"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#3Affffff"
         android:textColor="@color/white"
         android:hint="写点什么吧，您的意见对其他朋友有帮助!"
         android:textColorHint="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="150dp" />
 
     <LinearLayout
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#3Affffff"
         >
         <TextView
             android:textColor="@color/white"
@@ -60,14 +65,14 @@
                 android:layout_height="wrap_content">
                 <RadioButton
                     android:id="@+id/truth_one_grade"
-                    android:text="1"
+                    android:text="0"
                     android:checked="false"
                     android:layout_marginLeft="40dp"
                     android:background="@drawable/comment_checkbox_button_selector"
                     style="@style/paren_radiogrud" />
                 <RadioButton
                     android:id="@+id/truth_two_grade"
-                    android:text="2"
+                    android:text="3"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/comment_checkbox_button_selector"
                     style="@style/paren_radiogrud"
@@ -75,7 +80,7 @@
                     />
                 <RadioButton
                     android:id="@+id/truth_three_grade"
-                    android:text="3"
+                    android:text="5"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/comment_checkbox_button_selector"
                     style="@style/paren_radiogrud"
@@ -83,20 +88,13 @@
                     />
                 <RadioButton
                     android:id="@+id/truth_four_grade"
-                    android:text="4"
+                    android:text="10"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/comment_checkbox_button_selector"
                     style="@style/paren_radiogrud"
                     android:checked="false"
                     />
-                <RadioButton
-                    android:id="@+id/truth_five_grade"
-                    android:text="5"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/comment_checkbox_button_selector"
-                    style="@style/paren_radiogrud"
-                    android:checked="false"
-                    />
+
             </RadioGroup>
         </LinearLayout>
         <TextView
@@ -132,20 +130,12 @@
                 android:layout_height="wrap_content">
                 <RadioButton
                     android:id="@+id/honesty_one_grade"
-                    android:text="1"
+                    android:text="0"
                     android:layout_marginLeft="40dp"
                     android:background="@drawable/comment_checkbox_button_selector"
                     style="@style/paren_radiogrud" />
                 <RadioButton
                     android:id="@+id/honesty_two_grade"
-                    android:text="2"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/comment_checkbox_button_selector"
-                    style="@style/paren_radiogrud"
-                    android:checked="false"
-                    />
-                <RadioButton
-                    android:id="@+id/honesty_three_grade"
                     android:text="3"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/comment_checkbox_button_selector"
@@ -153,16 +143,16 @@
                     android:checked="false"
                     />
                 <RadioButton
-                    android:id="@+id/honesty_four_grade"
-                    android:text="4"
+                    android:id="@+id/honesty_three_grade"
+                    android:text="5"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/comment_checkbox_button_selector"
                     style="@style/paren_radiogrud"
                     android:checked="false"
                     />
                 <RadioButton
-                    android:id="@+id/honesty_five_grade"
-                    android:text="5"
+                    android:id="@+id/honesty_four_grade"
+                    android:text="10"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/comment_checkbox_button_selector"
                     style="@style/paren_radiogrud"
@@ -170,19 +160,21 @@
                     />
             </RadioGroup>
         </LinearLayout>
+        <TextView
+
+            android:id="@+id/commit_comment_tv"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="60dp"
+            android:text="提交"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@mipmap/comment_button_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
-    <TextView
-        android:id="@+id/commit_comment_tv"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
-        android:text="提交"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:background="@mipmap/comment_button_icon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+
 
 
 </LinearLayout>

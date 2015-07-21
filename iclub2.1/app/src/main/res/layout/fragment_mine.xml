@@ -6,7 +6,7 @@ android:orientation="vertical"
     tools:context="com.example.administrator.iclub.fragment.MineFragment">
     <include
        android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         layout="@layout/mine_tailt_layout"></include>
 
       <RelativeLayout
