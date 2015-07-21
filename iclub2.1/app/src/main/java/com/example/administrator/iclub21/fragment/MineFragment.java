@@ -83,38 +83,33 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
-        String states=null;
+        String uid=null;
         String imageIcon=null;
         String name=null;
         while (cursor.moveToNext()) {
-            states = cursor.getString(0);
+            uid = cursor.getString(0);
            imageIcon=cursor.getString(2);
             name=cursor.getString(1);
 
         }
-        if (states!=null){
+        if (uid!=null){
             loginLayout.setVisibility(View.GONE);
             cancel.setVisibility(View.VISIBLE);
             MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl +imageIcon, headTv, MyAppliction.RoundedOptions);
             mineName.setText(name);
+        }else {
+            loginLayout.setVisibility(View.VISIBLE);
+            cancel.setVisibility(View.GONE);
+
         }
+
         cursor.close();
         db.close();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, final Intent data) {
-        state = data.getExtras().getString("state");//得到新Activity 关闭后返回的数据
-        if (state.equals("1")||state.equals("2")||state.equals("3")){
-            loginLayout.setVisibility(View.GONE);
-            cancel.setVisibility(View.VISIBLE);
 
-
-        }else {
-            loginLayout.setVisibility(View.VISIBLE);
-            cancel.setVisibility(View.GONE);
-
-        }
 
 
     }

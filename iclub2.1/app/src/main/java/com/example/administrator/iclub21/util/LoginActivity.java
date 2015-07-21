@@ -74,13 +74,14 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login_reten_tv:
-                Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
+               /* Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
                 intent.putExtra("state","");
                 intent.putExtra("imageUrl","");
                 intent.putExtra("userName","");
                 //设置返回数据
                 LoginActivity.this.setResult(RESULT_OK, intent);
-                LoginActivity.this.finish();
+                LoginActivity.this.finish();*/
+                finish();
                 break;
             case R.id.login_button:
                  String uid=  phoneEdit.getText().toString();
@@ -109,7 +110,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
     }
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String uid = data.getExtras().getString("uid");
         String psw = data.getExtras().getString("psw");
@@ -118,7 +119,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     //登录数据
     private void intiLoginData(final String uid,String psw) throws NoSuchAlgorithmException {
@@ -142,14 +143,16 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                            Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
                             SQLhelper sqLhelper=new SQLhelper(LoginActivity.this);
                             insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(), loginValueBean.getMobile());
-
-                            Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
+                          /*  Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
                             intent.putExtra("state",loginValueBean.getState());
                             intent.putExtra("imageUrl",loginValueBean.getUserIcon());
                             intent.putExtra("userName",loginValueBean.getUserName());
                             //设置返回数据
-                            LoginActivity.this.setResult(RESULT_OK, intent);
+                            LoginActivity.this.setResult(RESULT_OK, intent);*/
                             finish();
+                            /*Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
+                            startActivity(intent);*/
+
                         }else {
                             Toast.makeText(LoginActivity.this,"密码或用户名错误",Toast.LENGTH_LONG).show();
 

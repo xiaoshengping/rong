@@ -14,55 +14,71 @@
     <EditText
         android:id="@+id/register_phone"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:textColor="@color/white"
         android:layout_marginLeft="60dp"
         android:drawableLeft="@mipmap/login_phone_icon"
         android:drawablePadding="5dp"
         android:hint="手机号码"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="10dp"
         android:phoneNumber="true"
-        android:textColorHint="@color/white" />
+        android:textSize="@dimen/textSize15"
+        android:textColorHint="@color/whiteOne" />
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <EditText
         android:id="@+id/captcha_edit"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:textColor="@color/white"
         android:layout_marginLeft="60dp"
         android:drawablePadding="5dp"
         android:hint="验证码"
+        android:paddingLeft="10dp"
+        android:background="@drawable/rounded_edittext"
         android:phoneNumber="true"
-        android:textColorHint="@color/white" />
+        android:textSize="@dimen/textSize15"
+        android:textColorHint="@color/whiteOne" />
         <Button
             android:id="@+id/captcha_button"
             android:text="发送验证码"
-            android:layout_marginLeft="5dp"
+            android:background="@drawable/rounded_button"
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="30dp" />
 
 
     </LinearLayout>
     <EditText
+        android:layout_marginTop="10dp"
         android:id="@+id/set_psw_edit"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:textColor="@color/white"
         android:layout_marginLeft="60dp"
         android:drawablePadding="5dp"
         android:hint="设置密码"
         android:password="true"
-        android:textColorHint="@color/white" />
+        android:textSize="@dimen/textSize15"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="10dp"
+        android:textColorHint="@color/whiteOne" />
     <EditText
+        android:layout_marginTop="10dp"
         android:id="@+id/verify_psw_edit"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:textColor="@color/white"
         android:layout_marginLeft="60dp"
         android:drawablePadding="5dp"
         android:hint="重复密码"
         android:password="true"
-        android:textColorHint="@color/white" />
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="10dp"
+        android:textSize="@dimen/textSize15"
+        android:textColorHint="@color/whiteOne" />
 </LinearLayout>

@@ -35,9 +35,9 @@ public class AppUtilsUrl  {
 
     }
 //注册
-    public static String getRegisterData(String uid,String pwd,String vcode){
+    public static String getRegisterData(){
         //SignUp_V2.action? uid=13800138000&pwd=abc123&vcode=888888
-        return BaseUrl+"SignUp_V2.action?"+"uid="+uid+"&pwd="+pwd+"&vcode="+vcode;
+        return BaseUrl+"SignUp_V2.action";
 
     }
     //短信验证
@@ -47,9 +47,9 @@ public class AppUtilsUrl  {
 
     }
     //忘记密码
-    public static String getForgetData(String uid,String pwd,String vcode){
+    public static String getForgetData(){
         //Reset_V2.action? uid=13800138000&pwd=abc123&vcode=888888
-        return BaseUrl+"Reset_V2.action?"+"uid="+uid+"&pwd="+pwd+"&vcode="+vcode;
+        return BaseUrl+"Reset_V2.action";
 
     }
    //保存简历

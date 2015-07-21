@@ -2,6 +2,7 @@ package com.example.administrator.iclub21.util;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
@@ -40,6 +42,10 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     @ViewInject(R.id.verify_psw_edit)
     private EditText verifyPswEdit;
        private HttpUtils httpUtils;
+    @ViewInject(R.id.register_title_tv)
+    private TextView registerTitleTv;
+    private  String  data;
+    private TimeCount time;
 
 
 
@@ -63,6 +69,13 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
         commitTv.setOnClickListener(this);
         captchaBtton.setOnClickListener(this);
         httpUtils=new HttpUtils();
+        String data=getIntent().getStringExtra("falge");
+        time = new TimeCount(60000, 1000);//构造CountDownTimer对象
+        if (data.equals("2")){
+            registerTitleTv.setText("注册");
+        }else if (data.equals("3")){
+            registerTitleTv.setText("忘记密码");
+        }
 
 
     }
@@ -72,17 +85,18 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.register_reten_tv:
-                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
-                intent.putExtra("uid", "");
-                intent.putExtra("psw", "");
-                //设置返回数据
-                RegisterActivity.this.setResult(RESULT_OK, intent);
-                RegisterActivity.this.finish();
+                finish();
                 break;
             case R.id.register_commit_tv:
-                intiRegisterData();
+               if (data.equals("2")){
+                   intiRegisterData(AppUtilsUrl.getRegisterData());
+               }else if (data.equals("3")){
+                   intiRegisterData(AppUtilsUrl.getForgetData());
+               }
+
                 break;
             case R.id.captcha_button:
+                 time.start();
                   intiVcodeData();
                 break;
 
@@ -92,7 +106,6 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     }
 
     private void intiVcodeData() {
-
                 String pohten=registerPhoneEdit.getText().toString();
                   if (pohten!=null&&pohten.length()==11) {
                       httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getVcodeData(pohten), new RequestCallBack<String>() {
@@ -113,9 +126,8 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
     }
 
-    private void intiRegisterData() {
+    private void intiRegisterData(String url) {
 
-                  //  Log.e("sdhdhh",AppUtilsUrl.getRegisterData(uid,psw,vcode));
        String psw= MD5Uutils.MD5(setPswEdit.getText().toString());
        String  verifypsw=  MD5Uutils.MD5(verifyPswEdit.getText().toString());
          String uid=registerPhoneEdit.getText().toString();
@@ -124,7 +136,11 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
             if (capcha!=null&&capcha.length()==6){
 
                      if (setPswEdit.getText().toString()!=""&&verifyPswEdit.getText().toString()!=""&&(verifyPswEdit.getText().toString()).equals(setPswEdit.getText().toString())) {
-                         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRegisterData(registerPhoneEdit.getText().toString(), MD5Uutils.MD5(setPswEdit.getText().toString()), captchaEdit.getText().toString()), new RequestCallBack<String>() {
+                         RequestParams requestParams=new RequestParams();
+                        requestParams.addBodyParameter("uid",registerPhoneEdit.getText().toString());
+                         requestParams.addBodyParameter("pwd",MD5Uutils.MD5(setPswEdit.getText().toString()));
+                         requestParams.addBodyParameter("vcode", captchaEdit.getText().toString());
+                         httpUtils.send(HttpRequest.HttpMethod.POST, url, requestParams, new RequestCallBack<String>() {
                              @Override
                              public void onSuccess(ResponseInfo<String> responseInfo) {
                                  String rerult = responseInfo.result;
@@ -149,13 +165,10 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
                                      }
                                  }
-
-
                              }
 
                              @Override
                              public void onFailure(HttpException e, String s) {
-                                 // Log.e("onFailure",s);
                                  Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_LONG).show();
                              }
                          });
@@ -179,4 +192,23 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
 
     }
+    class TimeCount extends CountDownTimer {
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);//参数依次为总时长,和计时的时间间隔
+        }
+
+        @Override
+        public void onFinish() {//计时完毕时触发
+            captchaBtton.setText("重新验证");
+            captchaBtton.setClickable(true);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {//计时过程显示
+            captchaBtton.setClickable(false);
+            captchaBtton.setText(millisUntilFinished / 1000 + "秒");
+        }
+
+    }
+
 }
