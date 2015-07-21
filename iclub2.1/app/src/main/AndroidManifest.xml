@@ -144,45 +144,46 @@
             android:name=".util.CooperationCommentActivity"
             android:label="@string/title_activity_cooperation_comment" >
         </activity>
-
-
-        <activity android:name="com.example.administrator.iclub21.util.SelectedCityOrPositionActivity"
+        <activity
+            android:name=".util.SelectedCityOrPositionActivity"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name="com.example.administrator.iclub21.bean.talent.SpaceImageDetailActivity"
-            android:theme="@android:style/Theme.Translucent"></activity>
-        <activity android:name="com.example.administrator.iclub21.bean.talent.PicturesshowMoreActivity"></activity>
-        <activity android:name="com.example.administrator.iclub21.bean.talent.MusicActivity"
-            android:theme="@android:style/Theme.Translucent"></activity>
-        <activity android:name="com.example.administrator.iclub21.bean.artist.ArtistConditionSelectActivity"
-            android:theme="@android:style/Theme.Translucent"></activity>
-        <activity android:name="com.example.administrator.iclub21.bean.artist.ArtistSeekActivity"></activity>
-        <activity android:name="com.example.administrator.iclub21.util.ArtistDetailActivity"></activity>
-        <activity android:name=".util.TalendDetailsActivity"></activity>
-        <activity android:name=".util.JobDetailsActivity"></activity>
-
-
+        <activity
+            android:name=".bean.talent.SpaceImageDetailActivity"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity android:name=".bean.talent.PicturesshowMoreActivity" />
+        <activity
+            android:name=".bean.talent.MusicActivity"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name=".bean.artist.ArtistConditionSelectActivity"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity android:name=".bean.artist.ArtistSeekActivity" />
+        <activity android:name=".util.ArtistDetailActivity" />
+        <activity android:name=".util.TalendDetailsActivity" />
+        <activity android:name=".util.JobDetailsActivity" />
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.tencent.tauth.AuthActivity"
-            android:noHistory="true"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent222222" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.example.administrator.iclub21.calendar.CalendarActivity"></activity>
-
-
-        <activity android:name="com.example.administrator.iclub21.util.ReputationActivity"></activity>
-
-
+        <activity android:name=".calendar.CalendarActivity" />
+        <activity android:name=".util.ReputationActivity" />
+        <activity
+            android:name=".util.FailureCommentActivity"
+            android:label="@string/title_activity_failure_comment" >
+        </activity>
     </application>
 
 </manifest>

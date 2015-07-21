@@ -12,11 +12,11 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -97,7 +97,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     @ViewInject(R.id.video_togglButton)
     private ToggleButton videoToggleButton;
     @ViewInject(R.id.listparticual_video_layout)
-    private RelativeLayout listViewLayout;
+    private LinearLayout listViewLayout;
     @ViewInject(R.id.resume_video_list_view)
     private ListView videoListView;
 
@@ -121,7 +121,16 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         //showMusicTextView.setOnClickListener(this);
         moreButton.setOnClickListener(this);
         //showVideoTextView.setOnClickListener(this);
+         videoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 Intent videoIntent = new Intent(Intent.ACTION_VIEW);
+                 Uri videoUri = Uri.parse(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumeMovie().get(position).getPath());
+                 videoIntent.setDataAndType(videoUri , "video/mp4");
+                 startActivity(videoIntent);
 
+             }
+         });
 
 
     }
@@ -323,13 +332,6 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                 break;
             case R.id.list_retrun_tv:
                 finish();
-                break;
-
-            case R.id.show_video_button_tv:
-                Intent videoIntent = new Intent(Intent.ACTION_VIEW);
-                Uri videoUri = Uri.parse(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumeMovie().get(0).getPath());
-                videoIntent.setDataAndType(videoUri , "video/mp4");
-                startActivity(videoIntent);
                 break;
             case R.id.more_button:
                 Intent intentMore = new Intent(ResumeListParticularActivity.this, PicturesshowMoreActivity.class);

@@ -906,7 +906,8 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content" />
               </LinearLayout>
-              <RelativeLayout
+              <LinearLayout
+                  android:orientation="vertical"
                   android:id="@+id/listparticual_video_layout"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content">
@@ -925,25 +926,7 @@
                          android:dividerHeight="3dp"
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content"/>
-
-
-                 <!-- <ImageView
-                      android:visibility="gone"
-                      android:scaleType="fitXY"
-                      android:id="@+id/show_video_imageView"
-                      android:layout_marginLeft="30dp"
-                      android:layout_marginRight="30dp"
-                      android:layout_width="match_parent"
-                      android:layout_height="150dp" />
-                  <TextView
-                      android:visibility="gone"
-                      android:id="@+id/show_video_button_tv"
-                      android:layout_centerHorizontal="true"
-                      android:layout_centerVertical="true"
-                      android:background="@mipmap/video_button_icon"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content" />-->
-              </RelativeLayout>
+              </LinearLayout>
 
           </LinearLayout>
           <LinearLayout
@@ -961,7 +944,7 @@
                       android:text="音乐作品"
                       android:gravity="center"
                       android:drawablePadding="5dp"
-                      android:layout_marginLeft="10dp"
+                      android:layout_marginLeft="20dp"
                       android:drawableLeft="@mipmap/music_icon"
                       android:textSize="@dimen/textSize15"
                       android:textColor="@color/whiteOne"

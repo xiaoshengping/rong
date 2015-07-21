@@ -25,6 +25,7 @@ import com.example.administrator.iclub21.bean.MerchantInviteValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.util.CooperationCommentActivity;
+import com.example.administrator.iclub21.util.FailureCommentActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -148,7 +149,10 @@ public class MerchantSuccessfulInviteFragment extends Fragment {
         ok.setText("失败");
         ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                Intent intent=new Intent(getActivity(), FailureCommentActivity.class);
+                intent.putExtra("MerchantInviteValueBean", (Serializable) merchantInviteValueBeans.get(position));
+                intent.putExtra("falgeData", "MerchantSuccessfulInviteFragment");
+                startActivity(intent);
                 dlg.cancel();
             }
         });
