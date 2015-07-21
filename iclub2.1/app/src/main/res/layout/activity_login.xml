@@ -18,36 +18,43 @@
 
     <EditText
         android:id="@+id/edit_phone"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_width="270dp"
+        android:layout_height="35dp"
         android:textColor="@color/white"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="50dp"
         android:drawableLeft="@mipmap/login_phone_icon"
-        android:drawablePadding="5dp"
+        android:drawablePadding="10dp"
+        android:textSize="@dimen/textSize14"
         android:hint="手机号码"
+        android:paddingLeft="10dp"
+        android:background="@drawable/rounded_edittext"
         android:phoneNumber="true"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/whiteOne" />
 
     <EditText
         android:id="@+id/edit_psw"
         android:textColor="@color/white"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="270dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
         android:drawableLeft="@mipmap/login_code_icon"
-        android:drawablePadding="5dp"
+        android:drawablePadding="10dp"
         android:hint="密码"
+        android:paddingLeft="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:textSize="@dimen/textSize14"
         android:password="true"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/whiteOne" />
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="10dp"
-
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/textColor9a4274"
         android:text="登录" />
 
     <LinearLayout
@@ -68,11 +75,61 @@
             android:id="@+id/forget_psw_tv"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="90dp"
             android:layout_weight="1"
             android:padding="2dp"
             android:text="忘记密码？"
             android:textColor="@color/white" />
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_weight="1"
+            android:src="@mipmap/login_left_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+          <TextView
+              android:layout_weight="1"
+              android:text="用其他方式登录"
+              android:textSize="@dimen/textSize16"
+              android:textColor="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_weight="1"
+            android:src="@mipmap/login_right_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
+<LinearLayout
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_weight="1"
+        android:layout_marginLeft="100dp"
+        android:src="@mipmap/qq_login_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_weight="1"
+        android:layout_marginRight="100dp"
+        android:src="@mipmap/wei_bo_login_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+
+
+
+
+
 </LinearLayout>
