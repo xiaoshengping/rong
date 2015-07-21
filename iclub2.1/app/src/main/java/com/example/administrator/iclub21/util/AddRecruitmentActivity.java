@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.RecruitmentHistoryValueBean;
+import com.example.administrator.iclub21.bean.recruitment.AreaBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -63,6 +64,10 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
     private Intent intent;
     private HttpUtils httpUtils;
     private  RequestParams requestParams;
+    private AreaBean areaBean = new AreaBean();
+    private int job_classfite_num = -1;//职业类别
+    private int job_city_num = -1;//工作地点
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -184,10 +189,12 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         addRetrunTv.setOnClickListener(this);
         addSaveTv.setOnClickListener(this);
         deleteRecruitmentTv.setOnClickListener(this);
+        professionClassfitionTv.setOnClickListener(this);
+        workAddressTv.setOnClickListener(this);
         recruitmentHistoryValueBean= (RecruitmentHistoryValueBean) intent.getSerializableExtra("recruitmentHistoryValueBean");
         if (recruitmentHistoryValueBean!=null){
             deleteRecruitmentTv.setVisibility(View.VISIBLE);
-            professionClassfitionTv.setText(recruitmentHistoryValueBean.getJobcategory()+"");
+            professionClassfitionTv.setText(areaBean.getNumPositionName(this ,recruitmentHistoryValueBean.getJobcategory()));
             workAddressTv.setText(recruitmentHistoryValueBean.getAddress());
             positionEdit.setText(recruitmentHistoryValueBean.getPosition());
             if (!TextUtils.isEmpty(recruitmentHistoryValueBean.getJobRequirements())){
@@ -215,6 +222,26 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (resultCode) {
+
+            case 12:
+                /*取得来自SecondActivity页面的数据，并显示到画面*/
+                Bundle bundle = data.getExtras();
+
+                /*获取Bundle中的数据，注意类型和key*/
+                int city = bundle.getInt("City");//地区号
+                String cName = bundle.getString("CityName");//地区名
+                if(city>=0) {
+                    workAddressTv.setText(cName+"（城市编号："+city+"）");
+                    job_city_num = city;
+                }
+                int job = bundle.getInt("Position");//职业号
+                String pName = bundle.getString("PositionName");//职业名
+                if(job>=0&&job!=10){
+                    professionClassfitionTv.setText(pName+"（职业编号："+job+"）");
+                    job_classfite_num = job;
+                }
+                break;
+
             case 15:
                 merchantWork = data.getStringExtra("merchantWork").toString();
                 if (!TextUtils.isEmpty(merchantWork)){
@@ -268,6 +295,20 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 break;
             case R.id.delete_recuitment:
                 deleteJob();
+
+                break;
+            case R.id.profession_classification_tv:
+                Intent intentClassfite = new Intent(AddRecruitmentActivity.this, SelectedCityOrPositionActivity.class);  //方法1
+                intentClassfite.putExtra("Status", areaBean.POSITION);
+                startActivityForResult(intentClassfite, 12);
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_not);
+
+                break;
+            case R.id.work_address_tv:
+                Intent intentCity = new Intent(AddRecruitmentActivity.this, SelectedCityOrPositionActivity.class);  //方法1
+                intentCity.putExtra("Status", areaBean.PROVINCE);
+                startActivityForResult(intentCity, 12);
+                overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_not);
 
                 break;
         }

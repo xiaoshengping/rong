@@ -33,6 +33,18 @@ public class AreaBean {
         String[] s = sArea[i].split(":");
         return Integer.parseInt(s[0]);
     }
+
+    public String getNumPositionName(Context context,int num){
+        String name = null;
+        for (int i=0;i<getPositionCount(context);i++){
+            if(getPositionNum(i)==num){
+                name = getPosition(i);
+                return name;
+            }
+        }
+        return null;
+    }
+
     public int getsCityCount(String str){
         sCity = str.split(",");
         return sCity.length;

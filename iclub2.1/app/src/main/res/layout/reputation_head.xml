@@ -8,7 +8,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="#30ffffff"
-    android:layout_marginBottom="5dp">
+    android:layout_marginBottom="5dp"
+        android:layout_marginTop="@dimen/title_h">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,6 +25,15 @@
         android:text="未知"
         android:textColor="#71B5B8"
         android:textSize="@dimen/reputation_head_texth"/>
+        <TextView
+            android:id="@+id/authenticity_relatively_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="20dp"
+            android:text="与同行相比"
+            android:textColor="#71B5B8"
+            android:textSize="@dimen/reputation_head_texth"/>
 </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,6 +55,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/reputation_head_textm"
             android:text="未知"
+            android:textColor="#71B5B8"
+            android:textSize="@dimen/reputation_head_texth"/>
+        <TextView
+            android:id="@+id/integrity_relatively_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center_vertical"
+            android:text="与同行相比"
             android:textColor="#71B5B8"
             android:textSize="@dimen/reputation_head_texth"/>
     </LinearLayout>

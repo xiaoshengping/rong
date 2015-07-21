@@ -2,7 +2,10 @@ package com.example.administrator.iclub21.util;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
@@ -11,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.VideoDisplyAdapter;
@@ -59,11 +63,13 @@ public class TalendDetailsActivity extends Activity {
     private RoundAngleImageView picturesshow1_iv,picturesshow2_iv,picturesshow3_iv,picturesshow4_iv;
     private List<ResumePicture> resumePictureData;
 
-    private boolean register = true;//登录状态
+    private boolean register = false;//登录状态
 
     private boolean movieShow = true;
     private boolean musicShow = true;
     private int musicNum;
+
+    private String states = null;//用户类型
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +136,25 @@ public class TalendDetailsActivity extends Activity {
     private TalentValueBean talentValueBean;
 
     private void init() {
+
+        //获取登录状态
+        SQLhelper sqLhelper=new SQLhelper(this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        states=null;
+        while (cursor.moveToNext()) {
+            states = cursor.getString(3);
+
+        }
+        if (TextUtils.isEmpty(states)||states.equals("1")){
+            register = false;
+        }else if(states.equals("2")){
+            register = true;
+        }else if(states.equals("3")){
+            register = true;
+        }
+
+
         video_display_lv = (ListView) findViewById(R.id.video_display_lv);
         View header = View.inflate(this, R.layout.video_display_list_header, null);//头部内容
         bindingheader(header);
@@ -344,15 +369,23 @@ public class TalendDetailsActivity extends Activity {
     }
     //邀约
     public void call_for(View v){
-        Intent intent = new Intent(TalendDetailsActivity.this, CalendarActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putInt("userType",1);
-        bundle.putString("Personid", talentValueBean.getPersonid() + "");
-        bundle.putInt("Resumeid",talentValueBean.getResumeid());
+
+        if (TextUtils.isEmpty(states)||states.equals("1")){
+            Toast.makeText(TalendDetailsActivity.this, "非登录状态", Toast.LENGTH_LONG).show();
+        }else if(states.equals("2")){
+            Toast.makeText(TalendDetailsActivity.this, "非商家类型", Toast.LENGTH_LONG).show();
+        }else if(states.equals("3")){
+            Intent intent = new Intent(TalendDetailsActivity.this, CalendarActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("userType", 1);
+            bundle.putString("Personid", talentValueBean.getPersonid() + "");
+            bundle.putInt("Resumeid", talentValueBean.getResumeid());
 //        Toast.makeText(this, talentValueBean.getPersonid()+"", Toast.LENGTH_LONG).show();
-        intent.putExtras(bundle);
-        startActivity(intent);
+            intent.putExtras(bundle);
+            startActivity(intent);
 //        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_not);
+        }
+
     }
     //信誉值
     public void reputation_value(View v){

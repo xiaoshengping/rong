@@ -1,6 +1,8 @@
 package com.example.administrator.iclub21.calendar;
 
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
@@ -21,6 +23,7 @@ import com.example.administrator.iclub21.bean.recruitment.JobDetailsDialog;
 import com.example.administrator.iclub21.bean.recruitment.SendParme;
 import com.example.administrator.iclub21.bean.recruitment.ViewCountBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.util.SQLhelper;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
@@ -69,6 +72,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
     private int tipsType;
     private int resumeid;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +119,16 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
             calendar_tips_ll.setVisibility(View.INVISIBLE);
             calendar_confirm_b.setVisibility(View.INVISIBLE);
         }
+
+        //获取商家账号
+        SQLhelper sqLhelper=new SQLhelper(this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        uid=null;
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+        }
+
 //        List<DayBean> list = new ArrayList<DayBean>();
 //        DayBean dayBean = new DayBean();
 //        dayBean.setDay("2015-08-");
@@ -325,7 +339,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     //邀约
     public void Invite(){
             HttpUtils httpUtils = new HttpUtils();
-            httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getInvite(i, "13800138000", resumeid), new RequestCallBack<String>() {
+            httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getInvite(i, uid, resumeid), new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
                     String result = responseInfo.result;
@@ -396,7 +410,12 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     }
 
     public void offer(View v){
-        dialog(OFFER);
+
+        if(i != "") {
+            dialog(OFFER);
+        }else {
+            Toast.makeText(CalendarActivity.this, "未选择邀约日期", Toast.LENGTH_LONG).show();
+        }
     }
 
 
