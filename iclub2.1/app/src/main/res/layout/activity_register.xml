@@ -7,6 +7,7 @@
     <include layout="@layout/register_tailt_layout"/>
 
     <ImageView
+        android:layout_marginTop="20dp"
         style="@style/paren_layout_width"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="150dp"

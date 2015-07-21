@@ -96,7 +96,6 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
                 break;
             case R.id.captcha_button:
-                 time.start();
                   intiVcodeData();
                 break;
 
@@ -108,6 +107,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     private void intiVcodeData() {
                 String pohten=registerPhoneEdit.getText().toString();
                   if (pohten!=null&&pohten.length()==11) {
+                      time.start();
                       httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getVcodeData(pohten), new RequestCallBack<String>() {
                           @Override
                           public void onSuccess(ResponseInfo<String> responseInfo) {
