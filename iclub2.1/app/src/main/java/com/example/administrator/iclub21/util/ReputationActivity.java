@@ -36,6 +36,7 @@ public class ReputationActivity extends Activity {
     private TextView authenticity_tv,integrity_tv,record_tv;
     private TextView company_url,company_phone,company_mailbox,company_location,company_name_tv;
     private RecruitmentListBean recruitmentListBean;
+    private TextView title_name_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +50,21 @@ public class ReputationActivity extends Activity {
 
     private void binding(){
         reputation_list = (ListView)findViewById(R.id.reputation_list);
-
+        title_name_tv = (TextView)findViewById(R.id.title_name_tv);
     }
 
     private void init(int i){
         binding();
 
         if(i==1) {
+            title_name_tv.setText("信誉值");
             View header = View.inflate(this, R.layout.reputation_head, null);//头部内容
             authenticity_tv = (TextView) header.findViewById(R.id.authenticity_tv);
             integrity_tv = (TextView) header.findViewById(R.id.integrity_tv);
             record_tv = (TextView) header.findViewById(R.id.record_tv);
             reputation_list.addHeaderView(header);//添加头部
         }else if(i==2){
+            title_name_tv.setText("公司详情");
             View header = View.inflate(this, R.layout.company_details_head, null);//头部内容
             authenticity_tv = (TextView) header.findViewById(R.id.authenticity_tv);
             integrity_tv = (TextView) header.findViewById(R.id.integrity_tv);
@@ -80,7 +83,7 @@ public class ReputationActivity extends Activity {
             company_mailbox.setText(recruitmentListBean.getEmail());
             company_location.setText(recruitmentListBean.getAddress());
             company_name_tv.setText(recruitmentListBean.getCompanyName());
-            company_name_tv.setText(id+"");
+//            company_name_tv.setText(id+"");
 
         }
 
