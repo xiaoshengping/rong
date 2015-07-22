@@ -89,9 +89,9 @@ public class JobDetailsActivity extends Activity {
         if (TextUtils.isEmpty(states)||states.equals("1")){
             register = false;
         }else if(states.equals("2")){
-            register = false;
-        }else if(states.equals("3")){
             register = true;
+        }else if(states.equals("3")){
+            register = false;
         }
 
 //        Bundle bundle=this.getIntent().getExtras();
@@ -155,7 +155,8 @@ public class JobDetailsActivity extends Activity {
         dialog2.setOnPositiveListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(JobDetailsActivity.this, LoginActivity.class);
+                startActivity(intent);
                 dialog2.dismiss();
             }
         });
