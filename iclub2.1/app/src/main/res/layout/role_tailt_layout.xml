@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/login_layout"
+
     android:layout_width="match_parent"
-    android:layout_height="60dp">
-     <TextView
+    android:layout_height="50dp">
+    <Button
          android:id="@+id/role_reten_tv"
          android:layout_marginTop="15dp"
          android:layout_marginLeft="20dp"
          android:background="@mipmap/return_icon"
-         android:layout_width="20dp"
-         android:layout_height="25dp" />
+         android:layout_width="10dp"
+         android:layout_height="20dp" />
+
      <TextView
          android:layout_marginTop="15dp"
 

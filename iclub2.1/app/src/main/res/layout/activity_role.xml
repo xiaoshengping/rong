@@ -14,7 +14,7 @@
     <TextView
        android:textColor="@color/white"
         android:gravity="center"
-        android:textSize="@dimen/textSize18"
+        android:textSize="@dimen/textSize16"
         android:text="请选择要了解的角色用户"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -22,15 +22,17 @@
     <Button
         android:id="@+id/role_talents_tv"
         android:text="人才用户"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="60dp"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/textColor9a4274"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="80dp"
+        android:layout_width="200dp"
+        android:layout_height="60dp" />
     <Button
         android:id="@+id/merchant_jion_bt"
         android:text="招聘商家"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="60dp"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/textColor9a4274"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="80dp"
+        android:layout_width="200dp"
+        android:layout_height="60dp" />
 </LinearLayout>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:background="#30000000"
     android:layout_height="50dp">
-     <TextView
+     <Button
          android:id="@+id/login_reten_tv"
          android:layout_marginTop="15dp"
          android:layout_marginLeft="20dp"

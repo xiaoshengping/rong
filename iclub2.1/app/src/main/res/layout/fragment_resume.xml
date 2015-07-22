@@ -8,6 +8,7 @@
         layout="@layout/resume_tailt_layout"/>
     <ListView
         android:scrollbars="none"
+        android:dividerHeight="3dp"
         android:id="@+id/resume_list_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
