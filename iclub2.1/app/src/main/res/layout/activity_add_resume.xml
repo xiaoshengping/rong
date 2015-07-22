@@ -191,9 +191,9 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="5dp"
                         android:id="@+id/job_classfite_tv"
-                        android:hint="必填"
+                        android:text="必填"
                         android:textSize="@dimen/textSize15"
-                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -249,9 +249,9 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="5dp"
                         android:id="@+id/job_city_tv"
-                        android:hint="必填"
+                        android:text="必填"
                         android:textSize="@dimen/textSize15"
-                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />

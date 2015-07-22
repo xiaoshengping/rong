@@ -212,7 +212,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                    musicTextView.setCompoundDrawables(null, null, drawable, null);
                    musicTextView.setTextColor(Color.WHITE);
                    musicTextView.setCompoundDrawablePadding(400);
-
+                   musicTextView.setBackgroundResource(R.drawable.rounded_music);
                    showMusicWordWrapView.addView(musicTextView);
                    final int finalI = j;
                    musicTextView.setOnClickListener(new View.OnClickListener() {

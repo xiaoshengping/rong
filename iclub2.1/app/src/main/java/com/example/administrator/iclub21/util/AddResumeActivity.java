@@ -489,8 +489,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 compileRequestParams.addBodyParameter("usericon", new File(touXiangPath));
             }
 
-            compileRequestParams.addBodyParameter("resumeJobCategory ", "1");
-            compileRequestParams.addBodyParameter("resumeCityId", "1");
+            compileRequestParams.addBodyParameter("resumeJobCategory ", job_classfite_num+"");
+            compileRequestParams.addBodyParameter("resumeCityId", job_city_num+"");
             compileRequestParams.addBodyParameter("resumeMobile", states);
 
 
@@ -556,8 +556,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             requestParams.addBodyParameter("resumeJobName", userJobName);
             requestParams.addBodyParameter("resumeZhName ", userName);
             requestParams.addBodyParameter("usericon", new File(touXiangPath));
-            requestParams.addBodyParameter("resumeJobCategory ", "4");
-            requestParams.addBodyParameter("resumeCityId", "1");
+            requestParams.addBodyParameter("resumeJobCategory ", job_classfite_num+"");
+            requestParams.addBodyParameter("resumeCityId", job_city_num+"");
             requestParams.addBodyParameter("resumeMobile", "15088138598");
 
             if (resumeNuber.equals("2222")) {
@@ -690,13 +690,15 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 int city = bundle.getInt("City");//地区号
                 String cName = bundle.getString("CityName");//地区名
                 if(city>=0) {
-                    job_city_tv.setText(cName+"（城市编号："+city+"）");
+                    //job_city_tv.setText(cName+"（城市编号："+city+"）");
+                    job_city_tv.setText(cName);
                     job_city_num = city;
                 }
                 int job = bundle.getInt("Position");//职业号
                 String pName = bundle.getString("PositionName");//职业名
                 if(job>=0&&job!=10){
-                    job_classfite_tv.setText(pName+"（职业编号："+job+"）");
+                    //job_classfite_tv.setText(pName+"（职业编号："+job+"）");
+                    job_classfite_tv.setText(pName);
                     job_classfite_num = job;
                 }
                 break;
