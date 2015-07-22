@@ -110,7 +110,7 @@ public class RecruitmentFragment extends Fragment {
     }
 
     private LayoutInflater mInflater;
-    private boolean ss=false;//搜索状态
+    private boolean searchStatusfalse;//搜索状态
 
     private void inti() {
 
@@ -122,21 +122,21 @@ public class RecruitmentFragment extends Fragment {
         reagment_title_search_ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ss=true;
+                searchStatusfalse=true;
                 dialog();
             }
         });
         back_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ss = false;
+                searchStatusfalse = false;
                 citynum = 0;
                 jobnum = 0;
                 sousuo = "";
                 selected_city.setText("选择城市");
                 selected_position.setText("选择职位");
                 reagment_title_tv.setText("娱乐招聘");
-                update(getActivity(), citynum, jobnum, sousuo);
+                initRecruitmentListData(0,0);
                 back_b.setVisibility(View.GONE);
 //                initRecruitmentListData(0,0,"");
             }
@@ -303,7 +303,7 @@ public class RecruitmentFragment extends Fragment {
                         ssv.setLayoutParams(layoutParams);
                         recruitmentList.addHeaderView(header);//添加头部
 //                        initRecruitmentListData(0, 0, "");
-                        update(getActivity(),0,0,"");
+                        initRecruitmentListData(0,0);
 
                     }
 
@@ -385,7 +385,7 @@ public class RecruitmentFragment extends Fragment {
 //                intent.putExtra("Status", areaBean.PROVINCE);
                 startActivity(intent);
             }
-        });
+            });
         }
 
         /**
@@ -397,6 +397,51 @@ public class RecruitmentFragment extends Fragment {
         }
     }
 
+
+    //获取招聘列表（非搜索）
+    private void initRecruitmentListData(int city, int job) {
+        HttpUtils httpUtils = new HttpUtils();
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRecruitmentList(city,job), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result = responseInfo.result;
+                if (result != null) {
+                    ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
+                    });
+                    if (recruitmentListBean.getState().equals("success")) {
+                        recruitmentListData = recruitmentListBean.getValue();
+                        recruitmentAdapter = new RecruitmentListAdapter(recruitmentListData, getActivity());
+                        recruitmentList.setAdapter(recruitmentAdapter);
+                        recruitmentAdapter.notifyDataSetChanged();
+
+                        recruitmentList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Intent intent = new Intent(getActivity(), JobDetailsActivity.class);  //方法1
+//                intent.putCharSequenceArrayListExtra("Detail",recruitmentListData);
+                                Bundle bundle=new Bundle();
+                                bundle.putSerializable("Detail",recruitmentListData.get(position-1));
+                                intent.putExtras(bundle);
+//                intent.putExtra("Status", areaBean.PROVINCE);
+                                startActivity(intent);
+                            }
+                        });
+
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+            }
+        });
+
+
+    }
 
 
 
@@ -513,7 +558,11 @@ public class RecruitmentFragment extends Fragment {
                 selected_city.setText("选择城市");
             }
             citynum = city;
-            update(getActivity(),citynum,jobnum,sousuo);
+            if(searchStatusfalse) {
+                update(getActivity(), citynum, jobnum, sousuo);
+            }else {
+                initRecruitmentListData(citynum,jobnum);
+            }
 //            initRecruitmentListData(citynum,jobnum,"");
 
         }
@@ -526,8 +575,11 @@ public class RecruitmentFragment extends Fragment {
                 selected_position.setText("选择职位");
             }
             jobnum = job;
-            update(getActivity(),citynum,jobnum,sousuo);
-//            initRecruitmentListData(citynum,jobnum,"");
+            if(searchStatusfalse) {
+                update(getActivity(), citynum, jobnum, sousuo);
+            }else {
+                initRecruitmentListData(citynum,jobnum);
+            }
         }
     }
 

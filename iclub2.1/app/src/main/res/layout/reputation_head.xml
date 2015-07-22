@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#30ffffff"
+    android:background="#20ffffff"
+        android:gravity="center_vertical"
     android:layout_marginBottom="5dp"
         android:layout_marginTop="@dimen/title_h">
     <TextView
@@ -19,28 +20,36 @@
         android:textSize="@dimen/reputation_head_texth" />
     <TextView
         android:id="@+id/authenticity_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/reputation_head_textm"
-        android:text="未知"
+        android:text="0"
+        android:layout_marginLeft="@dimen/reputation_head_textm"
         android:textColor="#71B5B8"
         android:textSize="@dimen/reputation_head_texth"/>
         <TextView
-            android:id="@+id/authenticity_relatively_tv"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_margin="20dp"
             android:text="与同行相比"
             android:textColor="#71B5B8"
             android:textSize="@dimen/reputation_head_texth"/>
+        <ImageView
+            android:id="@+id/authenticity_relatively_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/red_down"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="82dp"/>
 </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#30ffffff"
-        android:layout_marginBottom="5dp">
+        android:background="#20ffffff"
+        android:layout_marginBottom="5dp"
+        android:gravity="center_vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,27 +60,35 @@
             android:textSize="@dimen/reputation_head_texth"/>
         <TextView
             android:id="@+id/integrity_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/reputation_head_textm"
-            android:text="未知"
+            android:layout_marginLeft="@dimen/reputation_head_textm"
+            android:text="0"
             android:textColor="#71B5B8"
             android:textSize="@dimen/reputation_head_texth"/>
         <TextView
-            android:id="@+id/integrity_relatively_tv"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:layout_gravity="center_vertical"
             android:text="与同行相比"
             android:textColor="#71B5B8"
             android:textSize="@dimen/reputation_head_texth"/>
+        <ImageView
+            android:id="@+id/integrity_relatively_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/red_down"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="82dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#30ffffff"
+        android:background="#20ffffff"
+        android:gravity="center_vertical"
         android:layout_marginBottom="8dp">
         <TextView
             android:layout_width="wrap_content"
@@ -82,17 +99,19 @@
             android:textSize="@dimen/reputation_head_texth"/>
         <TextView
             android:id="@+id/record_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/reputation_head_textm"
-            android:text="未知"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="0dp"
+            android:text="0"
             android:textColor="#71B5B8"
             android:textSize="@dimen/reputation_head_texth"/>
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#30ffffff"
+        android:background="#20ffffff"
         android:text="  合作评论"
         android:textColor="#D7D5FE"
         android:textSize="18dp"

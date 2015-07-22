@@ -1,20 +1,31 @@
 package com.example.administrator.iclub21.bean.talent;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2015/7/13.
  */
-public class ReputationValueBean {
+public class ReputationValueBean implements Serializable{
     private int gradeid;
-    private int authenticiy;
+    private int authenticity;
     private int integrity;
     private int transactionRecord;
+    private int status;
 
-    public int getAuthenticiy() {
-        return authenticiy;
+    public int getStatus() {
+        return status;
     }
 
-    public void setAuthenticiy(int authenticiy) {
-        this.authenticiy = authenticiy;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getAuthenticity() {
+        return authenticity;
+    }
+
+    public void setAuthenticity(int authenticity) {
+        this.authenticity = authenticity;
     }
 
     public int getGradeid() {
@@ -44,10 +55,11 @@ public class ReputationValueBean {
     @Override
     public String toString() {
         return "ReputationValueBean{" +
-                "authenticiy=" + authenticiy +
+                "authenticity=" + authenticity +
                 ", gradeid=" + gradeid +
                 ", integrity=" + integrity +
                 ", transactionRecord=" + transactionRecord +
+                ", status=" + status +
                 '}';
     }
 }

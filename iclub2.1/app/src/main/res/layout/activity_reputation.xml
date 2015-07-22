@@ -8,7 +8,7 @@
         android:id="@+id/reputation_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="#30ffffff"
+        android:divider="#20ffffff"
         android:dividerHeight="1px"   >
 
     </ListView>
@@ -19,7 +19,7 @@
         android:text="暂无评论"
         android:textColor="#00000000"
         android:gravity="center"
-        android:background="#30ffffff"/>
+        android:background="#20ffffff"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
             android:text="ㄑ"
             android:textSize="@dimen/title_text_h"
             android:layout_marginLeft="0dp"
-            android:textColor="#00DEDDE2"
+            android:textColor="#DEDDE2"
             android:onClick="back"
             android:background="#00ffffff"/>
 

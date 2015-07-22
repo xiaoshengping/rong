@@ -3,6 +3,7 @@ package com.example.administrator.iclub21.util;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.ReputationAdapter;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.bean.recruitment.RecruitmentListBean;
+import com.example.administrator.iclub21.bean.recruitment.SendParme;
 import com.example.administrator.iclub21.bean.talent.CommentBean;
 import com.example.administrator.iclub21.bean.talent.ReputationValueBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
@@ -37,6 +39,7 @@ public class ReputationActivity extends Activity {
     private TextView company_url,company_phone,company_mailbox,company_location,company_name_tv;
     private RecruitmentListBean recruitmentListBean;
     private TextView title_name_tv;
+    private ImageView authenticity_relatively_iv,integrity_relatively_iv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,10 @@ public class ReputationActivity extends Activity {
             authenticity_tv = (TextView) header.findViewById(R.id.authenticity_tv);
             integrity_tv = (TextView) header.findViewById(R.id.integrity_tv);
             record_tv = (TextView) header.findViewById(R.id.record_tv);
+            authenticity_relatively_iv = (ImageView)header.findViewById(R.id.authenticity_relatively_iv);
+            integrity_relatively_iv = (ImageView)header.findViewById(R.id.integrity_relatively_iv);
             reputation_list.addHeaderView(header);//添加头部
+
         }else if(i==2){
             title_name_tv.setText("公司详情");
             View header = View.inflate(this, R.layout.company_details_head, null);//头部内容
@@ -100,15 +106,33 @@ public class ReputationActivity extends Activity {
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (result != null) {
-                    ArtistParme<ReputationValueBean> reputationValueBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<ReputationValueBean>>() {
+                    SendParme<ReputationValueBean> reputationValueBean = JSONObject.parseObject(result, new TypeReference<SendParme<ReputationValueBean>>() {
                     });
                     if (reputationValueBean.getState().equals("success")) {
 
                         if (reputationValueBean.getValue() != null) {
-                            ReputationValueBean reputationValueDate = reputationValueBean.getValue().get(0);
-                            authenticity_tv.setText(reputationValueDate.getAuthenticiy());
-                            integrity_tv.setText(reputationValueDate.getIntegrity());
-                            record_tv.setText(reputationValueDate.getTransactionRecord());
+                            ReputationValueBean reputationValueDate = JSONObject.parseObject(reputationValueBean.getValue(), ReputationValueBean.class);
+                            authenticity_tv.setText(reputationValueDate.getAuthenticity()+"");
+                            integrity_tv.setText(reputationValueDate.getIntegrity()+"");
+                            record_tv.setText(reputationValueDate.getTransactionRecord()+"");
+                            if(type==1){
+                                if(reputationValueDate.getAuthenticity()<=60){
+                                    authenticity_relatively_iv.setImageResource(R.mipmap.red_down);
+                                }else if(reputationValueDate.getAuthenticity()<=90){
+                                    authenticity_relatively_iv.setImageResource(R.mipmap.grey_flat);
+                                }else{
+                                    authenticity_relatively_iv.setImageResource(R.mipmap.green_top);
+                                }
+                                if(reputationValueDate.getIntegrity()<=60){
+                                    integrity_relatively_iv.setImageResource(R.mipmap.red_down);
+                                }else if(reputationValueDate.getIntegrity()<=90){
+                                    integrity_relatively_iv.setImageResource(R.mipmap.grey_flat);
+                                }else{
+                                    integrity_relatively_iv.setImageResource(R.mipmap.green_top);
+                                }
+
+
+                            }
                         }
 
                     }
@@ -157,6 +181,10 @@ public class ReputationActivity extends Activity {
 
             }
         });
+    }
+
+    public void back(View v){
+        finish();
     }
 
 }

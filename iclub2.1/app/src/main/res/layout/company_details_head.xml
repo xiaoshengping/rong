@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#30ffffff"
+        android:background="#20ffffff"
         android:layout_marginTop="@dimen/title_h"
         android:paddingTop="18dp"
         android:paddingLeft="18dp"
@@ -114,7 +114,7 @@
         android:orientation="horizontal"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
-        android:background="#30ffffff">
+        android:background="#20ffffff">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -191,7 +191,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#30ffffff"
+        android:background="#20ffffff"
         android:text="  合作评论"
         android:textColor="#D7D5FE"
         android:textSize="18dp"

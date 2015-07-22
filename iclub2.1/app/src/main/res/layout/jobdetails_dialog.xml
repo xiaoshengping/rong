@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="亲，请先登录"
+            android:text="亲，请先登录并注册为人才用户"
             android:textSize="15sp"
             android:textColor="#EBE9EB"
             android:gravity="center"

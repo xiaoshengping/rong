@@ -2,7 +2,10 @@ package com.example.administrator.iclub21.util;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -43,6 +46,7 @@ public class JobDetailsActivity extends Activity {
     private TextView viewCount;
 
     private RatingBarStar rbs;
+    private String states = null;//用户类型
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,24 @@ public class JobDetailsActivity extends Activity {
 
     private void init() {
         binding();
+
+        //获取登录状态
+        SQLhelper sqLhelper=new SQLhelper(this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        states=null;
+        while (cursor.moveToNext()) {
+            states = cursor.getString(3);
+
+        }
+        if (TextUtils.isEmpty(states)||states.equals("1")){
+            register = false;
+        }else if(states.equals("2")){
+            register = false;
+        }else if(states.equals("3")){
+            register = true;
+        }
+
 //        Bundle bundle=this.getIntent().getExtras();
 //        ArrayList list2 = bundle.getParcelableArrayList("list");
         recruitmentListBean = (RecruitmentListBean) getIntent().getSerializableExtra("Detail");
@@ -123,7 +145,7 @@ public class JobDetailsActivity extends Activity {
 
     }
 
-    private boolean register = true;//登录状态
+    private boolean register = false;//登录状态
     private boolean sendBl=true;//是否投递成功
     private JobDetailsDialog dialog2;
 

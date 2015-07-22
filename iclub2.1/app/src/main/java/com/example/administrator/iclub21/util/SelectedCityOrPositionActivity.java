@@ -68,42 +68,43 @@ public class SelectedCityOrPositionActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (status == areaBean.PROVINCE) {
-                    if(areaBean.getsCityCount(areaBean.getProvince(position-1, 2))!=1) {
-                        status = areaBean.CITY;
-                        initCity(areaBean.getProvince(position-1, 2));
-                    }else {
-                        Intent intent = new Intent();
-                        intent.putExtra("City", areaBean.getCityNum(0));
-                        intent.putExtra("Position", -1);
-                        intent.putExtra("CityName", areaBean.getCityName(0));
+                if (position > 0) {
+                    if (status == areaBean.PROVINCE) {
+                        if (areaBean.getsCityCount(areaBean.getProvince(position - 1, 2)) != 1) {
+                            status = areaBean.CITY;
+                            initCity(areaBean.getProvince(position - 1, 2));
+                        } else {
+                            Intent intent = new Intent();
+                            intent.putExtra("City", areaBean.getCityNum(0));
+                            intent.putExtra("Position", -1);
+                            intent.putExtra("CityName", areaBean.getCityName(0));
                         /*给上一个Activity返回结果*/
-                        SelectedCityOrPositionActivity.this.setResult(12, intent);
+                            SelectedCityOrPositionActivity.this.setResult(12, intent);
                         /*结束本Activity*/
-                        SelectedCityOrPositionActivity.this.finish();
-                    }
-                } else if (status == areaBean.CITY) {
-                    Intent intent = new Intent();
-                    intent.putExtra("City", areaBean.getCityNum(position-1));
-                    intent.putExtra("Position", -1);
-                    intent.putExtra("CityName", areaBean.getCityName(position-1));
-                /*给上一个Activity返回结果*/
-                    SelectedCityOrPositionActivity.this.setResult(12, intent);
-/*结束本Activity*/
-                    SelectedCityOrPositionActivity.this.finish();
-                } else if (status == areaBean.POSITION) {
-                    if(areaBean.getPositionNum(position-1)!=-1) {
-//                        Toast.makeText(SelectedCityOrPositionActivity.this, areaBean.getNumPositionName(SelectedCityOrPositionActivity.this,areaBean.getPositionNum(position-1)), Toast.LENGTH_LONG).show();
+                            SelectedCityOrPositionActivity.this.finish();
+                        }
+                    } else if (status == areaBean.CITY) {
                         Intent intent = new Intent();
-                        intent.putExtra("City", -1);
-                        intent.putExtra("Position", areaBean.getPositionNum(position-1));
-                        intent.putExtra("PositionName", areaBean.getPosition(position-1));
+                        intent.putExtra("City", areaBean.getCityNum(position - 1));
+                        intent.putExtra("Position", -1);
+                        intent.putExtra("CityName", areaBean.getCityName(position - 1));
                 /*给上一个Activity返回结果*/
                         SelectedCityOrPositionActivity.this.setResult(12, intent);
 /*结束本Activity*/
                         SelectedCityOrPositionActivity.this.finish();
+                    } else if (status == areaBean.POSITION) {
+                        if (areaBean.getPositionNum(position - 1) != -1) {
+//                        Toast.makeText(SelectedCityOrPositionActivity.this, areaBean.getNumPositionName(SelectedCityOrPositionActivity.this,areaBean.getPositionNum(position-1)), Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent();
+                            intent.putExtra("City", -1);
+                            intent.putExtra("Position", areaBean.getPositionNum(position - 1));
+                            intent.putExtra("PositionName", areaBean.getPosition(position - 1));
+                /*给上一个Activity返回结果*/
+                            SelectedCityOrPositionActivity.this.setResult(12, intent);
+/*结束本Activity*/
+                            SelectedCityOrPositionActivity.this.finish();
+                        }
                     }
-                }
 
 //                selecte_city_ll.setVisibility(View.VISIBLE);
 
@@ -112,6 +113,7 @@ public class SelectedCityOrPositionActivity extends Activity {
 //                animation.setFillAfter(true);
 //                selecte_province_ll.startAnimation(animation);
 //                selecte_city_lv.startAnimation(animation);//控件动画
+                }
             }
         });
 
