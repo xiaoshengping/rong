@@ -358,21 +358,39 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 break;
             case R.id.oneself_known_layout:
                 Intent infoIntent = new Intent(AddResumeActivity.this, ResumeMessageActivity.class);
-                infoIntent.putExtra("caseData", "oneself");
-                infoIntent.putExtra("resumeInfoData",resumeValueBean);
+
+                if (resumeValueBean!=null){
+                    infoIntent.putExtra("caseData", "oneself");
+                    infoIntent.putExtra("resumeInfoData",resumeValueBean);
+                }else {
+                    infoIntent.putExtra("caseData", "oneselfNo");
+                }
+
                 startActivityForResult(infoIntent, 7);
                 break;
             case R.id.work_experience_layout:
                 Intent workIntent = new Intent(AddResumeActivity.this, ResumeMessageActivity.class);
-                workIntent.putExtra("caseData", "work");
-                workIntent.putExtra("resumeInfoData",resumeValueBean);
+
+                if (resumeValueBean!=null){
+                    workIntent.putExtra("caseData", "work");
+                    workIntent.putExtra("resumeInfoData",resumeValueBean);
+                } else{
+                    workIntent.putExtra("caseData", "workNo");
+
+                }
                 startActivityForResult(workIntent, 8);
 
                 break;
             case R.id.add_iamge_tv:
                 Intent pictureIntent = new Intent(AddResumeActivity.this, ResumeMessageActivity.class);
-                pictureIntent.putExtra("caseData", "picture");
-                pictureIntent.putExtra("resumeInfoData",resumeValueBean);
+                if (resumeValueBean!=null){
+                    pictureIntent.putExtra("caseData", "picture");
+                    pictureIntent.putExtra("resumeInfoData",resumeValueBean);
+                } else{
+                    pictureIntent.putExtra("caseData", "pictureNo");
+
+                }
+
                 startActivityForResult(pictureIntent, 9);
 
                 break;
@@ -385,8 +403,14 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 break;
             case R.id.add_music_tv:
                 Intent musicIntent = new Intent(AddResumeActivity.this, ResumeMessageActivity.class);
-                musicIntent.putExtra("caseData", "music");
-                musicIntent.putExtra("resumeInfoData",resumeValueBean);
+                if (resumeValueBean!=null){
+                    musicIntent.putExtra("caseData", "music");
+                    musicIntent.putExtra("resumeInfoData",resumeValueBean);
+                } else{
+                    musicIntent.putExtra("caseData", "musicNo");
+
+                }
+
                 startActivityForResult(musicIntent, 11);
                 break;
             case R.id.job_classfite_layout:
@@ -610,10 +634,15 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 userInfo = data.getStringExtra("userInfo").toString();
                 //Log.e("userInfo",userInfo);
                 if (TextUtils.isEmpty(userInfo)){
-                    if (TextUtils.isEmpty(resumeValueBean.getResumeInfo())){
-                        userOnselfText.setText("亲，要填写自我介绍哦!(必填)");
+                    if (resumeValueBean!=null){
+                        if (TextUtils.isEmpty(resumeValueBean.getResumeInfo())){
+                            userOnselfText.setText("亲，要填写自我介绍哦!(必填)");
+                        }else {
+                            userOnselfText.setText(resumeValueBean.getResumeInfo());
+                        }
+
                     }else {
-                        userOnselfText.setText(resumeValueBean.getResumeInfo());
+                        userOnselfText.setText("亲，要填写自我介绍哦!(必填)");
                     }
 
                 }else {
@@ -626,11 +655,16 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 userWork = data.getStringExtra("userWork").toString();
                 //Log.e("userWork",userWork);
                 if (TextUtils.isEmpty(userWork)){
-                    if (TextUtils.isEmpty(resumeValueBean.getResumeWorkExperience())){
-                        workExpexteText.setText("亲，要填写工作经历哦!(必填)");
-                    }else {
-                        workExpexteText.setText(resumeValueBean.getResumeWorkExperience());
-                    }
+                  if (resumeValueBean!=null){
+                      if (TextUtils.isEmpty(resumeValueBean.getResumeWorkExperience())){
+                          workExpexteText.setText("亲，要填写工作经历哦!(必填)");
+                      }else {
+                          workExpexteText.setText(resumeValueBean.getResumeWorkExperience());
+                      }
+                  }else {
+                      workExpexteText.setText("亲，要填写工作经历哦!(必填)");
+                  }
+
 
                 }else {
                     workExpexteText.setText(userWork);

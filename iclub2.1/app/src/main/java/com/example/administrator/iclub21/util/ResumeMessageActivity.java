@@ -174,26 +174,40 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     private void intiInfoData() {
          intent=getIntent();
         data= intent.getStringExtra("caseData");
-        resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("resumeInfoData");
-
         if (data.equals("oneself")){
-           particularLayout.setVisibility(View.VISIBLE);
+            resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("resumeInfoData");
+            particularLayout.setVisibility(View.VISIBLE);
             onselfBase.setText("1.可填写个人的基本介绍");
             oneselfExperience.setText("2.可填写个人职业的介绍");
             messageCommentTv.setText("自我介绍");
-            resumeInfo.setText(resumeValueBean.getResumeInfo());
+            if (resumeValueBean.getResumeInfo()!=null){
+                resumeInfo.setText(resumeValueBean.getResumeInfo());
+            }
+        }else if (data.equals("oneselfNo")){
+            particularLayout.setVisibility(View.VISIBLE);
+            onselfBase.setText("1.可填写个人的基本介绍");
+            oneselfExperience.setText("2.可填写个人职业的介绍");
+            messageCommentTv.setText("自我介绍");
 
-
-        }else if (data.equals("work")){
+        } else if (data.equals("work")){
+            resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("resumeInfoData");
             workExperLayout.setVisibility(View.VISIBLE);
             baseWork.setText("1.可填写个人的工作经历");
             workPerformance.setText("2.可填写个人在工作中取得的成绩和成就");
             messageCommentTv.setText("工作经历");
-            resumeWork.setText(resumeValueBean.getResumeWorkExperience());
+            if (resumeValueBean.getResumeWorkExperience()!=null){
+                resumeWork.setText(resumeValueBean.getResumeWorkExperience());
+            }
 
 
+        }else if (data.equals("workNo")){
+            workExperLayout.setVisibility(View.VISIBLE);
+            baseWork.setText("1.可填写个人的工作经历");
+            workPerformance.setText("2.可填写个人在工作中取得的成绩和成就");
+            messageCommentTv.setText("工作经历");
 
-        }else if (data.equals("picture")){
+            }else if (data.equals("picture")){
+            resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("resumeInfoData");
             addImageLayout.setVisibility(View.VISIBLE);
             messageCommentTv.setText("图片介绍");
             if (resumeValueBean.getResumePicture()!=null&&resumeValueBean.getResumePicture().size()!=0){
@@ -205,7 +219,6 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     imageView.setMinimumHeight(200);
                     ImageView deleteImageView=new ImageView(ResumeMessageActivity.this);
                     RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    //lp1.addRule(RelativeLayout.ALIGN_PARENT_TOP);
                     lp1.addRule(RelativeLayout.CENTER_HORIZONTAL);
                     lp1.addRule(RelativeLayout.CENTER_VERTICAL);
                     deleteImageView.setBackgroundResource(R.mipmap.delete_button_icon);
@@ -226,6 +239,11 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                 }
 
             }
+
+
+        }else if (data.equals("pictureNo")){
+            addImageLayout.setVisibility(View.VISIBLE);
+            messageCommentTv.setText("图片介绍");
 
 
         }else if (data.equals("video")){
@@ -256,7 +274,11 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
             }*/
 
 
+        }else if(data.equals("musicNo")){
+            addMusicLayout.setVisibility(View.VISIBLE);
+            messageCommentTv.setText("音乐分享");
         }else if(data.equals("music")){
+            resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("resumeInfoData");
             addMusicLayout.setVisibility(View.VISIBLE);
             messageCommentTv.setText("音乐分享");
             if (resumeValueBean.getResumeMusic()!=null&&resumeValueBean.getResumeMusic().size()!=0){
@@ -325,7 +347,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     private void deletePictureData(final ImageView imageView,int i) {
         requestParams.addBodyParameter("resumeid",resumeValueBean.getResumeid()+"");
         requestParams.addBodyParameter("id",resumeValueBean.getResumePicture().get(i).getResumepictureid()+"");
-        Log.e("Resumepictureid", resumeValueBean.getResumePicture().get(i).getResumepictureid()+"");
+        Log.e("Resumepictureid", resumeValueBean.getResumePicture().get(i).getResumepictureid() + "");
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeletePicture(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -421,7 +443,14 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     intent.putExtra("userInfo", "");
                     setResult(7, intent);
 
+                }else if(data.equals("oneselfNo")){
+                    intent.putExtra("userInfo", "");
+                    setResult(7, intent);
                 }else if(data.equals("work")){
+                    intent.putExtra("userWork", "");
+                    setResult(8, intent);
+
+                }else if(data.equals("workNo")){
                     intent.putExtra("userWork", "");
                     setResult(8, intent);
 
@@ -429,11 +458,23 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     intent.putExtra("userPicturePath", "");
                     setResult(9, intent);
 
+                }else if (data.equals("pictureNo")){
+                    intent.putExtra("userPicturePath", "");
+                    setResult(9, intent);
+
                 }else if (data.equals("video")){
                     intent.putExtra("userVideoPath", "");
                     setResult(10, intent);
 
+                }else if (data.equals("videoNo")){
+                    intent.putExtra("userVideoPath", "");
+                    setResult(10, intent);
+
                 }else if(data.equals("music")){
+                    intent.putExtra("usermusicPath", "");
+                    setResult(11, intent);
+
+                }else if(data.equals("musicNo")){
                     intent.putExtra("usermusicPath", "");
                     setResult(11, intent);
 
@@ -469,20 +510,38 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                 intent.putExtra("userInfo", "");
                 setResult(7, intent);
 
+            }else if(data.equals("oneselfNo")){
+                intent.putExtra("userInfo", "");
+                setResult(7, intent);
             }else if(data.equals("work")){
+                intent.putExtra("userWork", "");
+                setResult(8, intent);
+
+            }else if(data.equals("workNo")){
                 intent.putExtra("userWork", "");
                 setResult(8, intent);
 
             }else if (data.equals("picture")){
                 intent.putExtra("userPicturePath", "");
                 setResult(9, intent);
-                return false;
+
+            }else if (data.equals("pictureNo")){
+                intent.putExtra("userPicturePath", "");
+                setResult(9, intent);
 
             }else if (data.equals("video")){
                 intent.putExtra("userVideoPath", "");
                 setResult(10, intent);
 
+            }else if (data.equals("videoNo")){
+                intent.putExtra("userVideoPath", "");
+                setResult(10, intent);
+
             }else if(data.equals("music")){
+                intent.putExtra("usermusicPath", "");
+                setResult(11, intent);
+
+            }else if(data.equals("musicNo")){
                 intent.putExtra("usermusicPath", "");
                 setResult(11, intent);
 
