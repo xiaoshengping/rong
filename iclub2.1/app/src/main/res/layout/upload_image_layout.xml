@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical" android:layout_width="300dp"
+    android:background="@mipmap/iculd_beijin_icon"
+    android:layout_height="250dp">
     <!-- 退出游戏的背景图 -->
     <ImageView android:id="@+id/exitGameBackground"
         android:layout_centerInParent="true"
         android:layout_height="250dp"
         android:layout_width="300dp"
-        android:src="#40000000" />
-    <TextView
+        android:background="#30000000" />
+    <Button
         android:id="@+id/tailte_tv"
         android:gravity="center"
         android:layout_marginTop="30dp"
-        android:background="#ffffff"
+        android:background="@drawable/rounded_button"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:text="拍照上传"
+        android:textColor="@color/textColor9a4274"
         android:layout_alignTop="@+id/exitGameBackground"
         android:layout_centerHorizontal="true" />
 
     <!-- 取消按钮 -->
-    <TextView
+    <Button
           android:layout_marginTop="10dp"
 
         android:gravity="center"
         android:text="相册选择"
         android:layout_height="50dp"
         android:layout_width="250dp"
-        android:background="#ffffff"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/textColor9a4274"
         android:id="@+id/btn_ok"
         android:layout_marginLeft="20dp"
         android:layout_below="@+id/tailte_tv"
@@ -41,7 +44,8 @@
         android:gravity="center"
         android:layout_height="50dp"
         android:layout_width="250dp"
-        android:background="#ffffff"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/textColor9a4274"
         android:text="取消"
          android:layout_marginTop="10dp"
         android:layout_below="@+id/btn_ok"
