@@ -251,7 +251,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             AreaBean areaBean=new AreaBean();
             resumeAgeTv.setText(resumeValueBean.getResumeAge()+"");
             job_classfite_tv.setText(areaBean.getNumPositionName(AddResumeActivity.this, resumeValueBean.getResumeJobCategory()));
-            job_city_tv.setText(resumeValueBean.getResumeCityId() + "");
+            job_city_tv.setText(areaBean.getNumCityName(AddResumeActivity.this, resumeValueBean.getResumeCityId()));
             job_classfite_num=resumeValueBean.getResumeJobCategory();
             job_city_num=resumeValueBean.getResumeCityId();
 
