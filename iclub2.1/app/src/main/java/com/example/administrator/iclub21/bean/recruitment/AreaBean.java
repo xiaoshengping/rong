@@ -35,14 +35,8 @@ public class AreaBean {
     }
 
     public String getNumPositionName(Context context,int num){
-        String name = null;
-        for (int i=0;i<getPositionCount(context);i++){
-            if(getPositionNum(i)==num){
-                name = getPosition(i);
-                return name;
-            }
-        }
-        return null;
+        return context.getString(R.string.position).split(num+":")[1].split(",")[0];
+
     }
 
     public int getsCityCount(String str){
@@ -72,6 +66,10 @@ public class AreaBean {
         String[] s = sCity[i].split(":");
         return Integer.parseInt(s[0]);
 //        return s[0];
+    }
+
+    public String getNumCityName(Context context,int num){
+        return context.getString(R.string.area).split(num+":")[1].split(",")[0];
     }
 
 
