@@ -84,17 +84,19 @@ public class SelectedCityOrPositionActivity extends Activity {
                             SelectedCityOrPositionActivity.this.finish();
                         }
                     } else if (status == areaBean.CITY) {
+//                        Toast.makeText(SelectedCityOrPositionActivity.this, areaBean.getNumCityName(SelectedCityOrPositionActivity.this,391), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent();
                         intent.putExtra("City", areaBean.getCityNum(position - 1));
                         intent.putExtra("Position", -1);
                         intent.putExtra("CityName", areaBean.getCityName(position - 1));
-                /*给上一个Activity返回结果*/
+                        /*给上一个Activity返回结果*/
                         SelectedCityOrPositionActivity.this.setResult(12, intent);
-/*结束本Activity*/
+//
+                        /*结束本Activity*/
                         SelectedCityOrPositionActivity.this.finish();
                     } else if (status == areaBean.POSITION) {
                         if (areaBean.getPositionNum(position - 1) != -1) {
-//                        Toast.makeText(SelectedCityOrPositionActivity.this, areaBean.getNumPositionName(SelectedCityOrPositionActivity.this,areaBean.getPositionNum(position-1)), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(SelectedCityOrPositionActivity.this, areaBean.getNumPositionName(SelectedCityOrPositionActivity.this, areaBean.getPositionNum(position - 1)), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent();
                             intent.putExtra("City", -1);
                             intent.putExtra("Position", areaBean.getPositionNum(position - 1));
