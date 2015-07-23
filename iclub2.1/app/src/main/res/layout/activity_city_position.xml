@@ -21,7 +21,8 @@
             android:layout_height="match_parent"
             android:id="@+id/selecte_city_lv"
             android:divider="#00ffffff"
-            android:dividerHeight="1dp" >
+            android:dividerHeight="1dp"
+            android:listSelector="@android:color/transparent">
         </ListView>
 
  <!--   </LinearLayout>-->

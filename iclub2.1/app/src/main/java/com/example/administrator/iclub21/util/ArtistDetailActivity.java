@@ -1,6 +1,8 @@
 package com.example.administrator.iclub21.util;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -80,6 +82,7 @@ public class ArtistDetailActivity extends Activity implements View.OnClickListen
 
         music_tv.setOnClickListener(this);
         video_tv.setOnClickListener(this);
+        helpline_tv.setOnClickListener(this);
     }
 
     private void init(){
@@ -182,6 +185,10 @@ public class ArtistDetailActivity extends Activity implements View.OnClickListen
                 break;
             case R.id.video_tv:
                 initArtistList(VIDEO);
+                break;
+            case R.id.helpline_tv:
+                Intent intent=new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + artistParme.getPerson().getBEphone()));
+                startActivity(intent);
                 break;
             default:
                 break;

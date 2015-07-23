@@ -16,7 +16,8 @@
             android:paddingRight="0dp"
             android:paddingLeft="0dp"
             android:divider="#00ffffff"
-            android:dividerHeight="0px"></ListView>
+            android:dividerHeight="0px"
+            android:listSelector="@android:color/transparent"></ListView>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
