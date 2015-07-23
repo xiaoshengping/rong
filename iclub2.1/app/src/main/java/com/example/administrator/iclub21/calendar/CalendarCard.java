@@ -11,11 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
-import com.lidroid.xutils.DbUtils;
-import com.lidroid.xutils.db.sqlite.Selector;
-import com.lidroid.xutils.db.sqlite.WhereBuilder;
-import com.lidroid.xutils.exception.DbException;
-
 import java.util.List;
 
 public class CalendarCard extends View {  
@@ -176,20 +171,26 @@ public class CalendarCard extends View {
                             }
 
                         } else if (ca.userType == 2) {
-                            DbUtils dbu = DbUtils.create(mContext);
-                            try {
-                                list = dbu.findAll(Selector.from(Day.class).where(WhereBuilder.b("id", "!=", -1).and("day", "=", mShowDate.year + "-" + (mShowDate.month > 9 ? mShowDate.month : ("0" + mShowDate.month)) + "-" + (day > 9 ? day : ("0" + day)))).orderBy("id").limit(10));
-//                            list = dbu.findAll(Selector.from(Day.class).where(WhereBuilder.b("id", "！=", -1).and("day","=",mShowDate.year+"-"+(mShowDate.month > 9 ? mShowDate.month : ("0" + mShowDate.month))+"-"+(day > 9 ? day : ("0" + day)))).orderBy("id").limit(10));
-                            } catch (DbException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            }
 
-                            if (list != null && list.size() != 0) {
-                                mTextPaint.setColor(Color.parseColor("#3485FF"));
+                            if (ca.dayBeanslist != null &&ca.dayBeanslist.size()>=27&& ca.dayBeanslist.get(day - 1).getStatus().equals("1") && ca.dayBeanslist.get(day - 1).getDay().equals(str)) {
                                 CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
                                 rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
                             }
+
+//                            DbUtils dbu = DbUtils.create(mContext);
+//                            try {
+//                                list = dbu.findAll(Selector.from(Day.class).where(WhereBuilder.b("id", "!=", -1).and("day", "=", mShowDate.year + "-" + (mShowDate.month > 9 ? mShowDate.month : ("0" + mShowDate.month)) + "-" + (day > 9 ? day : ("0" + day)))).orderBy("id").limit(10));
+////                            list = dbu.findAll(Selector.from(Day.class).where(WhereBuilder.b("id", "！=", -1).and("day","=",mShowDate.year+"-"+(mShowDate.month > 9 ? mShowDate.month : ("0" + mShowDate.month))+"-"+(day > 9 ? day : ("0" + day)))).orderBy("id").limit(10));
+//                            } catch (DbException e) {
+//                                // TODO Auto-generated catch block
+//                                e.printStackTrace();
+//                            }
+//
+//                            if (list != null && list.size() != 0) {
+//                                mTextPaint.setColor(Color.parseColor("#3485FF"));
+//                                CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
+//                                rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
+//                            }
                         }
                     }
 

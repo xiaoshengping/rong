@@ -63,7 +63,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/artist_condition_select">
+            android:background="@drawable/artist_condition_s">
             <Button
                 android:id="@+id/select_hinterland_b"
                 android:layout_width="match_parent"
@@ -112,7 +112,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_height="wrap_content"
-            android:background="@drawable/artist_condition_select">
+            android:background="@drawable/artist_condition_s">
 
             <Button
                 android:id="@+id/select_man_b"
@@ -151,7 +151,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_height="wrap_content"
-            android:background="@drawable/artist_condition_select">
+            android:background="@drawable/artist_condition_s">
             <Button
                 android:id="@+id/select_singer_b"
                 android:layout_width="match_parent"

@@ -110,7 +110,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, final Intent data) {
 
-
+        init();
 
     }
 
@@ -239,5 +239,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
+
 
 }

@@ -26,9 +26,6 @@ import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.util.SQLhelper;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.db.sqlite.Selector;
-import com.lidroid.xutils.db.sqlite.WhereBuilder;
-import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
@@ -219,35 +216,63 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
 
             } else if (userType == 2) {
-                try {
-                    list = dbu.findAll(Selector.from(Day.class).where(WhereBuilder.b("id", "!=", -1).and("day", "=", date.year + "-" + (date.month > 9 ? date.month : ("0" + date.month)) + "-" + (date.day > 9 ? date.day : ("0" + date.day)))).orderBy("id").limit(10));
 
+                if(tipsType == -1) {
 
-                } catch (DbException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                if (list == null || list.size() == 0) {
-                    user.setYear(date.year);
-                    user.setMonth(date.month);
-                    user.setDay(date.year + "-" + (date.month > 9 ? date.month : ("0" + date.month)) + "-" + (date.day > 9 ? date.day : ("0" + date.day)));
-                    //			db.save(user);
-                    try {
-                        dbu.save(user);
-                    } catch (DbException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                    if(dayBeanslist.get(date.day-1).getStatus().equals("0")){
+                        dayBeanslist.get(date.day-1).setStatus("1");
+                    }else {
+                        dayBeanslist.get(date.day-1).setStatus("0");
                     }
 
-                } else {
-
-                    try {
-                        dbu.deleteAll(list);//(Selector.from(Day.class).where(WhereBuilder.b("id", "<", 54).and("day","=","2015-06-25")).orderBy("id").limit(10));
-                    } catch (DbException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                }else {
+                    if(tipsType==BEDEFEATED) {
+                        dialog(BEDEFEATED);
+                    }else {
+                        dialog(ING);
                     }
+                    //显示获取失败
                 }
+
+
+
+
+
+
+
+
+
+
+
+//                try {
+//                    list = dbu.findAll(Selector.from(Day.class).where(WhereBuilder.b("id", "!=", -1).and("day", "=", date.year + "-" + (date.month > 9 ? date.month : ("0" + date.month)) + "-" + (date.day > 9 ? date.day : ("0" + date.day)))).orderBy("id").limit(10));
+//
+//
+//                } catch (DbException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+//                if (list == null || list.size() == 0) {
+//                    user.setYear(date.year);
+//                    user.setMonth(date.month);
+//                    user.setDay(date.year + "-" + (date.month > 9 ? date.month : ("0" + date.month)) + "-" + (date.day > 9 ? date.day : ("0" + date.day)));
+//                    //			db.save(user);
+//                    try {
+//                        dbu.save(user);
+//                    } catch (DbException e) {
+//                        // TODO Auto-generated catch block
+//                        e.printStackTrace();
+//                    }
+//
+//                } else {
+//
+//                    try {
+//                        dbu.deleteAll(list);//(Selector.from(Day.class).where(WhereBuilder.b("id", "<", 54).and("day","=","2015-06-25")).orderBy("id").limit(10));
+//                    } catch (DbException e) {
+//                        // TODO Auto-generated catch block
+//                        e.printStackTrace();
+//                    }
+//                }
 
             }
         }
@@ -269,11 +294,11 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
             preImgBtn.setVisibility(View.VISIBLE);
             nextImgBtn.setVisibility(View.INVISIBLE);
         }
-        if(userType==1) {
+//        if(userType==1) {
             initRoute(date.year + "-" + (date.month > 9 ? date.month : ("0" + date.month)));
-        }else if(userType==2){
+//        }else if(userType==2){
 
-        }
+//        }
     }
 
     /**
@@ -309,7 +334,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     //商家进入初始化日历
     private void initRoute(String yearAndMonth ){
             HttpUtils httpUtils = new HttpUtils();
-            httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRoute(id, yearAndMonth), new RequestCallBack<String>() {
+            httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRoute("358"/*id*/, yearAndMonth), new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
                     String result = responseInfo.result;

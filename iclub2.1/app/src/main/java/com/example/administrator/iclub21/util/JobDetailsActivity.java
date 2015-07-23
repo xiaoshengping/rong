@@ -156,7 +156,7 @@ public class JobDetailsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(JobDetailsActivity.this, LoginActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
                 dialog2.dismiss();
             }
         });
@@ -237,6 +237,12 @@ public class JobDetailsActivity extends Activity {
     public void back(View v){
 
         finish();
+
+    }
+
+    public void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+            init();
 
     }
 

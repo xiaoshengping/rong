@@ -371,7 +371,7 @@ public class TalendDetailsActivity extends Activity {
     public void call_for(View v){
 
         if (TextUtils.isEmpty(states)||states.equals("1")){
-            Toast.makeText(TalendDetailsActivity.this, "非登录状态", Toast.LENGTH_LONG).show();
+            Toast.makeText(TalendDetailsActivity.this, "非登录状态或非商家类型", Toast.LENGTH_LONG).show();
         }else if(states.equals("2")){
             Toast.makeText(TalendDetailsActivity.this, "非商家类型", Toast.LENGTH_LONG).show();
         }else if(states.equals("3")){
