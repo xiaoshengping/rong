@@ -1,37 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@mipmap/iculd_beijin_icon"
-    android:layout_height="match_parent"
-    >
+    android:background="#30000000"
+    android:layout_height="wrap_content">
 
      <LinearLayout
          android:orientation="horizontal"
          android:layout_width="match_parent"
-         android:layout_height="50dp"
+         android:layout_height="wrap_content"
          >
        <TextView
-           android:layout_marginTop="5dp"
+           android:layout_marginTop="8dp"
            android:text="name"
            android:id="@+id/resumeJobName_invite_tv"
-           android:layout_marginLeft="10dp"
-           android:textSize="@dimen/textSize18"
+           android:layout_marginLeft="20dp"
+           android:textSize="@dimen/textSize16"
            android:textColor="@color/white"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content" />
-         <TextView
-             android:id="@+id/invite_status_tv"
-             android:layout_marginTop="5dp"
-             android:text="状态"
-             android:background="@mipmap/baise_icon"
-             android:layout_marginLeft="200dp"
-             android:padding="2dp"
-             android:textSize="@dimen/textSize13"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content" />
+
      </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="6dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -40,35 +31,44 @@
             android:text="时间"
             android:layout_weight="1"
             android:id="@+id/invite_tripTime_tv"
-            android:layout_marginLeft="10dp"
-            android:textSize="@dimen/textSize15"
-            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/textSize14"
+            android:textColor="@color/whiteOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/resumeJobCategory_invite_tv"
             android:text="地区"
             android:layout_weight="1"
-
             android:gravity="center"
-            android:textSize="@dimen/textSize15"
-            android:textColor="@color/white"
+            android:textSize="@dimen/textSize14"
+            android:textColor="@color/whiteOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <LinearLayout
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+
             android:layout_marginTop="5dp"
             android:text="公司名字"
             android:id="@+id/BEcompanyName_tv"
-            android:layout_marginLeft="10dp"
-            android:textSize="@dimen/textSize15"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/textSize14"
+            android:textColor="@color/whiteOne"
+            android:layout_width="230dp"
             android:layout_height="wrap_content" />
-
+        <TextView
+            android:id="@+id/invite_status_tv"
+            android:layout_marginTop="5dp"
+            android:text="状态"
+            android:padding="2dp"
+            android:gravity="center"
+            android:textSize="@dimen/textSize14"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>

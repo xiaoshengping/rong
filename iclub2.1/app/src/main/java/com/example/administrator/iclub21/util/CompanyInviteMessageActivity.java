@@ -8,14 +8,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.R;
+import com.example.administrator.iclub21.adapter.ResumeCommentAdapter;
 import com.example.administrator.iclub21.bean.InviteMessgaeListValueBean;
 import com.example.administrator.iclub21.bean.ParmeBean;
 import com.example.administrator.iclub21.bean.ReputationValueBean;
+import com.example.administrator.iclub21.bean.ResumeCommentValueBean;
+import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -25,6 +29,8 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import java.util.List;
 
 public class CompanyInviteMessageActivity extends ActionBarActivity implements View.OnClickListener {
     //头部
@@ -57,7 +63,9 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
     @ViewInject(R.id.comment_layout)
     private LinearLayout commentLayout;
 
-
+   //评论
+    @ViewInject(R.id.comment_listview)
+    private ListView commentListView;
 
 
 
@@ -82,10 +90,48 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
 
     private void inti() {
         intiView();
+        intiCommentData();
 
 
     }
+      //评论
+    private void intiCommentData() {
+       // Log.e("11111111100", inviteMessgaeListValueBean.getInvitePerson().getId());
 
+        requestParams.addBodyParameter("personid", "402");
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getResumeCommentData(), requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                Log.e("111111111",responseInfo.result);
+                  if (responseInfo.result!=null){
+                      ArtistParme<ResumeCommentValueBean> artistParme=JSONObject.parseObject(responseInfo.result,new TypeReference<ArtistParme<ResumeCommentValueBean>>(){});
+                      if (artistParme.getState().equals("success")){
+                          intiListView(artistParme.getValue());
+
+
+                      }
+                  }
+
+
+            }
+
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure",s);
+            }
+        });
+
+
+
+    }
+    private void intiListView(List<ResumeCommentValueBean> data) {
+        ResumeCommentAdapter resumeCommentAdapter=new ResumeCommentAdapter(data,CompanyInviteMessageActivity.this);
+        commentListView.setAdapter(resumeCommentAdapter);
+        resumeCommentAdapter.notifyDataSetChanged();
+
+
+    }
     private void intiView() {
         httpUtils=new HttpUtils();
         requestParams=new RequestParams();
@@ -106,6 +152,7 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
             commentLayout.setVisibility(View.GONE);
         }
         reputationData();
+
 
 
 

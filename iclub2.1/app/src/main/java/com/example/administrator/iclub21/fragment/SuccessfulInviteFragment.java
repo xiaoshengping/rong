@@ -90,7 +90,7 @@ public class SuccessfulInviteFragment extends Fragment {
         if (!TextUtils.isEmpty(uid)){
             requestParams.addBodyParameter("uid",uid);
         }
-        requestParams.addBodyParameter("value", "success");
+        requestParams.addBodyParameter("value", "complete");
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessageList(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {

@@ -19,12 +19,14 @@
         android:layout_height="wrap_content">
 
     <LinearLayout
+        android:background="#3Affffff"
         android:gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -34,8 +36,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:text="职业"
-                android:textColor="@color/white"
-                android:textSize="@dimen/textSize18"
+                android:textColor="@color/whiteOne"
+                android:textSize="@dimen/textSize15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
@@ -45,12 +47,13 @@
                 android:text="职位名称"
                 android:drawablePadding="15dp"
                 android:textColor="@color/white"
-                android:textSize="@dimen/textSize16"
+                android:textSize="@dimen/textSize15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
        <LinearLayout
+           android:layout_marginBottom="10dp"
            android:layout_marginTop="10dp"
            android:orientation="horizontal"
            android:layout_width="match_parent"
@@ -58,8 +61,8 @@
            <TextView
                android:layout_marginLeft="20dp"
                android:text="邀约日期"
-               android:textColor="@color/white"
-               android:textSize="@dimen/textSize18"
+               android:textColor="@color/whiteOne"
+               android:textSize="@dimen/textSize15"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content" />
 
@@ -69,7 +72,7 @@
                android:layout_marginLeft="20dp"
                android:text="日期内容"
                android:textColor="@color/white"
-               android:textSize="@dimen/textSize18"
+               android:textSize="@dimen/textSize15"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content" />
            <TextView
@@ -87,7 +90,8 @@
 
     </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="14dp"
+            android:background="#3Affffff"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -98,7 +102,7 @@
                 android:text="公司名字"
                 android:drawablePadding="15dp"
                 android:textColor="@color/white"
-                android:textSize="@dimen/textSize18"
+                android:textSize="@dimen/textSize16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -111,26 +115,24 @@
 
                 <TextView
 
-                    android:layout_weight="1"
+
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginBottom="10dp"
                     android:text="网址"
-                    android:drawablePadding="20dp"
 
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/textSize16"
-                    android:layout_width="match_parent"
+                    android:textColor="@color/whiteOne"
+                    android:textSize="@dimen/textSize15"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/web_invite_tv"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:text="网址内容"
                     android:drawablePadding="15dp"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textSize16"
+                    android:textSize="@dimen/textSize15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                    />
@@ -143,16 +145,14 @@
                 >
 
                 <TextView
-                    android:layout_weight="1"
+
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginBottom="10dp"
                     android:text="电话"
-                    android:drawablePadding="20dp"
-
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/textSize16"
-                    android:layout_width="match_parent"
+                    android:textColor="@color/whiteOne"
+                    android:textSize="@dimen/textSize15"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/phone_invity_tv"
@@ -162,7 +162,7 @@
                     android:text="电话号码"
                     android:drawablePadding="15dp"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textSize16"
+                    android:textSize="@dimen/textSize15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -175,26 +175,24 @@
                 >
 
                 <TextView
-                    android:layout_weight="1"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginBottom="10dp"
                     android:text="邮箱"
                     android:drawablePadding="20dp"
 
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/textSize16"
-                    android:layout_width="match_parent"
+                    android:textColor="@color/whiteOne"
+                    android:textSize="@dimen/textSize15"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/email_invite_tv"
-                    android:layout_weight="1"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:text="邮箱内容"
                     android:drawablePadding="15dp"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textSize16"
+                    android:textSize="@dimen/textSize15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -207,26 +205,26 @@
                 >
 
                 <TextView
-                    android:layout_weight="1"
+
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginBottom="10dp"
                     android:text="地址"
                     android:drawablePadding="20dp"
 
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/textSize16"
-                    android:layout_width="match_parent"
+                    android:textColor="@color/whiteOne"
+                    android:textSize="@dimen/textSize15"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/address_invite_tv"
-                    android:layout_weight="1"
+
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:text="地址详情"
                     android:drawablePadding="15dp"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/textSize16"
+                    android:textSize="@dimen/textSize15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -236,6 +234,7 @@
 
         </LinearLayout>
       <LinearLayout
+          android:background="#3Affffff"
           android:orientation="horizontal"
           android:layout_width="match_parent"
           android:layout_height="wrap_content">
@@ -250,8 +249,8 @@
                   android:layout_marginBottom="10dp"
                   android:layout_marginTop="10dp"
                   android:text="诚信度"
-                  android:textColor="@color/white"
-                  android:textSize="@dimen/textSize18"
+                  android:textColor="@color/whiteOne"
+                  android:textSize="@dimen/textSize15"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   />
@@ -260,10 +259,9 @@
                   android:layout_marginLeft="10dp"
                   android:layout_marginBottom="10dp"
                   android:layout_marginTop="10dp"
-                  android:text="80"
                   android:gravity="center"
-                  android:textColor="@color/white"
-                  android:textSize="@dimen/textSize16"
+                  android:textColor="@color/whiteOne"
+                  android:textSize="@dimen/textSize15"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   />
@@ -282,8 +280,8 @@
                   android:layout_marginTop="10dp"
                   android:text="真实性"
                   android:gravity="center"
-                  android:textColor="@color/white"
-                  android:textSize="@dimen/textSize18"
+                  android:textColor="@color/whiteOne"
+                  android:textSize="@dimen/textSize15"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                  />
@@ -292,10 +290,9 @@
                  android:layout_marginLeft="10dp"
                   android:layout_marginBottom="10dp"
                   android:layout_marginTop="10dp"
-                  android:text="100"
                   android:gravity="center"
-                  android:textColor="@color/white"
-                  android:textSize="@dimen/textSize16"
+                  android:textColor="@color/whiteOne"
+                  android:textSize="@dimen/textSize15"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   />
@@ -313,8 +310,8 @@
                   android:layout_marginTop="10dp"
                   android:text="合作数次"
                   android:gravity="center"
-                  android:textColor="@color/white"
-                  android:textSize="@dimen/textSize18"
+                  android:textColor="@color/whiteOne"
+                  android:textSize="@dimen/textSize15"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   />
@@ -323,10 +320,9 @@
                   android:layout_marginLeft="10dp"
                   android:layout_marginBottom="10dp"
                   android:layout_marginTop="10dp"
-                  android:text="10"
                   android:gravity="center"
-                  android:textColor="@color/white"
-                  android:textSize="@dimen/textSize16"
+                  android:textColor="@color/whiteOne"
+                  android:textSize="@dimen/textSize15"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   />
@@ -335,7 +331,8 @@
       </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="14dp"
+        android:background="#3Affffff"
+        android:layout_marginTop="5dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -346,12 +343,19 @@
             android:drawablePadding="15dp"
             android:drawableLeft="@mipmap/cooperation_comment_icon"
             android:textColor="@color/white"
-            android:textSize="@dimen/textSize18"
+            android:textSize="@dimen/textSize15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/weil_one_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <ListView
+            android:id="@+id/comment_listview"
+            android:dividerHeight="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -365,7 +369,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         >
         <TextView
             android:layout_marginLeft="20dp"
@@ -383,15 +387,22 @@
                android:layout_marginLeft="5dp"
                android:layout_weight="1"
                android:text="接受"
+               android:layout_marginBottom="3dp"
+               android:textColor="@color/white"
+               android:background="@mipmap/invite_buttto_icon"
                android:layout_width="match_parent"
-               android:layout_height="wrap_content" />
+               android:layout_height="35dp" />
         <Button
             android:id="@+id/refuse_invite_bt"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:text="拒绝"
+            android:textColor="@color/white"
+            android:background="@mipmap/invite_buttto_icon"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="35dp" />
     </LinearLayout>
 
 

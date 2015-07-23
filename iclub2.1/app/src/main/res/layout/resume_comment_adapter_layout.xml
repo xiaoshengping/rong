@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#30000000"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+   <LinearLayout
+       android:layout_marginTop="10dp"
+       android:layout_marginBottom="5dp"
+       android:gravity="center"
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <ImageView
+           android:id="@+id/comment_icon_iv"
+           android:layout_marginLeft="20dp"
+           android:scaleType="fitXY"
+           android:layout_width="70dp"
+           android:layout_height="70dp" />
+       <LinearLayout
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:id="@+id/comment_company_name_tv"
+               android:text="公司名字"
+               android:textColor="@color/white"
+               android:textSize="@dimen/textSize15"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+
+           <TextView
+               android:id="@+id/time_tv"
+               android:text="时间"
+               android:layout_marginTop="5dp"
+               android:layout_marginBottom="10dp"
+               android:textColor="@color/whiteOne"
+               android:textSize="@dimen/textSize13"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+
+       </LinearLayout>
+
+
+
+   </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/body_tv"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:text="内容"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textSize14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+
+
+</LinearLayout>

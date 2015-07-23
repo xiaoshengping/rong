@@ -44,22 +44,33 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
        String status=data.get(position).getStatus();
         if (status.equals("0")){
             viewHold.InviteStatusTv.setText("new");
+            viewHold.InviteStatusTv.setTextColor(R.color.textColor9a4274);
+            viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_icon);
 
         }else if (status.equals("2")){
             viewHold.InviteStatusTv.setText("拒绝");
-
-        }else if (status.equals("5")){
+            viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor9a4274));
+            viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_icon);
+        }else if (status.equals("6")){
             viewHold.InviteStatusTv.setText("过期");
-
+            viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
+        }else if (status.equals("5")){
+            viewHold.InviteStatusTv.setText("完成");
+            viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
         }else if (status.equals("1")){
             viewHold.InviteStatusTv.setText("接受");
-
+            viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
         }else if (status.equals("3")){
-            viewHold.InviteStatusTv.setText("合作成功");
-
+            viewHold.InviteStatusTv.setText("成功");
+            viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
         }else if (status.equals("4")){
-            viewHold.InviteStatusTv.setText("合作失败");
-
+            viewHold.InviteStatusTv.setText("失败");
+            viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
         }
         viewHold.inviteTripTimeTv.setText(data.get(position).getTripTime());
         viewHold.InviteJobCategoryTv.setText(data.get(position).getInviteResume().getResumeWorkPlace());

@@ -193,8 +193,12 @@ public class AppUtilsUrl  {
         return BaseUrl+"modifyGrade.action";
 
     }
+       //商家--来自人才的评论
+       public static String getResumeCommentData(){
+           // modifyGrade.action
+           return BaseUrl+"getCommentByPerson.action";
 
-
+       }
     //商家邀约列表
     public static String getMerchantInvite(){
         // inviteListByBusiness.action

@@ -4,7 +4,10 @@
     tools:context="com.example.administrator.iclub21.fragment.InviteMessageFragment">
 
    <ListView
+
        android:id="@+id/invite_message_list_lv"
+       android:dividerHeight="3dp"
+       android:divider="#30ffffff"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"/>
 
