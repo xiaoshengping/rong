@@ -223,15 +223,8 @@
 
         </RelativeLayout>
 
-       <!-- <com.example.administrator.iclub21.view.WordWrapView
-            android:id="@+id/video_view_wordwrap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            />-->
-
         <RelativeLayout
-            android:visibility="gone"
+             android:visibility="gone"
             android:id="@+id/video_xshi_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -250,25 +243,27 @@
                 android:layout_marginRight="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="160dp" />
-            <Button
+            <TextView
                 android:id="@+id/action_video_bt"
                 android:text="预览"
-                android:layout_marginLeft="50dp"
-                android:layout_below="@+id/thumbnail_Iv"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/delete_video_bt"
-                android:text="删除"
-                android:layout_marginLeft="100dp"
-                android:layout_below="@+id/thumbnail_Iv"
-                android:layout_toRightOf="@+id/action_video_bt"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.example.administrator.iclub21.view.WordWrapView
+                android:id="@+id/video_view_wordwrap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                />
 
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

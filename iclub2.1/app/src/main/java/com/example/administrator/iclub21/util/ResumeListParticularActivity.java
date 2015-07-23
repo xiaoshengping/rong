@@ -206,13 +206,13 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                for (int j = 0; j < resumeValueBean.getResumeMusic().size(); j++) {
                    TextView musicTextView=new TextView(ResumeListParticularActivity.this);
                    musicTextView.setText(resumeValueBean.getResumeMusic().get(j).getTitle());
-                   Drawable drawable= getResources().getDrawable(R.mipmap.music_button_icon);
+                   musicTextView.setTextColor(Color.WHITE);
+                 Drawable drawable= getResources().getDrawable(R.mipmap.music_button_icon);
                    /// 这一步必须要做,否则不会显示.
                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                    musicTextView.setCompoundDrawables(null, null, drawable, null);
-                   musicTextView.setTextColor(Color.WHITE);
-                   musicTextView.setCompoundDrawablePadding(400);
-                   musicTextView.setBackgroundResource(R.drawable.rounded_music);
+                   musicTextView.setCompoundDrawablePadding(100);
+                   //musicTextView.setBackgroundResource(R.mipmap.misuc_beiji_icon);
                    showMusicWordWrapView.addView(musicTextView);
                    final int finalI = j;
                    musicTextView.setOnClickListener(new View.OnClickListener() {

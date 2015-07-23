@@ -106,8 +106,6 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     //个人信息
     @ViewInject(R.id.resumeZhName_et)
     private EditText resumeZhName;
-   /* @ViewInject(R.id.resumeSex_editT)
-    private EditText resumeSex;*/
     @ViewInject(R.id.resumeJobName_et)
     private EditText resumeJobName;
     @ViewInject(R.id.resumeQq_et)
@@ -158,10 +156,6 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     //年龄
     @ViewInject(R.id.resume_age_tv)
     private TextView resumeAge;
-    /*@ViewInject(R.id.resume_date_picker)
-    private DatePicker resumeDatePicker;
-    @ViewInject(R.id.resume_date_layout)
-    private  LinearLayout dateLayout;*/
     private File screenshotFile = new File(Environment.getExternalStorageDirectory(),
             getPhotoFileName());
 
@@ -246,7 +240,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             }else if(resumeValueBean.getResumeSex()==1){
                 girlRadioButton.setChecked(true);
             }
-            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getUsericon(),touXiangIv,MyAppliction.RoundedOptions);
+            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getUsericon(), touXiangIv, MyAppliction.RoundedOptions);
             resumeJobName.setText(resumeValueBean.getResumeJobName());
             resumeQq.setText(resumeValueBean.getResumeQq());
             resumeEmail.setText(resumeValueBean.getResumeEmail());
@@ -254,11 +248,15 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             userWork=resumeValueBean.getResumeWorkExperience();
             userOnselfText.setText(resumeValueBean.getResumeInfo());
             workExpexteText.setText(resumeValueBean.getResumeWorkExperience());
+            AreaBean areaBean=new AreaBean();
             resumeAgeTv.setText(resumeValueBean.getResumeAge()+"");
+            job_classfite_tv.setText(areaBean.getNumPositionName(AddResumeActivity.this, resumeValueBean.getResumeJobCategory()));
+            job_city_tv.setText(resumeValueBean.getResumeCityId() + "");
+            job_classfite_num=resumeValueBean.getResumeJobCategory();
+            job_city_num=resumeValueBean.getResumeCityId();
 
         }else {
             resumeZhName.setHint("必填");
-            //resumeSex.setHint("必填");
             resumeJobName.setHint("必填");
             resumeQq.setHint("必填");
             resumeEmail.setHint("必填");
@@ -296,7 +294,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
 
     }
-
+        //日期
     public  DatePickerDialog datePickerDialogData() {
 
 
@@ -328,13 +326,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId){
             case R.id.boy_radio_button:
-//                compileRequestParams.addBodyParameter("resumeSex ", "0");
-//                requestParams.addBodyParameter("resumeSex ", "0");
                 sex="0";
                 break;
             case R.id.girl_radio_button:
-//                compileRequestParams.addBodyParameter("resumeSex ", "1");
-//                requestParams.addBodyParameter("resumeSex ", "1");
                 sex="1";
                 break;
 
@@ -444,29 +438,6 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
         }
     }
-
-//    public void onActivityResult(int requestCode,int resultCode,Intent data){
-//        super.onActivityResult(requestCode,resultCode,data);
-//   /*取得来自SecondActivity页面的数据，并显示到画面*/
-//        Bundle bundle = data.getExtras();
-//
-//         /*获取Bundle中的数据，注意类型和key*/
-//        int city = bundle.getInt("City");
-//        String cName = bundle.getString("CityName");
-//        if(city>=0) {
-//            selected_city.setText(cName);
-//            citynum = city;
-//            initTalentData(citynum,jobnum);
-//        }
-//        int job = bundle.getInt("Position");
-//        String pName = bundle.getString("PositionName");
-//        if(job>=0&&job!=10){
-//            selected_position.setText(pName);
-//            jobnum = job;
-//            initTalentData(citynum, jobnum);
-////            initRecruitmentListData(citynum,jobnum,"");
-//        }
-//    }
 
     private void intiCompileData() {
         if (TextUtils.isEmpty(touXiangPath) || TextUtils.isEmpty(userName)
