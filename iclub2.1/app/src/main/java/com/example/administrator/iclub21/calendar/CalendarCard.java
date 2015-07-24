@@ -1,7 +1,6 @@
 package com.example.administrator.iclub21.calendar;
 
 
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -210,6 +209,7 @@ public class CalendarCard extends View {
             }  
         }  
         mCellClickListener.changeDate(mShowDate);
+
     } 
     
     
@@ -418,9 +418,11 @@ public class CalendarCard extends View {
         update();  
     }  
   
-    public void update() {  
-        fillDate();  
-        invalidate();  
+    public void update() {
+
+        fillDate();
+        invalidate();
+
     }  
   
 }  

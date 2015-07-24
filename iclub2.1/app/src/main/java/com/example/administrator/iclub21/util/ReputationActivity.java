@@ -40,6 +40,7 @@ public class ReputationActivity extends Activity {
     private RecruitmentListBean recruitmentListBean;
     private TextView title_name_tv;
     private ImageView authenticity_relatively_iv,integrity_relatively_iv;
+    private TextView reputation_tipe_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class ReputationActivity extends Activity {
     private void binding(){
         reputation_list = (ListView)findViewById(R.id.reputation_list);
         title_name_tv = (TextView)findViewById(R.id.title_name_tv);
+        reputation_tipe_tv = (TextView)findViewById(R.id.reputation_tipe_tv);
     }
 
     private void init(int i){
@@ -68,6 +70,8 @@ public class ReputationActivity extends Activity {
             authenticity_relatively_iv = (ImageView)header.findViewById(R.id.authenticity_relatively_iv);
             integrity_relatively_iv = (ImageView)header.findViewById(R.id.integrity_relatively_iv);
             reputation_list.addHeaderView(header);//添加头部
+
+            initcCollaborateComment("getCommentByBePerson.action?personid=");
 
         }else if(i==2){
             title_name_tv.setText("公司详情");
@@ -90,11 +94,12 @@ public class ReputationActivity extends Activity {
             company_location.setText(recruitmentListBean.getAddress());
             company_name_tv.setText(recruitmentListBean.getCompanyName());
 //            company_name_tv.setText(id+"");
+            initcCollaborateComment("getCommentByPerson.action?personid=");
 
         }
 
         initReputationValue();
-        initcCollaborateComment();
+
     }
 
     //初始化信誉值
@@ -151,9 +156,9 @@ public class ReputationActivity extends Activity {
     }
 
     //初始化合作评论
-    private void initcCollaborateComment(){
+    private void initcCollaborateComment(String url){
         HttpUtils httpUtils=new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id,url), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -167,6 +172,7 @@ public class ReputationActivity extends Activity {
                             adapter = new ReputationAdapter(ReputationActivity.this,commentDate);
                             reputation_list.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
+                        reputation_tipe_tv.setTextColor(0x00000000);
 //                        }
 
                     }

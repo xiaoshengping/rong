@@ -166,7 +166,7 @@ public class ReputationValueFragment extends Fragment {
     //初始化合作评论
     private void initcCollaborateComment(){
         HttpUtils httpUtils=new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id,"getCommentByBePerson.action?personid="), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
