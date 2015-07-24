@@ -164,9 +164,14 @@ public class AppUtilsUrl  {
 
     }
     //邀约通知列表
-    public static String getInviteMessageList(){
+   /* public static String getInviteMessageList(){
         // inviteList.action
         return BaseUrl+"inviteListByPerson.action";
+
+    }*/
+    public static String getInviteMessage(String uid,String value,int limit){
+        // inviteList.action
+        return BaseUrl+"inviteListByPerson.action?"+"uid="+uid+"&value="+value+"&offset=0"+"&limit="+limit;
 
     }
     //接受或者拒绝邀约

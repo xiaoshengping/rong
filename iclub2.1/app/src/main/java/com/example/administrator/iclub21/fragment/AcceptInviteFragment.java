@@ -13,15 +13,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.InviteMessageListAdapter;
 import com.example.administrator.iclub21.bean.InviteMessgaeListValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.CompanyInviteMessageActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -31,17 +34,21 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AcceptInviteFragment extends Fragment {
+public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView>{
 
     @ViewInject(R.id.accept_invite_list_lv)
-    private ListView accpetListLv;
+    private PullToRefreshListView accpetListLv;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
+    private List<InviteMessgaeListValueBean> inviteMessgaeListValueBeans ;
+    private InviteMessageListAdapter inviteMessagelistAdapter;
+    private int limit=5;
 
     public AcceptInviteFragment() {
         // Required empty public constructor
@@ -62,7 +69,7 @@ public class AcceptInviteFragment extends Fragment {
 
     private void inti() {
         intiView();
-        intiData();
+        intiListView();
 
 
     }
@@ -73,7 +80,7 @@ public class AcceptInviteFragment extends Fragment {
 
     }
 
-    private void intiData() {
+    private void intiData(int limit) {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
@@ -82,23 +89,27 @@ public class AcceptInviteFragment extends Fragment {
             uid = cursor.getString(0);
 
         }
-        if (!TextUtils.isEmpty(uid)){
+       /* if (!TextUtils.isEmpty(uid)){
             requestParams.addBodyParameter("uid",uid);
         }
-        requestParams.addBodyParameter("value", "accept");
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessageList(), requestParams, new RequestCallBack<String>() {
+        requestParams.addBodyParameter("value", "accept");*/
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessage(uid,"accept",limit), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 // Log.e("inviteintiData",result);
                 if (!TextUtils.isEmpty(result)) {
-                    ArtistParme<InviteMessgaeListValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
+                  /*  ArtistParme<InviteMessgaeListValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     });
                     if (artistParme.getState().equals("success")) {
                         List<InviteMessgaeListValueBean> inviteMessgaeListValueBeans = artistParme.getValue();
                         intiListView(inviteMessgaeListValueBeans);
 
-                    }
+                    }*/
+                    HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
+                    }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
+                    accpetListLv.onRefreshComplete();
+
 
                 }
 
@@ -115,16 +126,23 @@ public class AcceptInviteFragment extends Fragment {
 
     }
 
-    private void intiListView(final List<InviteMessgaeListValueBean> data) {
-
-        InviteMessageListAdapter inviteMessagelistAdapter=new InviteMessageListAdapter(data,getActivity());
+    private void intiListView() {
+        inviteMessgaeListValueBeans=new ArrayList<InviteMessgaeListValueBean>();
+        inviteMessagelistAdapter=new InviteMessageListAdapter(inviteMessgaeListValueBeans,getActivity());
         accpetListLv.setAdapter(inviteMessagelistAdapter);
-        inviteMessagelistAdapter.notifyDataSetChanged();
+        accpetListLv.setMode(PullToRefreshBase.Mode.BOTH);
+        accpetListLv.setOnRefreshListener(this);
+        ILoadingLayout loadingLayout = accpetListLv
+                .getLoadingLayoutProxy();
+        loadingLayout.setPullLabel("你可劲拉，拉...");// 刚下拉时，显示的提示
+        loadingLayout.setRefreshingLabel("好嘞，正在刷新...");// 刷新时
+        loadingLayout.setReleaseLabel("你敢放，我就敢刷新...");// 下来达到一定距离时，显示的提示
+        accpetListLv.setRefreshing();
         accpetListLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), CompanyInviteMessageActivity.class);
-                intent.putExtra("InviteMessgaeListValueBean", data.get(position));
+                intent.putExtra("InviteMessgaeListValueBean", inviteMessgaeListValueBeans.get(position));
                 intent.putExtra("flage","AcceptInviteFragment");
                 startActivity(intent);
             }
@@ -132,4 +150,19 @@ public class AcceptInviteFragment extends Fragment {
 
     }
 
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+        inviteMessgaeListValueBeans.clear();
+        int limit=5;
+        intiData(limit);
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+        inviteMessgaeListValueBeans.clear();
+        limit++;
+        intiData(limit);
+
+
+    }
 }
