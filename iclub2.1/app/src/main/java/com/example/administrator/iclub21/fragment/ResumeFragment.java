@@ -14,16 +14,19 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.ResumeListAdapter;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.AddResumeActivity;
 import com.example.administrator.iclub21.util.ResumeListParticularActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -31,18 +34,22 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ResumeFragment extends Fragment implements View.OnClickListener {
+public class ResumeFragment extends Fragment implements View.OnClickListener,PullToRefreshBase.OnRefreshListener2<ListView> {
     //添加
     private TextView addResumeTv;
     private TextView retrunTv;
-    private ListView resumeListLv;
+    private PullToRefreshListView resumeListLv;
 
     private  HttpUtils httpUtils;
+    private List<ResumeValueBean> resumeValueBeans;
+    private  ResumeListAdapter resumeListAdapter;
+    private int limit=10;
 
     public ResumeFragment() {
 
@@ -59,7 +66,7 @@ public class ResumeFragment extends Fragment implements View.OnClickListener {
     }
     private void inti(View view) {
         intiView(view);
-        intiResumeListData();
+
         //Log.e("jsjdjfjfhfhfhsjsjfjfj",getActivity().getCacheDir().getPath());
 
     }
@@ -98,16 +105,45 @@ public class ResumeFragment extends Fragment implements View.OnClickListener {
         View addView=LayoutInflater.from(getActivity()).inflate(R.layout.add_resume_layout,null);
         addResumeTv= (TextView) addView.findViewById(R.id.add_resume_tv);
         retrunTv= (TextView) view.findViewById(R.id.role_retrun_tv);
-        resumeListLv= (ListView) view.findViewById(R.id.resume_list_lv);
-        resumeListLv.addFooterView(addView);
+        resumeListLv= (PullToRefreshListView) view.findViewById(R.id.resume_list_lv);
+        ListView listView=resumeListLv.getRefreshableView();
+        listView.addFooterView(addView);
         addResumeTv.setOnClickListener(this);
         retrunTv.setOnClickListener(this);
+        resumeValueBeans=new ArrayList<ResumeValueBean>();
+         resumeListAdapter=new ResumeListAdapter(resumeValueBeans,getActivity());
+        listView.setAdapter(resumeListAdapter);
+        resumeListLv.setMode(PullToRefreshBase.Mode.BOTH);
+        resumeListLv.setOnRefreshListener(this);
+        ILoadingLayout loadingLayout = resumeListLv
+                .getLoadingLayoutProxy();
+        loadingLayout.setPullLabel("你可劲拉，拉...");// 刚下拉时，显示的提示
+        loadingLayout.setRefreshingLabel("好嘞，正在刷新...");// 刷新时
+        loadingLayout.setReleaseLabel("你敢放，我就敢刷新...");// 下来达到一定距离时，显示的提示
+        resumeListLv.setRefreshing();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ResumeListParticularActivity.class);
+                intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
+                intent.putExtra("flage", "ResumeFragment");
+                startActivity(intent);
+                Log.e("......",resumeValueBeans.size()+"");
+                int movieSize = resumeValueBeans.get(position).getResumeMovie().size();
+                if (movieSize != 0 && resumeValueBeans.get(position).getResumeMovie() != null) {
+                    for (int i = 0; i < movieSize; i++) {
+                        intiDownload(resumeValueBeans.get(i).getResumeMovie().get(i).getPath());
+                    }
+
+                }
 
 
-
+            }
+        });
     }
 
-    private void intiResumeListData() {
+    private void intiResumeListData(int limit) {
          httpUtils=new HttpUtils();
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
@@ -118,37 +154,24 @@ public class ResumeFragment extends Fragment implements View.OnClickListener {
 
         }
 
-            String resumeListUrl= AppUtilsUrl.getResumeList(uid);
+            String resumeListUrl= AppUtilsUrl.getResumeList(uid,limit);
             httpUtils.send(HttpRequest.HttpMethod.POST, resumeListUrl, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
 
 
                     String result=responseInfo.result;
-                    ArtistParme<ResumeValueBean> artistParme= JSONObject.parseObject(result,new TypeReference<ArtistParme<ResumeValueBean>>(){});
-                    final List<ResumeValueBean> resumeValueBeans= artistParme.getValue();
-                    ResumeListAdapter resumeListAdapter=new ResumeListAdapter(resumeValueBeans,getActivity());
-                    resumeListLv.setAdapter(resumeListAdapter);
-                    resumeListAdapter.notifyDataSetChanged();
-                    // final Bitmap bitmap= BitmapFactory.decodeFile("");
-                    resumeListLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent intent=new Intent(getActivity(), ResumeListParticularActivity.class);
-                            intent.putExtra("resumeValueBeans", resumeValueBeans.get(position));
-                            intent.putExtra("flage","ResumeFragment");
-                            startActivity(intent);
-                            int movieSize=resumeValueBeans.get(position).getResumeMovie().size();
-                            if (movieSize!=0&&resumeValueBeans.get(position).getResumeMovie()!=null){
-                                for (int i = 0; i <movieSize; i++) {
-                                    intiDownload(resumeValueBeans.get(i).getResumeMovie().get(i).getPath());
-                                }
+                    if (result!=null){
+                        HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
+                        }, resumeValueBeans, resumeListAdapter);
+                        resumeListLv.onRefreshComplete();
 
-                            }
+                    }
+                   /* ArtistParme<ResumeValueBean> artistParme= JSONObject.parseObject(result,new TypeReference<ArtistParme<ResumeValueBean>>(){});
+                    final List<ResumeValueBean> resumeValueBeans= artistParme.getValue();*/
 
 
-                        }
-                    });
+
 
 
                 }
@@ -185,4 +208,17 @@ public class ResumeFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+        resumeValueBeans.clear();
+        int limit=10;
+        intiResumeListData(limit);
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+        resumeValueBeans.clear();
+        limit++;
+        intiResumeListData(limit);
+    }
 }

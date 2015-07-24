@@ -3,6 +3,7 @@ package com.example.administrator.iclub21.http;
 
 import android.app.Application;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.administrator.iclub21.R;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -17,10 +18,12 @@ public class MyAppliction extends Application {
 	public static DisplayImageOptions options;
 	public static DisplayImageOptions RoundedOptions;
 	public static DisplayImageOptions RoundedOptionsOne;
+	private static MyAppliction app = null;
      @Override
     public void onCreate() {
     	// TODO Auto-generated method stub
     	super.onCreate();
+		 app=this;
     	initImageLoader(getApplicationContext());
 		 options = new DisplayImageOptions.Builder()
 				 .showImageOnLoading(R.mipmap.list_touxiang_icon)//加载等待 时显示的图片
@@ -61,6 +64,20 @@ public class MyAppliction extends Application {
     	//imageLoader.init(ImageLoaderConfiguration.createDefault(context));
     		
     	}
+	/**
+	 * 拿到上下文对象
+	 *
+	 *
+	 */
+	public static MyAppliction getContextInstance(){
+		return app;
+	}
+	/**
+	 * 土司
+	 */
+	public static void showToast(String msg){
+		Toast.makeText(app, msg, Toast.LENGTH_SHORT).show();
+	}
 
 	private String companyName;
 	private String companyPhoen;

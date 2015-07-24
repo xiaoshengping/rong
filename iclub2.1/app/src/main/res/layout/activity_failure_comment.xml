@@ -9,17 +9,20 @@
         android:id="@+id/comment_context_et"
         android:gravity="top"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="#3Affffff"
         android:textColor="@color/white"
+        android:textSize="@dimen/textSize15"
         android:hint="写点什么吧，您的意见对其他朋友有帮助!"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/whiteOne"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,15 +31,16 @@
         <TextView
             android:textColor="@color/white"
             android:text="用户评分"
-            android:textSize="@dimen/textSize17"
+            android:layout_marginTop="10dp"
+            android:textSize="@dimen/textSize15"
             android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/whiteOne"
             android:text="真实性"
             android:layout_marginTop="10dp"
-            android:textSize="@dimen/textSize17"
+            android:textSize="@dimen/textSize15"
             android:layout_marginLeft="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -98,10 +102,10 @@
             </RadioGroup>
         </LinearLayout>
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/whiteOne"
             android:text="诚实性"
             android:layout_marginTop="10dp"
-            android:textSize="@dimen/textSize17"
+            android:textSize="@dimen/textSize15"
             android:layout_marginLeft="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -3,12 +3,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.administrator.iclub21.fragment.InviteMessageFragment">
 
-   <ListView
-
+   <com.handmark.pulltorefresh.library.PullToRefreshListView
+       xmlns:ptr="http://schemas.android.com/apk/res-auto"
        android:id="@+id/invite_message_list_lv"
        android:dividerHeight="3dp"
-       android:divider="#30ffffff"
+       ptr:ptrHeaderTextColor="#ffffff"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"/>
+       android:layout_height="match_parent"/>
 
 </LinearLayout>

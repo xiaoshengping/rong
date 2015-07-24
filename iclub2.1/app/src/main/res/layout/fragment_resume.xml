@@ -6,13 +6,15 @@
     <include
         android:id="@+id/resume_layout"
         layout="@layout/resume_tailt_layout"/>
-    <ListView
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/resume_list_lv"
         android:scrollbars="none"
         android:dividerHeight="3dp"
-        android:id="@+id/resume_list_lv"
+        ptr:ptrHeaderTextColor="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>
