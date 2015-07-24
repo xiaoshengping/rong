@@ -8,38 +8,47 @@
 
     <ImageView
         style="@style/paren_layout_width"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="150dp"
         android:src="@mipmap/logo" />
     <EditText
         android:id="@+id/former_psw_edit"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:layout_height="35dp"
+        android:textColor="@color/whiteOne"
         android:layout_marginLeft="60dp"
-        android:drawablePadding="5dp"
+        android:textSize="@dimen/textSize15"
         android:hint="旧密码"
+        android:paddingLeft="10dp"
+        android:background="@drawable/rounded_edittext"
         android:phoneNumber="true"
         android:textColorHint="@color/white" />
 
     <EditText
+        android:layout_marginTop="20dp"
         android:id="@+id/new_psw_edit"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:layout_height="35dp"
+        android:textColor="@color/whiteOne"
         android:layout_marginLeft="60dp"
-        android:drawablePadding="5dp"
+        android:textSize="@dimen/textSize15"
+        android:paddingLeft="10dp"
+        android:background="@drawable/rounded_edittext"
         android:hint="新密码"
         android:password="true"
         android:textColorHint="@color/white" />
     <EditText
         android:id="@+id/reset_psw_edit"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:layout_height="35dp"
+        android:textColor="@color/whiteOne"
         android:layout_marginLeft="60dp"
-        android:drawablePadding="5dp"
+        android:layout_marginTop="20dp"
         android:hint="重复密码"
+        android:textSize="@dimen/textSize15"
+        android:paddingLeft="10dp"
+        android:background="@drawable/rounded_edittext"
         android:password="true"
         android:textColorHint="@color/white" />
 </LinearLayout>

@@ -14,23 +14,26 @@
 
 
     <ImageView
+        android:layout_marginTop="30dp"
         style="@style/paren_layout_width"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="150dp"
         android:src="@mipmap/logo" />
     <TextView
         android:text="iClub2.2.0"
-        android:textSize="@dimen/textSize15"
+        android:textSize="@dimen/textSize13"
         android:textColor="@color/white"
         style="@style/paren_layout_width"
         android:layout_marginBottom="30dp"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="153dp"
         />
     <LinearLayout
+        android:background="#3Affffff"
+        android:gravity="center"
         android:id="@+id/about_function_layout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="40dp">
         <ImageView
             android:layout_marginLeft="20dp"
             android:src="@mipmap/about_function_icon"
@@ -40,18 +43,20 @@
 
             android:text="功能介绍"
             android:layout_marginLeft="18dp"
-            android:textSize="@dimen/textSize18"
-            android:textColor="@color/white"
+            android:textSize="@dimen/textSize15"
+            android:textColor="@color/whiteOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
     <LinearLayout
+        android:background="#3Affffff"
+        android:gravity="center"
         android:id="@+id/about_idea_layout"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="40dp">
         <ImageView
             android:layout_marginLeft="20dp"
             android:src="@mipmap/about_idea_icon"
@@ -60,8 +65,8 @@
         <TextView
             android:text="意见反馈"
             android:layout_marginLeft="10dp"
-            android:textSize="@dimen/textSize18"
-            android:textColor="@color/white"
+            android:textSize="@dimen/textSize15"
+            android:textColor="@color/whiteOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -75,20 +80,20 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-
+            android:background="#30000000"
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="50dp">
             <TextView
                 android:id="@+id/about_retrun_tv"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:background="@mipmap/return_icon"
-                android:layout_width="20dp"
-                android:layout_height="25dp" />
+                android:layout_width="10dp"
+                android:layout_height="20dp" />
             <TextView
                android:text="意见反馈"
                 android:layout_marginTop="10dp"
-                android:textSize="@dimen/textSize18"
+                android:textSize="@dimen/textSize16"
                 android:textColor="@color/white"
                 android:layout_centerHorizontal="true"
                 style="@style/paren_layout_width"
@@ -98,7 +103,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:text="完成"
-                android:textSize="@dimen/textSize18"
+                android:textSize="@dimen/textSize15"
                 android:textColor="@color/white"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentRight="true"
@@ -109,8 +114,14 @@
         </RelativeLayout>
 
         <EditText
+            android:background="#3Affffff"
+            android:gravity="top"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="@dimen/textSize15"
             android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/whiteOne"
             android:hint="您的宝贵意见对我们非常重要，我们会全力以赴做的更好！"
             android:id="@+id/about_idea_edit"
             android:layout_width="match_parent"
