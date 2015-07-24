@@ -152,7 +152,7 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), CompanyInviteMessageActivity.class);
-                intent.putExtra("InviteMessgaeListValueBean", inviteMessgaeListValueBeans.get(position));
+                intent.putExtra("InviteMessgaeListValueBean", inviteMessgaeListValueBeans.get(position-1));
                 intent.putExtra("flage", "InviteMessageFragment");
                 startActivity(intent);
             }

@@ -80,9 +80,9 @@ public class AppUtilsUrl  {
 
     }
     //简历列表
-    public static String getResumeList(String uid){
+    public static String getResumeList(String uid,int limit){
         //getResumeListByUid.action?uid=13800138000
-        return BaseUrl+"getResumeListByUid.action?"+"uid="+uid ;
+        return BaseUrl+"getResumeListByUid.action?"+"uid="+uid+"&offset=0"+"&limit="+limit;
 
     }
     //公告信息
