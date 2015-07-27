@@ -143,7 +143,7 @@ public class TalendDetailsActivity extends Activity {
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         states=null;
         while (cursor.moveToNext()) {
-            states = cursor.getString(3);
+            states = cursor.getString(4);
 
         }
         if (TextUtils.isEmpty(states)||states.equals("1")){
