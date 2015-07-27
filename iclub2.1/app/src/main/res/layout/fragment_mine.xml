@@ -30,7 +30,7 @@ android:orientation="vertical"
           <TextView
 
               style="@style/paren_layout_width"
-              android:text="昵称"
+              android:text="点击登陆"
               android:textSize="@dimen/textSize14"
               android:textColor="#b0c5ec"
               android:id="@+id/mine_name"
@@ -47,7 +47,7 @@ android:orientation="vertical"
         android:layout_width="match_parent"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_height="50dp">
+        android:layout_height="45dp">
 
         <ImageView
             android:layout_marginLeft="20dp"
@@ -71,7 +71,7 @@ android:orientation="vertical"
         android:layout_width="match_parent"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_height="50dp">
+        android:layout_height="45dp">
 
         <ImageView
             android:layout_marginLeft="20dp"
@@ -97,7 +97,7 @@ android:orientation="vertical"
         android:layout_width="match_parent"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_height="50dp">
+        android:layout_height="45dp">
 
         <ImageView
             android:layout_marginLeft="20dp"
@@ -123,7 +123,7 @@ android:orientation="vertical"
         android:layout_width="match_parent"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_height="50dp">
+        android:layout_height="45dp">
 
         <ImageView
             android:layout_marginLeft="20dp"
@@ -148,7 +148,7 @@ android:orientation="vertical"
         android:gravity="center"
         android:background="#3Affffff"
         android:orientation="horizontal"
-        android:layout_height="50dp">
+        android:layout_height="45dp">
 
         <ImageView
             android:layout_marginLeft="20dp"
@@ -175,7 +175,7 @@ android:orientation="vertical"
         android:gravity="center"
         android:background="#3Affffff"
         android:orientation="horizontal"
-        android:layout_height="50dp">
+        android:layout_height="45dp">
 
         <ImageView
             android:layout_marginLeft="20dp"

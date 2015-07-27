@@ -8,6 +8,7 @@ public class SQLhelper extends SQLiteOpenHelper{
 	private static final String DBNAME="iclub.db";
 	public static final String tableName="user";
 	public static final String UID="uid";
+	public static final String PERSONID="personId";
 	public static final String USERNAME="userName";
 	public static final String USERICON="userIcon";
 	public static final String STSTE="state";
@@ -22,7 +23,7 @@ public class SQLhelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db){
 //		db.execSQL("create table if not exists "+tableName+"("+ID+" integer primary key,"+NAME+" varchar,"
 //				+ATT+" integer,"+AGI+" integer,"+INT+" integer)");		
-		db.execSQL("create table if not exists user(uid varchar pr imary key,userName varchar,userIcon varchar,state varchar,mobile varchar)");
+		db.execSQL("create table if not exists user(uid varchar pr imary key,personId varchar,userName varchar,userIcon varchar,state varchar,mobile varchar )");
 	}
 
 	@Override
