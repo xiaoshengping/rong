@@ -273,6 +273,9 @@ public class AppUtilsUrl  {
     public static String getRoute(String personid,String route){
         return BaseUrl+"getTripByMonth.action?personid="+personid+"&yearAndMonth="+route;
     }
+    public static String getTalentsRoute(String personid,String route){
+        return BaseUrl+"trip.action?uid="+personid+"&yearAndMonth="+route;
+    }
     public static String getInvite(String tripTime,String uid,int resumeid){
 //        return BaseUrl+"invite.action?tripTime=2015-06-30&uid=13800138000&resumeid=19";
         return BaseUrl+"invite.action?tripTime="+tripTime+"&uid="+uid+"&resumeid="+resumeid;
@@ -284,7 +287,7 @@ public class AppUtilsUrl  {
         return BaseUrl+Url+personid+"&offset=0&limit=15";
     }
     public static String getModificationRoute(String uid,String tripValues , String yearAndMonth){
-        return BaseUrl+"editTrip.action? uid="+uid+"&tripValues="+tripValues+"&yearAndMonth="+yearAndMonth;
+        return BaseUrl+"editTrip.action?uid="+uid+"&tripValues="+tripValues+"&yearAndMonth="+yearAndMonth;
     }
 
 }

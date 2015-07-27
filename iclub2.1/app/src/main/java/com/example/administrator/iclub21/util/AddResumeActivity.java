@@ -440,9 +440,18 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
                 break;
             case R.id.schedule_ll://日程安排
+                SQLhelper sqLhelper=new SQLhelper(this);
+                SQLiteDatabase db= sqLhelper.getWritableDatabase();
+                Cursor cursor=db.query("user", null, null, null, null, null, null);
+                String id=null;
+                while (cursor.moveToNext()) {
+                    id = cursor.getString(0);
+
+                }
                 Intent intentSchedule = new Intent(AddResumeActivity.this, CalendarActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("userType",2);
+                bundle.putString("Personid",id);
                 intentSchedule.putExtras(bundle);
                 startActivity(intentSchedule);
                 break;

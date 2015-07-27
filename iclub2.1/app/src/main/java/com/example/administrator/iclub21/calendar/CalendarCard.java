@@ -55,7 +55,7 @@ public class CalendarCard extends View {
   
         void changeDate(CustomDate date); // 回调滑动ViewPager改变的日期
         
-    }  
+    }
   
     public CalendarCard(Context context, AttributeSet attrs, int defStyleAttr) {  
         super(context, attrs, defStyleAttr);  
@@ -158,10 +158,16 @@ public class CalendarCard extends View {
                     if(isCurrentMonth && day < monthDay) {}else {
 
                         if (ca.userType == 1) {
-
-                            if (ca.dayBeanslist != null &&ca.dayBeanslist.size()>=27&& ca.dayBeanslist.get(day - 1).getStatus().equals("1") && ca.dayBeanslist.get(day - 1).getDay().equals(str)) {
-                                CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
-                                rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
+                            if (DateUtil.getMonth() == mShowDate.getMonth()) {
+                                if (ca.todayBeanslist != null && ca.todayBeanslist.size() >= 27 && ca.todayBeanslist.get(day - 1).getStatus().equals("1") && ca.todayBeanslist.get(day - 1).getDay().equals(str)) {
+                                    CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
+                                    rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
+                                }
+                            } else {
+                                if (ca.nextdayBeanslist != null && ca.nextdayBeanslist.size() >= 27 && ca.nextdayBeanslist.get(day - 1).getStatus().equals("1") && ca.nextdayBeanslist.get(day - 1).getDay().equals(str)) {
+                                    CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
+                                    rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
+                                }
                             }
 
                             if (ca.i.equals(mShowDate.year + "-" + (mShowDate.month > 9 ? mShowDate.month : ("0" + mShowDate.month)) + "-" + (day > 9 ? day : ("0" + day)))) {
@@ -170,10 +176,16 @@ public class CalendarCard extends View {
                             }
 
                         } else if (ca.userType == 2) {
-
-                            if (ca.dayBeanslist != null &&ca.dayBeanslist.size()>=27&& ca.dayBeanslist.get(day - 1).getStatus().equals("1") && ca.dayBeanslist.get(day - 1).getDay().equals(str)) {
-                                CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
-                                rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
+                            if (DateUtil.getMonth() == mShowDate.getMonth()) {
+                                if (ca.todayBeanslist != null && ca.todayBeanslist.size() >= 27 && ca.todayBeanslist.get(day - 1).getStatus().equals("1") && ca.todayBeanslist.get(day - 1).getDay().equals(str)) {
+                                    CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
+                                    rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
+                                }
+                            } else {
+                                if (ca.nextdayBeanslist != null && ca.nextdayBeanslist.size() >= 27 && ca.nextdayBeanslist.get(day - 1).getStatus().equals("1") && ca.nextdayBeanslist.get(day - 1).getDay().equals(str)) {
+                                    CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
+                                    rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
+                                }
                             }
 
 //                            DbUtils dbu = DbUtils.create(mContext);
@@ -190,6 +202,7 @@ public class CalendarCard extends View {
 //                                CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
 //                                rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
 //                            }
+
                         }
                     }
 
@@ -210,15 +223,15 @@ public class CalendarCard extends View {
         }  
         mCellClickListener.changeDate(mShowDate);
 
-    } 
-    
-    
-    
-    
-  
-    @Override  
+    }
+
+
+
+
+
+    @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);  
+        super.onDraw(canvas);
         for (int i = 0; i < TOTAL_ROW; i++) {  
             if (rows[i] != null) {  
                 rows[i].drawCells(canvas);  
@@ -235,7 +248,7 @@ public class CalendarCard extends View {
         if (!callBackCellSpace) {  
             callBackCellSpace = true;  
         }
-        mTextPaint.setTextSize(mCellSpace / 3);  
+        mTextPaint.setTextSize(mCellSpace / 3);
     }  
   
     @Override  

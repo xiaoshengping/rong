@@ -54,7 +54,7 @@
                 android:background="#30ffffff">
                 <TextView
                     android:id="@+id/schedule_tv"
-                    android:text="请保存简历后修改日程"
+                    android:text="修改日程"
                     android:textSize="@dimen/textSize15"
                     android:paddingRight="30dp"
                     android:layout_marginLeft="20dp"
