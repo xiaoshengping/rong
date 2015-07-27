@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +39,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  * A simple {@link Fragment} subclass.
  */
 public class MineFragment extends Fragment implements View.OnClickListener {
-    @ViewInject(R.id.login_layout)
-      private TextView loginLayout;
+
     @ViewInject(R.id.login_cancel)
     private LinearLayout cancel;
     @ViewInject(R.id.mine_head_iv)
@@ -74,65 +74,99 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     private void init() {
         cancel.setOnClickListener(this);
-        loginLayout.setOnClickListener(this);
+        headTv.setOnClickListener(this);
         roleLayout.setOnClickListener(this);
         informationTv.setOnClickListener(this);
         amendPswTv.setOnClickListener(this);
         amendAboutTv.setOnClickListener(this);
         shareLayout.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         String uid=null;
         String imageIcon=null;
         String name=null;
+        String personid=null;
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
-           imageIcon=cursor.getString(2);
-            name=cursor.getString(1);
+            imageIcon=cursor.getString(3);
+            name=cursor.getString(2);
+            personid=cursor.getString(5);
 
         }
+
         if (uid!=null){
-            loginLayout.setVisibility(View.GONE);
             cancel.setVisibility(View.VISIBLE);
-            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl +imageIcon, headTv, MyAppliction.RoundedOptions);
+            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + imageIcon, headTv, MyAppliction.RoundedOptions);
             mineName.setText(name);
         }else {
-            loginLayout.setVisibility(View.VISIBLE);
             cancel.setVisibility(View.GONE);
 
         }
 
         cursor.close();
         db.close();
-    }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
 
-        init();
+
 
     }
 
     @Override
     public void onClick(View v) {
+        SQLhelper sqLhelper=new SQLhelper(getActivity());
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        String uid=null;
+        String imageIcon=null;
+        String name=null;
+        String personid=null;
+        String states=null;
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+            imageIcon=cursor.getString(3);
+            name=cursor.getString(2);
+            states = cursor.getString(4);
+            personid=cursor.getString(5);
+
+        }
+
         switch (v.getId()){
-            case R.id.login_layout:
-                Intent intent=new Intent(getActivity(),LoginActivity.class);
-                startActivityForResult(intent,1);
+            case R.id.mine_head_iv:
+                if (uid!=null){
+                    cancel.setVisibility(View.VISIBLE);
+                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + imageIcon, headTv, MyAppliction.RoundedOptions);
+                    mineName.setText(name);
+                    Log.e("personid", personid);
+                }else {
+                    cancel.setVisibility(View.GONE);
+                    Intent intent=new Intent(getActivity(),LoginActivity.class);
+                    startActivity(intent);
+                }
+
+                cursor.close();
+                db.close();
+
                 break;
             case R.id.login_cancel:
                 showExitGameAlert();
                 break;
             case  R.id.mine_role_layout:
-                SQLhelper sqLhelper=new SQLhelper(getActivity());
+               /* SQLhelper sqLhelper=new SQLhelper(getActivity());
                 SQLiteDatabase db= sqLhelper.getWritableDatabase();
                 Cursor cursor=db.query("user", null, null, null, null, null, null);
                 String states=null;
                 while (cursor.moveToNext()) {
                    states = cursor.getString(3);
 
-                }
+                }*/
+
                 if (TextUtils.isEmpty(states)||states.equals("1")){
                     Intent intentRole = new Intent(getActivity(), RoleActivity.class);
                     startActivity(intentRole);
@@ -214,7 +248,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 cancel.setVisibility(View.GONE);
-                loginLayout.setVisibility(View.VISIBLE); // 退出应用...
                 SQLhelper sqLhelper = new SQLhelper(getActivity());
                 SQLiteDatabase db = sqLhelper.getWritableDatabase();
                 Cursor cursor = db.query("user", null, null, null, null, null, null);

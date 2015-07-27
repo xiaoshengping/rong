@@ -7,10 +7,19 @@ import java.io.Serializable;
  */
 public class LoginValueBean implements Serializable {
         private   String uid;
+        private   String personId;
         private   String userName;
         private   String userIcon;
         private   String state;
         private   String mobile;
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
+    }
 
     public String getUid() {
         return uid;

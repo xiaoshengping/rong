@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -264,23 +263,9 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                     if (loginValueBean.getState().equals("success")) {
                         LoginValueBean loginValueData = com.alibaba.fastjson.JSONObject.parseObject(loginValueBean.getValue(), LoginValueBean.class);
                         SQLhelper sqLhelper=new SQLhelper(LoginActivity.this);
-                        insertData(sqLhelper, loginValueData.getUid(), loginValueData.getUserName(), loginValueData.getUserIcon(), loginValueData.getState(), loginValueData.getMobile());
-                        /*给上一个Activity返回结果*/
-                        Intent intent = new Intent();
-                        LoginActivity.this.setResult(12, intent);
-                        /*结束本Activity*/
-                        LoginActivity.this.finish();
-
+                        insertData(sqLhelper, loginValueData.getUid(), loginValueData.getUserName(), loginValueData.getUserIcon(), loginValueData.getState(), loginValueData.getMobile(),loginValueData.getPersonId());
                         finish();
-//                        text.setText(loginValueData.getUid()+loginValueData.getUserName()+loginValueData.getState());
-//                        if (viewCountData.equals("success")) {
-////                            sendBl = true;
-//
-//                        } else if (viewCountData.equals("failure")){
-////                            sendBl = false;
-//                        }else {
-////                            sendBl = false;
-//                        }
+
                     }
 
                 }
@@ -354,17 +339,11 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                         ParmeBean<LoginValueBean> artistParme= JSONObject.parseObject(rerult, new TypeReference<ParmeBean<LoginValueBean>>() {
                         });
                         LoginValueBean loginValueBean=  artistParme.getValue();
-                       // Log.e("makeText",loginValueBean.getState());
                         if ("success".equals(artistParme.getState())&&uid.equals(loginValueBean.getUid())){
                            Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
                             SQLhelper sqLhelper=new SQLhelper(LoginActivity.this);
-                            insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(), loginValueBean.getMobile());
-                          /*  Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
-                            intent.putExtra("state",loginValueBean.getState());
-                            intent.putExtra("imageUrl",loginValueBean.getUserIcon());
-                            intent.putExtra("userName",loginValueBean.getUserName());
-                            //设置返回数据
-                            LoginActivity.this.setResult(RESULT_OK, intent);*/
+                            insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(), loginValueBean.getMobile(), loginValueBean.getPersonId());
+
 
                             Intent intent = new Intent();
                             LoginActivity.this.setResult(12, intent);
@@ -399,11 +378,12 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
 
     }
-    public void insertData(SQLhelper sqLhelper,String uid,String userName,String userIcon,String state,String mobile ){
+    public void insertData(SQLhelper sqLhelper,String uid,String userName,String userIcon,String state,String mobile,String personid ){
         SQLiteDatabase db=sqLhelper.getWritableDatabase();
        // db.execSQL("insert into user(uid,userName,userIcon,state) values('战士',3,5,7)");
         ContentValues values=new ContentValues();
         values.put(SQLhelper.UID,uid);
+        values.put(SQLhelper.PERSONID,personid);
         values.put(SQLhelper.USERNAME, userName);
         values.put(SQLhelper.USERICON, userIcon);
         values.put(SQLhelper.STSTE, state);
@@ -412,17 +392,5 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         db.close();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode==KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            intent.putExtra("state", "");
-            intent.putExtra("imageUrl", "");
-            intent.putExtra("userName", "");
-            //设置返回数据
-            LoginActivity.this.setResult(RESULT_OK, intent);
-            LoginActivity.this.finish();
-        }
-        return false;
-    }
+
 }
