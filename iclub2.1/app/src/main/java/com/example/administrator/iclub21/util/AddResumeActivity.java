@@ -390,8 +390,14 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 break;
             case R.id.add_video_tv:
                 Intent videoIntent = new Intent(AddResumeActivity.this, ResumeMessageActivity.class);
-                videoIntent.putExtra("caseData", "video");
-                videoIntent.putExtra("resumeInfoData",resumeValueBean);
+                if (resumeValueBean!=null){
+                    videoIntent.putExtra("caseData", "video");
+                    videoIntent.putExtra("resumeInfoData",resumeValueBean);
+
+                }else {
+                    videoIntent.putExtra("caseData", "videoNo");
+                }
+
                 startActivityForResult(videoIntent, 10);
 
                 break;
@@ -426,7 +432,12 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             case R.id.addresume_return_tv:
                /* Intent intent=new Intent(AddResumeActivity.this,ResumeActivity.class);
                 startActivity(intent);*/
-                finish();
+                if (resumeNuber.equals("2222")){
+                    showExitGameAlert();
+                }else {
+                    finish();
+                }
+
                 break;
             case R.id.schedule_ll://日程安排
                 Intent intentSchedule = new Intent(AddResumeActivity.this, CalendarActivity.class);
@@ -438,6 +449,39 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
         }
     }
+
+
+    //对话框
+    private void showExitGameAlert() {
+        final AlertDialog dlg = new AlertDialog.Builder(AddResumeActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.shrew_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText("必须把必填项填写完整后，才能展示在简历列表");
+        // 为确认按钮添加事件,执行退出应用操作
+        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
+        ok.setText("确定");
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+                dlg.cancel();
+            }
+        });
+
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("取消");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlg.cancel();
+            }
+        });
+    }
+
+
 
     private void intiCompileData() {
         if (TextUtils.isEmpty(touXiangPath) || TextUtils.isEmpty(userName)

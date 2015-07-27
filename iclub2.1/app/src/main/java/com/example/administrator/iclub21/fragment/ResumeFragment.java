@@ -129,7 +129,6 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
                 intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
                 intent.putExtra("flage", "ResumeFragment");
                 startActivity(intent);
-                Log.e("......",resumeValueBeans.size()+"");
                 int movieSize = resumeValueBeans.get(position).getResumeMovie().size();
                 if (movieSize != 0 && resumeValueBeans.get(position).getResumeMovie() != null) {
                     for (int i = 0; i < movieSize; i++) {
@@ -167,11 +166,6 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
                         resumeListLv.onRefreshComplete();
 
                     }
-                   /* ArtistParme<ResumeValueBean> artistParme= JSONObject.parseObject(result,new TypeReference<ArtistParme<ResumeValueBean>>(){});
-                    final List<ResumeValueBean> resumeValueBeans= artistParme.getValue();*/
-
-
-
 
 
                 }

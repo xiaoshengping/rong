@@ -280,6 +280,9 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
             }
 
 
+        }else if(data.equals("videoNo")){
+            addVideoLayout.setVisibility(View.VISIBLE);
+            messageCommentTv.setText("视频展示");
         }else if(data.equals("musicNo")){
             addMusicLayout.setVisibility(View.VISIBLE);
             messageCommentTv.setText("音乐分享");
