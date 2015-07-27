@@ -1,6 +1,8 @@
 package com.example.administrator.iclub21.fragment;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import com.example.administrator.iclub21.bean.recruitment.SendParme;
 import com.example.administrator.iclub21.bean.talent.CommentBean;
 import com.example.administrator.iclub21.bean.talent.ReputationValueBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.util.SQLhelper;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -51,11 +54,19 @@ public class ReputationValueFragment extends Fragment {
     private ImageView authenticity_relatively_iv,integrity_relatively_iv;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        //获取登录状态
+        SQLhelper sqLhelper=new SQLhelper(getActivity());
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            id = Integer.parseInt(cursor.getString(1));
+
+        }
 
         View view = inflater.inflate(R.layout.activity_reputation, container, false);
         ViewUtils.inject(this, view);
@@ -116,7 +127,7 @@ public class ReputationValueFragment extends Fragment {
     private void initReputationValue(){
 
         HttpUtils httpUtils=new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getReputationValue(405), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getReputationValue(id), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
