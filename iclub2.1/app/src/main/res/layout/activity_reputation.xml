@@ -14,11 +14,12 @@
 
     </ListView>
     <TextView
+        android:id="@+id/reputation_tipe_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/reputation_list"
-        android:text="暂无评论"
-        android:textColor="#00000000"
+        android:text="暂无评论！！"
+        android:textColor="#DEDDE2"
         android:gravity="center"
         android:background="#20ffffff"/>
 
