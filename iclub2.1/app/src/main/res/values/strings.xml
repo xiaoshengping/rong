@@ -73,6 +73,7 @@
     <string name="weibosdk_demo_token_to_string_format_1">Token：%1$s \n有效期：%2$s</string>
     <string name="weibosdk_demo_token_has_existed">Token 仍在有效期内，无需再次登录。</string>
     <string name="title_activity_failure_comment">FailureCommentActivity</string>
+    <string name="title_activity_detailed_information">DetailedInformationActivity</string>
 
 
 </resources>

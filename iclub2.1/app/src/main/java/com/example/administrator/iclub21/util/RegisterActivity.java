@@ -135,9 +135,9 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
         if (uid.length()==11&&uid!=null){
             if (capcha!=null&&capcha.length()==6){
 
-                     if (setPswEdit.getText().toString()!=""&&verifyPswEdit.getText().toString()!=""&&(verifyPswEdit.getText().toString()).equals(setPswEdit.getText().toString())) {
+                     if (setPswEdit.getText().toString()!=null&&verifyPswEdit.getText().toString()!=null&&(verifyPswEdit.getText().toString()).equals(setPswEdit.getText().toString())) {
                          RequestParams requestParams=new RequestParams();
-                        requestParams.addBodyParameter("uid",registerPhoneEdit.getText().toString());
+                         requestParams.addBodyParameter("uid",registerPhoneEdit.getText().toString());
                          requestParams.addBodyParameter("pwd",MD5Uutils.MD5(setPswEdit.getText().toString()));
                          requestParams.addBodyParameter("vcode", captchaEdit.getText().toString());
                          httpUtils.send(HttpRequest.HttpMethod.POST, url, requestParams, new RequestCallBack<String>() {

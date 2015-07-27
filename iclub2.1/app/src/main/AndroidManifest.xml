@@ -3,8 +3,8 @@
     package="com.example.administrator.iclub21" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--拨打电话-->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <!-- 拨打电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!-- 拍照权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
@@ -185,6 +185,10 @@
         <activity
             android:name=".util.FailureCommentActivity"
             android:label="@string/title_activity_failure_comment" >
+        </activity>
+        <activity
+            android:name=".util.DetailedInformationActivity"
+            android:label="@string/title_activity_detailed_information" >
         </activity>
     </application>
 

@@ -1,10 +1,10 @@
 package com.example.administrator.iclub21.util;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,17 +28,10 @@ import java.util.List;
 public class InformationActivity extends ActionBarActivity implements View.OnClickListener {
     @ViewInject(R.id.information_lv)
     private ListView informationListv;
-    //公告详细
-    @ViewInject(R.id.detail_information_layout)
-    private LinearLayout detailLayout;
-    @ViewInject(R.id.particular_title_tv)
-    private TextView tailteDetailTv;
-    @ViewInject(R.id.particular_time_tv)
-    private TextView timeDetailTv;
-    @ViewInject(R.id.particular_content_tv)
-    private TextView contentDetailTv;
+
     @ViewInject(R.id.role_retrun_tv)
     private TextView retrunTv;
+
 
 
     private List<InformationValueBean> informationValueBeans;
@@ -63,7 +56,7 @@ public class InformationActivity extends ActionBarActivity implements View.OnCli
 
     private void intiData() {
         HttpUtils httpUtils=new HttpUtils();
-        String informationUrl= AppUtilsUrl.getInformationList("0","10");
+        String informationUrl= AppUtilsUrl.getInformationList("0","30");
         httpUtils.send(HttpRequest.HttpMethod.POST, informationUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -77,11 +70,10 @@ public class InformationActivity extends ActionBarActivity implements View.OnCli
                 informationListv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        informationListv.setVisibility(View.GONE);
-                        detailLayout.setVisibility(View.VISIBLE);
-                        tailteDetailTv.setText(informationValueBeans.get(position).getTitle());
-                        contentDetailTv.setText(informationValueBeans.get(position).getContent());
-                        timeDetailTv.setText(informationValueBeans.get(position).getPutdate());
+                        Intent intent=new Intent(InformationActivity.this,DetailedInformationActivity.class);
+                        intent.putExtra("informationValueBeans",informationValueBeans.get(position));
+                        startActivity(intent);
+
 
                     }
                 });
@@ -102,6 +94,13 @@ public class InformationActivity extends ActionBarActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        finish();
+        switch (v.getId()){
+            case R.id.role_retrun_tv:
+                finish();
+                break;
+
+
+        }
+
     }
 }

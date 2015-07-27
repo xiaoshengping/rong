@@ -32,7 +32,7 @@ android:orientation="vertical"
               style="@style/paren_layout_width"
               android:text="点击登陆"
               android:textSize="@dimen/textSize14"
-              android:textColor="#b0c5ec"
+              android:textColor="@color/white"
               android:id="@+id/mine_name"
               android:layout_marginTop="12dp"
               android:layout_below="@+id/imageView"
@@ -142,7 +142,6 @@ android:orientation="vertical"
 
     </LinearLayout>
     <LinearLayout
-
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:gravity="center"
@@ -179,14 +178,13 @@ android:orientation="vertical"
 
         <ImageView
             android:layout_marginLeft="20dp"
-            android:src="@mipmap/role_icon"
+            android:src="@mipmap/logout_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:textColor="#b0c5ec"
-
+            android:textColor="@color/whiteOne"
             android:text="注销账号"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="27dp"
             android:textSize="@dimen/textSize15"
             android:padding="2dp"
             android:layout_width="match_parent"
