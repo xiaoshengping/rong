@@ -193,7 +193,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.about_tv:
                 Intent aboutIntent=new Intent(getActivity(),AmendAboutActivity.class);
                 startActivity(aboutIntent);
-
                 break;
             case R.id.share_sdk_layout:
 //                Intent shareItent=new Intent(getActivity(),ShareActivity.class);

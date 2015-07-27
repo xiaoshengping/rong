@@ -113,9 +113,9 @@ public class AppUtilsUrl  {
     }
 
     //招聘历史
-    public static String getRecruitmentHistoryList(){
+    public static String getRecruitmentHistoryList(String uid,int limit){
         //getHistoryJobList.action
-        return BaseUrl+"getHistoryJobList.action";
+        return BaseUrl+"getHistoryJobList.action?"+"uid="+uid+"&offset=0"+"&limit="+limit;
 
     }
 
@@ -205,9 +205,9 @@ public class AppUtilsUrl  {
 
        }
     //商家邀约列表
-    public static String getMerchantInvite(){
+    public static String getMerchantInvite(String uid,String value,int limit){
         // inviteListByBusiness.action
-        return BaseUrl+"inviteListByBusiness.action";
+        return BaseUrl+"inviteListByBusiness.action?"+"uid="+uid+"&value="+value+"&offset=0"+"&limit="+limit;
 
     }
 

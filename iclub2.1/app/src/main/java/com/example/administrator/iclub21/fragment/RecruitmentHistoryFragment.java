@@ -16,41 +16,44 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.RecruitmentHistoryAdapter;
 import com.example.administrator.iclub21.bean.RecruitmentHistoryValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.AddRecruitmentActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecruitmentHistoryFragment extends Fragment implements View.OnClickListener {
+public class RecruitmentHistoryFragment extends Fragment implements View.OnClickListener,PullToRefreshBase.OnRefreshListener2<ListView> {
     @ViewInject(R.id.text_tv)
     private TextView textTv;
     @ViewInject(R.id.save_text)
     private TextView saveTv;
     @ViewInject(R.id.recruiment_history_list_lv)
-    private ListView recruitmentHistoryLv;
+    private PullToRefreshListView recruitmentHistoryLv;
     @ViewInject(R.id.company_message_retrun_tv)
     private TextView  recruitmentRetrunTv;
-
-
     private List<RecruitmentHistoryValueBean> recruitmentHistoryValueBean;
+    private RecruitmentHistoryAdapter recruitmentHistoryAdapter;
+    private int limit=10;
 
     public RecruitmentHistoryFragment() {
         // Required empty public constructor
@@ -70,17 +73,28 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
     private void inti() {
         initView();
         intiListView();
-        initRecruitmentHistoryData();
+
 
     }
 
     private void intiListView() {
+        recruitmentHistoryValueBean=new ArrayList<RecruitmentHistoryValueBean>();
+        recruitmentHistoryAdapter=new RecruitmentHistoryAdapter(recruitmentHistoryValueBean,getActivity());
+        recruitmentHistoryLv.setAdapter(recruitmentHistoryAdapter);
+        recruitmentHistoryLv.setMode(PullToRefreshBase.Mode.BOTH);
+        recruitmentHistoryLv.setOnRefreshListener(this);
+        ILoadingLayout loadingLayout = recruitmentHistoryLv
+                .getLoadingLayoutProxy();
+        loadingLayout.setPullLabel("你可劲拉，拉...");// 刚下拉时，显示的提示
+        loadingLayout.setRefreshingLabel("好嘞，正在刷新...");// 刷新时
+        loadingLayout.setReleaseLabel("你敢放，我就敢刷新...");// 下来达到一定距离时，显示的提示
+        recruitmentHistoryLv.setRefreshing();
         recruitmentHistoryLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(),AddRecruitmentActivity.class);
-                intent.putExtra("recruitmentHistoryValueBean",recruitmentHistoryValueBean.get(position));
-                intent.putExtra("falgeData","RecruitmentHistoryFragment");
+                Intent intent = new Intent(getActivity(), AddRecruitmentActivity.class);
+                intent.putExtra("recruitmentHistoryValueBean", recruitmentHistoryValueBean.get(position));
+                intent.putExtra("falgeData", "RecruitmentHistoryFragment");
                 startActivity(intent);
             }
         });
@@ -99,7 +113,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
 
     }
 
-    private void initRecruitmentHistoryData() {
+    private void initRecruitmentHistoryData(int limit) {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
@@ -110,22 +124,19 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
         }
         if (!TextUtils.isEmpty(uid)){
             HttpUtils httpUtils=new HttpUtils();
-            RequestParams requestParams=new RequestParams();
-            requestParams.addBodyParameter("uid",uid);
-            requestParams.addBodyParameter("offset","0");
-            requestParams.addBodyParameter("limit", "10");
-            httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRecruitmentHistoryList(),requestParams, new RequestCallBack<String>() {
+            httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRecruitmentHistoryList(uid,limit), new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
                     String result=responseInfo.result;
 
                     if (result!=null){
-                        ArtistParme<RecruitmentHistoryValueBean> artistParme= JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentHistoryValueBean>>() {
+                       /* ArtistParme<RecruitmentHistoryValueBean> artistParme= JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentHistoryValueBean>>() {
                         });
-                        recruitmentHistoryValueBean=  artistParme.getValue();
-                        RecruitmentHistoryAdapter recruitmentHistoryAdapter=new RecruitmentHistoryAdapter(recruitmentHistoryValueBean,getActivity());
-                        recruitmentHistoryLv.setAdapter(recruitmentHistoryAdapter);
-                        recruitmentHistoryAdapter.notifyDataSetChanged();
+                        recruitmentHistoryValueBean=  artistParme.getValue();*/
+
+                        HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<RecruitmentHistoryValueBean>>() {
+                        }, recruitmentHistoryValueBean, recruitmentHistoryAdapter);
+                        recruitmentHistoryLv.onRefreshComplete();
 
                         //Log.e("result",recruitmentHistoryValueBean.get(0).getAddress());
                     }
@@ -180,4 +191,18 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
         }
     }
 
+
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+        recruitmentHistoryValueBean.clear();
+        int limit=10;
+        initRecruitmentHistoryData(limit);
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+        recruitmentHistoryValueBean.clear();
+        limit++;
+        initRecruitmentHistoryData(limit);
+    }
 }

@@ -17,39 +17,43 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.MerchantInviteListAdapter;
 import com.example.administrator.iclub21.bean.MerchantInviteValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.CooperationCommentActivity;
 import com.example.administrator.iclub21.util.FailureCommentActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MerchantSuccessfulInviteFragment extends Fragment {
+public class MerchantSuccessfulInviteFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView> {
 
     @ViewInject(R.id.merchant_invite_message_list_lv)
-    private ListView merchantInviteMessageLv;
+    private PullToRefreshListView merchantInviteMessageLv;
     private HttpUtils httpUtils;
-    private RequestParams requestParams;
 
     private List<MerchantInviteValueBean> merchantInviteValueBeans;
+    private MerchantInviteListAdapter inviteMessagelistAdapter;
+    private int limit=10;
     public MerchantSuccessfulInviteFragment() {
         // Required empty public constructor
     }
@@ -67,15 +71,15 @@ public class MerchantSuccessfulInviteFragment extends Fragment {
     }
     private void inti() {
         intiView();
-        intiData();
+
     }
     private void intiView() {
         httpUtils=new HttpUtils();
-        requestParams=new RequestParams();
+        intiListView();
 
 
     }
-    private void intiData() {
+    private void intiData(int limit) {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
@@ -84,26 +88,20 @@ public class MerchantSuccessfulInviteFragment extends Fragment {
             uid = cursor.getString(0);
 
         }
-        if (!TextUtils.isEmpty(uid)){
-            requestParams.addBodyParameter("uid",uid);
-        }
-        requestParams.addBodyParameter("value", "accept");
-        requestParams.addBodyParameter("offset","0");
-        requestParams.addBodyParameter("limit","10");
 
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getMerchantInvite(), requestParams, new RequestCallBack<String>() {
+
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getMerchantInvite(uid,"complete",limit), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
-                Log.e("inviteintiData", result);
-                if (!TextUtils.isEmpty(result)) {
-                    ArtistParme<MerchantInviteValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<MerchantInviteValueBean>>() {
-                    });
-                    if (artistParme.getState().equals("success")) {
-                        merchantInviteValueBeans = artistParme.getValue();
-                        intiListView();
 
-                    }
+                if (!TextUtils.isEmpty(result)) {
+                    /*ArtistParme<MerchantInviteValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<MerchantInviteValueBean>>() {
+                    });*/
+                    HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<MerchantInviteValueBean>>() {
+                    }, merchantInviteValueBeans, inviteMessagelistAdapter);
+                    merchantInviteMessageLv.onRefreshComplete();
+
 
                 }
 
@@ -121,10 +119,17 @@ public class MerchantSuccessfulInviteFragment extends Fragment {
     }
 
     private void intiListView() {
-
-        MerchantInviteListAdapter inviteMessagelistAdapter=new MerchantInviteListAdapter(merchantInviteValueBeans,getActivity());
+        merchantInviteValueBeans=new ArrayList<>();
+        inviteMessagelistAdapter=new MerchantInviteListAdapter(merchantInviteValueBeans,getActivity());
         merchantInviteMessageLv.setAdapter(inviteMessagelistAdapter);
-        inviteMessagelistAdapter.notifyDataSetChanged();
+        merchantInviteMessageLv.setMode(PullToRefreshBase.Mode.BOTH);
+        merchantInviteMessageLv.setOnRefreshListener(this);
+        ILoadingLayout loadingLayout = merchantInviteMessageLv
+                .getLoadingLayoutProxy();
+        loadingLayout.setPullLabel("你可劲拉，拉...");// 刚下拉时，显示的提示
+        loadingLayout.setRefreshingLabel("好嘞，正在刷新...");// 刷新时
+        loadingLayout.setReleaseLabel("你敢放，我就敢刷新...");// 下来达到一定距离时，显示的提示
+        merchantInviteMessageLv.setRefreshing();
         merchantInviteMessageLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -171,4 +176,17 @@ public class MerchantSuccessfulInviteFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+        merchantInviteValueBeans.clear();
+        int limit=10;
+        intiData(limit);
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+        merchantInviteValueBeans.clear();
+        limit++;
+        intiData(limit);
+    }
 }

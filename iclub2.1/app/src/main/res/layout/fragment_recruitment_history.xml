@@ -5,11 +5,15 @@
     android:background="@mipmap/iculd_beijin_icon"
     tools:context="com.example.administrator.iclub21.fragment.RecruitmentHistoryFragment">
     <include layout="@layout/company_tailt_layout"/>
-    <ListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/recruiment_history_list_lv"
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:scrollbars="none"
         android:dividerHeight="3dp"
-        android:divider="#00ffffff"
+        ptr:ptrHeaderTextColor="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+
+        />
 
 </LinearLayout>
