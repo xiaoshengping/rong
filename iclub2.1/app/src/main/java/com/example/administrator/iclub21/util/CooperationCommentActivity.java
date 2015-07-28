@@ -236,7 +236,7 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCommentGrade(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("jsdggshhdhhhdhshsh",responseInfo.result);
+               finish();
             }
 
             @Override
@@ -258,7 +258,7 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
         httpUtils.send(HttpRequest.HttpMethod.POST,AppUtilsUrl.getCommentCommit() , requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("sjdjjjfjj",responseInfo.result);
+                //Log.e("sjdjjjfjj",responseInfo.result);
             }
 
             @Override

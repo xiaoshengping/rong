@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_textview"
+        android:layout_width="match_parent"
+        android:layout_height="35dp" />
+    <TextView
+        android:id="@+id/show_music_tv"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textSize="@dimen/textSize13"
+        android:textColor="@color/textColorc979a8"
+        android:drawableRight="@mipmap/music_button_icon"
+        android:background="@mipmap/misuc_beiji_icon"
+        android:layout_width="match_parent"
+        android:layout_height="35dp" />
+
+
+</RelativeLayout>

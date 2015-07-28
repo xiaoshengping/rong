@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.ResumeVideoAdapter;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.bean.talent.CircleImageView;
@@ -30,7 +31,6 @@ import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.view.WordWrapView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -120,7 +120,7 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
         ILoadingLayout loadingLayout = merchantInviteMessageLv
                 .getLoadingLayoutProxy();
         loadingLayout.setPullLabel("你可劲拉，拉...");// 刚下拉时，显示的提示
-        loadingLayout.setRefreshingLabel("好嘞，正在刷新...");// 刷新时
+        loadingLayout.setRefreshingLabel("正在刷新...");// 刷新时
         loadingLayout.setReleaseLabel("你敢放，我就敢刷新...");// 下来达到一定距离时，显示的提示
         merchantInviteMessageLv.setRefreshing();
         merchantInviteMessageLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
