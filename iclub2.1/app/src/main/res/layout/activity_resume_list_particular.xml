@@ -922,11 +922,12 @@
                       android:textColor="@color/white"
                       android:layout_width="match_parent"
                       android:layout_height="100dp" />
-                     <ListView
+                     <com.example.administrator.iclub21.view.CustomHomeScrollListView
                          android:id="@+id/resume_video_list_view"
                          android:dividerHeight="3dp"
+                         android:layout_marginTop="5dp"
                          android:layout_width="match_parent"
-                         android:layout_height="wrap_content"/>
+                         android:layout_height="match_parent"/>
               </LinearLayout>
 
           </LinearLayout>
@@ -965,7 +966,6 @@
               <LinearLayout
                   android:id="@+id/listparticual_music_layout"
                   android:orientation="vertical"
-                  android:background="#30000000"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content">
                   <TextView
@@ -978,10 +978,15 @@
                       android:textColor="@color/white"
                       android:layout_width="match_parent"
                       android:layout_height="50dp" />
-                  <com.example.administrator.iclub21.view.WordWrapView
+                  <!--<com.example.administrator.iclub21.view.WordWrapView
                       android:id="@+id/show_music_tv"
                       android:layout_width="wrap_content"
-                      android:layout_height="wrap_content" />
+                      android:layout_height="wrap_content" />-->
+                  <com.example.administrator.iclub21.view.CustomHomeScrollListView
+                      android:id="@+id/show_music_lv"
+                      android:layout_marginTop="5dp"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"/>
               </LinearLayout>
 
            </LinearLayout>
