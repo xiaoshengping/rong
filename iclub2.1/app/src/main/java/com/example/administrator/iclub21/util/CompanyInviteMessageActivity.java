@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.ResumeCommentAdapter;
 import com.example.administrator.iclub21.bean.InviteMessgaeListValueBean;
 import com.example.administrator.iclub21.bean.ParmeBean;
@@ -29,6 +28,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.List;
 

@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.example.administrator.iclub21.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 

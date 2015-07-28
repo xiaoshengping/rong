@@ -360,7 +360,7 @@ public class CalendarCard extends View {
                 break;
                 case SETUP://设置
                     mCirclePaint.setStyle(Paint.Style.FILL);
-                    mCirclePaint.setColor(Color.parseColor("#5DC890"));
+                    mCirclePaint.setColor(Color.parseColor("#FF5A5F"));
                     mTextPaint.setColor(Color.parseColor(textColor));
                     canvas.drawCircle((float) (mCellSpace * (i + 0.5)),
                             (float) ((j + 0.5) * mCellSpace), mCellSpace / 3,

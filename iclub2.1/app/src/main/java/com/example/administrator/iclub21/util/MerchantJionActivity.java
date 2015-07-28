@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.RoleTalentsAdapter;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;

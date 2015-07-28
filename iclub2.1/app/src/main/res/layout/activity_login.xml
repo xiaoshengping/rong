@@ -120,6 +120,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
+        android:id="@+id/weibo_login"
         android:layout_weight="1"
         android:layout_marginRight="100dp"
         android:src="@mipmap/wei_bo_login_icon"

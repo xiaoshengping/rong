@@ -13,13 +13,13 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.recruitment.JobDetailsDialog;
 import com.example.administrator.iclub21.bean.talent.MusicActivity;
 import com.example.administrator.iclub21.bean.talent.Player;
 import com.example.administrator.iclub21.bean.talent.ResumeMovie;
 import com.example.administrator.iclub21.bean.talent.ResumeMusic;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;

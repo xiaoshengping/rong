@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.RecruitmentHistoryValueBean;
 import com.example.administrator.iclub21.bean.recruitment.AreaBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
@@ -27,6 +26,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.sina.weibo.sdk.demo.R;
 
 public class AddRecruitmentActivity extends ActionBarActivity implements View.OnClickListener {
      //添加招聘

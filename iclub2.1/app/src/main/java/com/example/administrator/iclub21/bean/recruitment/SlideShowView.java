@@ -14,10 +14,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.ArtistHeadBean;
 import com.example.administrator.iclub21.bean.artist.ArtistPicture;
 import com.lidroid.xutils.BitmapUtils;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;

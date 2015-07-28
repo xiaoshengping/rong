@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.RecruitmentHistoryValueBean;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.List;
 

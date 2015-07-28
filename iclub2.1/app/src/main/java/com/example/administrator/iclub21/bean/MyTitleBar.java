@@ -9,7 +9,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
+import com.sina.weibo.sdk.demo.R;
+
 
 /**
  * Created by Administrator on 2015/7/20.

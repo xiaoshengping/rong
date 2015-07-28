@@ -204,7 +204,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:text="绿色状态表示没空"
+                        android:text="红色状态表示没空"
                         android:textColor="#B3B5B9"
                         android:textSize="18sp"
                         android:layout_marginTop="3sp"/>

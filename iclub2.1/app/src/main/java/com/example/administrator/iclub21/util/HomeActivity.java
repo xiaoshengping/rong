@@ -6,12 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.RadioGroup;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.fragment.ArtistFragment;
 import com.example.administrator.iclub21.fragment.FragmentTabAdapter;
 import com.example.administrator.iclub21.fragment.MineFragment;
 import com.example.administrator.iclub21.fragment.RecruitmentFragment;
 import com.example.administrator.iclub21.fragment.TalentFragment;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 

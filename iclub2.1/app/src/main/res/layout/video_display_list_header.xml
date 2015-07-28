@@ -31,7 +31,7 @@
                     android:layout_margin="14dp"/>-->
 
                 <com.example.administrator.iclub21.bean.talent.CircleImageView
-                    xmlns:myxmlns="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                    xmlns:myxmlns="http://schemas.android.com/apk/res/com.sina.weibo.sdk.demo"
                     android:id="@+id/talent_head_civ"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -447,7 +447,7 @@
                     android:paddingBottom="7dp"
                     android:orientation="horizontal">
                     <com.example.administrator.iclub21.bean.talent.RoundAngleImageView
-                        xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                        xmlns:app="http://schemas.android.com/apk/res/com.sina.weibo.sdk.demo"
                         android:id="@+id/picturesshow1_iv"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -461,7 +461,7 @@
                         android:layout_height="wrap_content"
                         android:background="#00ffffff"/>
                     <com.example.administrator.iclub21.bean.talent.RoundAngleImageView
-                        xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                        xmlns:app="http://schemas.android.com/apk/res/com.sina.weibo.sdk.demo"
                         android:id="@+id/picturesshow2_iv"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -475,7 +475,7 @@
                         android:layout_height="wrap_content"
                         android:background="#00ffffff"/>
                     <com.example.administrator.iclub21.bean.talent.RoundAngleImageView
-                        xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                        xmlns:app="http://schemas.android.com/apk/res/com.sina.weibo.sdk.demo"
                         android:id="@+id/picturesshow3_iv"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -489,7 +489,7 @@
                         android:layout_height="wrap_content"
                         android:background="#00ffffff"/>
                     <com.example.administrator.iclub21.bean.talent.RoundAngleImageView
-                        xmlns:app="http://schemas.android.com/apk/res/com.example.administrator.iclub21"
+                        xmlns:app="http://schemas.android.com/apk/res/com.sina.weibo.sdk.demo"
                         android:id="@+id/picturesshow4_iv"
                         android:layout_width="0dp"
                         android:layout_weight="1"

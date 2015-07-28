@@ -31,7 +31,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.http.ImageUtil;
 import com.example.administrator.iclub21.http.MyAppliction;
@@ -45,6 +44,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.sina.weibo.sdk.demo.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

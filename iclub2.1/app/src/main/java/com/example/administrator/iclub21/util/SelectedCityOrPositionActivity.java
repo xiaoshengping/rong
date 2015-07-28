@@ -11,9 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.SelectedCityOrPositionAdapter;
 import com.example.administrator.iclub21.bean.recruitment.AreaBean;
+import com.sina.weibo.sdk.demo.R;
 
 /**
  * Created by Administrator on 2015/5/27.

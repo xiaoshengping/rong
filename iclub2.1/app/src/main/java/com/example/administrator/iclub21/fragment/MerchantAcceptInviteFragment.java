@@ -15,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.TypeReference;
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.MerchantInviteListAdapter;
 import com.example.administrator.iclub21.bean.MerchantInviteValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
@@ -33,6 +32,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;

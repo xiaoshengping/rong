@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.LayoutSizes;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.bean.recruitment.JobDetailsDialog;
@@ -32,6 +31,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;

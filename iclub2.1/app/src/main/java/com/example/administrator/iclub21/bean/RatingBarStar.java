@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
+import com.sina.weibo.sdk.demo.R;
 
 
 /**

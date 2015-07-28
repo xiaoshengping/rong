@@ -19,7 +19,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.AccessTokenKeeper;
 import com.example.administrator.iclub21.Constantser;
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.LoginValueBean;
 import com.example.administrator.iclub21.bean.ParmeBean;
 import com.example.administrator.iclub21.bean.recruitment.SendParme;
@@ -35,6 +34,7 @@ import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
+import com.sina.weibo.sdk.demo.R;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
@@ -61,6 +61,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     private TextView forgetTv;
     @ViewInject(R.id.qq_login)
     private ImageView qq_login;
+    @ViewInject(R.id.weibo_login)
+    private ImageView weibo_login;
     private HttpUtils httpUtils;
     private SQLhelper sqLhelper;
 
@@ -101,6 +103,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         RegisterTv.setOnClickListener(this);
         forgetTv.setOnClickListener(this);
         qq_login.setOnClickListener(this);
+        weibo_login.setOnClickListener(this);
         httpUtils=new HttpUtils();
     }
 
@@ -133,6 +136,9 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 mTencent = Tencent.createInstance("222222", this);
                 doLogin();
                 break;
+            case R.id.weibo_login:
+                weibodenglu();
+                break;
             case R.id.register_tv:
                Intent registerIntent=new Intent(LoginActivity.this,RegisterActivity.class);
                 registerIntent.putExtra("falge","2");
@@ -155,16 +161,23 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 //        TextView hintView = (TextView) findViewById(com.sina.weibo.sdk.demo.R.id.obtain_token_hint);
 //        hintView.setMovementMethod(new ScrollingMovementMethod());
 
-        // 快速授权时，请不要传入 SCOPE，否则可能会授权不成功
-        mAuthInfo = new AuthInfo(this, Constantser.APP_KEY, Constantser.REDIRECT_URL, Constantser.SCOPE);
-        mSsoHandler = new SsoHandler(this, mAuthInfo);
 
-        mSsoHandler.authorize(new AuthListener());
 
         mAccessToken = AccessTokenKeeper.readAccessToken(this);
         if (mAccessToken.isSessionValid()) {
-            updateTokenView(true);
+//            updateTokenView(true);
+//            Intent intent = new Intent();
+//            LoginActivity.this.setResult(12, intent);
+//                        /*结束本Activity*/
+//            LoginActivity.this.finish();
         }
+            // 快速授权时，请不要传入 SCOPE，否则可能会授权不成功
+            mAuthInfo = new AuthInfo(this, Constantser.APP_KEY, Constantser.REDIRECT_URL, Constantser.SCOPE);
+            mSsoHandler = new SsoHandler(this, mAuthInfo);
+
+            mSsoHandler.authorize(new AuthListener());
+
+
     }
     /**
      * 当 SSO 授权 Activity 退出时，该函数被调用。

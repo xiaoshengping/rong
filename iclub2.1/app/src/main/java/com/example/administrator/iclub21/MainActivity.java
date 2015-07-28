@@ -23,6 +23,7 @@ import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
+import com.sina.weibo.sdk.demo.R;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
@@ -58,6 +59,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        inti();
 
         text = (TextView)findViewById(R.id.text);
         text1 = (TextView)findViewById(R.id.text1);
@@ -98,14 +100,16 @@ public class MainActivity extends ActionBarActivity {
 //        hintView.setMovementMethod(new ScrollingMovementMethod());
 
         // 快速授权时，请不要传入 SCOPE，否则可能会授权不成功
-        mAuthInfo = new AuthInfo(MainActivity.this, Constantser.APP_KEY, Constantser.REDIRECT_URL, Constantser.SCOPE);
-        mSsoHandler = new SsoHandler(MainActivity.this, mAuthInfo);
 
-        mSsoHandler.authorize(new AuthListener());
 
         mAccessToken = AccessTokenKeeper.readAccessToken(this);
         if (mAccessToken.isSessionValid()) {
             updateTokenView(true);
+        }else {
+            mAuthInfo = new AuthInfo(MainActivity.this, Constantser.APP_KEY, Constantser.REDIRECT_URL, Constantser.SCOPE);
+            mSsoHandler = new SsoHandler(MainActivity.this, mAuthInfo);
+
+            mSsoHandler.authorize(new AuthListener());
         }
     }
     /**
@@ -192,7 +196,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    //qq登录
+    //qq登录、微博登录
     private void denglu(String token){
         HttpUtils httpUtils = new HttpUtils();
         httpUtils.send(HttpRequest.HttpMethod.GET, token, new RequestCallBack<String>() {

@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.TypeReference;
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.ResumeListAdapter;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
@@ -32,6 +31,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.sina.weibo.sdk.demo.R;
 
 import java.io.File;
 import java.util.ArrayList;

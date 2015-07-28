@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.recruitment.AreaBean;
+import com.sina.weibo.sdk.demo.R;
 
 /**
  * Created by Administrator on 2015/5/27.
@@ -97,7 +97,7 @@ public class SelectedCityOrPositionAdapter extends BaseAdapter{
         }else if(selected == areaBean.POSITION){
             String s = areaBean.getPosition(position);
             viewHodle.city_ll.setVisibility(View.GONE);
-            if(areaBean.getPositionNum(position)!=10) {
+            if(areaBean.getPositionNum(position)!=-1) {
                 viewHodle.province_ll.setVisibility(View.VISIBLE);
                 viewHodle.position_ll.setVisibility(View.GONE);
                 viewHodle.province_tv.setText(s);

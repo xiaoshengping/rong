@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.fragment.CompanyMessageFragment;
 import com.example.administrator.iclub21.fragment.FragmentTabAdapter;
 import com.example.administrator.iclub21.fragment.InviteParticularFragment;
@@ -14,6 +13,7 @@ import com.example.administrator.iclub21.fragment.MerchantInformationFragment;
 import com.example.administrator.iclub21.fragment.RecruitmentHistoryFragment;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 

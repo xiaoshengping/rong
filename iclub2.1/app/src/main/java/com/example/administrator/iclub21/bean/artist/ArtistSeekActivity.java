@@ -17,10 +17,10 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.ArtistListAdapter;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.util.ArtistDetailActivity;
+import com.sina.weibo.sdk.demo.R;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;

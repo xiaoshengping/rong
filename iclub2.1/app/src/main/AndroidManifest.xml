@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.administrator.iclub21" >
+    package="com.sina.weibo.sdk.demo" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 拨打电话 -->
@@ -26,13 +26,13 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
-        android:name=".http.MyAppliction"
+        android:name="com.example.administrator.iclub21.http.MyAppliction"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.administrator.iclub21.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,76 +41,76 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".util.HomeActivity"
+            android:name="com.example.administrator.iclub21.util.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
         <activity
-            android:name=".util.LoginActivity"
+            android:name="com.example.administrator.iclub21.util.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
-        <activity android:name=".util.RegisterActivity" />
+        <activity android:name="com.example.administrator.iclub21.util.RegisterActivity" />
         <activity
-            android:name=".util.RoleActivity"
+            android:name="com.example.administrator.iclub21.util.RoleActivity"
             android:label="@string/title_activity_role" >
         </activity>
         <activity
-            android:name=".util.ResumeActivity"
+            android:name="com.example.administrator.iclub21.util.ResumeActivity"
             android:label="@string/title_activity_resume" >
         </activity>
         <activity
-            android:name=".util.RoleTalentsActivity"
+            android:name="com.example.administrator.iclub21.util.RoleTalentsActivity"
             android:label="@string/title_activity_role_talents" >
         </activity>
         <activity
-            android:name=".util.PinnedSectionListActivity"
+            android:name="com.example.administrator.iclub21.util.PinnedSectionListActivity"
             android:label="@string/title_activity_pinned_section_list" >
         </activity>
         <activity
-            android:name=".util.ResumeMessageActivity"
+            android:name="com.example.administrator.iclub21.util.ResumeMessageActivity"
             android:label="@string/title_activity_resume_message" >
         </activity>
         <activity
-            android:name=".util.AddResumeActivity"
+            android:name="com.example.administrator.iclub21.util.AddResumeActivity"
             android:label="@string/title_activity_add_resume" >
         </activity>
         <activity
-            android:name=".util.ResumeListParticularActivity"
+            android:name="com.example.administrator.iclub21.util.ResumeListParticularActivity"
             android:label="@string/title_activity_resume_list_particular" >
         </activity>
         <activity
-            android:name=".util.InformationActivity"
+            android:name="com.example.administrator.iclub21.util.InformationActivity"
             android:label="@string/title_activity_information" >
         </activity>
         <activity
-            android:name=".util.AmendPswActivity"
+            android:name="com.example.administrator.iclub21.util.AmendPswActivity"
             android:label="@string/title_activity_amend_psw" >
         </activity>
         <activity
-            android:name=".util.AmendAboutActivity"
+            android:name="com.example.administrator.iclub21.util.AmendAboutActivity"
             android:label="@string/title_activity_amend_about" >
         </activity>
         <activity
-            android:name=".util.AboutFunctionActivity"
+            android:name="com.example.administrator.iclub21.util.AboutFunctionActivity"
             android:label="@string/title_activity_about_function" >
         </activity>
         <activity
-            android:name=".util.MerchantJionActivity"
+            android:name="com.example.administrator.iclub21.util.MerchantJionActivity"
             android:label="@string/title_activity_merchant_jion" >
         </activity>
         <activity
-            android:name=".util.MerchantActivity"
+            android:name="com.example.administrator.iclub21.util.MerchantActivity"
             android:label="@string/title_activity_merchant" >
         </activity>
         <activity
-            android:name=".util.AddRecruitmentActivity"
+            android:name="com.example.administrator.iclub21.util.AddRecruitmentActivity"
             android:label="@string/title_activity_add_recruitment" >
         </activity>
         <activity
-            android:name=".util.ExperienceWorkActivity"
+            android:name="com.example.administrator.iclub21.util.ExperienceWorkActivity"
             android:label="@string/title_activity_experience_work" >
         </activity>
         <activity
-            android:name=".util.CompanyEditActivity"
+            android:name="com.example.administrator.iclub21.util.CompanyEditActivity"
             android:label="@string/title_activity_company_edit" >
         </activity>
         <activity
@@ -135,34 +135,34 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".util.ShareActivity"
+            android:name="com.example.administrator.iclub21.util.ShareActivity"
             android:label="@string/title_activity_share" >
         </activity>
         <activity
-            android:name=".util.CompanyInviteMessageActivity"
+            android:name="com.example.administrator.iclub21.util.CompanyInviteMessageActivity"
             android:label="@string/title_activity_company_invite_message" >
         </activity>
         <activity
-            android:name=".util.CooperationCommentActivity"
+            android:name="com.example.administrator.iclub21.util.CooperationCommentActivity"
             android:label="@string/title_activity_cooperation_comment" >
         </activity>
         <activity
-            android:name=".util.SelectedCityOrPositionActivity"
+            android:name="com.example.administrator.iclub21.util.SelectedCityOrPositionActivity"
             android:theme="@android:style/Theme.Translucent" />
         <activity
-            android:name=".bean.talent.SpaceImageDetailActivity"
+            android:name="com.example.administrator.iclub21.bean.talent.SpaceImageDetailActivity"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".bean.talent.PicturesshowMoreActivity" />
+        <activity android:name="com.example.administrator.iclub21.bean.talent.PicturesshowMoreActivity" />
         <activity
-            android:name=".bean.talent.MusicActivity"
+            android:name="com.example.administrator.iclub21.bean.talent.MusicActivity"
             android:theme="@android:style/Theme.Translucent" />
         <activity
-            android:name=".bean.artist.ArtistConditionSelectActivity"
+            android:name="com.example.administrator.iclub21.bean.artist.ArtistConditionSelectActivity"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".bean.artist.ArtistSeekActivity" />
-        <activity android:name=".util.ArtistDetailActivity" />
-        <activity android:name=".util.TalendDetailsActivity" />
-        <activity android:name=".util.JobDetailsActivity" />
+        <activity android:name="com.example.administrator.iclub21.bean.artist.ArtistSeekActivity" />
+        <activity android:name="com.example.administrator.iclub21.util.ArtistDetailActivity" />
+        <activity android:name="com.example.administrator.iclub21.util.TalendDetailsActivity" />
+        <activity android:name="com.example.administrator.iclub21.util.JobDetailsActivity" />
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:screenOrientation="portrait"
@@ -180,15 +180,21 @@
                 <data android:scheme="tencent222222" />
             </intent-filter>
         </activity>
-        <activity android:name=".calendar.CalendarActivity" />
-        <activity android:name=".util.ReputationActivity" />
+        <activity android:name="com.example.administrator.iclub21.calendar.CalendarActivity" />
+        <activity android:name="com.example.administrator.iclub21.util.ReputationActivity" />
         <activity
-            android:name=".util.FailureCommentActivity"
+            android:name="com.example.administrator.iclub21.util.FailureCommentActivity"
             android:label="@string/title_activity_failure_comment" >
         </activity>
         <activity
-            android:name=".util.DetailedInformationActivity"
-            android:label="@string/title_activity_detailed_information" >
+            android:name="com.example.administrator.iclub21.util.DetailedInformationActivity"
+            android:label="@string/title_activity_detailed_information" ></activity>
+
+        <!-- 必须注册在微博授权，分享微博时候用到 -->
+        <activity android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
         </activity>
     </application>
 

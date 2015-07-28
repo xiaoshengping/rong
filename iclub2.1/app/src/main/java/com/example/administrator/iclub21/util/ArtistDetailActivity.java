@@ -11,7 +11,6 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.ArtistDetailMusicAdater;
 import com.example.administrator.iclub21.adapter.ArtistDetailVideoAdater;
 import com.example.administrator.iclub21.bean.LayoutSizes;
@@ -25,6 +24,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.sina.weibo.sdk.demo.R;
 
 /**
  * Created by Administrator on 2015/6/18.

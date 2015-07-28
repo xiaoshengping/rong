@@ -16,7 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.adapter.VideoDisplyAdapter;
 import com.example.administrator.iclub21.bean.talent.PicturesshowMoreActivity;
 import com.example.administrator.iclub21.bean.talent.ResumeMovie;
@@ -33,6 +32,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;

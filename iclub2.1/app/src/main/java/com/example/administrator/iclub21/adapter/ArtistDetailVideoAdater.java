@@ -10,9 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.artist.ArtistMovie;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.List;
 

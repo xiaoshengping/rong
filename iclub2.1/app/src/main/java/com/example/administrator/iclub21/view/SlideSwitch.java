@@ -37,7 +37,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-import com.example.administrator.iclub21.R;
+import com.sina.weibo.sdk.demo.R;
 
 
 public class SlideSwitch extends View {

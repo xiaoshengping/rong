@@ -2,7 +2,7 @@ package com.example.administrator.iclub21.bean.recruitment;
 
 import android.content.Context;
 
-import com.example.administrator.iclub21.R;
+import com.sina.weibo.sdk.demo.R;
 
 
 /**

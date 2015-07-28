@@ -11,7 +11,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.InviteMessgaeListValueBean;
 import com.example.administrator.iclub21.bean.MerchantInviteValueBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
@@ -23,6 +22,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.sina.weibo.sdk.demo.R;
 
 public class CooperationCommentActivity extends ActionBarActivity implements RadioGroup.OnCheckedChangeListener,View.OnClickListener {
      //头部
