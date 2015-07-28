@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.lidroid.xutils.BitmapUtils;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.List;
 

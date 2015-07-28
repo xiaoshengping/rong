@@ -8,7 +8,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.example.administrator.iclub21.R;
+import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;
