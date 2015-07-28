@@ -1,6 +1,5 @@
 package com.example.administrator.iclub21.util;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
@@ -153,11 +152,11 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                      // Log.e("makeText",loginValueBean.getState());
                                      if ("success".equals(registerValueBean.getMessage())) {
                                          Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
-                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                         /*Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                          intent.putExtra("uid", registerPhoneEdit.getText().toString());
                                          intent.putExtra("psw", MD5Uutils.MD5(setPswEdit.getText().toString()));
                                          //设置返回数据
-                                         RegisterActivity.this.setResult(RESULT_OK, intent);
+                                         RegisterActivity.this.setResult(RESULT_OK, intent);*/
                                          finish();
                                      } else {
                                          Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_LONG).show();

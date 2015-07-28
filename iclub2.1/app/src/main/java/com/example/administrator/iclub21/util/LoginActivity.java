@@ -142,13 +142,13 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             case R.id.register_tv:
                Intent registerIntent=new Intent(LoginActivity.this,RegisterActivity.class);
                 registerIntent.putExtra("falge","2");
-                startActivityForResult(registerIntent,1);
+                startActivity(registerIntent);
 
                 break;
             case R.id.forget_psw_tv:
                 Intent forgetIntent=new Intent(LoginActivity.this,RegisterActivity.class);
                 forgetIntent.putExtra("falge","3");
-                startActivityForResult(forgetIntent,1);
+                startActivity(forgetIntent);
 
                 break;
         }
@@ -356,8 +356,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                            Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
                             SQLhelper sqLhelper=new SQLhelper(LoginActivity.this);
                             insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(), loginValueBean.getMobile(), loginValueBean.getPersonId());
-
-
                             Intent intent = new Intent();
                             LoginActivity.this.setResult(12, intent);
                         /*结束本Activity*/
