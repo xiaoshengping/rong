@@ -49,7 +49,7 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
     private  HttpUtils httpUtils;
     private List<ResumeValueBean> resumeValueBeans;
     private  ResumeListAdapter resumeListAdapter;
-    private int limit=10;
+    private int offset=0;
 
     public ResumeFragment() {
 
@@ -142,7 +142,7 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
         });
     }
 
-    private void intiResumeListData(int limit) {
+    private void intiResumeListData(int offset) {
          httpUtils=new HttpUtils();
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
@@ -153,7 +153,7 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
 
         }
 
-            String resumeListUrl= AppUtilsUrl.getResumeList(uid,limit);
+            String resumeListUrl= AppUtilsUrl.getResumeList(uid,offset);
             httpUtils.send(HttpRequest.HttpMethod.POST, resumeListUrl, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -205,14 +205,14 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         resumeValueBeans.clear();
-        int limit=10;
-        intiResumeListData(limit);
+        int offset=0;
+        intiResumeListData(offset);
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-        resumeValueBeans.clear();
-        limit++;
-        intiResumeListData(limit);
+
+        offset=offset+10;
+        intiResumeListData(offset);
     }
 }

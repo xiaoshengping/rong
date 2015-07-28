@@ -80,9 +80,9 @@ public class AppUtilsUrl  {
 
     }
     //简历列表
-    public static String getResumeList(String uid,int limit){
+    public static String getResumeList(String uid,int offset){
         //getResumeListByUid.action?uid=13800138000
-        return BaseUrl+"getResumeListByUid.action?"+"uid="+uid+"&offset=0"+"&limit="+limit;
+        return BaseUrl+"getResumeListByUid.action?"+"uid="+uid+"&offset="+offset+"&limit=10";
 
     }
     //公告信息
@@ -113,9 +113,9 @@ public class AppUtilsUrl  {
     }
 
     //招聘历史
-    public static String getRecruitmentHistoryList(String uid,int limit){
+    public static String getRecruitmentHistoryList(String uid,int offset){
         //getHistoryJobList.action
-        return BaseUrl+"getHistoryJobList.action?"+"uid="+uid+"&offset=0"+"&limit="+limit;
+        return BaseUrl+"getHistoryJobList.action?"+"uid="+uid+"&offset="+offset+"&limit=10";
 
     }
 
@@ -169,9 +169,9 @@ public class AppUtilsUrl  {
         return BaseUrl+"inviteListByPerson.action";
 
     }*/
-    public static String getInviteMessage(String uid,String value,int limit){
+    public static String getInviteMessage(String uid,String value,int offset){
         // inviteList.action
-        return BaseUrl+"inviteListByPerson.action?"+"uid="+uid+"&value="+value+"&offset=0"+"&limit="+limit;
+        return BaseUrl+"inviteListByPerson.action?"+"uid="+uid+"&value="+value+"&offset="+offset+"&limit=10";
 
     }
     //接受或者拒绝邀约
@@ -205,9 +205,9 @@ public class AppUtilsUrl  {
 
        }
     //商家邀约列表
-    public static String getMerchantInvite(String uid,String value,int limit){
+    public static String getMerchantInvite(String uid,String value,int offset){
         // inviteListByBusiness.action
-        return BaseUrl+"inviteListByBusiness.action?"+"uid="+uid+"&value="+value+"&offset=0"+"&limit="+limit;
+        return BaseUrl+"inviteListByBusiness.action?"+"uid="+uid+"&value="+value+"&offset="+offset+"&limit=10";
 
     }
 

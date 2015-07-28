@@ -53,7 +53,7 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private InviteMessageListAdapter inviteMessagelistAdapter;
-    private int limit=5;
+    private int offset=0;
     private List<InviteMessgaeListValueBean> inviteMessgaeListValueBeans;
 
     public SuccessfulInviteFragment() {
@@ -85,7 +85,7 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
 
     }
 
-    private void intiData(int limit) {
+    private void intiData(int offset) {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
@@ -98,7 +98,7 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
             requestParams.addBodyParameter("uid",uid);
         }
         requestParams.addBodyParameter("value", "complete");*/
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessage(uid,"complete",limit), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessage(uid,"complete",offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -192,15 +192,15 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         inviteMessgaeListValueBeans.clear();
-        int limit=5;
-        intiData(limit);
+        int offset=0;
+        intiData(offset);
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-        inviteMessgaeListValueBeans.clear();
-        limit++;
-        intiData(limit);
+
+        offset=offset+10;
+        intiData(offset);
 
     }
 }

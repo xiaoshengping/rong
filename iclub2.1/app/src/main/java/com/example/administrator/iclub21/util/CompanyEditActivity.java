@@ -197,69 +197,31 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
         HttpUtils httpUtils=new HttpUtils();
         requestParams.addBodyParameter("uid", "15088138598");
         if (data.equals("name")) {
-                phone=bMerchantValueBean.getBEphone();
-                email=bMerchantValueBean.getBEemail();
-                web=bMerchantValueBean.getBEweb();
-                address=bMerchantValueBean.getBEaddress();
-                name=editCompanyNameEv.getText().toString();
-            requestParams.addBodyParameter("BEaddress",address );
+            name=editCompanyNameEv.getText().toString();
             requestParams.addBodyParameter("BEcompanyName",name);
-            requestParams.addBodyParameter("BEweb", web);
-            requestParams.addBodyParameter("BEphone", phone);
-            requestParams.addBodyParameter("BEemail", email);
 
         }else if (data.equals("phone")){
-            name=bMerchantValueBean.getBEcompanyName();
-            email=bMerchantValueBean.getBEemail();
-            web=bMerchantValueBean.getBEweb();
-            address=bMerchantValueBean.getBEaddress();
             phone=editCompanyPhoneEt.getText().toString();
-            requestParams.addBodyParameter("BEaddress",address );
-            requestParams.addBodyParameter("BEcompanyName",name);
-            requestParams.addBodyParameter("BEweb", web);
             requestParams.addBodyParameter("BEphone", phone);
-            requestParams.addBodyParameter("BEemail", email);
+
 
         }else if (data.equals("email")){
-            name=bMerchantValueBean.getBEcompanyName();
-            phone=bMerchantValueBean.getBEphone();
-            web=bMerchantValueBean.getBEweb();
-            address=bMerchantValueBean.getBEaddress();
             email=editCompanyEmailEt.getText().toString();
-            requestParams.addBodyParameter("BEaddress",address );
-            requestParams.addBodyParameter("BEcompanyName",name);
-            requestParams.addBodyParameter("BEweb", web);
-            requestParams.addBodyParameter("BEphone", phone);
             requestParams.addBodyParameter("BEemail", email);
         }else if (data.equals("http")){
-            name=bMerchantValueBean.getBEcompanyName();
-            phone=bMerchantValueBean.getBEphone();
-            email=bMerchantValueBean.getBEemail();
-            address=bMerchantValueBean.getBEaddress();
             web=editCompanyHttpEt.getText().toString();
-            requestParams.addBodyParameter("BEaddress",address );
-            requestParams.addBodyParameter("BEcompanyName",name);
             requestParams.addBodyParameter("BEweb", web);
-            requestParams.addBodyParameter("BEphone", phone);
-            requestParams.addBodyParameter("BEemail", email);
+
         }else if (data.equals("adress")){
-            name=bMerchantValueBean.getBEcompanyName();
-            phone=bMerchantValueBean.getBEphone();
-            email=bMerchantValueBean.getBEemail();
-            web=bMerchantValueBean.getBEweb();
             address=editCompanyAddressEt.getText().toString();
             requestParams.addBodyParameter("BEaddress",address );
-            requestParams.addBodyParameter("BEcompanyName",name);
-            requestParams.addBodyParameter("BEweb", web);
-            requestParams.addBodyParameter("BEphone", phone);
-            requestParams.addBodyParameter("BEemail", email);
 
         }
 
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getUpdateMerchant(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("responseInfo111111111", responseInfo.result);
+                //Log.e("responseInfo111111111", responseInfo.result);
                 intitbMerchantData();
             }
 

@@ -93,6 +93,13 @@ public class CompanyMessageFragment extends Fragment implements View.OnClickList
 
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        intitData();
+    }
+
     private void intitData() {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();

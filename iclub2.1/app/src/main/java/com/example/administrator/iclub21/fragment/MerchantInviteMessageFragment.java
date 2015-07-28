@@ -47,7 +47,7 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
     private HttpUtils httpUtils;
     private List<MerchantInviteValueBean> merchantInviteValueBeans;
     private MerchantInviteListAdapter inviteMessagelistAdapter;
-    private int limit=10;
+    private int offset=0;
     public MerchantInviteMessageFragment() {
         // Required empty public constructor
     }
@@ -73,7 +73,7 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
 
 
     }
-    private void intiData(int limit) {
+    private void intiData(int offset) {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
@@ -84,7 +84,7 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
         }
 
 
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getMerchantInvite(uid,"note",limit), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getMerchantInvite(uid,"note",offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -139,14 +139,14 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         merchantInviteValueBeans.clear();
-        int limit=10;
-        intiData(limit);
+        int offset=0;
+        intiData(offset);
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-        merchantInviteValueBeans.clear();
-        limit++;
-        intiData(limit);
+
+        offset=offset+10;
+        intiData(offset);
     }
 }

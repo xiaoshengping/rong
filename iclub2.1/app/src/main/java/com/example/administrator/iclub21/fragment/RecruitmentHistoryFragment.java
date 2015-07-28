@@ -53,7 +53,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
     private TextView  recruitmentRetrunTv;
     private List<RecruitmentHistoryValueBean> recruitmentHistoryValueBean;
     private RecruitmentHistoryAdapter recruitmentHistoryAdapter;
-    private int limit=10;
+    private int offset=0;
 
     public RecruitmentHistoryFragment() {
         // Required empty public constructor
@@ -93,7 +93,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), AddRecruitmentActivity.class);
-                intent.putExtra("recruitmentHistoryValueBean", recruitmentHistoryValueBean.get(position));
+                intent.putExtra("recruitmentHistoryValueBean", recruitmentHistoryValueBean.get(position-1));
                 intent.putExtra("falgeData", "RecruitmentHistoryFragment");
                 startActivity(intent);
             }
@@ -113,7 +113,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
 
     }
 
-    private void initRecruitmentHistoryData(int limit) {
+    private void initRecruitmentHistoryData(int offset) {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
@@ -124,7 +124,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
         }
         if (!TextUtils.isEmpty(uid)){
             HttpUtils httpUtils=new HttpUtils();
-            httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRecruitmentHistoryList(uid,limit), new RequestCallBack<String>() {
+            httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRecruitmentHistoryList(uid,offset), new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
                     String result=responseInfo.result;
@@ -195,14 +195,13 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         recruitmentHistoryValueBean.clear();
-        int limit=10;
-        initRecruitmentHistoryData(limit);
+        int offset=0;
+        initRecruitmentHistoryData(offset);
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-        recruitmentHistoryValueBean.clear();
-        limit++;
-        initRecruitmentHistoryData(limit);
+        offset=offset+10;
+        initRecruitmentHistoryData(offset);
     }
 }
