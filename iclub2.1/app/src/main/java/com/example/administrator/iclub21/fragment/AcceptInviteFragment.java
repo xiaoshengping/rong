@@ -89,23 +89,13 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
             uid = cursor.getString(0);
 
         }
-       /* if (!TextUtils.isEmpty(uid)){
-            requestParams.addBodyParameter("uid",uid);
-        }
-        requestParams.addBodyParameter("value", "accept");*/
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessage(uid,"accept",offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 // Log.e("inviteintiData",result);
                 if (!TextUtils.isEmpty(result)) {
-                  /*  ArtistParme<InviteMessgaeListValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
-                    });
-                    if (artistParme.getState().equals("success")) {
-                        List<InviteMessgaeListValueBean> inviteMessgaeListValueBeans = artistParme.getValue();
-                        intiListView(inviteMessgaeListValueBeans);
 
-                    }*/
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
                     accpetListLv.onRefreshComplete();
