@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +32,6 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.sina.weibo.sdk.demo.R;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,34 +69,6 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
 
     }
 
-    private void intiDownload(String dowloadPath) {
-
-        httpUtils.download(AppUtilsUrl.ImageBaseUrl+dowloadPath,getActivity().getCacheDir().getPath(), true, true, new RequestCallBack<File>() {
-
-            @Override
-            public void onStart() {
-                super.onStart();
-            }
-
-            @Override
-            public void onLoading(long total, long current, boolean isUploading) {
-                super.onLoading(total, current, isUploading);
-
-            }
-
-            @Override
-            public void onSuccess(ResponseInfo<File> responseInfo) {
-                responseInfo.result.getPath();
-                Log.e("download",responseInfo.result.getPath());
-            }
-
-            @Override
-            public void onFailure(HttpException e, String s) {
-
-            }
-        });
-
-    }
 
 
     private void intiView(View view) {
@@ -117,9 +87,9 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
         resumeListLv.setOnRefreshListener(this);
         ILoadingLayout loadingLayout = resumeListLv
                 .getLoadingLayoutProxy();
-        loadingLayout.setPullLabel("你可劲拉，拉...");// 刚下拉时，显示的提示
-        loadingLayout.setRefreshingLabel("好嘞，正在刷新...");// 刷新时
-        loadingLayout.setReleaseLabel("你敢放，我就敢刷新...");// 下来达到一定距离时，显示的提示
+        loadingLayout.setPullLabel("加载更多数据...");// 刚下拉时，显示的提示
+        loadingLayout.setRefreshingLabel("正在刷新...");// 刷新时
+        loadingLayout.setReleaseLabel("加载更多数据...");// 下来达到一定距离时，显示的提示
         resumeListLv.setRefreshing();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -129,13 +99,8 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
                 intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
                 intent.putExtra("flage", "ResumeFragment");
                 startActivity(intent);
-                int movieSize = resumeValueBeans.get(position).getResumeMovie().size();
-                if (movieSize != 0 && resumeValueBeans.get(position).getResumeMovie() != null) {
-                    for (int i = 0; i < movieSize; i++) {
-                        intiDownload(resumeValueBeans.get(i).getResumeMovie().get(i).getPath());
-                    }
 
-                }
+
 
 
             }
@@ -152,7 +117,6 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
             uid = cursor.getString(0);
 
         }
-
             String resumeListUrl= AppUtilsUrl.getResumeList(uid,offset);
             httpUtils.send(HttpRequest.HttpMethod.POST, resumeListUrl, new RequestCallBack<String>() {
                 @Override
@@ -211,7 +175,7 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-
+        resumeValueBeans.clear();
         offset=offset+10;
         intiResumeListData(offset);
     }
