@@ -85,7 +85,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     private ToggleButton musicToggleButton;
       @ViewInject(R.id.no_music_tv)
     private TextView noMusicTextView;
-
+    @ViewInject(R.id.show_music_lv)
     private CustomHomeScrollListView showMusicListView;
     //视频
     @ViewInject(R.id.on_video_textview)
@@ -225,6 +225,17 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                ResumeMusicAdapter resumeMusicAdapter=new ResumeMusicAdapter(resumeValueBean.getResumeMusic(),ResumeListParticularActivity.this);
                showMusicListView.setAdapter(resumeMusicAdapter);
                resumeMusicAdapter.notifyDataSetChanged();
+               showMusicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                   @Override
+                   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                       Intent musicIntent = new Intent(Intent.ACTION_VIEW);
+                       Uri musicUri = Uri.parse(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMusic().get(position).getPath());
+                       musicIntent.setDataAndType(musicUri, "audio/mp3");
+                       startActivity(musicIntent);
+                   }
+               });
+
+
            }else {
 
                noMusicTextView.setVisibility(View.VISIBLE);
