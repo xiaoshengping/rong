@@ -6,12 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.R;
 import com.example.administrator.iclub21.bean.talent.ResumeMusic;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.List;
+
+import static com.sina.weibo.sdk.demo.R.id;
+import static com.sina.weibo.sdk.demo.R.layout;
 
 /**
  * Created by xiaoshengping on 2015/7/16.
@@ -26,7 +28,7 @@ public class ResumeMusicAdapter extends AppBaseAdapter<ResumeMusic> {
     @Override
     public View createView(int position, View convertView, ViewGroup parent) {
         if (convertView==null){
-            convertView= LayoutInflater.from(context).inflate(R.layout.resume_music_adapter_layout,null);
+            convertView= LayoutInflater.from(context).inflate(layout.resume_music_adapter_layout,null);
             viewHodle=new ViewHodle(convertView) ;
             convertView.setTag(viewHodle);
 
@@ -51,7 +53,7 @@ public class ResumeMusicAdapter extends AppBaseAdapter<ResumeMusic> {
 
 
     private class  ViewHodle{
-        @ViewInject(R.id.show_music_tv)
+        @ViewInject(id.show_music_tv)
         private TextView showMusicTextView;
 
 

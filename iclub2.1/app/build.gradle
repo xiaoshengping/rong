@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.example.administrator.iclub21"
+        applicationId "com.sina.weibo.sdk.demo"
         minSdkVersion 10
         targetSdkVersion 22
         versionCode 1
