@@ -231,13 +231,15 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 int city = bundle.getInt("City");//地区号
                 String cName = bundle.getString("CityName");//地区名
                 if(city>=0) {
-                    workAddressTv.setText(cName+"（城市编号："+city+"）");
+                    //workAddressTv.setText(cName+"（城市编号："+city+"）");
+                    workAddressTv.setText(cName);
                     job_city_num = city;
                 }
                 int job = bundle.getInt("Position");//职业号
                 String pName = bundle.getString("PositionName");//职业名
                 if(job>=0&&job!=10){
-                    professionClassfitionTv.setText(pName+"（职业编号："+job+"）");
+                    //professionClassfitionTv.setText(pName+"（职业编号："+job+"）");
+                    professionClassfitionTv.setText(pName);
                     job_classfite_num = job;
                 }
                 break;

@@ -127,7 +127,7 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(getActivity(),ResumeListParticularActivity.class);
-                intent.putExtra("resumeValueBeans",merchantInviteValueBeans.get(position).getInviteResume());
+                intent.putExtra("resumeValueBeans",merchantInviteValueBeans.get(position-1).getInviteResume());
                 intent.putExtra("flage","MerchantInviteMessageFragment");
                 startActivity(intent);
             }

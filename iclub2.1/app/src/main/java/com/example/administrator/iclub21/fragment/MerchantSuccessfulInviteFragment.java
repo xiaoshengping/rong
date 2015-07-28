@@ -155,7 +155,7 @@ public class MerchantSuccessfulInviteFragment extends Fragment implements PullTo
         ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), FailureCommentActivity.class);
-                intent.putExtra("MerchantInviteValueBean", (Serializable) merchantInviteValueBeans.get(position));
+                intent.putExtra("MerchantInviteValueBean", (Serializable) merchantInviteValueBeans.get(position-1));
                 intent.putExtra("falgeData", "MerchantSuccessfulInviteFragment");
                 startActivity(intent);
                 dlg.cancel();
@@ -168,7 +168,7 @@ public class MerchantSuccessfulInviteFragment extends Fragment implements PullTo
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), CooperationCommentActivity.class);
-                intent.putExtra("MerchantInviteValueBean", (Serializable) merchantInviteValueBeans.get(position));
+                intent.putExtra("MerchantInviteValueBean", (Serializable) merchantInviteValueBeans.get(position-1));
                 intent.putExtra("falgeData", "MerchantSuccessfulInviteFragment");
                 startActivity(intent);
                 dlg.cancel();
