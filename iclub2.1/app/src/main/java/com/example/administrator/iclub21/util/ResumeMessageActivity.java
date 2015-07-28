@@ -232,8 +232,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     deletePictureImageView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            deletePictureData(imageView,finalI);
 
+                            showPictureGameAlert(imageView, finalI);
                             //Toast.makeText(ResumeMessageActivity.this,"hsdjdskak",Toast.LENGTH_LONG).show();
                         }
                     });
@@ -314,7 +314,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     deleteMusicIv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            deleteMusicData(finalI);
+                            showMusicGameAlert(finalI);
+
                         }
 
 
@@ -333,6 +334,73 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
 
     }
+
+    //删除音乐对话框
+    private void showMusicGameAlert( final int finalI) {
+        final AlertDialog dlg = new AlertDialog.Builder(ResumeMessageActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.shrew_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText("确定要删除音乐？");
+        // 为确认按钮添加事件,执行退出应用操作
+        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
+        ok.setText("确定");
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                deleteMusicData(finalI);
+                dlg.cancel();
+            }
+        });
+
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("取消");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlg.cancel();
+            }
+        });
+    }
+
+
+
+
+    //删除照片对话框
+    private void showPictureGameAlert(final ImageView imageView, final int finalI) {
+        final AlertDialog dlg = new AlertDialog.Builder(ResumeMessageActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.shrew_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText("确定要删除图片？");
+        // 为确认按钮添加事件,执行退出应用操作
+        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
+        ok.setText("确定");
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                deletePictureData(imageView, finalI);
+                dlg.cancel();
+            }
+        });
+
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("取消");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlg.cancel();
+            }
+        });
+    }
+
+
+
+
 
     private void deleteMusicData(int i) {
         requestParams.addBodyParameter("resumeid",resumeValueBean.getResumeid()+"");
