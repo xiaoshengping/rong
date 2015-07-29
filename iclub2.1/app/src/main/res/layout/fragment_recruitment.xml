@@ -15,9 +15,12 @@
             android:orientation="vertical">
 
             <com.handmark.pulltorefresh.library.PullToRefreshListView
+                xmlns:ptr="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/recruitment_listView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:scrollbars="none"
+                ptr:ptrHeaderTextColor="#ffffff"
                 android:layout_weight="1"
                 android:dividerHeight="0dp"
                 />
