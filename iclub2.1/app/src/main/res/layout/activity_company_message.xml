@@ -1,0 +1,211 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/iculd_beijin_icon"
+    tools:context="com.example.administrator.iclub21.fragment.CompanyMessageFragment">
+    <LinearLayout
+        android:id="@+id/company_messaage_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/company_tailt_layout"/>
+        <ImageView
+            android:layout_marginTop="10dp"
+            style="@style/paren_layout_width"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="150dp"
+            android:src="@mipmap/logo" />
+
+        <LinearLayout
+            android:id="@+id/company_name"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="公司名称"
+                android:textColor="@color/whiteOne"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/company_name_tv"
+                android:textColor="@color/white"
+                android:layout_marginLeft="25dp"
+                android:textSize="@dimen/textSize15"
+                android:drawableRight="@mipmap/right_icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/line_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/company_phone"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="电话"
+                android:textColor="@color/whiteOne"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/company_phone_tv"
+                android:textColor="@color/white"
+                android:layout_marginLeft="55dp"
+                android:drawableRight="@mipmap/right_icon"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/line_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/company_email"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Email"
+                android:textColor="@color/whiteOne"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/company_email_tv"
+
+                android:textColor="@color/white"
+                android:layout_marginLeft="47dp"
+                android:drawableRight="@mipmap/right_icon"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/line_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/company_http"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="官网"
+                android:textColor="@color/whiteOne"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/company_http_tv"
+
+                android:textColor="@color/white"
+                android:layout_marginLeft="55dp"
+                android:drawableRight="@mipmap/right_icon"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/line_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/comapny_address"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="地址"
+                android:textColor="@color/whiteOne"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/company_address_tv"
+                android:textColor="@color/white"
+                android:layout_marginLeft="55dp"
+                android:drawableRight="@mipmap/right_icon"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <RadioGroup
+        android:id="@+id/merchant_radio_rg"
+        android:background="#242424"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <RadioButton
+            android:id="@+id/huste_radio_button"
+            android:text="历史招聘"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/resume_radio_button_selector_1"
+            style="@style/paren_radiogrud"
+            />
+        <RadioButton
+            android:text="公司信息"
+            android:checked="true"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/company_radio_button_selector"
+            style="@style/paren_radiogrud"
+            />
+        <RadioButton
+            android:text="邀约详情"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/invite_particular_selector"
+            style="@style/paren_radiogrud"
+            />
+        <RadioButton
+            android:text="消息通知"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/home_color_seletor"
+            android:drawableTop="@drawable/message_radio_button_selector"
+            style="@style/paren_radiogrud"
+            />
+
+    </RadioGroup>
+
+</RelativeLayout>

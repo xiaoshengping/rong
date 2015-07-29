@@ -188,13 +188,18 @@
         </activity>
         <activity
             android:name="com.example.administrator.iclub21.util.DetailedInformationActivity"
-            android:label="@string/title_activity_detailed_information" ></activity>
+            android:label="@string/title_activity_detailed_information" />
 
         <!-- 必须注册在微博授权，分享微博时候用到 -->
-        <activity android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="false" >
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name="com.example.administrator.iclub21.util.CompanyMessageActivity"
+            android:label="@string/title_activity_company_message" >
         </activity>
     </application>
 

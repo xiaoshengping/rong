@@ -148,10 +148,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     Intent intent=new Intent(getActivity(),LoginActivity.class);
                     startActivity(intent);
                 }
-
                 cursor.close();
                 db.close();
-
                 break;
             case R.id.login_cancel:
                 showExitGameAlert();
