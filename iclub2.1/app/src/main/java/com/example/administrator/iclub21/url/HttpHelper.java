@@ -26,7 +26,9 @@ public class HttpHelper {
     public static <T> void baseToUrl(String json, TypeReference<ArtistParme<T>> type, List<T> datas, BaseAdapter adapter) {
         ArtistParme<T> comm = JSONObject.parseObject(json, type);
         if ("success".equals(comm.getState())) {
-            datas.addAll(comm.getValue());
+            if (comm.getValue()!=null){
+                datas.addAll(comm.getValue());
+            }
             adapter.notifyDataSetChanged();
 
         } else {

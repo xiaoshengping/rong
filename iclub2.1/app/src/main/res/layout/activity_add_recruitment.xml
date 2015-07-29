@@ -28,8 +28,8 @@
               android:text="必填"
               android:layout_marginLeft="55dp"
               android:textColor="@color/textColor9a4274"
-              android:textSize="@dimen/textSize15"
-              android:layout_width="wrap_content"
+              android:textSize="@dimen/textSize14"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content" />
       </LinearLayout>
         <ImageView
@@ -116,8 +116,8 @@
             android:text="必填"
             android:layout_marginLeft="54dp"
             android:textColor="@color/textColor9a4274"
-            android:textSize="@dimen/textSize15"
-            android:layout_width="wrap_content"
+            android:textSize="@dimen/textSize14"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
         <ImageView
