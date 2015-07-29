@@ -353,7 +353,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                         });
                         LoginValueBean loginValueBean=  artistParme.getValue();
                         if ("success".equals(artistParme.getState())&&uid.equals(loginValueBean.getUid())){
-                           Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
+                           //Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
                             SQLhelper sqLhelper=new SQLhelper(LoginActivity.this);
                             insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(), loginValueBean.getMobile(), loginValueBean.getPersonId());
                             Intent intent = new Intent();

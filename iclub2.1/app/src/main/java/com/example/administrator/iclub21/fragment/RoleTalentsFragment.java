@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.util.LoginActivity;
+import com.example.administrator.iclub21.util.RoleActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -85,6 +87,8 @@ public class RoleTalentsFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
            switch (v.getId()){
                case R.id.cloess_talents_tv:
+                   Intent intent=new Intent(getActivity(), RoleActivity.class);
+                   startActivity(intent);
                    getActivity().finish();
 
                    break;
@@ -94,20 +98,38 @@ public class RoleTalentsFragment extends Fragment implements View.OnClickListene
                    SQLiteDatabase db = sqLhelper.getWritableDatabase();
                    Cursor cursor = db.query("user", null, null, null, null, null, null);
                    String uid = null;
+                   String state=null;
                    while (cursor.moveToNext()) {
                        uid = cursor.getString(0);
+                       state = cursor.getString(4);
                    }
                    if (!TextUtils.isEmpty(uid)){
                        if (imageUrl==R.mipmap.talents_icon_d){
-                          intiData(uid,"2");
+                           if (state.equals("2")){
+                               MyAppliction.showToast("您已经成为人才角色了!");
+                           }else if (state.equals("3")){
+                               MyAppliction.showToast("您已经成为商家角色了!");
+
+                           }else {
+                               intiData(uid,"2");
+                           }
+
 
                        }else if(imageUrl==R.mipmap.merchantion_icon_d){
-                           intiData(uid,"3");
+                           if (state.equals("2")){
+                               MyAppliction.showToast("您已经成为人才角色了!");
+                           }else if (state.equals("3")){
+                               MyAppliction.showToast("您已经成为商家角色了!");
+
+                           }else {
+                               intiData(uid,"3");
+                           }
+
 
                        }
 
 
-                       getActivity().finish();
+
                    }else {
                        showExitGameAlert();
                    }
@@ -127,7 +149,7 @@ public class RoleTalentsFragment extends Fragment implements View.OnClickListene
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
 
-
+                getActivity().finish();
 
 
             }
