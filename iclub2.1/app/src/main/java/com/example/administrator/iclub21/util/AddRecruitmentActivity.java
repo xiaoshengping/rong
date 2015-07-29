@@ -196,6 +196,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             deleteRecruitmentTv.setVisibility(View.VISIBLE);
             professionClassfitionTv.setText(areaBean.getNumPositionName(this ,recruitmentHistoryValueBean.getJobcategory()));
             workAddressTv.setText(recruitmentHistoryValueBean.getAddress());
+            workAddressTv.setTextColor(getResources().getColor(R.color.white));
+            professionClassfitionTv.setTextColor(getResources().getColor(R.color.white));
             positionEdit.setText(recruitmentHistoryValueBean.getPosition());
             if (!TextUtils.isEmpty(recruitmentHistoryValueBean.getJobRequirements())){
                 experienceRequireTv.setText(recruitmentHistoryValueBean.getJobRequirements());
@@ -240,6 +242,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 if(job>=0&&job!=10){
                     //professionClassfitionTv.setText(pName+"（职业编号："+job+"）");
                     professionClassfitionTv.setText(pName);
+
                     job_classfite_num = job;
                 }
                 break;

@@ -30,7 +30,7 @@ android:orientation="vertical"
           <TextView
 
               style="@style/paren_layout_width"
-              android:text="点击登陆"
+              android:text="点击头像登录"
               android:textSize="@dimen/textSize14"
               android:textColor="@color/white"
               android:id="@+id/mine_name"
