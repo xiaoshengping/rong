@@ -623,6 +623,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             if(searchStatusfalse) {
                 update(getActivity(), citynum, jobnum, sousuo);
             }else {
+                recruitmentListData.clear();
                 initRecruitmentListData(citynum,jobnum,offset);
             }
 //            initRecruitmentListData(citynum,jobnum,"");
@@ -634,12 +635,14 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             if (job!=0) {
                 selected_position.setText(pName);
             }else {
+
                 selected_position.setText("选择职位");
             }
             jobnum = job;
             if(searchStatusfalse) {
                 update(getActivity(), citynum, jobnum, sousuo);
             }else {
+                recruitmentListData.clear();
                 initRecruitmentListData(citynum,jobnum,offset);
             }
         }

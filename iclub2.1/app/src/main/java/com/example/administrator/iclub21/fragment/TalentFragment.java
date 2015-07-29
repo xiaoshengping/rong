@@ -215,6 +215,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                 selected_city.setText("选择城市");
             }
             citynum = city;
+            talentData.clear();
             initTalentData(citynum,jobnum,offset);
 //            update(getActivity(),citynum,jobnum,sousuo);
 //            initRecruitmentListData(citynum,jobnum,"");
@@ -229,6 +230,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                 selected_position.setText("选择职位");
             }
             jobnum = job;
+            talentData.clear();
             initTalentData(citynum, jobnum,offset);
 //            initRecruitmentListData(citynum,jobnum,"");
         }
