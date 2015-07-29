@@ -55,6 +55,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
     private RecruitmentHistoryAdapter recruitmentHistoryAdapter;
     private int offset=0;
 
+
     public RecruitmentHistoryFragment() {
         // Required empty public constructor
     }

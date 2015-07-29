@@ -241,9 +241,9 @@ public class AppUtilsUrl  {
 
 
 
-    public static String getTalentList(int cityid , int jobcategory){
+    public static String getTalentList(int cityid , int jobcategory,int offset){
 
-        return BaseUrl+"getPersonResume.action?cityid="+cityid+"&jobCategory="+jobcategory+"&offset=0&limit=10";
+        return BaseUrl+"getPersonResume.action?cityid="+cityid+"&jobCategory="+jobcategory+"&offset="+offset+"&limit=10";
 
     }
 
