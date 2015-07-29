@@ -225,8 +225,8 @@ public class AppUtilsUrl  {
 //        return BaseUrl+"getJobList_V2_1.action?jobCategory="+jobCategory+"&offset="+offset+"&limit="+limit;
         return BaseUrl+"getJobList_V2_1.action?jobCategory=0&offset=0&limit=5";
     }
-    public static String getRecruitmentList(int cityid ,int jobCategory){//jobCategory(��Ƹ����),offset(�Ӷ�������ʼ) ,limit(һ��ȡ������)
-        return BaseUrl+"getJobList_V2_1.action?cityid="+cityid+"&jobCategory="+jobCategory+"&keyWord=&offset=0&limit=10";
+    public static String getRecruitmentList(int cityid ,int jobCategory,int offset){//jobCategory(��Ƹ����),offset(�Ӷ�������ʼ) ,limit(һ��ȡ������)
+        return BaseUrl+"getJobList_V2_1.action?cityid="+cityid+"&jobCategory="+jobCategory+"&keyWord=&offset="+offset+"&limit=10";
 //        return BaseUrl+"getJobList_V2_1.action?jobCategory=0&offset=0&limit=5";
     }
 

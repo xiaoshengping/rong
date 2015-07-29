@@ -33,8 +33,12 @@ import com.example.administrator.iclub21.bean.recruitment.RecruitmentImageBean;
 import com.example.administrator.iclub21.bean.recruitment.RecruitmentListBean;
 import com.example.administrator.iclub21.bean.recruitment.SlideShowView;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.JobDetailsActivity;
 import com.example.administrator.iclub21.util.SelectedCityOrPositionActivity;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -64,11 +68,12 @@ import java.util.TimerTask;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecruitmentFragment extends Fragment {
+public class RecruitmentFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView> {
     @ViewInject(R.id.v1)
     private View v1;
     @ViewInject(R.id.recruitment_listView)
-    private ListView recruitmentList;
+    //private ListView recruitmentList;
+    private PullToRefreshListView recruitmentList;
     @ViewInject(R.id.recruiment_list_title)
     private LinearLayout recruiment_list_title;
     @ViewInject(R.id.reagment_title_search_ib)
@@ -91,6 +96,8 @@ public class RecruitmentFragment extends Fragment {
     private int jobnum = 0;//城市id
     private AreaBean areaBean = new AreaBean();
 
+    private int offset=0;
+
     private List<RecruitmentListBean> recruitmentListData;
 
 
@@ -106,8 +113,11 @@ public class RecruitmentFragment extends Fragment {
         ViewUtils.inject(this, view);
 
         inti();
+        initListView();
         return view;
     }
+
+
 
     private LayoutInflater mInflater;
     private boolean searchStatusfalse;//搜索状态
@@ -136,7 +146,7 @@ public class RecruitmentFragment extends Fragment {
                 selected_city.setText("选择城市");
                 selected_position.setText("选择职位");
                 reagment_title_tv.setText("娱乐招聘");
-                initRecruitmentListData(0,0);
+                //initRecruitmentListData(0,0,offset);
                 back_b.setVisibility(View.GONE);
 //                initRecruitmentListData(0,0,"");
             }
@@ -301,9 +311,10 @@ public class RecruitmentFragment extends Fragment {
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (getResources().getDimension(R.dimen.ssv_height)));
                         layoutParams.setMargins(0, 0, 0, 0);
                         ssv.setLayoutParams(layoutParams);
-                        recruitmentList.addHeaderView(header);//添加头部
+                        ListView listView=recruitmentList.getRefreshableView();
+                        listView.addHeaderView(header);//添加头部
 //                        initRecruitmentListData(0, 0, "");
-                        initRecruitmentListData(0,0);
+                        //initRecruitmentListData(0,0,offset);
 
                     }
 
@@ -325,6 +336,19 @@ public class RecruitmentFragment extends Fragment {
         progressbar.setVisibility(View.VISIBLE);
         UpdateTextTask updateTextTask = new UpdateTextTask(context,city,job,abc);
         updateTextTask.execute();
+    }
+
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+        recruitmentListData.clear();
+        int offset=0;
+        initRecruitmentListData(citynum, jobnum, offset);
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+        offset=offset+10;
+        initRecruitmentListData(citynum, jobnum, offset);
     }
 
 
@@ -397,16 +421,54 @@ public class RecruitmentFragment extends Fragment {
         }
     }
 
+    private void initListView() {
+        recruitmentListData=new ArrayList<>();
+        recruitmentAdapter = new RecruitmentListAdapter(recruitmentListData, getActivity());
+        recruitmentList.setAdapter(recruitmentAdapter);
+        recruitmentList.setMode(PullToRefreshBase.Mode.BOTH);
+        recruitmentList.setOnRefreshListener(this);
+        ILoadingLayout endLabels  = recruitmentList
+                .getLoadingLayoutProxy(false, true);
+        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout startLabels  = recruitmentList
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        recruitmentList.setRefreshing();
+
+        recruitmentList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), JobDetailsActivity.class);  //方法1
+//                intent.putCharSequenceArrayListExtra("Detail",recruitmentListData);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("Detail",recruitmentListData.get(position-1));
+                intent.putExtras(bundle);
+//                intent.putExtra("Status", areaBean.PROVINCE);
+                startActivity(intent);
+            }
+        });
+
+
+    }
+
+
 
     //获取招聘列表（非搜索）
-    private void initRecruitmentListData(int city, int job) {
+    private void initRecruitmentListData(int city, int job,int offset) {
         HttpUtils httpUtils = new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRecruitmentList(city,job), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRecruitmentList(city,job,offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (result != null) {
-                    ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
+                    HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
+                    }, recruitmentListData, recruitmentAdapter);
+                    recruitmentList.onRefreshComplete();
+                    /*ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
                     });
                     if (recruitmentListBean.getState().equals("success")) {
                         recruitmentListData = recruitmentListBean.getValue();
@@ -427,7 +489,7 @@ public class RecruitmentFragment extends Fragment {
                             }
                         });
 
-                    }
+                    }*/
 
                 }
 
@@ -561,7 +623,7 @@ public class RecruitmentFragment extends Fragment {
             if(searchStatusfalse) {
                 update(getActivity(), citynum, jobnum, sousuo);
             }else {
-                initRecruitmentListData(citynum,jobnum);
+                initRecruitmentListData(citynum,jobnum,offset);
             }
 //            initRecruitmentListData(citynum,jobnum,"");
 
@@ -578,7 +640,7 @@ public class RecruitmentFragment extends Fragment {
             if(searchStatusfalse) {
                 update(getActivity(), citynum, jobnum, sousuo);
             }else {
-                initRecruitmentListData(citynum,jobnum);
+                initRecruitmentListData(citynum,jobnum,offset);
             }
         }
     }
