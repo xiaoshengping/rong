@@ -136,7 +136,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                 Intent intent = new Intent(getActivity(), TalendDetailsActivity.class);  //方法1
 //                intent.putCharSequenceArrayListExtra("Detail",recruitmentListData);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("Detail", talentData.get(position - 1));
+                bundle.putSerializable("Detail", talentData.get(position-2));
                 intent.putExtras(bundle);
 //                intent.putExtra("Status", areaBean.PROVINCE);
                 startActivity(intent);

@@ -404,7 +404,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 Intent intent = new Intent(getActivity(), JobDetailsActivity.class);  //方法1
 //                intent.putCharSequenceArrayListExtra("Detail",recruitmentListData);
                 Bundle bundle=new Bundle();
-                bundle.putSerializable("Detail",recruitmentListData.get(position-1));
+                bundle.putSerializable("Detail",recruitmentListData.get(position-2));
                 intent.putExtras(bundle);
 //                intent.putExtra("Status", areaBean.PROVINCE);
                 startActivity(intent);

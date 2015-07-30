@@ -140,6 +140,11 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     }
 
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+    }
 
     private void intiData() {
         Intent intent=getIntent();

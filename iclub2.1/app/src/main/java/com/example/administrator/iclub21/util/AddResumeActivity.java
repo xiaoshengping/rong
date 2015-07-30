@@ -611,8 +611,6 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                                     intiMusicData(saveValueBean.getResumeid(), userMusicPath);
 
                                 }
-                                Intent intent=new Intent(AddResumeActivity.this,ResumeActivity.class);
-                                startActivity(intent);
                                 finish();
 
 

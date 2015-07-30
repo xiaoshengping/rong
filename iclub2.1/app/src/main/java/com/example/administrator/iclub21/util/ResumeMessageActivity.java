@@ -298,7 +298,10 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     musicTextView.setCompoundDrawables(null, null, drawable, null);
                     musicTextView.setTextColor(Color.WHITE);
-                    musicTextView.setCompoundDrawablePadding(400);
+                    musicTextView.setBackgroundResource(R.drawable.rounded_textview);
+                    musicTextView.setPadding(20, 20, 20, 20);
+                    musicTextView.setHeight(100);
+                    musicTextView.setWidth(800);
                     deleteMusicIv = new ImageView(ResumeMessageActivity.this);
                     RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     lp1.addRule(RelativeLayout.CENTER_HORIZONTAL);
@@ -917,6 +920,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                             musicPath = c.getString(0);
                             File musicFile = new File(musicPath);
                            String name= musicFile.getName();
+                            RelativeLayout relativeLayout =new RelativeLayout(ResumeMessageActivity.this);
                             TextView musicTv=new TextView(ResumeMessageActivity.this);
                             musicTv.setText(name);
                             musicTv.setTextColor(Color.WHITE);
@@ -924,8 +928,12 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                             /// 这一步必须要做,否则不会显示.
                             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                             musicTv.setCompoundDrawables(null, null, drawable, null);
-                            musicTv.setCompoundDrawablePadding(300);
-                            musicWordWrapView.addView(musicTv);
+                            musicTv.setBackgroundResource(R.drawable.rounded_textview);
+                            musicTv.setPadding(20, 20, 30, 20);
+                            musicTv.setHeight(100);
+                            musicTv.setWidth(800);
+                            relativeLayout.addView(musicTv);
+                            musicWordWrapView.addView(relativeLayout);
 
                         }
 

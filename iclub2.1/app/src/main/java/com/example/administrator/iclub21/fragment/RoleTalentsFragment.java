@@ -111,7 +111,9 @@ public class RoleTalentsFragment extends Fragment implements View.OnClickListene
                                MyAppliction.showToast("您已经成为商家角色了!");
 
                            }else {
-                               intiData(uid,"2");
+                               intiData(uid, "2");
+
+
                            }
 
 
@@ -133,7 +135,8 @@ public class RoleTalentsFragment extends Fragment implements View.OnClickListene
                    }else {
                        showExitGameAlert();
                    }
-
+                   cursor.close();
+                   db.close();
                    break;
 
            }
