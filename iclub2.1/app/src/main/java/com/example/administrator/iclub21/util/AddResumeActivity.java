@@ -352,7 +352,6 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 break;
             case R.id.oneself_known_layout:
                 Intent infoIntent = new Intent(AddResumeActivity.this, ResumeMessageActivity.class);
-
                 if (resumeValueBean!=null){
                     infoIntent.putExtra("caseData", "oneself");
                     infoIntent.putExtra("resumeInfoData",resumeValueBean);

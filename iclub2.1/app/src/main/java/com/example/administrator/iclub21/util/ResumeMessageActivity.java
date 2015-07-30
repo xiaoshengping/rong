@@ -17,7 +17,6 @@ import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,7 +27,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.administrator.iclub21.bean.ResumeValueBean;
@@ -408,7 +406,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteMusic(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                   Log.e("deleteMusicData",responseInfo.result) ;
+
                 relativeMusicLayout.removeView(musicTextView);
                 deleteMusicIv.setVisibility(View.GONE);
             }
@@ -426,12 +424,12 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     private void deletePictureData(final ImageView imageView,int i) {
         requestParams.addBodyParameter("resumeid",resumeValueBean.getResumeid()+"");
         requestParams.addBodyParameter("id",resumeValueBean.getResumePicture().get(i).getResumepictureid()+"");
-        Log.e("Resumepictureid", resumeValueBean.getResumePicture().get(i).getResumepictureid() + "");
+
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeletePicture(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                String result= responseInfo.result;
-                Log.e("deletePictureData", result);
+
                 relativePictureLayout.removeView(imageView);
                 deletePictureImageView.setVisibility(View.GONE);
 
@@ -465,7 +463,30 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                         alert("你还没有输入内容");
                     }
 
+                }else if (data.equals("oneselfNo")){
+                    String userInfo=  resumeInfo.getText().toString();
+                    if (!TextUtils.isEmpty(userInfo)){
+                        intent.putExtra("userInfo", userInfo);
+                        setResult(7, intent);
+                        finish();
+
+                    }else {
+                        intent.putExtra("userInfo", "");
+                        setResult(7, intent);
+                        alert("你还没有输入内容");
+                    }
                 }else if (data.equals("work")){
+                    String userWork=resumeWork.getText().toString();
+                    if (!TextUtils.isEmpty(userWork)) {
+                        intent.putExtra("userWork", userWork);
+                        setResult(8, intent);
+                        finish();
+                    }else {
+                        intent.putExtra("userWork", "");
+                        setResult(8, intent);
+                        alert("你还没有输入内容");
+                    }
+                }else if (data.equals("workNo")){
                     String userWork=resumeWork.getText().toString();
                     if (!TextUtils.isEmpty(userWork)) {
                         intent.putExtra("userWork", userWork);
@@ -478,6 +499,19 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     }
                 }else if (data.equals("picture")){
                    userPicturePath=screenshotFile.getAbsolutePath();
+                    if (!TextUtils.isEmpty(userPicturePath)) {
+                        intent.putExtra("userPicturePath", userPicturePath);
+                        setResult(9, intent);
+                        finish();
+                    }else {
+                        intent.putExtra("userPicturePath", "");
+                        setResult(9, intent);
+                        alert("你还没有选择图片文件");
+                    }
+
+
+                }else if (data.equals("pictureNo")){
+                    userPicturePath=screenshotFile.getAbsolutePath();
                     if (!TextUtils.isEmpty(userPicturePath)) {
                         intent.putExtra("userPicturePath", userPicturePath);
                         setResult(9, intent);
@@ -503,7 +537,34 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     }
 
 
+                }else if (data.equals("videoNo")){
+
+                    //String userVideoPath=videoFile.getAbsolutePath();
+                    if (!TextUtils.isEmpty(videoPath)) {
+                        intent.putExtra("userVideoPath", videoPath);
+                        setResult(10, intent);
+                        finish();
+                    }else {
+                        intent.putExtra("userVideoPath", "");
+                        setResult(10, intent);
+                        alert("你还没有选择视频文件");
+                    }
+
+
                 }else if(data.equals("music")){
+
+                    //String usermusicPath=musicFile.getAbsolutePath();
+                    if (!TextUtils.isEmpty(musicPath)) {
+                        intent.putExtra("usermusicPath", musicPath);
+                        setResult(11, intent);
+                        finish();
+                    }else {
+                        intent.putExtra("usermusicPath", "");
+                        setResult(11, intent);
+                        alert("你还没有选择音乐文件");
+                    }
+
+                }else if(data.equals("musicNo")){
 
                     //String usermusicPath=musicFile.getAbsolutePath();
                     if (!TextUtils.isEmpty(musicPath)) {
@@ -808,8 +869,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                         return;
                     } else {
                         // 视频捕获并保存到指定的fileUri意图
-                        Toast.makeText(this, "Video saved to:\n" + data.getData(),
-                                Toast.LENGTH_LONG).show();
+                        //Toast.makeText(this, "Video saved to:\n" + data.getData(),
+                             //   Toast.LENGTH_LONG).show();
                         Cursor c = getContentResolver().query(uri,
                                 new String[]{MediaStore.MediaColumns.DATA},
                                 null, null, null);
@@ -845,8 +906,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                         return;
                     } else {
                         // 音频捕获并保存到指定的fileUri意图
-                        Toast.makeText(this, "Music saved to:\n" + data.getData(),
-                                Toast.LENGTH_LONG).show();
+                       // Toast.makeText(this, "Music saved to:\n" + data.getData(),
+                              //  Toast.LENGTH_LONG).show();
                         Cursor c = getContentResolver().query(uri,
                                 new String[] { MediaStore.MediaColumns.DATA },
                                 null, null, null);
