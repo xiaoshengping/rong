@@ -112,6 +112,14 @@ public class AppUtilsUrl  {
 
     }
 
+    //删除简历
+    public static String getDeleteResume(){
+        //deleteResume.action
+        return BaseUrl+"deleteResume.action";
+
+    }
+
+
     //招聘历史
     public static String getRecruitmentHistoryList(String uid,int offset){
         //getHistoryJobList.action
