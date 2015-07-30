@@ -239,7 +239,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                        startActivity(musicIntent);
                    }
                });
-
+               showMusicListView.setVisibility(View.VISIBLE);
 
            }else {
 
@@ -385,7 +385,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
 
 
                 }else {
-                   // showMusicListView.setVisibility(View.GONE);
+                   showMusicListView.setVisibility(View.GONE);
                     noMusicTextView.setVisibility(View.GONE);
                 }
                 break;

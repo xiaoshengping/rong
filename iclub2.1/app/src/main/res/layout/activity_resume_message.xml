@@ -160,6 +160,11 @@
 
 
     </LinearLayout>
+    <ScrollView
+        android:layout_marginBottom="30dp"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/add_video_layout"
         android:visibility="gone"
@@ -246,7 +251,7 @@
                 android:layout_height="160dp" />
             <TextView
                 android:id="@+id/action_video_bt"
-                android:text="预览"
+                android:background="@mipmap/video_button_icon"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -257,8 +262,9 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.example.administrator.iclub21.view.WordWrapView
+            <com.example.administrator.iclub21.view.CustomHomeScrollListView
                 android:id="@+id/video_view_wordwrap"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -266,7 +272,7 @@
 
         </LinearLayout>
     </LinearLayout>
-
+    </ScrollView>
     <LinearLayout
         android:id="@+id/add_music_layout"
        android:visibility="gone"

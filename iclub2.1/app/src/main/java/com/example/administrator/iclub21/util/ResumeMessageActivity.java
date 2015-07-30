@@ -22,6 +22,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,10 +30,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.example.administrator.iclub21.adapter.ResumeDeleteVideoAdapter;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.http.ImageUtil;
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.view.CustomHomeScrollListView;
 import com.example.administrator.iclub21.view.WordWrapView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -111,7 +114,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     private TextView actionVideo;
     @ViewInject(R.id.thumbnail_Iv)
     private  ImageView videoThumbnail;
-    private File videoFile;
+    @ViewInject(R.id.video_view_wordwrap)
+    private CustomHomeScrollListView videowordListView;
     @ViewInject(R.id.video_xshi_layout)
     private RelativeLayout showVideoImage;
     private  String videoPath=null;
@@ -133,7 +137,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     private  ResumeValueBean resumeValueBean;
     private Display display;
     private WordWrapView wordWrapView;
-    private WordWrapView videowordWrapView;
+    //private WordWrapView videowordWrapView;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private  RelativeLayout relativeMusicLayout;
@@ -158,7 +162,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     }
     private void initView() {
         wordWrapView = (WordWrapView) this.findViewById(R.id.view_wordwrap);
-       videowordWrapView=(WordWrapView) this.findViewById(R.id.video_view_wordwrap);
+       //videowordWrapView=(WordWrapView) this.findViewById(R.id.video_view_wordwrap);
         messsageReturnTv.setOnClickListener(this);
         messageSaveTv.setOnClickListener(this);
         addUplaodImageLayout.setOnClickListener(this);
@@ -253,14 +257,14 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
             //Log.e("00000000",resumeValueBean.getResumeMovie().get(0).getPath());
             if (resumeValueBean.getResumeMovie()!=null&&resumeValueBean.getResumeMovie().size()!=0) {
 
-               for (int i = 0; i < resumeValueBean.getResumeMovie().size(); i++) {
+               /*for (int i = 0; i < resumeValueBean.getResumeMovie().size(); i++) {
                    RelativeLayout videoRelativeLayout = new RelativeLayout(ResumeMessageActivity.this);
                     final ImageView videoImageView = new ImageView(ResumeMessageActivity.this);
                     videoImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    videoImageView.setMaxWidth(400);
+                    videoImageView.setMaxWidth(800);
                     videoImageView.setMaxHeight(400);
                     ImageView deleteVideoIv = new ImageView(ResumeMessageActivity.this);
-                   RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     lp1.addRule(RelativeLayout.CENTER_HORIZONTAL);
                     lp1.addRule(RelativeLayout.CENTER_VERTICAL);
                     deleteVideoIv.setBackgroundResource(R.mipmap.delete_button_icon);
@@ -269,12 +273,27 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     videoRelativeLayout.addView(deleteVideoIv);
                     videoRelativeLayout.addView(videoImageView);
                     videowordWrapView.addView(videoRelativeLayout);
-                    videowordWrapView.setVisibility(View.VISIBLE);
                     String imagpath = AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(i).getPath();
                     Bitmap bitmap = createVideoThumbnail(imagpath, 10, 10);
                     videoImageView.setImageBitmap(bitmap);
 
-                }
+                }*/
+                ResumeDeleteVideoAdapter resumeVideoAdapter=new ResumeDeleteVideoAdapter(resumeValueBean.getResumeMovie(),ResumeMessageActivity.this);
+                videowordListView.setAdapter(resumeVideoAdapter);
+                resumeVideoAdapter.notifyDataSetChanged();
+                videowordListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        videowordListView.reclaimViews(view.getFocusables(position));
+
+                    }
+                });
+
+
+
+
+
             }
 
 
