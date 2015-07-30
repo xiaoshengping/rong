@@ -26,6 +26,7 @@ public class ResumeValueBean implements Serializable {
     private String resumeEmail;// email
     private String resumeMobile;// mobile
     private Integer resumeJobCategory;// 职位类别
+    private String resumeJobCategoryName;// 职位类别名称
     private String resumeJobName;// 职位名称
     private Integer resumeAge;// 年龄
     private String resumeInfo;// 个人信息
@@ -41,6 +42,14 @@ public class ResumeValueBean implements Serializable {
     private List<ResumePicture> resumePicture;// 图片介绍
     private List<ResumeMovie> resumeMovie;// 视频展示
     private List<ResumeMusic> resumeMusic;// 音乐作品
+
+    public String getResumeJobCategoryName() {
+        return resumeJobCategoryName;
+    }
+
+    public void setResumeJobCategoryName(String resumeJobCategoryName) {
+        this.resumeJobCategoryName = resumeJobCategoryName;
+    }
 
     public Integer getResumeid() {
         return resumeid;

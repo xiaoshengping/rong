@@ -166,7 +166,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         resumeViewCountTv.setText("浏览量:"+resumeValueBean.getResumeViewCount());
         resumeAgeTv.setText(resumeValueBean.getResumeAge()+"");
         resumeWorkPlaceTv.setText(resumeValueBean.getResumeWorkPlace());
-        resumeJobNameTv.setText(resumeValueBean.getResumeJobName());
+        resumeJobNameTv.setText(resumeValueBean.getResumeJobCategoryName());
         resumeInfoTv.setText(resumeValueBean.getResumeInfo());
         resumeWorkExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
         resumeQqTv.setText(resumeValueBean.getResumeQq());
