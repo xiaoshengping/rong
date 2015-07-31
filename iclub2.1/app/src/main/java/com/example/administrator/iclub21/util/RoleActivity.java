@@ -34,11 +34,6 @@ public class RoleActivity extends ActionBarActivity implements View.OnClickListe
 
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        finish();
-    }
 
     @Override
     public void onClick(View v) {

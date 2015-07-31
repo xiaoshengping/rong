@@ -14,18 +14,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.handmark.pulltorefresh.library.PullToRefreshListView
-                xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            <ListView
                 android:id="@+id/recruitment_listView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scrollbars="none"
-                ptr:ptrHeaderTextColor="#ffffff"
                 android:layout_weight="1"
                 android:dividerHeight="0dp"
-                />
+                >
 
-
+            </ListView>
 
         </LinearLayout>
 
@@ -49,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="娱乐招聘"
+                android:text="演艺招聘"
                 android:layout_centerInParent="true"
                 android:textColor="#DEDDE2"
                 android:textSize="@dimen/title_text_h"
@@ -66,17 +63,16 @@
                 android:layout_alignParentRight="true"
                 android:scaleType="fitCenter"
                 android:padding="12dp"/>
-            <Button
-                android:id="@+id/back_b"
+            <ImageButton
+                android:id="@+id/back_ib"
                 android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:text="ㄑ"
-                android:textSize="@dimen/title_text_h"
                 android:layout_marginLeft="0dp"
-                android:textColor="#DEDDE2"
-                android:background="#00ffffff"/>
+                android:src="@mipmap/return_icon"
+                android:background="#00ffffff"
+                android:visibility="visible"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/progressbar"

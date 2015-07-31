@@ -83,7 +83,7 @@
     </LinearLayout>
     <LinearLayout
         android:gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -95,7 +95,7 @@
           <TextView
               android:layout_weight="1"
               android:text="用其他方式登录"
-              android:textSize="@dimen/textSize14"
+              android:textSize="@dimen/textSize16"
               android:textColor="@color/white"
               android:layout_width="match_parent"
               android:layout_height="wrap_content" />

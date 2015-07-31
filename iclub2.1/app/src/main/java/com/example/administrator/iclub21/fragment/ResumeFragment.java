@@ -69,6 +69,12 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().finish();
+    }
+
     private void intiView(View view) {
         View addView=LayoutInflater.from(getActivity()).inflate(R.layout.add_resume_layout,null);
         addResumeTv= (TextView) addView.findViewById(R.id.add_resume_tv);

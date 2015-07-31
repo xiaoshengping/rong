@@ -73,15 +73,13 @@
             android:onClick="send"
             android:background="#00ffffff"
             android:visibility="invisible"/>
-        <Button
+        <ImageButton
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:text="ㄑ"
-            android:textSize="26sp"
             android:layout_marginLeft="0dp"
-            android:textColor="#DEDDE2"
+            android:src="@mipmap/return_icon"
             android:onClick="back"
             android:background="#00ffffff"/>
 

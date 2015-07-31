@@ -12,18 +12,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.adapter.TalentListAdapter;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.bean.recruitment.AreaBean;
 import com.example.administrator.iclub21.bean.talent.TalentValueBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
-import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.SelectedCityOrPositionActivity;
 import com.example.administrator.iclub21.util.TalendDetailsActivity;
-import com.handmark.pulltorefresh.library.ILoadingLayout;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -33,15 +30,14 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.sina.weibo.sdk.demo.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView> {
+public class TalentFragment extends Fragment {
     @ViewInject(R.id.talent_listView)
-    private PullToRefreshListView talentList;
+          private ListView talentList;
 
     private Button selected_city;
     private Button selected_position;
@@ -49,10 +45,8 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
     private int citynum = 0;//城市id
     private int jobnum = 0;//城市id
 
-    private List<TalentValueBean> talentData;
-    private TalentListAdapter talentAdapter;
-    private int offset=0;
-    private ListView listView;
+    List<TalentValueBean> talentData;
+
 
     public TalentFragment() {
         // Required empty public constructor
@@ -66,7 +60,6 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
         View view=inflater.inflate(R.layout.fragment_talent, container, false);
         ViewUtils.inject(this, view);
         inti();
-        intiListView();
         return view;
     }
 
@@ -105,63 +98,25 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
 
 
         });
-        listView=talentList.getRefreshableView();
-        listView.addHeaderView(header);//添加头部
+
+        talentList.addHeaderView(header);//添加头部
         //初始化
-
-
-    }
-
-    private void intiListView() {
-        talentData=new ArrayList<>();
-        talentAdapter = new TalentListAdapter(talentData, getActivity());
-        talentList.setAdapter(talentAdapter);
-        talentList.setMode(PullToRefreshBase.Mode.BOTH);
-        talentList.setOnRefreshListener(this);
-        ILoadingLayout endLabels  = talentList
-                .getLoadingLayoutProxy(false, true);
-        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
-        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
-        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
-        ILoadingLayout startLabels  = talentList
-                .getLoadingLayoutProxy(true, false);
-        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
-        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
-        startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
-        talentList.setRefreshing();
-
-        talentList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), TalendDetailsActivity.class);  //方法1
-//                intent.putCharSequenceArrayListExtra("Detail",recruitmentListData);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Detail", talentData.get(position-2));
-                intent.putExtras(bundle);
-//                intent.putExtra("Status", areaBean.PROVINCE);
-                startActivity(intent);
-            }
-        });
+        initTalentData(0, 0);
 
 
     }
 
 
-    private void initTalentData(int city , int jobcategory,int offset) {
+
+    private void initTalentData(int city , int jobcategory) {
         HttpUtils httpUtils=new HttpUtils();
 
-      httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getTalentList(city, jobcategory,offset), new RequestCallBack<String>() {
+      httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getTalentList(city, jobcategory), new RequestCallBack<String>() {
           @Override
           public void onSuccess(ResponseInfo<String> responseInfo) {
               String result = responseInfo.result;
               if (result != null) {
-                  HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<TalentValueBean>>() {
-                  }, talentData, talentAdapter);
-                  talentList.onRefreshComplete();
-
-
-
-                 /* ArtistParme<TalentValueBean> talentBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<TalentValueBean>>() {
+                  ArtistParme<TalentValueBean> talentBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<TalentValueBean>>() {
                   });
                   if (talentBean.getState().equals("success")) {
                       talentData = talentBean.getValue();
@@ -182,7 +137,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                           }
                       });
 
-                  }*/
+                  }
 
               }
 
@@ -215,8 +170,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                 selected_city.setText("选择城市");
             }
             citynum = city;
-            talentData.clear();
-            initTalentData(citynum,jobnum,offset);
+            initTalentData(citynum,jobnum);
 //            update(getActivity(),citynum,jobnum,sousuo);
 //            initRecruitmentListData(citynum,jobnum,"");
 
@@ -230,25 +184,10 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                 selected_position.setText("选择职位");
             }
             jobnum = job;
-            talentData.clear();
-            initTalentData(citynum, jobnum,offset);
+            initTalentData(citynum, jobnum);
 //            initRecruitmentListData(citynum,jobnum,"");
         }
     }
 
 
-    @Override
-    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-        talentData.clear();
-        int offset=0;
-        initTalentData(citynum, jobnum,offset);
-    }
-
-    @Override
-    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-        offset=offset+10;
-        initTalentData(citynum, jobnum,offset);
-
-
-    }
 }

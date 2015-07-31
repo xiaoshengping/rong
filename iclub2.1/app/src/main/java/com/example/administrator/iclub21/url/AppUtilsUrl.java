@@ -112,14 +112,6 @@ public class AppUtilsUrl  {
 
     }
 
-    //删除简历
-    public static String getDeleteResume(){
-        //deleteResume.action
-        return BaseUrl+"deleteResume.action";
-
-    }
-
-
     //招聘历史
     public static String getRecruitmentHistoryList(String uid,int offset){
         //getHistoryJobList.action
@@ -233,8 +225,8 @@ public class AppUtilsUrl  {
 //        return BaseUrl+"getJobList_V2_1.action?jobCategory="+jobCategory+"&offset="+offset+"&limit="+limit;
         return BaseUrl+"getJobList_V2_1.action?jobCategory=0&offset=0&limit=5";
     }
-    public static String getRecruitmentList(int cityid ,int jobCategory,int offset){//jobCategory(��Ƹ����),offset(�Ӷ�������ʼ) ,limit(һ��ȡ������)
-        return BaseUrl+"getJobList_V2_1.action?cityid="+cityid+"&jobCategory="+jobCategory+"&keyWord=&offset="+offset+"&limit=10";
+    public static String getRecruitmentList(int cityid ,int jobCategory){//jobCategory(��Ƹ����),offset(�Ӷ�������ʼ) ,limit(һ��ȡ������)
+        return BaseUrl+"getJobList_V2_1.action?cityid="+cityid+"&jobCategory="+jobCategory+"&keyWord=&offset=0&limit=10";
 //        return BaseUrl+"getJobList_V2_1.action?jobCategory=0&offset=0&limit=5";
     }
 
@@ -249,9 +241,9 @@ public class AppUtilsUrl  {
 
 
 
-    public static String getTalentList(int cityid , int jobcategory,int offset){
+    public static String getTalentList(int cityid , int jobcategory){
 
-        return BaseUrl+"getPersonResume.action?cityid="+cityid+"&jobCategory="+jobcategory+"&offset="+offset+"&limit=10";
+        return BaseUrl+"getPersonResume.action?cityid="+cityid+"&jobCategory="+jobcategory+"&offset=0&limit=10";
 
     }
 

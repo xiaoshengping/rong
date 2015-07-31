@@ -1,11 +1,9 @@
 package com.example.administrator.iclub21.util;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -71,7 +69,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
         commitTv.setOnClickListener(this);
         captchaBtton.setOnClickListener(this);
         httpUtils=new HttpUtils();
-        data=getIntent().getStringExtra("falge");
+        String data=getIntent().getStringExtra("falge");
         time = new TimeCount(60000, 1000);//构造CountDownTimer对象
         if (data.equals("2")){
             registerTitleTv.setText("注册");
@@ -91,9 +89,9 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                 break;
             case R.id.register_commit_tv:
                if (data.equals("2")){
-                   intiRegisterData(AppUtilsUrl.getRegisterData(),"注册成功，您可以登录了!");
+                   intiRegisterData(AppUtilsUrl.getRegisterData());
                }else if (data.equals("3")){
-                   intiRegisterData(AppUtilsUrl.getForgetData(),"密码已找回，您可以登录了!");
+                   intiRegisterData(AppUtilsUrl.getForgetData());
                }
 
                 break;
@@ -128,7 +126,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
     }
 
-    private void intiRegisterData(String url, final String text) {
+    private void intiRegisterData(String url) {
 
        String psw= MD5Uutils.MD5(setPswEdit.getText().toString());
        String  verifypsw=  MD5Uutils.MD5(verifyPswEdit.getText().toString());
@@ -146,20 +144,21 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                              @Override
                              public void onSuccess(ResponseInfo<String> responseInfo) {
                                  String rerult = responseInfo.result;
+                                 Log.e("intiData", rerult);
                                  if (rerult != null) {
+
                                      ParmeBean<RegisterValueBean> artistParme = JSONObject.parseObject(rerult, new TypeReference<ParmeBean<RegisterValueBean>>() {
                                      });
                                      RegisterValueBean registerValueBean = artistParme.getValue();
                                      // Log.e("makeText",loginValueBean.getState());
                                      if ("success".equals(registerValueBean.getMessage())) {
-                                         //Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
-                                         /*Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                         Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
+                                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                          intent.putExtra("uid", registerPhoneEdit.getText().toString());
                                          intent.putExtra("psw", MD5Uutils.MD5(setPswEdit.getText().toString()));
                                          //设置返回数据
-                                         RegisterActivity.this.setResult(RESULT_OK, intent);*/
-                                         alert(text);
-
+                                         RegisterActivity.this.setResult(RESULT_OK, intent);
+                                         finish();
                                      } else {
                                          Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_LONG).show();
 
@@ -192,16 +191,6 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
         }
 
 
-    }
-    private void alert(String text) {
-        Dialog dialog = new AlertDialog.Builder(this).setTitle("提示")
-                .setMessage(text)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                }).create();
-        dialog.show();
     }
     class TimeCount extends CountDownTimer {
         public TimeCount(long millisInFuture, long countDownInterval) {

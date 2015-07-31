@@ -34,13 +34,12 @@
         <item name="android:orientation">vertical</item>
     </style>
     <!-- radiogrud-->
-    <style name="paren_radiogrud" parent="paren_layout_match">
+    <style name="paren_radiogrud" parent="paren_layout_width">
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
         <item name="android:drawablePadding">3dp</item>
     </style>
-
     <!-- image-->
     <style name="image_paren">
         <item name="android:scaleType">fitXY</item>

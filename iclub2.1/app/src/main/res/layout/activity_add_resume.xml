@@ -415,20 +415,7 @@
 
 
             </LinearLayout>
-               <TextView
-                   android:visibility="gone"
-                   android:text="删除简历"
-                   android:gravity="center"
-                   android:textColor="@color/white"
-                   android:textSize="@dimen/textSize15"
-                   android:id="@+id/delete_resume_tv"
-                   android:layout_marginTop="10dp"
-                   android:layout_marginLeft="30dp"
-                   android:layout_marginRight="30dp"
-                   android:layout_marginBottom="30dp"
-                   android:background="@mipmap/delete_icon_button"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content" />
+
 
         </LinearLayout>
 

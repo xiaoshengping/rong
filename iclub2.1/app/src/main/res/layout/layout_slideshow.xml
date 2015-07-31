@@ -22,7 +22,7 @@
     android:id="@+id/v_dot1"
     android:layout_width="8dp"
     android:layout_height="8dp"
-    android:background="@mipmap/girl_icon"
+    android:background="#00ffffff"
     android:visibility="gone"/>
 
 <View
@@ -30,7 +30,7 @@
     android:layout_width="8dp"
     android:layout_height="8dp"
     android:layout_marginLeft="5dp"
-    android:background="@mipmap/man_icon"
+    android:background="#00ffffff"
     android:visibility="gone"/>
 
 <View
@@ -38,7 +38,7 @@
     android:layout_width="8dp"
     android:layout_height="8dp"
     android:layout_marginLeft="5dp"
-    android:background="@mipmap/man_icon"
+    android:background="#00ffffff"
     android:visibility="gone"/>
 
 <View
@@ -46,7 +46,7 @@
     android:layout_width="8dp"
     android:layout_height="8dp"
     android:layout_marginLeft="5dp"
-    android:background="@mipmap/man_icon"
+    android:background="#00ffffff"
     android:visibility="gone"/>
 
 <View
@@ -54,35 +54,35 @@
     android:layout_width="8dp"
     android:layout_height="8dp"
     android:layout_marginLeft="5dp"
-    android:background="@mipmap/man_icon"
+    android:background="#00ffffff"
     android:visibility="gone"/>
     <View
         android:id="@+id/v_dot6"
         android:layout_width="8dp"
         android:layout_height="8dp"
         android:layout_marginLeft="5dp"
-        android:background="@mipmap/man_icon"
+        android:background="#00ffffff"
         android:visibility="gone"/>
     <View
         android:id="@+id/v_dot7"
         android:layout_width="8dp"
         android:layout_height="8dp"
         android:layout_marginLeft="5dp"
-        android:background="@mipmap/man_icon"
+        android:background="#00ffffff"
         android:visibility="gone"/>
     <View
         android:id="@+id/v_dot8"
         android:layout_width="8dp"
         android:layout_height="8dp"
         android:layout_marginLeft="5dp"
-        android:background="@mipmap/man_icon"
+        android:background="#00ffffff"
         android:visibility="gone"/>
     <View
         android:id="@+id/v_dot9"
         android:layout_width="8dp"
         android:layout_height="8dp"
         android:layout_marginLeft="5dp"
-        android:background="@mipmap/man_icon"
+        android:background="#00ffffff"
         android:visibility="gone"/>
 
     </LinearLayout>
