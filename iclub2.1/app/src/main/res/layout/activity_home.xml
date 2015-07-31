@@ -3,13 +3,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.administrator.iclub21.util.HomeActivity">
 
+
+
     <RadioGroup
         android:id="@+id/iclub_home_rg"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#242424"
         android:gravity="center"
+        android:background="#242424"
         android:layout_alignParentBottom="true"
         >
         <RadioButton
@@ -38,7 +40,7 @@
             />
         <RadioButton
             android:button="@null"
-            android:text="演艺招聘"
+            android:text="娱乐招聘"
             android:layout_weight="1"
             android:textSize="@dimen/textSize12"
             android:gravity="center"
@@ -48,7 +50,7 @@
 
             />
         <RadioButton
-            android:button="@null"
+            android:button="@color/textColor242424"
             android:text="我的"
             android:gravity="center"
             android:textSize="@dimen/textSize12"
@@ -67,8 +69,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/iclub_home_rg"
         android:layout_alignParentTop="true"
-        android:id="@+id/home_layout"></LinearLayout>
+        android:id="@+id/home_layout"
+        android:layout_above="@+id/iclub_home_rg"></LinearLayout>
 
 </RelativeLayout>

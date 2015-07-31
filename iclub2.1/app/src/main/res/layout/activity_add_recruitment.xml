@@ -27,9 +27,9 @@
               android:id="@+id/profession_classification_tv"
               android:text="必填"
               android:layout_marginLeft="55dp"
-              android:textColor="@color/textColorc979a8"
-              android:textSize="@dimen/textSize15"
-              android:layout_width="wrap_content"
+              android:textColor="@color/textColor9a4274"
+              android:textSize="@dimen/textSize14"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content" />
       </LinearLayout>
         <ImageView
@@ -115,9 +115,9 @@
             android:id="@+id/work_address_tv"
             android:text="必填"
             android:layout_marginLeft="54dp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize15"
-            android:layout_width="wrap_content"
+            android:textColor="@color/textColor9a4274"
+            android:textSize="@dimen/textSize14"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
         <ImageView

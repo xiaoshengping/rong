@@ -10,10 +10,13 @@
 
 
 
-        <ListView
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/talent_listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scrollbars="none"
+            ptr:ptrHeaderTextColor="#ffffff"
             android:divider="#00ffffff"
             android:dividerHeight="2dp"/>
 

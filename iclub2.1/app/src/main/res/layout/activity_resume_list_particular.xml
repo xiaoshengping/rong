@@ -598,7 +598,7 @@
                       <TextView
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:text="职位"
+                          android:text="职位类别"
                           android:textSize="@dimen/textSize12"
                           android:textColor="#8E99C3"/>
                       <TextView
@@ -985,6 +985,7 @@
                   <com.example.administrator.iclub21.view.CustomHomeScrollListView
                       android:id="@+id/show_music_lv"
                       android:layout_marginTop="5dp"
+                      android:visibility="gone"
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"/>
               </LinearLayout>

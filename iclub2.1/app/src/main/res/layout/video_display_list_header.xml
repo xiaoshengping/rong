@@ -16,8 +16,8 @@
                     android:id="@+id/talen_back_iv"
                     android:layout_width="match_parent"
                     android:layout_height="230dp"
-                    android:src="@mipmap/resume_background_icon"
-                    android:scaleType="center"
+                    android:src="@mipmap/taback"
+                    android:scaleType="fitXY"
                     />
 
                 <!--<com.example.administrator.iclub21.bean.talent.CircleImageView
@@ -152,7 +152,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="职位类别"
+                            android:text="职位"
                             android:textSize="13sp"
                             android:textColor="#8E99C3"/>
                         <TextView

@@ -353,7 +353,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <ListView
+        <com.example.administrator.iclub21.view.CustomHomeScrollListView
             android:id="@+id/comment_listview"
             android:dividerHeight="3dp"
             android:layout_width="match_parent"

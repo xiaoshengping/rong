@@ -20,13 +20,15 @@
             android:padding="10dp"
             android:layout_centerInParent="true"/>
 
-        <ImageButton
+        <Button
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
+            android:text="ㄑ"
+            android:textSize="@dimen/title_text_h"
             android:layout_marginLeft="0dp"
-            android:src="@mipmap/return_icon"
+            android:textColor="#DEDDE2"
             android:onClick="back"
             android:background="#00ffffff"/>
 

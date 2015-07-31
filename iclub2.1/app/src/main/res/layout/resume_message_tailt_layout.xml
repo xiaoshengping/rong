@@ -23,7 +23,7 @@
         android:id="@+id/message_save_tv"
         android:layout_marginTop="15dp"
         android:text="保存"
-        android:textSize="@dimen/textSize16"
+        android:textSize="@dimen/textSize15"
         android:textColor="@color/white"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
