@@ -40,7 +40,7 @@
             />
         <RadioButton
             android:button="@null"
-            android:text="娱乐招聘"
+            android:text="演艺招聘"
             android:layout_weight="1"
             android:textSize="@dimen/textSize12"
             android:gravity="center"

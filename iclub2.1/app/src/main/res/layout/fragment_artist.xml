@@ -91,6 +91,22 @@
             </LinearLayout>
 
         </ScrollView>
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/londing_tip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textSize="15sp"
+            android:textColor="#A53FFE"
+            android:text="加载失败，请检查网络后。\n点击刷新界面"/>
     </LinearLayout>
     <RelativeLayout
         android:id="@+id/reagment_title_rl"
@@ -117,16 +133,14 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:scaleType="center"/>
-        <Button
-            android:id="@+id/back_b"
+        <ImageButton
+            android:id="@+id/back_ib"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:text="ㄑ"
-            android:textSize="@dimen/title_text_h"
             android:layout_marginLeft="0dp"
-            android:textColor="#DEDDE2"
+            android:src="@mipmap/return_icon"
             android:background="#00ffffff"
             android:visibility="gone"/>
     </RelativeLayout>

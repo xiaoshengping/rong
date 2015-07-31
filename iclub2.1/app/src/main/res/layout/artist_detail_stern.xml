@@ -106,7 +106,17 @@
             android:layout_height="@dimen/artist_detail_wire"
             android:background="@color/artist_detail_colors"/>
     </LinearLayout>
+    <TextView
+        android:id="@+id/contact_information_tips_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="(登录后成为招聘商家才能看到人才联系方式)"
+        android:textSize="15sp"
+        android:textColor="#A53FFE"/>
     <RelativeLayout
+        android:id="@+id/artist_contactinformation_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingRight="15dp"

@@ -12,7 +12,7 @@ import android.view.ViewConfiguration;
 
 import java.util.List;
 
-public class CalendarCard extends View {  
+public class CalendarCard extends View {
   
     private static final int TOTAL_COL = 7; // 7列  
     private static final int TOTAL_ROW = 6; // 6行  
@@ -38,12 +38,7 @@ public class CalendarCard extends View {
     private List<Day> list = null;
     private CalendarActivity ca = new CalendarActivity();
     private String colos;
-    
-    
-    
-    
-    
-  
+
     /** 
      * 单元格点击的回调接口 
      *  

@@ -89,7 +89,7 @@
                     android:id="@+id/workpay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="薪    金:"
+                    android:text="薪    金："
                     android:textSize="15sp"
                     android:textColor="#b0c5ec"
                     android:gravity="center"
@@ -108,7 +108,7 @@
                     android:id="@+id/companyName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="公司名称:"
+                    android:text="公司名称："
                     android:textSize="15sp"
                     android:layout_below="@+id/workpay_tv"
                     android:layout_marginTop="12dp"
@@ -127,7 +127,7 @@
                     android:id="@+id/workplace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="工作地点:"
+                    android:text="工作地点："
                     android:textSize="15sp"
                     android:layout_below="@+id/companyName_tv"
                     android:layout_marginTop="12dp"
@@ -147,7 +147,7 @@
                     android:id="@+id/recruitingNumbers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="工作时间:"
+                    android:text="工作时间："
                     android:textSize="15sp"
                     android:layout_below="@+id/workplace_tv"
                     android:layout_marginTop="12dp"
@@ -174,7 +174,7 @@
                     android:id="@+id/jobRequirements"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="经验要求"
+                    android:text="职位描述"
                     android:textSize="16sp"
                     android:textColor="#b0c5ec"/>
                 <TextView
@@ -366,15 +366,13 @@
                 android:textColor="#00DEDDE2"
                 android:onClick="send"
                 android:background="#00ffffff"/>
-            <Button
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:text="ㄑ"
-                android:textSize="@dimen/title_text_h"
                 android:layout_marginLeft="0dp"
-                android:textColor="#DEDDE2"
+                android:src="@mipmap/return_icon"
                 android:onClick="back"
                 android:background="#00ffffff"/>
 

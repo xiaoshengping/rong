@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -84,8 +85,8 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
     private Button selected_position;
     @ViewInject(R.id.reagment_title_tv)
     private TextView reagment_title_tv;
-    @ViewInject(R.id.back_b)
-    private Button back_b;
+    @ViewInject(R.id.back_ib)
+    private ImageButton back_ib;
     @ViewInject(R.id.progressbar)
     private RelativeLayout progressbar;
 
@@ -117,8 +118,6 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
         return view;
     }
 
-
-
     private LayoutInflater mInflater;
     private boolean searchStatusfalse;//搜索状态
 
@@ -126,7 +125,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
         initRecruitmentImageData();
 
-        back_b.setVisibility(View.GONE);
+        back_ib.setVisibility(View.GONE);
 
         //搜索
         reagment_title_search_ib.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +135,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 dialog();
             }
         });
-        back_b.setOnClickListener(new View.OnClickListener() {
+        back_ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 searchStatusfalse = false;
@@ -145,9 +144,9 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 sousuo = "";
                 selected_city.setText("选择城市");
                 selected_position.setText("选择职位");
-                reagment_title_tv.setText("娱乐招聘");
+                reagment_title_tv.setText("演艺招聘");
                 //initRecruitmentListData(0,0,offset);
-                back_b.setVisibility(View.GONE);
+                back_ib.setVisibility(View.GONE);
 //                initRecruitmentListData(0,0,"");
             }
         });
@@ -227,9 +226,9 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
                 if (arg1 == EditorInfo.IME_ACTION_UNSPECIFIED) {
 
-                    back_b.setVisibility(View.VISIBLE);
+                    back_ib.setVisibility(View.VISIBLE);
                     sousuo = srarchBoxDialog.getEt().getText().toString();
-                    reagment_title_tv.setText("搜索结果：(" + sousuo + ")");
+                    reagment_title_tv.setText(sousuo);
 //                initRecruitmentListData(citynum, jobnum, sousuo);
                     citynum = 0;
                     jobnum = 0;
@@ -398,6 +397,10 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             recruitmentList.setAdapter(recruitmentAdapter);
             recruitmentAdapter.notifyDataSetChanged();
 
+            if(recruitmentListData.size()==0){
+                Toast.makeText(getActivity(), "暂时还没有相关数据", Toast.LENGTH_LONG).show();
+            }
+
             recruitmentList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -408,6 +411,8 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 intent.putExtras(bundle);
 //                intent.putExtra("Status", areaBean.PROVINCE);
                 startActivity(intent);
+
+
             }
             });
         }

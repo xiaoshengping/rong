@@ -22,11 +22,18 @@ public class SelectedCityOrPositionAdapter extends BaseAdapter{
     private LayoutInflater mInflater;
     private int selected;
     private String cityArea;
+    private boolean ba = false;
 
     public SelectedCityOrPositionAdapter(Context context, int sel) {
         this.mInflater = LayoutInflater.from(context);
         mContext = context;
         selected = sel;
+    }
+    public SelectedCityOrPositionAdapter(Context context, int sel,boolean b) {
+        this.mInflater = LayoutInflater.from(context);
+        mContext = context;
+        selected = sel;
+        ba=b;
     }
     public SelectedCityOrPositionAdapter(Context context, int sel, String str) {
         this.mInflater = LayoutInflater.from(context);
@@ -88,6 +95,11 @@ public class SelectedCityOrPositionAdapter extends BaseAdapter{
             viewHodle.position_ll.setVisibility(View.GONE);
             String s = areaBean.getProvince(position,1);
             viewHodle.province_tv.setText(s);
+            if(ba){
+                if(position==0||position==1) {
+                    viewHodle.province_ll.setVisibility(View.GONE);
+                }
+            }
         }else if(selected == areaBean.CITY){
             viewHodle.province_ll.setVisibility(View.GONE);
             viewHodle.city_ll.setVisibility(View.VISIBLE);
