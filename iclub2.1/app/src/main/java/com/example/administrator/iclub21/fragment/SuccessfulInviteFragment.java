@@ -104,13 +104,6 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
                 String result = responseInfo.result;
                 // Log.e("inviteintiData",result);
                 if (!TextUtils.isEmpty(result)) {
-                   /* ArtistParme<InviteMessgaeListValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
-                    });
-                    if (artistParme.getState().equals("success")) {
-                        inviteMessgaeListValueBeans = artistParme.getValue();
-                        intiListView(inviteMessgaeListValueBeans);
-
-                    }*/
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
                     inviteSuccessfulListLv.onRefreshComplete();
@@ -167,7 +160,7 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
         ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), FailureCommentActivity.class);
-                intent.putExtra("inviteMessgaeListValueBeans", (Serializable) inviteMessgaeListValueBeans.get(position));
+                intent.putExtra("inviteMessgaeListValueBeans", (Serializable) inviteMessgaeListValueBeans.get(position-1));
                 intent.putExtra("falgeData", "SuccessfulInviteFragment");
                 startActivity(intent);
                 dlg.cancel();
@@ -180,7 +173,7 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), CooperationCommentActivity.class);
-                intent.putExtra("inviteMessgaeListValueBeans", (Serializable) inviteMessgaeListValueBeans.get(position));
+                intent.putExtra("inviteMessgaeListValueBeans", (Serializable) inviteMessgaeListValueBeans.get(position-1));
                 intent.putExtra("falgeData","SuccessfulInviteFragment");
                 startActivity(intent);
                 dlg.cancel();

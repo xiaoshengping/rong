@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -143,30 +142,19 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     cancel.setVisibility(View.VISIBLE);
                     MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + imageIcon, headTv, MyAppliction.RoundedOptions);
                     mineName.setText(name);
-                    Log.e("personid", personid);
+                    MyAppliction.showToast("您已经登录了!");
                 }else {
                     cancel.setVisibility(View.GONE);
                     Intent intent=new Intent(getActivity(),LoginActivity.class);
                     startActivity(intent);
                 }
-
                 cursor.close();
                 db.close();
-
                 break;
             case R.id.login_cancel:
                 showExitGameAlert();
                 break;
             case  R.id.mine_role_layout:
-               /* SQLhelper sqLhelper=new SQLhelper(getActivity());
-                SQLiteDatabase db= sqLhelper.getWritableDatabase();
-                Cursor cursor=db.query("user", null, null, null, null, null, null);
-                String states=null;
-                while (cursor.moveToNext()) {
-                   states = cursor.getString(3);
-
-                }*/
-
                 if (TextUtils.isEmpty(states)||states.equals("1")){
                     Intent intentRole = new Intent(getActivity(), RoleActivity.class);
                     startActivity(intentRole);

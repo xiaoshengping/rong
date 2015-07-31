@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +18,11 @@ import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.adapter.RecruitmentHistoryAdapter;
 import com.example.administrator.iclub21.bean.RecruitmentHistoryValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.AddRecruitmentActivity;
+import com.example.administrator.iclub21.util.CompanyMessageActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -55,6 +55,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
     private RecruitmentHistoryAdapter recruitmentHistoryAdapter;
     private int offset=0;
 
+
     public RecruitmentHistoryFragment() {
         // Required empty public constructor
     }
@@ -83,11 +84,16 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
         recruitmentHistoryLv.setAdapter(recruitmentHistoryAdapter);
         recruitmentHistoryLv.setMode(PullToRefreshBase.Mode.BOTH);
         recruitmentHistoryLv.setOnRefreshListener(this);
-        ILoadingLayout loadingLayout = recruitmentHistoryLv
-                .getLoadingLayoutProxy();
-        loadingLayout.setPullLabel("你可劲拉，拉...");// 刚下拉时，显示的提示
-        loadingLayout.setRefreshingLabel("好嘞，正在刷新...");// 刷新时
-        loadingLayout.setReleaseLabel("你敢放，我就敢刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout endLabels  = recruitmentHistoryLv
+                .getLoadingLayoutProxy(false, true);
+        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout startLabels  = recruitmentHistoryLv
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
         recruitmentHistoryLv.setRefreshing();
         recruitmentHistoryLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -163,20 +169,19 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.save_text:
-                if (recruitmentHistoryValueBean!=null)
+
+                if (TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getCompanyName())||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getPhone())||
+                TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getEmail())||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getWeb())
+                ||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getAddress())
+                        )
                 {
+                    MyAppliction.showToast("先完善公司资料才能添加招聘信息");
+                 Intent intent =new Intent(getActivity(),CompanyMessageActivity.class)   ;
+                   startActivity(intent);
+                }else {
                     Intent intent=new Intent(getActivity(), AddRecruitmentActivity.class);
                     intent.putExtra("falgeData","");
                     startActivity(intent);
-
-                }else {
-                    FragmentManager fragmentManager=getFragmentManager();
-                    FragmentTransaction ft= fragmentManager.beginTransaction();
-                    CompanyMessageFragment companyMessageFragment=new CompanyMessageFragment();
-                    //ft.add(R.id.merchant_fragment_layout,companyMessageFragment);
-                    ft.hide(new RecruitmentHistoryFragment());
-                    ft.show(companyMessageFragment);
-                    ft.commit();
 
 
                 }
