@@ -28,7 +28,6 @@ public class SelectedCityOrPositionActivity extends Activity {
     private SelectedCityOrPositionAdapter scAdaper;
     //    private int selscte = 1 ;//1、省 ；2、城
     private int status;
-    private int company=-1;
     private AreaBean areaBean = new AreaBean();
 
     @Override
@@ -42,8 +41,6 @@ public class SelectedCityOrPositionActivity extends Activity {
 //
         init();
     }
-
-    private String yv="";
 
     private void init() {
 
@@ -60,14 +57,12 @@ public class SelectedCityOrPositionActivity extends Activity {
 
         Bundle bundle = getIntent().getExtras();
         status = bundle.getInt("Status");
-        company = bundle.getInt("Company");
-        if(company==0){
-            initProvince(true);
-        }else if(status==areaBean.PROVINCE) {
+        if(status==areaBean.PROVINCE) {
             initProvince();
         }else if(status==areaBean.POSITION){
             initPosition();
         }
+
         //item点击事件
         selecte_city_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -76,12 +71,8 @@ public class SelectedCityOrPositionActivity extends Activity {
                 if (position > 0) {
                     if (status == areaBean.PROVINCE) {
                         if (areaBean.getsCityCount(areaBean.getProvince(position - 1, 2)) != 1) {
-                            yv = areaBean.getProvince(position-1,1);
                             status = areaBean.CITY;
                             initCity(areaBean.getProvince(position - 1, 2));
-                            if(company==0){
-
-                            }
                         } else {
                             Intent intent = new Intent();
                             intent.putExtra("City", areaBean.getCityNum(0));
@@ -98,7 +89,6 @@ public class SelectedCityOrPositionActivity extends Activity {
                         intent.putExtra("City", areaBean.getCityNum(position - 1));
                         intent.putExtra("Position", -1);
                         intent.putExtra("CityName", areaBean.getCityName(position - 1));
-                        intent.putExtra("PROVINCE",yv);
                         /*给上一个Activity返回结果*/
                         SelectedCityOrPositionActivity.this.setResult(12, intent);
 //
@@ -147,17 +137,6 @@ public class SelectedCityOrPositionActivity extends Activity {
         status=areaBean.PROVINCE;
 //        selscte = 1;
         scAdaper = new SelectedCityOrPositionAdapter(this,status);
-        selecte_city_lv.setAdapter(scAdaper);
-        scAdaper.notifyDataSetChanged();
-
-
-    }
-    //初始化省份
-    private void initProvince(boolean b) {
-        title_name_tv.setText("选择省份");
-        status=areaBean.PROVINCE;
-//        selscte = 1;
-        scAdaper = new SelectedCityOrPositionAdapter(this,status,b);
         selecte_city_lv.setAdapter(scAdaper);
         scAdaper.notifyDataSetChanged();
 

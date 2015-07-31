@@ -2,17 +2,12 @@ package com.example.administrator.iclub21.util;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -53,14 +48,9 @@ public class ArtistDetailActivity extends Activity implements View.OnClickListen
     private TextView helpline_tv;
     private TextView emsil_tv;
     private ScrollView scrollView;
-    private TextView contact_information_tips_tv;
-    private RelativeLayout artist_contactinformation_rl;
-    private ImageView sex_iv;
 //    private SelectedCityOrPositionAdapter adAdater;
 
     ArtistListBean artistParme;
-    private boolean register = false;//登录状态
-    private String states = null;//用户类型
 
     private int MUSIC = 1;
     private int VIDEO = 2;
@@ -89,9 +79,6 @@ public class ArtistDetailActivity extends Activity implements View.OnClickListen
         helpline_tv = (TextView) findViewById(R.id.helpline_tv);
         emsil_tv = (TextView) findViewById(R.id.emsil_tv);
         scrollView = (ScrollView)findViewById(R.id.scrollView);
-        contact_information_tips_tv = (TextView)findViewById(R.id.contact_information_tips_tv);
-        artist_contactinformation_rl = (RelativeLayout)findViewById(R.id.artist_contactinformation_rl);
-        sex_iv = (ImageView)findViewById(R.id.sex_iv);
 
         music_tv.setOnClickListener(this);
         video_tv.setOnClickListener(this);
@@ -99,24 +86,6 @@ public class ArtistDetailActivity extends Activity implements View.OnClickListen
     }
 
     private void init(){
-
-        //获取登录状态
-        SQLhelper sqLhelper=new SQLhelper(this);
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
-        states=null;
-        while (cursor.moveToNext()) {
-            states = cursor.getString(4);
-
-        }
-        if (TextUtils.isEmpty(states)||states.equals("1")){
-            register = false;
-        }else if(states.equals("2")){
-            register = true;
-        }else if(states.equals("3")){
-            register = true;
-        }
-
         binding();
         BitmapUtils bitmapUtils=new BitmapUtils(this);
         artistParme = (ArtistListBean) getIntent().getParcelableExtra("Detail");
@@ -127,11 +96,6 @@ public class ArtistDetailActivity extends Activity implements View.OnClickListen
 //        types_of_profession_tv.setText(artistParme.get);
 //        district_tv.setText(artistParme.get);
         name_tv.setText(artistParme.getName());
-        if(artistParme.getSex()==0){
-            sex_iv.setImageResource(R.mipmap.man_icon);
-        }else {
-            sex_iv.setImageResource(R.mipmap.girl_icon);
-        }
         page_view_tv.setText(artistParme.getViewCount()+"");
         essential_information_tv.setText(artistParme.getInfo());
         if(artistParme.getEndorse().equals("")){}else {
@@ -139,13 +103,6 @@ public class ArtistDetailActivity extends Activity implements View.OnClickListen
         }
         if(artistParme.getShows().equals("")){}else {
             appear_tv.setText(artistParme.getShows());
-        }
-        if(register) {
-            artist_contactinformation_rl.setVisibility(View.VISIBLE);
-            contact_information_tips_tv.setVisibility(View.GONE);
-        }else {
-            artist_contactinformation_rl.setVisibility(View.GONE);
-            contact_information_tips_tv.setVisibility(View.VISIBLE);
         }
         company_tv.setText(artistParme.getPerson().getBEcompanyName());
         qq_tv.setText(artistParme.getPerson().getBEqq());
@@ -230,8 +187,7 @@ public class ArtistDetailActivity extends Activity implements View.OnClickListen
                 initArtistList(VIDEO);
                 break;
             case R.id.helpline_tv:
-                Intent intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + artistParme.getPerson().getBEphone()));
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent=new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + artistParme.getPerson().getBEphone()));
                 startActivity(intent);
                 break;
             default:

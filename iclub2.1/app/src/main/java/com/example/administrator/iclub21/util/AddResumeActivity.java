@@ -133,6 +133,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private RadioButton boyRadioButton;
     @ViewInject(R.id.girl_radio_button)
     private RadioButton girlRadioButton;
+    @ViewInject(R.id.delete_resume_tv)
+    private TextView deleteResumeTv;
 
 
     private   String states=null;
@@ -219,6 +221,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         addResumeReturnTv.setOnClickListener(this);
         addResumeSaveTv.setOnClickListener(this);
         sexRadioGroup.setOnCheckedChangeListener(this);
+        deleteResumeTv.setOnClickListener(this);
         //获取系统时间
         Calendar calendar = Calendar.getInstance();
         year1 = calendar.get(Calendar.YEAR);
@@ -264,7 +267,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             workExpexteText.setText("亲，请填写工作经历哦(必填)");
             resumeAgeTv.setText("必填");
         }
-
+        if (resumeNuber.equals("1111")){
+            deleteResumeTv.setVisibility(View.VISIBLE);
+        }
 
 
 
@@ -352,7 +357,6 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 break;
             case R.id.oneself_known_layout:
                 Intent infoIntent = new Intent(AddResumeActivity.this, ResumeMessageActivity.class);
-
                 if (resumeValueBean!=null){
                     infoIntent.putExtra("caseData", "oneself");
                     infoIntent.putExtra("resumeInfoData",resumeValueBean);
@@ -455,8 +459,34 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 intentSchedule.putExtras(bundle);
                 startActivity(intentSchedule);
                 break;
+            case R.id.delete_resume_tv:
+                deleteResumeData();
+                break;
 
         }
+    }
+
+    private void deleteResumeData() {
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("resumeid",resumeValueBean.getResumeid()+"");
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteResume(),requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                     finish();
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                       Log.e("00000",s);
+            }
+        });
+
+
+
+
+
+
     }
 
 
@@ -612,8 +642,6 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                                     intiMusicData(saveValueBean.getResumeid(), userMusicPath);
 
                                 }
-                                Intent intent=new Intent(AddResumeActivity.this,ResumeActivity.class);
-                                startActivity(intent);
                                 finish();
 
 
@@ -629,7 +657,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                         Log.e("onFailure", s);
                     }
                 });
+                //deleteResumeTv.setVisibility(View.GONE);
             }else if (resumeNuber.equals("1111")){
+
                 intiCompileData();
 
             }

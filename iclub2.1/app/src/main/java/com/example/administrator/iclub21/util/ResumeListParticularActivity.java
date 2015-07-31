@@ -2,8 +2,6 @@ package com.example.administrator.iclub21.util;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
@@ -20,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.example.administrator.iclub21.adapter.ResumeMusicAdapter;
 import com.example.administrator.iclub21.adapter.ResumeVideoAdapter;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.bean.talent.CircleImageView;
@@ -27,6 +26,7 @@ import com.example.administrator.iclub21.bean.talent.PicturesshowMoreActivity;
 import com.example.administrator.iclub21.bean.talent.SpaceImageDetailActivity;
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.view.CustomHomeScrollListView;
 import com.example.administrator.iclub21.view.WordWrapView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -85,13 +85,9 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     private ToggleButton musicToggleButton;
       @ViewInject(R.id.no_music_tv)
     private TextView noMusicTextView;
-
-    private WordWrapView showMusicWordWrapView;
+    @ViewInject(R.id.show_music_lv)
+    private CustomHomeScrollListView showMusicListView;
     //视频
-   /* @ViewInject(R.id.show_video_button_tv)
-    private TextView showVideoTextView;
-    @ViewInject(R.id.show_video_imageView)
-    private ImageView showVideoImage;*/
     @ViewInject(R.id.on_video_textview)
     private TextView noShowViewTv;
     @ViewInject(R.id.video_togglButton)
@@ -113,7 +109,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     }
     private void intiView() {
         wordWrapView = (WordWrapView) this.findViewById(R.id.view_wordwrap);
-        showMusicWordWrapView=(WordWrapView) this.findViewById(R.id.show_music_tv);
+       // showMusicWordWrapView=(WordWrapView) this.findViewById(R.id.show_music_tv);
         returnListTv.setOnClickListener(this);
         compileListTv.setOnClickListener(this);
         musicToggleButton.setOnCheckedChangeListener(this);
@@ -144,6 +140,11 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     }
 
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+    }
 
     private void intiData() {
         Intent intent=getIntent();
@@ -165,7 +166,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         resumeViewCountTv.setText("浏览量:"+resumeValueBean.getResumeViewCount());
         resumeAgeTv.setText(resumeValueBean.getResumeAge()+"");
         resumeWorkPlaceTv.setText(resumeValueBean.getResumeWorkPlace());
-        resumeJobNameTv.setText(resumeValueBean.getResumeJobName());
+        resumeJobNameTv.setText(resumeValueBean.getResumeJobCategoryName());
         resumeInfoTv.setText(resumeValueBean.getResumeInfo());
         resumeWorkExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
         resumeQqTv.setText(resumeValueBean.getResumeQq());
@@ -203,7 +204,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         }
 
            if (resumeValueBean.getResumeMusic()!=null&&resumeValueBean.getResumeMusic().size()!=0){
-               for (int j = 0; j < resumeValueBean.getResumeMusic().size(); j++) {
+               /*for (int j = 0; j < resumeValueBean.getResumeMusic().size(); j++) {
                    TextView musicTextView=new TextView(ResumeListParticularActivity.this);
                    musicTextView.setText(resumeValueBean.getResumeMusic().get(j).getTitle());
                    musicTextView.setTextColor(Color.WHITE);
@@ -225,7 +226,20 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                        }
                    });
 
-               }
+               }*/
+               ResumeMusicAdapter resumeMusicAdapter=new ResumeMusicAdapter(resumeValueBean.getResumeMusic(),ResumeListParticularActivity.this);
+               showMusicListView.setAdapter(resumeMusicAdapter);
+               resumeMusicAdapter.notifyDataSetChanged();
+               showMusicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                   @Override
+                   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                       Intent musicIntent = new Intent(Intent.ACTION_VIEW);
+                       Uri musicUri = Uri.parse(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMusic().get(position).getPath());
+                       musicIntent.setDataAndType(musicUri, "audio/mp3");
+                       startActivity(musicIntent);
+                   }
+               });
+               showMusicListView.setVisibility(View.VISIBLE);
 
            }else {
 
@@ -364,14 +378,14 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
 
                 if (isChecked){
                     if (resumeValueBean.getResumeMusic()!=null&&resumeValueBean.getResumeMusic().size()!=0){
-                        showMusicWordWrapView.setVisibility(View.VISIBLE);
+                        showMusicListView.setVisibility(View.VISIBLE);
                     }else {
                         noMusicTextView.setVisibility(View.VISIBLE);
                     }
 
 
                 }else {
-                    showMusicWordWrapView.setVisibility(View.GONE);
+                   showMusicListView.setVisibility(View.GONE);
                     noMusicTextView.setVisibility(View.GONE);
                 }
                 break;
