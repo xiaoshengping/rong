@@ -172,7 +172,9 @@ public class ReputationActivity extends Activity {
                             adapter = new ReputationAdapter(ReputationActivity.this,commentDate);
                             reputation_list.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
-                        reputation_tipe_tv.setTextColor(0x00000000);
+                        if(commentDate.size()!=0) {
+                            reputation_tipe_tv.setTextColor(0x00000000);
+                        }
 //                        }
 
                     }
