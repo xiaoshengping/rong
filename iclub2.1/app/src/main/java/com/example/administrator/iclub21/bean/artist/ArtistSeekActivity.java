@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -140,9 +139,6 @@ public class ArtistSeekActivity extends Activity{
                 adapter=new ArtistListAdapter(artistParme.getValue(),ArtistSeekActivity.this);
                 artistGridView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-                if(artistParme.getValue().size()==0){
-                    Toast.makeText(ArtistSeekActivity.this, "暂时还没有相关数据", Toast.LENGTH_LONG).show();
-                }
 
 
                 artistGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -158,7 +154,6 @@ public class ArtistSeekActivity extends Activity{
                         bundle.putParcelable("Detail", artistParme.getValue().get(position));
                         intent.putExtras(bundle);
                         startActivity(intent);
-
                     }
                 });
 
