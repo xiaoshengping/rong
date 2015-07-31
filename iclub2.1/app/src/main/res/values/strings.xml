@@ -11,6 +11,7 @@
     <color name="textColor9a4274">#9a4274</color>
     <color name="textColor2f967a">#2f967a</color>
     <color name="textColorc979a8">#c979a8</color>
+    <color name="textColor242424">#242424</color>
 
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_login">LoginActivity</string>
