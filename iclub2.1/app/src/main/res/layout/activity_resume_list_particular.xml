@@ -1,10 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@mipmap/iculd_beijin_icon"
     tools:context="com.example.administrator.iclub21.util.ResumeListParticularActivity">
-     <include layout="@layout/resume_listparticualr_tailt_layout"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    <include layout="@layout/resume_listparticualr_tailt_layout"/>
 
       <ScrollView
           android:scrollbars="none"
@@ -993,4 +1000,12 @@
            </LinearLayout>
           </LinearLayout>
       </ScrollView>
-</LinearLayout>
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+</RelativeLayout>

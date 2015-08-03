@@ -15,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -98,6 +99,8 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     private ListView videoListView;
 
     private WordWrapView wordWrapView;
+    @ViewInject(R.id.progressbar)
+    private ProgressBar progressbar;
 
 
     @Override
@@ -261,6 +264,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
             Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
             if (bitmap!=null){
                 videoListView.setVisibility(View.VISIBLE);
+
             }
 
         }else {
@@ -369,9 +373,11 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                     listViewLayout.setVisibility(View.VISIBLE);
                     videoListView.setVisibility(View.VISIBLE);
                     videoData();
+
                 }else {
                     listViewLayout.setVisibility(View.GONE);
                     videoListView.setVisibility(View.GONE);
+
                 }
                 break;
             case R.id.music_togglButton:
