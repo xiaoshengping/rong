@@ -13,6 +13,7 @@
     <dimen name="textSize10">10sp</dimen>
 
     <dimen name="ssv_height">200dp</dimen>
+    <dimen name="artist_ssv_height">190dp</dimen>
 
     <dimen name="title_bar">0dp</dimen>
 

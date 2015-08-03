@@ -20,6 +20,7 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
     private LinearLayout select_area_ll,select_sex_ll,select_tupe_ll,artist_condition_select_ll;
     private Button select_hinterland_b,select_macao_b,select_rest_b,select_man_b,select_girl_b,select_singer_b,select_actor_b;
     private Button artist_area_tv,artist_sex_tv,artist_tupe_tv;
+    private Button select_area_all_b,select_sex_all_b,select_tupe_all_b;
 
 
     private int select = 0;
@@ -46,6 +47,11 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
         inti(select);
     }
     private void binding(){
+
+        select_area_all_b = (Button)findViewById(R.id.select_area_all_b);
+        select_sex_all_b = (Button)findViewById(R.id.select_sex_all_b);
+        select_tupe_all_b = (Button)findViewById(R.id.select_tupe_all_b);
+
         artist_area_tv = (Button)findViewById(R.id.artist_area_tv);
         artist_sex_tv = (Button)findViewById(R.id.artist_sex_tv);
         artist_tupe_tv = (Button)findViewById(R.id.artist_tupe_tv);
@@ -70,6 +76,9 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
         select_girl_b.setOnClickListener(this);
         select_singer_b.setOnClickListener(this);
         select_actor_b.setOnClickListener(this);
+        select_area_all_b.setOnClickListener(this);
+        select_sex_all_b.setOnClickListener(this);
+        select_tupe_all_b.setOnClickListener(this);
 
         artist_area_tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +174,18 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
         String areaName = "区域",sexName = "性别",tupeName = "类型";
 
         switch (v.getId()){
+            case R.id.select_area_all_b:
+                area ="";
+                areaName = "区域";
+                break;
+            case R.id.select_sex_all_b:
+                sex ="";
+                sexName = "性别";
+                break;
+            case R.id.select_tupe_all_b:
+                tupe ="";
+                tupeName = "类型";
+                break;
             case R.id.select_hinterland_b:
                 area = HINTERLAND;
                 areaName = "中国大陆";

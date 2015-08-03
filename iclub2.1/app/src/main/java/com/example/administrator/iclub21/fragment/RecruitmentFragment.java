@@ -225,21 +225,24 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             @Override
             public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
                 if (arg1 == EditorInfo.IME_ACTION_UNSPECIFIED) {
-
-                    back_ib.setVisibility(View.VISIBLE);
-                    sousuo = srarchBoxDialog.getEt().getText().toString();
-                    reagment_title_tv.setText(sousuo);
+                    if(srarchBoxDialog.getEt().getText().toString().equals("")){
+                        Toast.makeText(getActivity(), "请输入搜索内容",Toast.LENGTH_SHORT).show();
+                    }else {
+                        back_ib.setVisibility(View.VISIBLE);
+                        sousuo = srarchBoxDialog.getEt().getText().toString();
+                        reagment_title_tv.setText(sousuo);
 //                initRecruitmentListData(citynum, jobnum, sousuo);
-                    citynum = 0;
-                    jobnum = 0;
-                    selected_position.setText("选择职位");
-                    selected_city.setText("选择城市");
-                    update(getActivity(), citynum, jobnum, sousuo);
-                    srarchBoxDialog.dismiss();
+                        citynum = 0;
+                        jobnum = 0;
+                        selected_position.setText("选择职位");
+                        selected_city.setText("选择城市");
+                        update(getActivity(), citynum, jobnum, sousuo);
+                        srarchBoxDialog.dismiss();
 //                    progressbar.setVisibility(View.VISIBLE);
 //                    update(ArtistSeekActivity.this, artist_seek_et.getText().toString());
 //                    Toast.makeText(ArtistSeekActivity.this, "你点了软键盘回车按钮",
 //                            Toast.LENGTH_SHORT).show();
+                    }
                 }
                 return (arg2.getKeyCode() == KeyEvent.KEYCODE_ENTER);
             }

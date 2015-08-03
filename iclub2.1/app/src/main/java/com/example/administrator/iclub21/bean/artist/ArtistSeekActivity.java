@@ -73,10 +73,15 @@ public class ArtistSeekActivity extends Activity{
             @Override
             public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
                 if (arg1 == EditorInfo.IME_ACTION_UNSPECIFIED) {
-                    progressbar.setVisibility(View.VISIBLE);
-                    update(ArtistSeekActivity.this, artist_seek_et.getText().toString());
+//                    artist_seek_et.getText()
+                    if(artist_seek_et.getText().toString().equals("")){
+                        Toast.makeText(ArtistSeekActivity.this, "请输入搜索内容",Toast.LENGTH_SHORT).show();
+                    }else {
+                        progressbar.setVisibility(View.VISIBLE);
+                        update(ArtistSeekActivity.this, artist_seek_et.getText().toString());
 //                    Toast.makeText(ArtistSeekActivity.this, "你点了软键盘回车按钮",
 //                            Toast.LENGTH_SHORT).show();
+                    }
                 }
                 return (arg2.getKeyCode() == KeyEvent.KEYCODE_ENTER);
             }

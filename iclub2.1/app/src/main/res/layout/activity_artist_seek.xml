@@ -23,7 +23,7 @@
             android:hint="搜索艺人名称"
             android:textSize="14sp"
             android:textColor="#ABAAAA"
-            android:textColorHint="#ABAAAA"
+            android:textColorHint="#40ABAAAA"
             android:drawableLeft="@mipmap/seek_icon_ex"
             android:gravity="center"
             android:background="@drawable/artist_seek_ex_shape"

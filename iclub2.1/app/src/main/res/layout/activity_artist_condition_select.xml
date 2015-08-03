@@ -65,6 +65,21 @@
             android:orientation="vertical"
             android:background="@drawable/artist_condition_s">
             <Button
+                android:id="@+id/select_area_all_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="全部"
+                android:background="@drawable/artist_condition_selector"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#2B2B2B"/>
+            <Button
                 android:id="@+id/select_hinterland_b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,6 +130,22 @@
             android:background="@drawable/artist_condition_s">
 
             <Button
+                android:id="@+id/select_sex_all_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="全部"
+                android:background="@drawable/artist_condition_selector"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#2B2B2B"/>
+            <Button
                 android:id="@+id/select_man_b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,6 +183,22 @@
             android:orientation="vertical"
             android:layout_height="wrap_content"
             android:background="@drawable/artist_condition_s">
+            <Button
+                android:id="@+id/select_tupe_all_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="全部"
+                android:background="@drawable/artist_condition_selector"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#2B2B2B"/>
             <Button
                 android:id="@+id/select_singer_b"
                 android:layout_width="match_parent"

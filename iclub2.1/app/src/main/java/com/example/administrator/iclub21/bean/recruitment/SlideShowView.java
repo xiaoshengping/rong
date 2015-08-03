@@ -165,11 +165,11 @@ public class SlideShowView extends FrameLayout {
             imageViewsList.add(view);
 
 //            LinearLayout slideshow_ll = (LinearLayout)view.findViewById(R.id.slideshow_ll);
-//
-//            View v = new View(context);
-//            LinearLayout.LayoutParams layoutParams= new LinearLayout.LayoutParams(16, 16);
-//            layoutParams.setMargins(0, 5, 0, 5);
-//            v.setLayoutParams(layoutParams);
+////
+////            View v = new View(context);
+//            LinearLayout.LayoutParams layoutParams= new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//            layoutParams.setMargins(0, 0, 0, 50);
+//            slideshow_ll.setLayoutParams(layoutParams);
 //            slideshow_ll.addView(v);
 //
 //            dotViewsList.add(v);
@@ -230,17 +230,18 @@ public class SlideShowView extends FrameLayout {
             imageViewsList.add(view);
 
 //            LinearLayout slideshow_ll = (LinearLayout)view.findViewById(R.id.slideshow_ll);
-//
-//            View v = new View(context);
-//            LinearLayout.LayoutParams layoutParams= new LinearLayout.LayoutParams(16, 16);
-//            layoutParams.setMargins(0, 5, 0, 5);
-//            v.setLayoutParams(layoutParams);
+////            slideshow_ll.setPadding(0,20,0,0);
+////
+////            View v = new View(context);
+//            RelativeLayout.LayoutParams layoutParams= new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+//            layoutParams.setMargins(0, 0, 0, 0);
+//            slideshow_ll.setLayoutParams(layoutParams);
 //            slideshow_ll.addView(v);
 //
 //            dotViewsList.add(v);
         }
 
-//        Dot(artistPicture.size());
+        Dot(artistHeadBean.size());
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPager.setFocusable(true);
