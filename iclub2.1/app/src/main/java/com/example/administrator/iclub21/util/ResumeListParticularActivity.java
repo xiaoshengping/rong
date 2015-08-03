@@ -55,8 +55,7 @@ import java.util.HashMap;
 
 public class ResumeListParticularActivity extends ActionBarActivity implements View.OnClickListener ,CompoundButton.OnCheckedChangeListener {
       //基本信息
-   @ViewInject(R.id.talen_back_iv)
-    private ImageView talenBackIv;
+
     @ViewInject(R.id.resumeZhName_tv)
     private TextView resumeZhName;
     @ViewInject(R.id.resumeSex_iv)
@@ -116,6 +115,8 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     private ListView videoListView;
 
     //背景
+    @ViewInject(R.id.talen_back_iv)
+    private ImageView talenBackIv;
     private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
@@ -188,6 +189,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
             resumeSexIv.setBackgroundResource(R.mipmap.girl_icon);
 
         }
+        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeUserbg(), talenBackIv,MyAppliction.options);
         resumeViewCountTv.setText("浏览量:"+resumeValueBean.getResumeViewCount());
         resumeAgeTv.setText(resumeValueBean.getResumeAge()+"");
         resumeWorkPlaceTv.setText(resumeValueBean.getResumeWorkPlace());

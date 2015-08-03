@@ -12,8 +12,8 @@ public class AppUtilsUrl  {
         return BaseUrl+"getArtistTopPicture.action";
 
     }
-    public static String getArtistList(String area,String sex,String artistCategory){
-        return BaseUrl+"artistFind.action?"+area+sex+artistCategory+"limit=10&"+"offset=0";
+    public static String getArtistList(String area,String sex,String artistCategory,int offset){
+        return BaseUrl+"artistFind.action?"+area+sex+artistCategory+"limit=10&"+"offset="+offset;
 
 
     }

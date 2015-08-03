@@ -140,8 +140,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.mine_head_iv:
                 if (uid!=null){
                     cancel.setVisibility(View.VISIBLE);
-                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + imageIcon, headTv, MyAppliction.RoundedOptions);
-                    mineName.setText(name);
+                   // MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + imageIcon, headTv, MyAppliction.RoundedOptions);
                     MyAppliction.showToast("您已经登录了!");
                 }else {
                     cancel.setVisibility(View.GONE);

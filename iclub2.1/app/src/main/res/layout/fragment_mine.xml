@@ -30,7 +30,7 @@ android:orientation="vertical"
           <TextView
 
               style="@style/paren_layout_width"
-              android:text="点击头像登录"
+              android:text="注册/登录"
               android:textSize="@dimen/textSize14"
               android:textColor="@color/white"
               android:id="@+id/mine_name"
@@ -56,7 +56,7 @@ android:orientation="vertical"
             android:layout_height="wrap_content" />
         <TextView
             android:textColor="#b0c5ec"
-            android:text="角色用户"
+            android:text="用户中心"
             android:layout_marginLeft="26dp"
             android:textSize="@dimen/textSize15"
             android:padding="2dp"
