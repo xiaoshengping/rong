@@ -10,9 +10,11 @@ import android.widget.LinearLayout;
 
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.lidroid.xutils.BitmapUtils;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.List;
+
+import static com.jeremy.Customer.R.id;
+import static com.jeremy.Customer.R.layout;
 
 /**
  * Created by Administrator on 2015/6/15.
@@ -58,9 +60,9 @@ public class SpaceImageDetailAdater extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.spacelmage_detail_layout,null);
+            convertView = mInflater.inflate(layout.spacelmage_detail_layout,null);
             viewHodle = new ViewHodle();
-            viewHodle.spaceimge_iv = (ImageView)convertView.findViewById(R.id.spaceimge_iv);
+            viewHodle.spaceimge_iv = (ImageView)convertView.findViewById(id.spaceimge_iv);
             convertView.setTag(viewHodle);
         }
         else{

@@ -11,9 +11,11 @@ import android.widget.TextView;
 import com.example.administrator.iclub21.bean.talent.CommentBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.lidroid.xutils.BitmapUtils;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.List;
+
+import static com.jeremy.Customer.R.id;
+import static com.jeremy.Customer.R.layout;
 
 /**
  * Created by Administrator on 2015/7/9.
@@ -52,13 +54,13 @@ public class ReputationAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.reputation_list,null);
+            convertView = mInflater.inflate(layout.reputation_list,null);
             viewHodle = new ViewHodle();
 
-            viewHodle.comment_neme_tv = (TextView) convertView.findViewById(R.id.comment_neme_tv);
-            viewHodle.comment_time_tv = (TextView) convertView.findViewById(R.id.comment_time_tv);
-            viewHodle.comment_body_tv = (TextView) convertView.findViewById(R.id.comment_body_tv);
-            viewHodle.head_portrait_iv = (ImageView) convertView.findViewById(R.id.head_portrait_iv);
+            viewHodle.comment_neme_tv = (TextView) convertView.findViewById(id.comment_neme_tv);
+            viewHodle.comment_time_tv = (TextView) convertView.findViewById(id.comment_time_tv);
+            viewHodle.comment_body_tv = (TextView) convertView.findViewById(id.comment_body_tv);
+            viewHodle.head_portrait_iv = (ImageView) convertView.findViewById(id.head_portrait_iv);
             convertView.setTag(viewHodle);
         }
         else{

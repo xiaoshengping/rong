@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 
 /**

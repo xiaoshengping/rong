@@ -473,11 +473,11 @@
                   android:layout_width="match_parent"
                   android:layout_height="230dp"
                   android:src="@mipmap/resume_background_icon"
-                  android:scaleType="fitXY"
+                  android:scaleType="center"
                   />
 
               <com.example.administrator.iclub21.bean.talent.CircleImageView
-                  xmlns:myxmlns="http://schemas.android.com/apk/res/com.sina.weibo.sdk.demo"
+                  xmlns:myxmlns="http://schemas.android.com/apk/res/com.jeremy.Customer"
                   android:id="@+id/usericon_background_iv"
                   android:layout_width="100dp"
                   android:layout_height="100dp"

@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.demo.R;
 
 /**
  * A simple {@link Fragment} subclass.

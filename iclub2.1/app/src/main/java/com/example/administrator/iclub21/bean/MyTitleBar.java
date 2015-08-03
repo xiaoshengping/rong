@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.sina.weibo.sdk.demo.R;
-
+import com.jeremy.Customer.R;
 
 /**
  * Created by Administrator on 2015/7/20.

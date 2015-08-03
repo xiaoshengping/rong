@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.demo.R;
 
 public class RoleActivity extends ActionBarActivity implements View.OnClickListener {
      @ViewInject(R.id.role_reten_tv)

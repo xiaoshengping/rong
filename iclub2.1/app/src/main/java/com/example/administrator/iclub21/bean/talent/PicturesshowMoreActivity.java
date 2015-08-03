@@ -8,7 +8,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 import java.util.ArrayList;
 import java.util.List;

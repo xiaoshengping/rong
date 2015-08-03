@@ -9,7 +9,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 
 /**

@@ -11,7 +11,7 @@ import com.example.administrator.iclub21.fragment.FragmentTabAdapter;
 import com.example.administrator.iclub21.fragment.MineFragment;
 import com.example.administrator.iclub21.fragment.RecruitmentFragment;
 import com.example.administrator.iclub21.fragment.TalentFragment;
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 import java.util.ArrayList;
 

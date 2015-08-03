@@ -10,9 +10,9 @@ import com.example.administrator.iclub21.fragment.InviteFragment;
 import com.example.administrator.iclub21.fragment.MessageFragment;
 import com.example.administrator.iclub21.fragment.ReputationValueFragment;
 import com.example.administrator.iclub21.fragment.ResumeFragment;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 

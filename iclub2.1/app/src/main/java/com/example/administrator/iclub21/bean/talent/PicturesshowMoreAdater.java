@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.BitmapUtils;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.List;
 

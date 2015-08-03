@@ -3,7 +3,7 @@ package com.example.administrator.iclub21.util;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 
 public class ShareActivity extends ActionBarActivity {

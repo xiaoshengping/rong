@@ -26,13 +26,13 @@ import com.example.administrator.iclub21.bean.talent.SpaceImageDetailActivity;
 import com.example.administrator.iclub21.bean.talent.TalentValueBean;
 import com.example.administrator.iclub21.calendar.CalendarActivity;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;

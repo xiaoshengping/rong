@@ -11,9 +11,9 @@ import android.widget.TextView;
 import com.example.administrator.iclub21.bean.RatingBarStar;
 import com.example.administrator.iclub21.bean.recruitment.RecruitmentListBean;
 import com.example.administrator.iclub21.fragment.RecruitmentFragment;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.List;
 import java.util.regex.Pattern;

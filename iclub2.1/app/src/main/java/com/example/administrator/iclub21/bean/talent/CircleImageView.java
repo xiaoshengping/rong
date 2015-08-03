@@ -15,8 +15,7 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.sina.weibo.sdk.demo.R;
-
+import com.jeremy.Customer.R;
 
 /**
  * Created by Administrator on 2015/6/8.

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.example.administrator.iclub21.adapter.SelectedCityOrPositionAdapter;
 import com.example.administrator.iclub21.bean.recruitment.AreaBean;
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 /**
  * Created by Administrator on 2015/5/27.
@@ -28,7 +28,7 @@ public class SelectedCityOrPositionActivity extends Activity {
     private SelectedCityOrPositionAdapter scAdaper;
     //    private int selscte = 1 ;//1、省 ；2、城
     private int status;
-    private int company=-1;
+    private int company=0;
     private AreaBean areaBean = new AreaBean();
 
     @Override
@@ -61,7 +61,7 @@ public class SelectedCityOrPositionActivity extends Activity {
         Bundle bundle = getIntent().getExtras();
         status = bundle.getInt("Status");
         company = bundle.getInt("Company");
-        if(company==0){
+        if(company==-1){
             initProvince(true);
         }else if(status==areaBean.PROVINCE) {
             initProvince();

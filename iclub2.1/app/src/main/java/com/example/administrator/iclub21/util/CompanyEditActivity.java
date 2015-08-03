@@ -16,8 +16,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.bean.BMerchantValueBean;
 import com.example.administrator.iclub21.bean.ParmeBean;
+import com.example.administrator.iclub21.bean.recruitment.AreaBean;
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -26,7 +28,6 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.demo.R;
 
 public class CompanyEditActivity extends ActionBarActivity implements View.OnClickListener {
     @ViewInject(R.id.edit_company_name_et)
@@ -48,6 +49,8 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
     private TextView editCompanyTextTv;
     @ViewInject(R.id.edit_company_save_text)
     private TextView editCompanySaveTv;
+    @ViewInject(R.id.company_city_tv)
+    private TextView company_city_tv;
 
     private  Intent intent;
     private  String data;
@@ -71,7 +74,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
 
     private void init() {
         intiView();
-       // intitbMerchantData();
+        // intitbMerchantData();
         intiData();
 
 
@@ -106,7 +109,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
             }
 
         }else if (data.equals("email")){
-             editCompanyEmailEt.setVisibility(View.VISIBLE);
+            editCompanyEmailEt.setVisibility(View.VISIBLE);
             editCompanyTextTv.setText("Email");
             if (!TextUtils.isEmpty(bMerchantValueBean.getBEemail())){
                 editCompanyEmailEt.setText(bMerchantValueBean.getBEemail());
@@ -147,6 +150,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
         editCompanyRetrunTv.setOnClickListener(this);
         editCompanyTextTv.setOnClickListener(this);
         editCompanySaveTv.setOnClickListener(this);
+        company_city_tv.setOnClickListener(this);
         myAppliction= (MyAppliction) getApplication();
 
     }
@@ -236,16 +240,26 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
 
     }
 
+    private AreaBean areaBean = new AreaBean();
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.edit_company_retrun_tv:
-                 finish();
+                finish();
+                break;
+            case R.id.company_city_tv:
+                Intent intent1 = new Intent(this, SelectedCityOrPositionActivity.class);  //方法1
+                intent1.putExtra("Status", areaBean.PROVINCE);
+                intent1.putExtra("Company",-1);
+                startActivityForResult(intent1, areaBean.PROVINCE);
+                overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_not);
+
                 break;
             case R.id.edit_company_save_text:
 
                 if (data.equals("name")){
-                  intent.putExtra("name",editCompanyNameEv.getText().toString());
+                    intent.putExtra("name",editCompanyNameEv.getText().toString());
                     setResult(17, intent);
                     finish();
                 } else if (data.equals("phone")) {
@@ -272,10 +286,37 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
                     finish();
                 }
                 intiHttpData();
-            break;
+                break;
+
         }
 
 
+
+    }
+
+    public void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+//        switch(requestCode){
+//            case RESULT_OK:
+   /*取得来自SecondActivity页面的数据，并显示到画面*/
+        Bundle bundle = data.getExtras();
+
+         /*获取Bundle中的数据，注意类型和key*/
+        int city = bundle.getInt("City");
+        String cName = bundle.getString("CityName");
+        String province = bundle.getString("PROVINCE");
+        if(city>=0) {
+            if (province!=null) {
+                company_city_tv.setText(province+"、"+cName+"("+city+")");
+            }else {
+                company_city_tv.setText(cName+"("+city+")");
+//                selected_city.setText("选择城市");
+            }
+
+//            update(getActivity(),citynum,jobnum,sousuo);
+//            initRecruitmentListData(citynum,jobnum,"");
+
+        }
 
     }
 

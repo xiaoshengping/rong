@@ -27,6 +27,7 @@ import com.example.administrator.iclub21.bean.artist.ArtistSeekActivity;
 import com.example.administrator.iclub21.bean.recruitment.SlideShowView;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.util.ArtistDetailActivity;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -34,7 +35,6 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;

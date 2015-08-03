@@ -12,8 +12,8 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.List;
 
-import static com.sina.weibo.sdk.demo.R.id;
-import static com.sina.weibo.sdk.demo.R.layout;
+import static com.jeremy.Customer.R.id;
+import static com.jeremy.Customer.R.layout;
 
 /**
  * Created by xiaoshengping on 2015/7/16.

@@ -28,9 +28,9 @@ import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.view.CustomHomeScrollListView;
 import com.example.administrator.iclub21.view.WordWrapView;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

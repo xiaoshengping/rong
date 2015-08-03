@@ -6,7 +6,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Gallery;
 
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 import java.util.List;
 

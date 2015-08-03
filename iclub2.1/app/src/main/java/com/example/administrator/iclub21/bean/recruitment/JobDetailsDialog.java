@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.iclub21.calendar.CalendarActivity;
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 
 /**

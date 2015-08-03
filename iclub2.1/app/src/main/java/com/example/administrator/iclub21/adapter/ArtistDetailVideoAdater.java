@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import com.example.administrator.iclub21.bean.artist.ArtistMovie;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.List;
+
+import static com.jeremy.Customer.R.id;
+import static com.jeremy.Customer.R.layout;
 
 /**
  * Created by Administrator on 2015/6/18.
@@ -53,10 +55,10 @@ public class ArtistDetailVideoAdater extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.artist_detail_list_video_layout,null);
+            convertView = mInflater.inflate(layout.artist_detail_list_video_layout,null);
             viewHodle = new ViewHodle();
-            viewHodle.btn_play_ib = (ImageButton)convertView.findViewById(R.id.btn_play_ib);
-            viewHodle.video_name_tv = (TextView)convertView.findViewById(R.id.video_name_tv);
+            viewHodle.btn_play_ib = (ImageButton)convertView.findViewById(id.btn_play_ib);
+            viewHodle.video_name_tv = (TextView)convertView.findViewById(id.video_name_tv);
             convertView.setTag(viewHodle);
         }
         else{

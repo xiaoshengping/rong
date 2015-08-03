@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 /**
  * A simple {@link Fragment} subclass.

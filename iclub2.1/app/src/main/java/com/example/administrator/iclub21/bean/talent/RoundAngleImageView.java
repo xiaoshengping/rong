@@ -13,7 +13,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 
 /**

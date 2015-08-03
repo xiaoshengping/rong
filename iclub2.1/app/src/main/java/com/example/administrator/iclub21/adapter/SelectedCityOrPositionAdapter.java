@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.iclub21.bean.recruitment.AreaBean;
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 /**
  * Created by Administrator on 2015/5/27.

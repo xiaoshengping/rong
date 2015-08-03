@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sina.weibo.sdk.demo" >
+    package="com.jeremy.Customer" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 拨打电话 -->

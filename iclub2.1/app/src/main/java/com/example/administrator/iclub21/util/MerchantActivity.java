@@ -11,9 +11,9 @@ import com.example.administrator.iclub21.fragment.FragmentTabAdapter;
 import com.example.administrator.iclub21.fragment.InviteParticularFragment;
 import com.example.administrator.iclub21.fragment.MerchantInformationFragment;
 import com.example.administrator.iclub21.fragment.RecruitmentHistoryFragment;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 

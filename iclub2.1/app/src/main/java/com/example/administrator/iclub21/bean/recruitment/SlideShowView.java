@@ -16,8 +16,8 @@ import android.widget.ImageView.ScaleType;
 
 import com.example.administrator.iclub21.bean.ArtistHeadBean;
 import com.example.administrator.iclub21.bean.artist.ArtistPicture;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.BitmapUtils;
-import com.sina.weibo.sdk.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;

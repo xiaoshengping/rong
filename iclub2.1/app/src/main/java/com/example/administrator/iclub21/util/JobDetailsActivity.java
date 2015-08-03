@@ -18,12 +18,12 @@ import com.example.administrator.iclub21.bean.recruitment.RecruitmentListBean;
 import com.example.administrator.iclub21.bean.recruitment.SendParme;
 import com.example.administrator.iclub21.bean.recruitment.ViewCountBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
-import com.sina.weibo.sdk.demo.R;
 
 /**
  * Created by Administrator on 2015/6/3.

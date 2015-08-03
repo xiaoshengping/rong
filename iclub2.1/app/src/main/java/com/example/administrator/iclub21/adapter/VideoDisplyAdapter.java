@@ -19,7 +19,7 @@ import com.example.administrator.iclub21.bean.talent.Player;
 import com.example.administrator.iclub21.bean.talent.ResumeMovie;
 import com.example.administrator.iclub21.bean.talent.ResumeMusic;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
-import com.sina.weibo.sdk.demo.R;
+import com.jeremy.Customer.R;
 
 import java.util.ArrayList;
 import java.util.List;

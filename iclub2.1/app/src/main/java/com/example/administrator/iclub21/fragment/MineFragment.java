@@ -26,9 +26,9 @@ import com.example.administrator.iclub21.util.MerchantActivity;
 import com.example.administrator.iclub21.util.ResumeActivity;
 import com.example.administrator.iclub21.util.RoleActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
+import com.jeremy.Customer.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.demo.R;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
