@@ -119,7 +119,12 @@ public class AppUtilsUrl  {
 
     }
 
+    //删除简历
+    public static String getResumeBackground(){
+        //editResumeUserbg_V2_2.action
+        return BaseUrl+"editResumeUserbg_V2_2.action";
 
+    }
     //招聘历史
     public static String getRecruitmentHistoryList(String uid,int offset){
         //getHistoryJobList.action
