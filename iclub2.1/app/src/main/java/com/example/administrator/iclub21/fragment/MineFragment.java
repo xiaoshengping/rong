@@ -175,8 +175,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(informationIntent);
                 break;
             case R.id.amend_psw_tv:
-                Intent amendIntent=new Intent(getActivity(),AmendPswActivity.class);
-                startActivity(amendIntent);
+                if (!TextUtils.isEmpty(uid)){
+                    Intent amendIntent=new Intent(getActivity(),AmendPswActivity.class);
+                    startActivity(amendIntent);
+                }else {
+                    showPswGameAlert();
+                }
+
+
                 break;
             case R.id.about_tv:
                 Intent aboutIntent=new Intent(getActivity(),AmendAboutActivity.class);
@@ -190,6 +196,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
         }
     }
+
+
+
+
+
+
     //分享
     private void showShare() {
         ShareSDK.initSDK(getActivity());
@@ -260,5 +272,34 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    private void showPswGameAlert() {
+        final AlertDialog dlg = new AlertDialog.Builder(getActivity()).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.shrew_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText("您还没有登录");
+        // 为确认按钮添加事件,执行退出应用操作
+        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
+        ok.setText("登录");
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // 退出应用...
+                Intent intent=new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                dlg.cancel();
+            }
+        });
 
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("取消");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlg.cancel();
+            }
+        });
+    }
 }

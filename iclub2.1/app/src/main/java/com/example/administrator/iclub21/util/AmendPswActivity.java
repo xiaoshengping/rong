@@ -1,9 +1,10 @@
 package com.example.administrator.iclub21.util;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -62,16 +63,24 @@ public class AmendPswActivity extends ActionBarActivity implements View.OnClickL
     }
 
     private void intiAmndPswData() {
+        SQLhelper sqLhelper=new SQLhelper(AmendPswActivity.this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        String uid=null;
+
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+        }
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
-        requestParams.addBodyParameter("uid","15088138598");
+        requestParams.addBodyParameter("uid",uid);
         requestParams.addBodyParameter("oldpwd",MD5Uutils.MD5(formerPswEdit.getText().toString()));
         requestParams.addBodyParameter("newpwd", MD5Uutils.MD5(newPswEdit.getText().toString()));
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAmendPsw(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                   String result=   responseInfo.result;
-                Log.e("result",result);
+                  // String result=   responseInfo.result;
+
             }
 
             @Override

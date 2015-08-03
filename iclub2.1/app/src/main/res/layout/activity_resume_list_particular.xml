@@ -480,7 +480,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="230dp"
                   android:src="@mipmap/resume_background_icon"
-                  android:scaleType="center"
+                  android:scaleType="centerCrop"
                   />
 
               <com.example.administrator.iclub21.bean.talent.CircleImageView

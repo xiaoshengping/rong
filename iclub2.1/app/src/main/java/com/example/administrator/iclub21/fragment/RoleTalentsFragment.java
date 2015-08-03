@@ -1,6 +1,7 @@
 package com.example.administrator.iclub21.fragment;
 
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -111,6 +112,7 @@ public class RoleTalentsFragment extends Fragment implements View.OnClickListene
                                MyAppliction.showToast("您已经成为商家角色了!");
 
                            }else {
+
                                intiData(uid, "2");
 
 
@@ -142,7 +144,23 @@ public class RoleTalentsFragment extends Fragment implements View.OnClickListene
            }
     }
 
-    private void intiData(String uid,String state) {
+    /**
+     * 更新记录的
+     */
+    public void update(String uid,String state){
+        SQLhelper sqLhelper= new SQLhelper(getActivity());
+        SQLiteDatabase db = sqLhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLhelper.STSTE, state);
+        db.update(SQLhelper.tableName, contentValues,
+                "uid=?",
+                new String[]{uid});
+    }
+
+
+
+
+    private void intiData(final String uid, final String state) {
 
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
@@ -151,7 +169,7 @@ public class RoleTalentsFragment extends Fragment implements View.OnClickListene
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddRoleTalents(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-
+                update(uid,state);
                 getActivity().finish();
 
 
