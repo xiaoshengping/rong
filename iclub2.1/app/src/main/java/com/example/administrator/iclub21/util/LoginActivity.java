@@ -133,7 +133,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 }
                 break;
             case R.id.qq_login:
-                mTencent = Tencent.createInstance("222222", this);
+                mTencent = Tencent.createInstance("1102291619", this);
                 doLogin();
                 break;
             case R.id.weibo_login:
