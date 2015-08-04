@@ -333,7 +333,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
     public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
         int offset = 0;
 
-        initListData("", "", "", offset);
+        initListData(area.toString(),sex.toString(),tupe.toString(), offset);
     }
 
     @Override
