@@ -28,7 +28,7 @@ android:orientation="vertical"
               android:layout_height="100dp" />
 
           <TextView
-
+              android:visibility="gone"
               style="@style/paren_layout_width"
               android:text="注册/登录"
               android:textSize="@dimen/textSize14"

@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -346,7 +345,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
                     String rerult=responseInfo.result;
-                    Log.e("intiData",rerult);
+                   // Log.e("intiData",rerult);
                     if (rerult!=null){
 
                         ParmeBean<LoginValueBean> artistParme= JSONObject.parseObject(rerult, new TypeReference<ParmeBean<LoginValueBean>>() {
