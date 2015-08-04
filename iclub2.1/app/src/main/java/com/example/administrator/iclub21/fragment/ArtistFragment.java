@@ -58,8 +58,8 @@ public class ArtistFragment extends Fragment {
     private TextView artist_tupe_tv;
     @ViewInject(R.id.artist_title_search_ib)
     private ImageButton artist_title_search_ib;
-    @ViewInject(R.id.back_ib)
-    private ImageButton back_ib;
+//    @ViewInject(R.id.back_ib)
+//    private ImageButton back_ib;
     @ViewInject(R.id.fascrollView)
     private ScrollView fascrollView;
     @ViewInject(R.id.progressbar)
@@ -198,16 +198,16 @@ public class ArtistFragment extends Fragment {
             }
         });
 
-        back_ib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initListData("","","");
-                back_ib.setVisibility(View.INVISIBLE);
-                artist_area_tv.setText("区域");
-                artist_sex_tv.setText("性别");
-                artist_tupe_tv.setText("类型");
-            }
-        });
+//        back_ib.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                initListData("","","");
+//                back_ib.setVisibility(View.INVISIBLE);
+//                artist_area_tv.setText("区域");
+//                artist_sex_tv.setText("性别");
+//                artist_tupe_tv.setText("类型");
+//            }
+//        });
         artist_title_search_ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -242,7 +242,7 @@ public class ArtistFragment extends Fragment {
                         SlideShowView ssv = new SlideShowView(getActivity(), headBean.getValue(),0,0);
                         LinearLayout header_ll = (LinearLayout)getActivity().findViewById(R.id.header_ll);
                         header_ll.addView(ssv);
-                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (getResources().getDimension(R.dimen.ssv_height)));
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (getResources().getDimension(R.dimen.artist_ssv_height)));
                         layoutParams.setMargins(0, 0, 0, 0);
                         ssv.setLayoutParams(layoutParams);
 
@@ -279,20 +279,20 @@ public class ArtistFragment extends Fragment {
     public void onActivityResult(int requestCode,int resultCode,Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         Bundle bundle = data.getExtras();
-        if(bundle.getString("Area").equals("")){}else {
+//        if(bundle.getString("Area").equals("")){}else {
             area = bundle.getString("Area");
             artist_area_tv.setText(bundle.getString("AreaName"));
-        }
-        if(bundle.getString("Sex").equals("")){}else {
+//        }
+//        if(bundle.getString("Sex").equals("")){}else {
             sex = bundle.getString("Sex");
             artist_sex_tv.setText(bundle.getString("SexName"));
-        }
-        if(bundle.getString("Tupe").equals("")){}else {
+//        }
+//        if(bundle.getString("Tupe").equals("")){}else {
             tupe = bundle.getString("Tupe");
             artist_tupe_tv.setText(bundle.getString("TupeName"));
-        }
+//        }
         initListData(area.toString(),sex.toString(),tupe.toString());
-        back_ib.setVisibility(View.VISIBLE);
+//        back_ib.setVisibility(View.VISIBLE);
 
 
 

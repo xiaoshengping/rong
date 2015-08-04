@@ -35,7 +35,7 @@
                     android:id="@+id/talent_head_civ"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@mipmap/talent_head"
+                    android:src="@mipmap/mine_head_default"
                     android:scaleType="fitXY"
                     android:layout_marginLeft="18dp"
                     android:layout_marginTop="-66dp"

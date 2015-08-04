@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:text="(登录后成为招聘商家才能看到人才联系方式)"
+        android:text="(登录后成为招聘商家才能看到艺人联系方式)"
         android:textSize="15sp"
         android:textColor="#A53FFE"/>
     <RelativeLayout

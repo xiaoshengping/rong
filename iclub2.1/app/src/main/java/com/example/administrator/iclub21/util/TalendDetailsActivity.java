@@ -255,7 +255,7 @@ public class TalendDetailsActivity extends Activity {
         talent_pageview_tv.setText("浏览数:"+talentValueBean.getResumeViewCount() + "");
         talent_age_tv.setText(talentValueBean.getResumeAge()+"");
         talent_workplace_tv.setText(talentValueBean.getResumeWorkPlace());
-        talent_position_tv.setText(talentValueBean.getResumeJobName());
+        talent_position_tv.setText(talentValueBean.getResumeJobCategoryName());
         self_introduction_tv.setText(talentValueBean.getResumeInfo());
         work_experience_tv.setText(talentValueBean.getResumeWorkExperience());
         if(register) {

@@ -82,6 +82,16 @@ public class ArtistSeekActivity extends Activity{
 //                    Toast.makeText(ArtistSeekActivity.this, "你点了软键盘回车按钮",
 //                            Toast.LENGTH_SHORT).show();
                     }
+                }else if (arg1 == EditorInfo.IME_ACTION_SEARCH) {
+//                    artist_seek_et.getText()
+                    if(artist_seek_et.getText().toString().equals("")){
+                        Toast.makeText(ArtistSeekActivity.this, "请输入搜索内容",Toast.LENGTH_SHORT).show();
+                    }else {
+                        progressbar.setVisibility(View.VISIBLE);
+                        update(ArtistSeekActivity.this, artist_seek_et.getText().toString());
+//                    Toast.makeText(ArtistSeekActivity.this, "你点了软键盘回车按钮",
+//                            Toast.LENGTH_SHORT).show();
+                    }
                 }
                 return (arg2.getKeyCode() == KeyEvent.KEYCODE_ENTER);
             }

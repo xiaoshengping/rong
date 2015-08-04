@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#222c36"
+        android:background="#242424"
         android:gravity="right">
         <Button
             android:layout_width="110dp"
