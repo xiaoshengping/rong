@@ -147,7 +147,6 @@
                           <RadioButton
                               android:id="@+id/boy_radio_button"
                               android:text="男"
-                              android:checked="true"
                               android:gravity="center"
                               android:textSize="@dimen/textSize15"
                               android:textColor="@color/white"

@@ -69,7 +69,11 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
 
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        resumeListLv.setRefreshing();
+    }
 
     private void intiView(View view) {
         View addView=LayoutInflater.from(getActivity()).inflate(R.layout.add_resume_layout,null);

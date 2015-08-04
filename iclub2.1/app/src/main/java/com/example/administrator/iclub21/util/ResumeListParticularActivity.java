@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -189,7 +190,12 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
             resumeSexIv.setBackgroundResource(R.mipmap.girl_icon);
 
         }
-        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeUserbg(), talenBackIv,MyAppliction.options);
+        if(!TextUtils.isEmpty(resumeValueBean.getResumeUserbg())){
+            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeUserbg(), talenBackIv,MyAppliction.options);
+        }else {
+            talenBackIv.setBackgroundResource(R.mipmap.resume_background_icon);
+        }
+
         resumeViewCountTv.setText("浏览量:"+resumeValueBean.getResumeViewCount());
         resumeAgeTv.setText(resumeValueBean.getResumeAge()+"");
         resumeWorkPlaceTv.setText(resumeValueBean.getResumeWorkPlace());
@@ -369,8 +375,9 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
             case R.id.list_compile_text:
                 Intent intent=new Intent(ResumeListParticularActivity.this,AddResumeActivity.class);
                 intent.putExtra("compiledata",resumeValueBean);
-                intent.putExtra("resumeNuber","1111");
-                startActivity(intent);
+                intent.putExtra("resumeNuber", "1111");
+                //startActivity(intent);
+                startActivityForResult(intent,18);
                 break;
             case R.id.list_retrun_tv:
                 finish();
@@ -392,6 +399,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
 
         }
     }
+
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -498,6 +506,20 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                     sentPicToNext(data);
 
                 break;
+            case 18:
+                switch (requestCode){
+                    case 18:
+                        if ((data.getStringExtra("closeActivity")).equals("close")){
+                            finish();
+                        }
+
+                        break;
+
+
+                }
+
+                break;
+
 
         }
 
