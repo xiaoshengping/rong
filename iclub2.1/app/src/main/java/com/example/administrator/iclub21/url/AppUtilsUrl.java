@@ -91,6 +91,13 @@ public class AppUtilsUrl  {
         return BaseUrl+"getMsgListIOS?offset="+offset+"&limit="+limit;
 
     }
+    //列表信息通知
+    public static String getMessageList(String uid,String offset){
+        //getMsgListIOS?offset=0&limit=10
+        return BaseUrl+"getPersonMsgList.action?uid="+uid+"&offset="+offset+"&limit=0";
+
+    }
+
 
     //修改密码
     public static String getAmendPsw(){

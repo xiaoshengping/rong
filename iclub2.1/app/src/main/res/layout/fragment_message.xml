@@ -1,10 +1,13 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.administrator.iclub21.fragment.MessageFragment">
+    <include layout="@layout/information_tailt_layout"/>
+    <ListView
+        android:id="@+id/message_listView"
+        android:dividerHeight="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+</LinearLayout>

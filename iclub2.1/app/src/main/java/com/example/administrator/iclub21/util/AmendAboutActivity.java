@@ -1,6 +1,5 @@
 package com.example.administrator.iclub21.util;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
@@ -88,8 +87,8 @@ public class AmendAboutActivity extends ActionBarActivity implements View.OnClic
                 finish();
                 break;
             case R.id.about_function_layout:
-                Intent intent=new Intent(AmendAboutActivity.this,AboutFunctionActivity.class);
-                startActivity(intent);
+               /* Intent intent=new Intent(AmendAboutActivity.this,IclubAboutActivity.class);
+                startActivity(intent);*/
 
                 break;
             case R.id.about_idea_layout:

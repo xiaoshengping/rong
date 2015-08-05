@@ -77,6 +77,7 @@
     <string name="title_activity_failure_comment">FailureCommentActivity</string>
     <string name="title_activity_detailed_information">DetailedInformationActivity</string>
     <string name="title_activity_company_message">CompanyMessageActivity</string>
+    <string name="title_activity_iclub_about">IclubAboutActivity</string>
 
 
 </resources>
