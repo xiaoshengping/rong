@@ -361,12 +361,14 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-        recruitmentListData.clear();
-         offset = 0;
+
         if (searchStatusfalse){
+            recruitmentListData.clear();
+            offset = 0;
             update(getActivity(), citynum, jobnum, sousuo,offset);
         }else {
-
+            recruitmentListData.clear();
+            offset = 0;
 
             initRecruitmentListData(citynum, jobnum, offset);
         }
@@ -380,7 +382,6 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
         offset=offset+10;
         if (searchStatusfalse){
-            recruitmentListData.clear();
             update(getActivity(), citynum, jobnum, sousuo,offset);
         }else {
             initRecruitmentListData(citynum, jobnum, offset);
@@ -577,7 +578,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                     ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
                     });
                     if (recruitmentListBean.getState().equals("success")) {
-                        recruitmentListData = recruitmentListBean.getValue();
+                        recruitmentListData=recruitmentListBean.getValue();
 
                     }
 
