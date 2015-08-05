@@ -10,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -25,6 +24,7 @@ import com.example.administrator.iclub21.bean.artist.ArtistConditionSelectActivi
 import com.example.administrator.iclub21.bean.artist.ArtistListBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.bean.artist.ArtistSeekActivity;
+import com.example.administrator.iclub21.bean.artist.MyGridView;
 import com.example.administrator.iclub21.bean.recruitment.SlideShowView;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.util.ArtistDetailActivity;
@@ -53,7 +53,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
 //    private ViewPager artistPager;
     private HttpUtils httpUtils;
     @ViewInject(R.id.artist_list_gridView)
-    private GridView artistGridView;
+    private MyGridView artistGridView;
     @ViewInject(R.id.artist_area_tv)
     private TextView artist_area_tv;
     @ViewInject(R.id.artist_sex_tv)
@@ -333,8 +333,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-         offset = 0;
-
+        offset = 0;
         initListData(area.toString(),sex.toString(),tupe.toString(), offset);
     }
 
