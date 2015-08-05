@@ -353,7 +353,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
 //        }
 //        if(bundle.getString("Sex").equals("")){}else {
         sex = bundle.getString("Sex");
-        artist_sex_tv.setText(bundle.getString("SexName"));
+        artist_sex_tv.setText(bundle.getString("SexName"));//twerter
 //        }
 //        if(bundle.getString("Tupe").equals("")){}else {
         tupe = bundle.getString("Tupe");
