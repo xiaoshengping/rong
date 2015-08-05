@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/move_height"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/artist_area_h" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:orientation="horizontal"
