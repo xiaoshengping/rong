@@ -3,17 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="190dp"
     android:id="@+id/artist_condition_select_ll">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="娱乐招聘"
-        android:textColor="#00DEDDE2"
-        android:textSize="24sp"
-        android:padding="10dp"/>
+        android:id="@+id/move_height"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/artist_area_h" />
 
     <LinearLayout
         android:orientation="horizontal"
