@@ -27,6 +27,7 @@ import com.example.administrator.iclub21.bean.artist.ArtistSeekActivity;
 import com.example.administrator.iclub21.bean.artist.MyGridView;
 import com.example.administrator.iclub21.bean.recruitment.SlideShowView;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.ArtistDetailActivity;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -107,7 +108,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
         progressbar.setVisibility(View.VISIBLE);
         httpUtils = new HttpUtils();
         initPager();
-
+        artistListData=new ArrayList<>();
         initListData("", "", "", offset);
         londing_tip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,14 +141,17 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (result != null) {
-                    artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<ArtistListBean>>() {
+                  /*  artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<ArtistListBean>>() {
                     });
                     if ("success".equals(artistParme.getState())) {
-                        artistListData = artistParme.getValue();
+                        artistListData = artistParme.getValue();*/
+                    ArtistListAdapter adapter = new ArtistListAdapter(artistListData, getActivity());
+                    artistGridView.setAdapter(adapter);
+                    HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ArtistListBean>>() {
+                    }, artistListData, adapter);
                         //intiGridView(artistListData);
 //                      Log.e("name", artistParme.getValue().get(0).getArtistPicture().get(0).getName())  ;
-                        ArtistListAdapter adapter = new ArtistListAdapter(artistParme.getValue(), getActivity());
-                        artistGridView.setAdapter(adapter);
+
                         adapter.notifyDataSetChanged();
                         fascrollView.onRefreshComplete();
                         artistGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -172,7 +176,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
                     }
                 }
 
-            }
+
 
             @Override
             public void onFailure(HttpException e, String s) {
@@ -333,6 +337,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+        artistListData.clear();
         offset = 0;
         initListData(area.toString(),sex.toString(),tupe.toString(), offset);
     }
@@ -340,7 +345,6 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
         offset = offset + 10;
-
         initListData(area.toString(), sex.toString(), tupe.toString(), offset);
     }
 
