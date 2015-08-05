@@ -100,6 +100,8 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
         return view;
     }
 
+
+
     private void inti() {
         fascrollView.setVisibility(View.GONE);
         progressbar.setVisibility(View.VISIBLE);
