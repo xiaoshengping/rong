@@ -236,7 +236,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                         jobnum = 0;
                         selected_position.setText("选择职位");
                         selected_city.setText("选择城市");
-                        update(getActivity(), citynum, jobnum, sousuo);
+                        update(getActivity(), citynum, jobnum, sousuo,offset);
                         srarchBoxDialog.dismiss();
 //                    progressbar.setVisibility(View.VISIBLE);
 //                    update(ArtistSeekActivity.this, artist_seek_et.getText().toString());
@@ -353,23 +353,40 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
     }
 
-    private void update(Context context,int city, int job, String abc){
+    private void update(Context context,int city, int job, String abc,int offset){
         progressbar.setVisibility(View.VISIBLE);
-        UpdateTextTask updateTextTask = new UpdateTextTask(context,city,job,abc);
+        UpdateTextTask updateTextTask = new UpdateTextTask(context,city,job,abc,offset);
         updateTextTask.execute();
     }
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         recruitmentListData.clear();
-        int offset=0;
-        initRecruitmentListData(citynum, jobnum, offset);
+         offset = 0;
+        if (searchStatusfalse){
+            update(getActivity(), citynum, jobnum, sousuo,offset);
+        }else {
+
+
+            initRecruitmentListData(citynum, jobnum, offset);
+        }
+
+
+
+
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
         offset=offset+10;
-        initRecruitmentListData(citynum, jobnum, offset);
+        if (searchStatusfalse){
+            recruitmentListData.clear();
+            update(getActivity(), citynum, jobnum, sousuo,offset);
+        }else {
+            initRecruitmentListData(citynum, jobnum, offset);
+        }
+
+
     }
 
 
@@ -378,7 +395,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
         private int city;
         private int job;
         private String abc;
-        UpdateTextTask(Context context,int city, int job, String abc) {
+        UpdateTextTask(Context context,int city, int job, String abc,int offset) {
             this.context = context;
             this.city = city;
             this.job = job;
@@ -401,7 +418,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             while(i<10){
                 i++;
                 publishProgress(i);
-                initRecruitmentListData(city, job, abc);
+                initRecruitmentListData(city, job, abc,offset);
 
             }
             return null;
@@ -417,8 +434,8 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             progressbar.setVisibility(View.INVISIBLE);
             recruitmentAdapter = new RecruitmentListAdapter(recruitmentListData, getActivity());
             recruitmentList.setAdapter(recruitmentAdapter);
-            recruitmentAdapter.notifyDataSetChanged();
-
+            //recruitmentAdapter.notifyDataSetChanged();
+            recruitmentList.onRefreshComplete();
             if(recruitmentListData.size()==0){
                 Toast.makeText(getActivity(), "暂时还没有相关数据", Toast.LENGTH_LONG).show();
             }
@@ -535,14 +552,15 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
 
     //获取招聘列表
-    public void initRecruitmentListData(int city, int job, String abc) {
+    public void initRecruitmentListData(int city, int job, String abc,int offset) {
         HttpPost httpPost = new HttpPost(AppUtilsUrl.getRecruitmentList(city, job, 0, abc));
+       // HttpGet httpPost = new HttpGet(AppUtilsUrl.getRecruitmentList(city, job, 0, abc));
         // 设置HTTP POST请求参数必须用NameValuePair对象
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("cityid", city+""));
         params.add(new BasicNameValuePair("jobCategory", job+""));
         params.add(new BasicNameValuePair("keyWord", abc));
-        params.add(new BasicNameValuePair("offset", "0"));
+        params.add(new BasicNameValuePair("offset", offset+""));
         params.add(new BasicNameValuePair("limit", "10"));
 
         HttpResponse httpResponse = null;
@@ -554,7 +572,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 // 第三步，使用getEntity方法活得返回结果
                 String result = EntityUtils.toString(httpResponse.getEntity());
 
-                System.out.println(result);
+                //System.out.println(result);
                 if (result != null) {
                     ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
                     });
@@ -562,6 +580,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                         recruitmentListData = recruitmentListBean.getValue();
 
                     }
+
 
                 }
             }
@@ -648,7 +667,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             }
             citynum = city;
             if(searchStatusfalse) {
-                update(getActivity(), citynum, jobnum, sousuo);
+                update(getActivity(), citynum, jobnum, sousuo,offset);
             }else {
                 recruitmentListData.clear();
                 initRecruitmentListData(citynum,jobnum,offset);
@@ -667,7 +686,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             }
             jobnum = job;
             if(searchStatusfalse) {
-                update(getActivity(), citynum, jobnum, sousuo);
+                update(getActivity(), citynum, jobnum, sousuo,offset);
             }else {
                 recruitmentListData.clear();
                 initRecruitmentListData(citynum,jobnum,offset);

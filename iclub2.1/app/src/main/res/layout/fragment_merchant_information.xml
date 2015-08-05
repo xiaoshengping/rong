@@ -3,6 +3,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.administrator.iclub21.fragment.MerchantInformationFragment">
           <include layout="@layout/resume_tailt_layout"></include>
-
-
+    <ListView
+        android:dividerHeight="3dp"
+        android:id="@+id/information_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

@@ -201,7 +201,6 @@
             android:name="com.example.administrator.iclub21.util.CompanyMessageActivity"
             android:label="@string/title_activity_company_message" >
         </activity>
-
     </application>
 
 </manifest>

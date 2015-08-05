@@ -12,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -27,8 +26,10 @@ import com.example.administrator.iclub21.bean.artist.ArtistConditionSelectActivi
 import com.example.administrator.iclub21.bean.artist.ArtistListBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.bean.artist.ArtistSeekActivity;
+import com.example.administrator.iclub21.bean.artist.MyGridView;
 import com.example.administrator.iclub21.bean.recruitment.SlideShowView;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.ArtistDetailActivity;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -57,7 +58,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
 //    private ViewPager artistPager;
     private HttpUtils httpUtils;
     @ViewInject(R.id.artist_list_gridView)
-    private GridView artistGridView;
+    private MyGridView artistGridView;
     @ViewInject(R.id.artist_area_tv)
     private TextView artist_area_tv;
     @ViewInject(R.id.artist_sex_tv)
@@ -106,12 +107,14 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
         return view;
     }
 
+
+
     private void inti() {
         fascrollView.setVisibility(View.GONE);
         progressbar.setVisibility(View.VISIBLE);
         httpUtils = new HttpUtils();
         initPager();
-
+        artistListData=new ArrayList<>();
         initListData("", "", "", offset);
         londing_tip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,14 +147,17 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (result != null) {
-                    artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<ArtistListBean>>() {
+                  /*  artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<ArtistListBean>>() {
                     });
                     if ("success".equals(artistParme.getState())) {
-                        artistListData = artistParme.getValue();
+                        artistListData = artistParme.getValue();*/
+                    ArtistListAdapter adapter = new ArtistListAdapter(artistListData, getActivity());
+                    artistGridView.setAdapter(adapter);
+                    HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ArtistListBean>>() {
+                    }, artistListData, adapter);
                         //intiGridView(artistListData);
 //                      Log.e("name", artistParme.getValue().get(0).getArtistPicture().get(0).getName())  ;
-                        ArtistListAdapter adapter = new ArtistListAdapter(artistParme.getValue(), getActivity());
-                        artistGridView.setAdapter(adapter);
+
                         adapter.notifyDataSetChanged();
                         fascrollView.onRefreshComplete();
                         artistGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -176,7 +182,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
                     }
                 }
 
-            }
+
 
             @Override
             public void onFailure(HttpException e, String s) {
@@ -364,15 +370,14 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-        int offset = 0;
-
+        artistListData.clear();
+        offset = 0;
         initListData(area.toString(),sex.toString(),tupe.toString(), offset);
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
         offset = offset + 10;
-
         initListData(area.toString(), sex.toString(), tupe.toString(), offset);
     }
 

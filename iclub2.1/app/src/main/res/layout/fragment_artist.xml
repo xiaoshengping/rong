@@ -9,7 +9,10 @@
         android:orientation="vertical">
 
         <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            ptr:ptrHeaderTextColor="#ffffff"
             android:id="@+id/fascrollView"
+            android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
@@ -87,7 +90,7 @@
                     android:id="@+id/artist_list_gridView"
                     android:numColumns="2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="match_parent"/>
             </LinearLayout>
 
         </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
