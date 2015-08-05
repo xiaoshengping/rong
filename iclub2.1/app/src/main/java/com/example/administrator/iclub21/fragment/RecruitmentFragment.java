@@ -255,7 +255,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                         jobnum = 0;
                         selected_position.setText("选择职位");
                         selected_city.setText("选择城市");
-                        update(getActivity(), citynum, jobnum, sousuo);
+                        update(getActivity(), citynum, jobnum, sousuo,0);
                         srarchBoxDialog.dismiss();
 //                    progressbar.setVisibility(View.VISIBLE);
 //                    update(ArtistSeekActivity.this, artist_seek_et.getText().toString());
