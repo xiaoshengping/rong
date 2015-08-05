@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.administrator.iclub21.http.MyAppliction;
-import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.util.AmendAboutActivity;
 import com.example.administrator.iclub21.util.AmendPswActivity;
 import com.example.administrator.iclub21.util.InformationActivity;
@@ -89,22 +88,17 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         String uid=null;
-        String imageIcon=null;
-        String name=null;
-        String personid=null;
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
-            imageIcon=cursor.getString(3);
-            name=cursor.getString(2);
-            personid=cursor.getString(5);
 
         }
 
         if (uid!=null){
             cancel.setVisibility(View.VISIBLE);
-            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + imageIcon, headTv, MyAppliction.RoundedOptions);
-            mineName.setText(name);
+            //MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + imageIcon, headTv, MyAppliction.RoundedOptions);
+            mineName.setVisibility(View.GONE);
         }else {
+            mineName.setVisibility(View.VISIBLE);
             cancel.setVisibility(View.GONE);
 
         }
@@ -123,16 +117,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         String uid=null;
-        String imageIcon=null;
-        String name=null;
-        String personid=null;
         String states=null;
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
-            imageIcon=cursor.getString(3);
-            name=cursor.getString(2);
             states = cursor.getString(4);
-            personid=cursor.getString(5);
+
 
         }
 
@@ -140,8 +129,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.mine_head_iv:
                 if (uid!=null){
                     cancel.setVisibility(View.VISIBLE);
-                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + imageIcon, headTv, MyAppliction.RoundedOptions);
-                    mineName.setText(name);
+                   // MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + imageIcon, headTv, MyAppliction.RoundedOptions);
                     MyAppliction.showToast("您已经登录了!");
                 }else {
                     cancel.setVisibility(View.GONE);
@@ -251,11 +239,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 SQLiteDatabase db = sqLhelper.getWritableDatabase();
                 Cursor cursor = db.query("user", null, null, null, null, null, null);
                 while (cursor.moveToNext()) {
-                    String states = cursor.getString(0);
-                    if (states != null) {
+                    String uid = cursor.getString(0);
+                    if (uid != null) {
                         db.delete("user", null, null);
+
                     }
                 }
+                mineName.setVisibility(View.VISIBLE);
                 cursor.close();
                 db.close();
                 dlg.cancel();

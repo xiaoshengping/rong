@@ -1,13 +1,17 @@
 package com.example.administrator.iclub21.bean.artist;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 
@@ -21,9 +25,11 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
     private Button select_hinterland_b,select_macao_b,select_rest_b,select_man_b,select_girl_b,select_singer_b,select_actor_b;
     private Button artist_area_tv,artist_sex_tv,artist_tupe_tv;
     private Button select_area_all_b,select_sex_all_b,select_tupe_all_b;
+    private TextView move_height;
 
 
     private int select = 0;
+    private int moveHeight = 0;
     private int AREA = 1;
     private int SEX = 2;
     private int TUPE = 3;
@@ -44,9 +50,12 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
         setContentView(R.layout.activity_artist_condition_select);
         Bundle bundle = getIntent().getExtras();
         select = bundle.getInt("Screen");
+        moveHeight = bundle.getInt("MoveHeight");
         inti(select);
     }
     private void binding(){
+
+        move_height = (TextView)findViewById(R.id.move_height);
 
         select_area_all_b = (Button)findViewById(R.id.select_area_all_b);
         select_sex_all_b = (Button)findViewById(R.id.select_sex_all_b);
@@ -106,9 +115,9 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
                 intent.putExtra("Area", "");
                 intent.putExtra("Sex", "");
                 intent.putExtra("Tupe", "");
-                intent.putExtra("AreaName", "");
-                intent.putExtra("SexName", "");
-                intent.putExtra("TupeName", "");
+                intent.putExtra("AreaName", "区域");
+                intent.putExtra("SexName", "性别");
+                intent.putExtra("TupeName", "类型");
 
                 ArtistConditionSelectActivity.this.setResult(RESULT_OK, intent);
                 ArtistConditionSelectActivity.this.finish();
@@ -119,8 +128,14 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
 
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void inti(int str){
         binding();
+
+//        move_height.setText(dip2px(235) + "/" + moveHeight);
+
+        move_height.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, (dip2px(235) - moveHeight)));
+
         select_area_ll.setVisibility(View.INVISIBLE);
         select_sex_ll.setVisibility(View.INVISIBLE);
         select_tupe_ll.setVisibility(View.INVISIBLE);
@@ -155,9 +170,9 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
             intent.putExtra("Area", "");
             intent.putExtra("Sex", "");
             intent.putExtra("Tupe", "");
-            intent.putExtra("AreaName", "");
-            intent.putExtra("SexName", "");
-            intent.putExtra("TupeName", "");
+            intent.putExtra("AreaName", "区域");
+            intent.putExtra("SexName", "性别");
+            intent.putExtra("TupeName", "类型");
 
             ArtistConditionSelectActivity.this.setResult(RESULT_OK, intent);
             ArtistConditionSelectActivity.this.finish();
@@ -242,4 +257,10 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
         overridePendingTransition(R.anim.out_to_not, R.anim.music_out);
 
     }
+
+    public int dip2px(float dipValue) {
+        final float scale = ArtistConditionSelectActivity.this.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
 }

@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -55,8 +56,7 @@ import java.util.HashMap;
 
 public class ResumeListParticularActivity extends ActionBarActivity implements View.OnClickListener ,CompoundButton.OnCheckedChangeListener {
       //基本信息
-   @ViewInject(R.id.talen_back_iv)
-    private ImageView talenBackIv;
+
     @ViewInject(R.id.resumeZhName_tv)
     private TextView resumeZhName;
     @ViewInject(R.id.resumeSex_iv)
@@ -116,6 +116,8 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     private ListView videoListView;
 
     //背景
+    @ViewInject(R.id.talen_back_iv)
+    private ImageView talenBackIv;
     private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
@@ -188,6 +190,12 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
             resumeSexIv.setBackgroundResource(R.mipmap.girl_icon);
 
         }
+        if(!TextUtils.isEmpty(resumeValueBean.getResumeUserbg())){
+            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeUserbg(), talenBackIv,MyAppliction.options);
+        }else {
+            talenBackIv.setBackgroundResource(R.mipmap.resume_background_icon);
+        }
+
         resumeViewCountTv.setText("浏览量:"+resumeValueBean.getResumeViewCount());
         resumeAgeTv.setText(resumeValueBean.getResumeAge()+"");
         resumeWorkPlaceTv.setText(resumeValueBean.getResumeWorkPlace());
@@ -367,8 +375,9 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
             case R.id.list_compile_text:
                 Intent intent=new Intent(ResumeListParticularActivity.this,AddResumeActivity.class);
                 intent.putExtra("compiledata",resumeValueBean);
-                intent.putExtra("resumeNuber","1111");
-                startActivity(intent);
+                intent.putExtra("resumeNuber", "1111");
+                //startActivity(intent);
+                startActivityForResult(intent,18);
                 break;
             case R.id.list_retrun_tv:
                 finish();
@@ -390,6 +399,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
 
         }
     }
+
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -496,6 +506,20 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                     sentPicToNext(data);
 
                 break;
+            case 18:
+                switch (requestCode){
+                    case 18:
+                        if ((data.getStringExtra("closeActivity")).equals("close")){
+                            finish();
+                        }
+
+                        break;
+
+
+                }
+
+                break;
+
 
         }
 

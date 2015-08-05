@@ -13,8 +13,8 @@
          android:layout_height="wrap_content" />
      <TextView
          android:layout_marginTop="15dp"
-         android:text="用户中心"
-         android:textSize="@dimen/textSize16"
+         android:text="我的"
+         android:textSize="@dimen/textSize18"
          android:textColor="@color/white"
          android:layout_centerHorizontal="true"
          style="@style/paren_layout_width"

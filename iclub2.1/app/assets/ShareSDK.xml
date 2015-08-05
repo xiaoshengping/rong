@@ -107,7 +107,7 @@
         SortId="5"
         AppId="wx10239210053dad9c"
         AppSecret="e46b06893ee127dc42cf3fb00f450f5e"
-        BypassApproval="true"
+        BypassApproval="false"
         Enable="true" />
         
 	<WechatFavorite
@@ -123,7 +123,7 @@
         SortId="7"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         Enable="true" />
     
     <Facebook

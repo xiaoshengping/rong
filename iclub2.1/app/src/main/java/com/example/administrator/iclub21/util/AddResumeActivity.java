@@ -137,7 +137,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private TextView deleteResumeTv;
 
 
-    private   String states=null;
+    private   String uid=null;
 
     @ViewInject(R.id.job_classfite_layout)
     private LinearLayout jodClassfiteLayout;
@@ -282,16 +282,16 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         Cursor cursor = db.query("user", null, null, null, null, null, null);
 
         while (cursor.moveToNext()) {
-            states = cursor.getString(0);
+            uid = cursor.getString(0);
 
         }
-        if (!TextUtils.isEmpty(states)){
+        if (!TextUtils.isEmpty(uid)){
             phoneTextView.setVisibility(View.VISIBLE);
-            phoneTextView.setText(states);
+            phoneTextView.setText(uid);
 
         }else {
             phoneEdit.setVisibility(View.VISIBLE);
-            states=phoneEdit.getText().toString();
+            uid=phoneEdit.getText().toString();
         }
         cursor.close();
         db.close();
@@ -439,6 +439,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 if (resumeNuber.equals("2222")){
                     showExitGameAlert();
                 }else {
+                    setResult(18,getIntent().putExtra("closeActivity","Noclose"));
                     finish();
                 }
 
@@ -545,7 +546,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
             compileRequestParams.addBodyParameter("resumeJobCategory ", job_classfite_num+"");
             compileRequestParams.addBodyParameter("resumeCityId", job_city_num+"");
-            compileRequestParams.addBodyParameter("resumeMobile", states);
+            compileRequestParams.addBodyParameter("resumeMobile", uid);
 
 
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), compileRequestParams, new RequestCallBack<String>() {
@@ -569,8 +570,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                             if (!TextUtils.isEmpty(ResumeId) && !TextUtils.isEmpty(userMusicPath)) {
                                 intiMusicData(ResumeId, userMusicPath);
                             }
-                            Intent intent = new Intent(AddResumeActivity.this, ResumeActivity.class);
-                            startActivity(intent);
+                            //Intent intent = new Intent(AddResumeActivity.this, ResumeActivity.class);
+                            //startActivity(intent);
+                            setResult(18,getIntent().putExtra("closeActivity","close"));
                             finish();
 
 
@@ -602,7 +604,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
         } else {
             requestParams.addBodyParameter("resumeSex ", sex);
-            requestParams.addBodyParameter("uid", "15088138598");
+            requestParams.addBodyParameter("uid", uid);
             requestParams.addBodyParameter("resumeWorkExperience", userWork);
             requestParams.addBodyParameter("resumeInfo", userInfo);
             requestParams.addBodyParameter("resumeEmail", userEmail);
@@ -612,7 +614,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             requestParams.addBodyParameter("usericon", new File(touXiangPath));
             requestParams.addBodyParameter("resumeJobCategory ", job_classfite_num+"");
             requestParams.addBodyParameter("resumeCityId", job_city_num+"");
-            requestParams.addBodyParameter("resumeMobile", "15088138598");
+            requestParams.addBodyParameter("resumeMobile", uid);
 
             if (resumeNuber.equals("2222")) {
 
@@ -642,6 +644,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                                     intiMusicData(saveValueBean.getResumeid(), userMusicPath);
 
                                 }
+                                setResult(18,getIntent().putExtra("closeActivity","close"));
                                 finish();
 
 
@@ -920,7 +923,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddMovie(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("initAddVideoData", responseInfo.result);
+               // Log.e("initAddVideoData", responseInfo.result);
             }
 
             @Override
@@ -940,7 +943,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddPicture(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("intiPhotoData", responseInfo.result);
+               // Log.e("intiPhotoData", responseInfo.result);
             }
 
             @Override
@@ -961,7 +964,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddMusic(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("onSuccess", responseInfo.result);
+               // Log.e("onSuccess", responseInfo.result);
             }
 
             @Override

@@ -14,6 +14,7 @@ public class TalentValueBean implements Serializable {
     private String resumeInfo;
     private int resumeJobCategory;
     private String resumeJobName;
+    private String resumeJobCategoryName;
     private String resumeLabel;
     private String resumeMobile;
     private List<ResumeMovie> resumeMovie;
@@ -30,6 +31,14 @@ public class TalentValueBean implements Serializable {
     private int resumeid;
     private int state;
     private String usericon;
+
+    public String getResumeJobCategoryName() {
+        return resumeJobCategoryName;
+    }
+
+    public void setResumeJobCategoryName(String resumeJobCategoryName) {
+        this.resumeJobCategoryName = resumeJobCategoryName;
+    }
 
     public String getBirthday() {
         return birthday;
@@ -243,6 +252,7 @@ public class TalentValueBean implements Serializable {
                 ", resumeInfo='" + resumeInfo + '\'' +
                 ", resumeJobCategory=" + resumeJobCategory +
                 ", resumeJobName='" + resumeJobName + '\'' +
+                ", resumeJobCategoryName='" + resumeJobCategoryName + '\'' +
                 ", resumeLabel='" + resumeLabel + '\'' +
                 ", resumeMobile='" + resumeMobile + '\'' +
                 ", resumeMovie=" + resumeMovie +
