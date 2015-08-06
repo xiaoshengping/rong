@@ -231,7 +231,15 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
 
     private void intiHttpData() {
         HttpUtils httpUtils=new HttpUtils();
-        requestParams.addBodyParameter("uid", "15088138598");
+        SQLhelper sqLhelper=new SQLhelper(CompanyEditActivity.this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        String uid=null;
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+
+        }
+        requestParams.addBodyParameter("uid", uid);
         if (data.equals("name")) {
             name=editCompanyNameEv.getText().toString();
             requestParams.addBodyParameter("BEcompanyName",name);

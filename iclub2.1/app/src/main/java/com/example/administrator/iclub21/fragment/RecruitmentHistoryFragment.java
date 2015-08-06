@@ -14,8 +14,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.adapter.RecruitmentHistoryAdapter;
+import com.example.administrator.iclub21.bean.BMerchantValueBean;
+import com.example.administrator.iclub21.bean.ParmeBean;
 import com.example.administrator.iclub21.bean.RecruitmentHistoryValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.http.MyAppliction;
@@ -31,6 +34,7 @@ import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
@@ -54,6 +58,9 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
     private List<RecruitmentHistoryValueBean> recruitmentHistoryValueBean;
     private RecruitmentHistoryAdapter recruitmentHistoryAdapter;
     private int offset=0;
+
+    private  BMerchantValueBean bMerchantValueBean;
+    private RequestParams requestParams;
 
 
     public RecruitmentHistoryFragment() {
@@ -79,6 +86,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
     }
 
     private void intiListView() {
+        requestParams=new RequestParams();
         recruitmentHistoryValueBean=new ArrayList<RecruitmentHistoryValueBean>();
         recruitmentHistoryAdapter=new RecruitmentHistoryAdapter(recruitmentHistoryValueBean,getActivity());
         recruitmentHistoryLv.setAdapter(recruitmentHistoryAdapter);
@@ -99,15 +107,21 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), AddRecruitmentActivity.class);
-                intent.putExtra("recruitmentHistoryValueBean", recruitmentHistoryValueBean.get(position-1));
+                intent.putExtra("recruitmentHistoryValueBean", recruitmentHistoryValueBean.get(position - 1));
                 intent.putExtra("falgeData", "RecruitmentHistoryFragment");
                 startActivity(intent);
             }
         });
 
+        intitData();
 
 
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        intitData();
     }
 
     private void initView() {
@@ -170,11 +184,11 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
         switch (v.getId()){
             case R.id.save_text:
 
-                if (recruitmentHistoryValueBean.size()!=0){
+                if (bMerchantValueBean!=null){
 
-                    if (TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getCompanyName())||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getPhone())||
-                            TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getEmail())||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getWeb())
-                            ||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getAddress())
+                    if (TextUtils.isEmpty(bMerchantValueBean.getBEcompanyName())||TextUtils.isEmpty(bMerchantValueBean.getBEphone())||
+                            TextUtils.isEmpty(bMerchantValueBean.getBEemail())||TextUtils.isEmpty(bMerchantValueBean.getBEweb())
+                            ||TextUtils.isEmpty(bMerchantValueBean.getBEaddress())
                             )
                     {
                         MyAppliction.showToast("先完善公司资料才能添加招聘信息");
@@ -188,14 +202,10 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
 
                     }
                 }else {
-                    MyAppliction.showToast("先完善公司资料才能添加招聘信息");
+                    // MyAppliction.showToast("先完善公司资料才能添加招聘信息");
                     Intent intent =new Intent(getActivity(),CompanyMessageActivity.class)   ;
                     startActivity(intent);
                 }
-
-
-
-
                 break;
             case R.id.company_message_retrun_tv:
 //                Intent intent=new Intent(getActivity(), RoleActivity.class);
@@ -206,6 +216,55 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
 
         }
     }
+
+    private void intitData() {
+        SQLhelper sqLhelper=new SQLhelper(getActivity());
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        String uid=null;
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+
+        }
+        if (!TextUtils.isEmpty(uid)){
+            HttpUtils httpUtils=new HttpUtils();
+            requestParams.addBodyParameter("uid", uid);
+            httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAcquireMerchant(), requestParams, new RequestCallBack<String>() {
+                        @Override
+                        public void onSuccess(ResponseInfo<String> responseInfo) {
+                            String result = responseInfo.result;
+                            if (!TextUtils.isEmpty(result)) {
+                                ParmeBean<BMerchantValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<BMerchantValueBean>>() {
+                                });
+                                bMerchantValueBean = parmeBean.getValue();
+
+
+
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onFailure(HttpException e, String s) {
+
+                        }
+                    }
+
+            );
+
+
+                    }
+                    cursor.close();
+        db.close();
+
+
+    }
+
+
+
+
+
 
 
     @Override

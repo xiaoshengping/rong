@@ -10,6 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.example.administrator.iclub21.bean.ParmeBean;
+import com.example.administrator.iclub21.bean.PswValueBean;
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
@@ -79,7 +84,19 @@ public class AmendPswActivity extends ActionBarActivity implements View.OnClickL
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAmendPsw(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                  // String result=   responseInfo.result;
+                  String result=   responseInfo.result;
+                ParmeBean<PswValueBean> parmeBean = JSONObject.parseObject(result,new TypeReference<ParmeBean<PswValueBean>>(){});
+                if (parmeBean.getState().equals("success")){
+                    if (parmeBean.getValue().getMessage().equals("success")){
+                        finish();
+
+                    }else {
+                        MyAppliction.showToast("旧密码错误!");
+
+                    }
+
+
+                }
 
             }
 
@@ -102,7 +119,7 @@ public class AmendPswActivity extends ActionBarActivity implements View.OnClickL
                 if (!TextUtils.isEmpty(formerPswEdit.getText().toString())&&!TextUtils.isEmpty(newPswEdit.getText().toString())&&
                         (resetPswEdit.getText().toString()).equals(newPswEdit.getText().toString())    ){
                     intiAmndPswData();
-                    finish();
+
                 }else {
                     Toast.makeText(AmendPswActivity.this,"您填写的信息不全",Toast.LENGTH_LONG).show();
 

@@ -20,6 +20,7 @@
         android:layout_marginLeft="60dp"
         android:textSize="@dimen/textSize15"
         android:hint="旧密码"
+        android:password="true"
         android:paddingLeft="10dp"
         android:background="@drawable/rounded_edittext"
         android:phoneNumber="true"
