@@ -112,7 +112,7 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("Area", "");
+                intent.putExtra("Area", "no");
                 intent.putExtra("Sex", "");
                 intent.putExtra("Tupe", "");
                 intent.putExtra("AreaName", "区域");
@@ -167,7 +167,7 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 //            finish();
             Intent intent = new Intent();
-            intent.putExtra("Area", "");
+            intent.putExtra("Area", "no");
             intent.putExtra("Sex", "");
             intent.putExtra("Tupe", "");
             intent.putExtra("AreaName", "区域");
