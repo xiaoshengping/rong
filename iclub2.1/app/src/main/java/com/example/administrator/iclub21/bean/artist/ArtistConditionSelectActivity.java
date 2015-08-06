@@ -190,15 +190,15 @@ public class ArtistConditionSelectActivity extends Activity implements View.OnCl
 
         switch (v.getId()){
             case R.id.select_area_all_b:
-                area ="";
+                area ="yes";
                 areaName = "区域";
                 break;
             case R.id.select_sex_all_b:
-                sex ="";
+                sex ="yes";
                 sexName = "性别";
                 break;
             case R.id.select_tupe_all_b:
-                tupe ="";
+                tupe ="yes";
                 tupeName = "类型";
                 break;
             case R.id.select_hinterland_b:

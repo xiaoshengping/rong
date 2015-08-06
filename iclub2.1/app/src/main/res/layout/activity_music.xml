@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="fill_parent" android:layout_width="fill_parent"
     android:orientation="vertical"
-    android:background="#90000000"
+    android:background="#99000000"
     android:gravity="center"
     android:id="@+id/music_back_ll"
     android:padding="20dp">
@@ -11,9 +11,10 @@
             android:text="歌曲"
             android:id="@+id/tips"
             android:textSize="15sp"
-            android:padding="10sp"
+            android:paddingRight="5sp"
+            android:layout_margin="10dp"
             android:gravity="center_vertical"
-            android:drawableRight="@mipmap/ic_launcher"/>
+            android:drawableRight="@mipmap/play_03"/>
 
 
 

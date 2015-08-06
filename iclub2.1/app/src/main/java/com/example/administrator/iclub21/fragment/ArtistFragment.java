@@ -86,6 +86,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
     List<ArtistListBean> artistListData;
     private int offset = 0;
     private String area = "", sex = "", tupe = "";
+    private int heith = 0;
 
     public ArtistFragment() {
         // Required empty public constructor
@@ -150,33 +151,33 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
                     artistGridView.setAdapter(adapter);
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ArtistListBean>>() {
                     }, artistListData, adapter);
-                        //intiGridView(artistListData);
+                    //intiGridView(artistListData);
 //                      Log.e("name", artistParme.getValue().get(0).getArtistPicture().get(0).getName())  ;
 
-                        adapter.notifyDataSetChanged();
-                        fascrollView.onRefreshComplete();
-                        artistGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    adapter.notifyDataSetChanged();
+                    fascrollView.onRefreshComplete();
+                    artistGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                                Intent intent = new Intent(getActivity(), JobDetailsActivity.class);  //方法1
 //                                Bundle bundle=new Bundle();
 //                                bundle.putSerializable("Detail",recruitmentListData.get(position-1));
 //                                intent.putExtras(bundle);
 //                                startActivity(intent);
-                                Intent intent = new Intent(getActivity(), ArtistDetailActivity.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putParcelable("Detail", artistListData.get(position));
-                                intent.putExtras(bundle);
-                                startActivity(intent);
+                            Intent intent = new Intent(getActivity(), ArtistDetailActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelable("Detail", artistListData.get(position));
+                            intent.putExtras(bundle);
+                            startActivity(intent);
 
-                            }
-                        });
+                        }
+                    });
 
-                        intiHeadData();
+                    intiHeadData();
 
-                    }
+
                 }
-
+            }
 
 
             @Override
@@ -192,12 +193,14 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
             @Override
             public void onClick(View v) {
 
-//                Intent intent = new Intent(getActivity(), SelectedCityOrPositionActivity.class);  //方法1
-//                intent.putExtra("Status", areaBean.POSITION);
-//                startActivityForResult(intent, areaBean.POSITION);
+                int[] location = new int[2];
+                artistGridView.getLocationOnScreen(location);
+                int x = location[0];
+                int y = location[1];
 
                 Intent intent = new Intent(getActivity(), ArtistConditionSelectActivity.class);//方法1
                 intent.putExtra("Screen", AREA);
+                intent.putExtra("MoveHeight", (heith-y));
                 startActivityForResult(intent, AREA);
                 getActivity().overridePendingTransition(R.anim.music_in, R.anim.out_to_not);
             }
@@ -206,12 +209,18 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
             @Override
             public void onClick(View v) {
 
-//                Intent intent = new Intent(getActivity(), SelectedCityOrPositionActivity.class);  //方法1
-//                intent.putExtra("Status", areaBean.POSITION);
-//                startActivityForResult(intent, areaBean.POSITION);
+                int[] location = new int[2];
+                artistGridView.getLocationOnScreen(location);
+                int x = location[0];
+                int y = location[1];
+
+                if(heith==0){
+                    heith = y;
+                }
 
                 Intent intent = new Intent(getActivity(), ArtistConditionSelectActivity.class);//方法1
                 intent.putExtra("Screen", SEX);
+                intent.putExtra("MoveHeight", (heith - y));
                 startActivityForResult(intent, SEX);
                 getActivity().overridePendingTransition(R.anim.music_in, R.anim.out_to_not);
             }
@@ -220,12 +229,18 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
             @Override
             public void onClick(View v) {
 
-//                Intent intent = new Intent(getActivity(), SelectedCityOrPositionActivity.class);  //方法1
-//                intent.putExtra("Status", areaBean.POSITION);
-//                startActivityForResult(intent, areaBean.POSITION);
+                int[] location = new int[2];
+                artistGridView.getLocationOnScreen(location);
+                int x = location[0];
+                int y = location[1];
+
+                if(heith==0){
+                    heith = y;
+                }
 
                 Intent intent = new Intent(getActivity(), ArtistConditionSelectActivity.class);//方法1
                 intent.putExtra("Screen", TUPE);
+                intent.putExtra("MoveHeight", (heith - y));
                 startActivityForResult(intent, TUPE);
                 getActivity().overridePendingTransition(R.anim.music_in, R.anim.out_to_not);
             }
@@ -276,15 +291,18 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
                         SlideShowView ssv = new SlideShowView(getActivity(), headBean.getValue(), 0, 0);
                         LinearLayout header_ll = (LinearLayout) getActivity().findViewById(R.id.header_ll);
                         header_ll.addView(ssv);
-                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (getResources().getDimension(R.dimen.ssv_height)));
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (getResources().getDimension(R.dimen.artist_ssv_height)));
                         layoutParams.setMargins(0, 0, 0, 0);
                         ssv.setLayoutParams(layoutParams);
 
-                        // headDate.addAll(headBean.getValue());
-//                        ArtistPagerAdapter adapter=new ArtistPagerAdapter(getActivity().getSupportFragmentManager(),headBean.getValue());
-//                        artistPager.setAdapter(adapter);
                         fascrollView.setVisibility(View.VISIBLE);
                         progressbar.setVisibility(View.GONE);
+                        if(heith==0) {
+                            int[] location = new int[2];
+                            artistGridView.getLocationOnScreen(location);
+                            heith = location[1];
+                        }
+
 
                     }
 
@@ -302,7 +320,7 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
         // fascrollView.smoothScrollTo(0, 0);
 
 
-        scrollView.smoothScrollTo(0, 0);
+//        scrollView.smoothScrollTo(0, 0);
     }
 
     private void initPager() {
@@ -310,44 +328,45 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
 
     }
 
-   // private String area = "", sex = "", tupe = "";
-
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Bundle bundle = data.getExtras();
 
-//        if(bundle.getString("Area").equals("")){}else {
-        area = bundle.getString("Area");
-        artist_area_tv.setText(bundle.getString("AreaName"));
-//        }
-//        if(bundle.getString("Sex").equals("")){}else {
-        sex = bundle.getString("Sex");
-        artist_sex_tv.setText(bundle.getString("SexName"));//twerter
-//        }
-//        if(bundle.getString("Tupe").equals("")){}else {
-        tupe = bundle.getString("Tupe");
-        artist_tupe_tv.setText(bundle.getString("TupeName"));
-//        }
-        if(area.equals("no")){}else {
-//            initListData(area.toString(), sex.toString(), tupe.toString(), 0);
+        if(bundle.getString("Area").equals("")||bundle.getString("Area").equals("no")){}else {
+            area = bundle.getString("Area");
+            if(area.equals("yes")){
+                area="";
+            }
+            artist_area_tv.setText(bundle.getString("AreaName"));
+        }
+        if(bundle.getString("Sex").equals("")){}else {
+            sex = bundle.getString("Sex");
+            if(sex.equals("yes")){
+                sex="";
+            }
+            artist_sex_tv.setText(bundle.getString("SexName"));//twerter
+        }
+        if(bundle.getString("Tupe").equals("")){}else {
+            tupe = bundle.getString("Tupe");
+            if(tupe.equals("yes")){
+                tupe="";
+            }
+            artist_tupe_tv.setText(bundle.getString("TupeName"));
+        }
+        if(bundle.getString("Area").equals("no")){}else {
             fascrollView.setRefreshing();
         }
-//        if (bundle.getString("Sex").equals("")) {
-//        } else {
+//
+//            area = bundle.getString("Area");
 //            sex = bundle.getString("Sex");
-//            artist_sex_tv.setText(bundle.getString("SexName"));
-//            fascrollView.setRefreshing();
-//        }
-//        if (bundle.getString("Tupe").equals("")) {
-//            fascrollView.setRefreshing();
-//        } else {
 //            tupe = bundle.getString("Tupe");
+//        if(area.equals("no")){}else {
+//            artist_area_tv.setText(bundle.getString("AreaName"));
+//            artist_sex_tv.setText(bundle.getString("SexName"));//twerter
 //            artist_tupe_tv.setText(bundle.getString("TupeName"));
+////            initListData(area,sex,tupe,0);
 //            fascrollView.setRefreshing();
 //        }
-        //initListData(area.toString(), sex.toString(), tupe.toString(), offset);
-//        back_ib.setVisibility(View.VISIBLE);
-
 
     }
 
@@ -391,103 +410,98 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                    switch (event.getAction())
+                switch (event.getAction())
 
-                    {
+                {
 
-                        //ACTIN_DOWN没用，不用监听
+                    //ACTIN_DOWN没用，不用监听
 
-                        case MotionEvent.ACTION_MOVE:
+                    case MotionEvent.ACTION_MOVE:
 
-                            if (isFirst)
+                        if (isFirst)
 
-                            {
+                        {
 
-                                // 记录下第一个滑动的ScrollY值
+                            // 记录下第一个滑动的ScrollY值
 
-                                First_ScrollY_Move = v.getScrollY();
+                            First_ScrollY_Move = v.getScrollY();
 
-                                isFirst = false;
+                            isFirst = false;
 
-                            }
+                        }
 
-                            // 记录下Scrollview滑动的ScrollY值
+                        // 记录下Scrollview滑动的ScrollY值
 
-                            ScrollY_Move = v.getScrollY();
-
-
-
-                            // 计算出ScrollY_Move和First_ScrollY_Move的差值
-
-                            Cha = ScrollY_Move - First_ScrollY_Move;
+                        ScrollY_Move = v.getScrollY();
 
 
+                        // 计算出ScrollY_Move和First_ScrollY_Move的差值
 
-                            // 当ScrollY_Move>First_ScrollY_Move时证明滑动方向是向下；
-
-                            // 加上判断差值的目的：当Actionbar显示的时候，手指按住往下滑过一段距离还未抬起时，Actionbar也能隐藏
-
-                            if (First_ScrollY_Move < ScrollY_Move || Cha > 200)
-
-                            {
-
-                                // 隐藏Actionbar
-
-                                headerLayout.setVisibility(View.GONE);
-
-                            }
+                        Cha = ScrollY_Move - First_ScrollY_Move;
 
 
+                        // 当ScrollY_Move>First_ScrollY_Move时证明滑动方向是向下；
 
-                            // 当ScrollY_Move<First_ScrollY_Move时证明滑动方向是向上；
+                        // 加上判断差值的目的：当Actionbar显示的时候，手指按住往下滑过一段距离还未抬起时，Actionbar也能隐藏
 
-                            // 加上判断差值的目的：当Actionbar显示的时候，手指按住往上滑过一段距离还未抬起时，Actionbar也能显示
+                        if (First_ScrollY_Move < ScrollY_Move || Cha > 200)
 
-                            // 判断ScrollY_Move < 150目的：当Scrollview滑动接近顶端时必须显示Actionbar
+                        {
 
-                            else if (First_ScrollY_Move > ScrollY_Move || Cha < -200
+                            // 隐藏Actionbar
 
-                                    || ScrollY_Move < 150)
+                            headerLayout.setVisibility(View.GONE);
 
-                            {
-
-                                headerLayout.setVisibility(View.VISIBLE);
-
-                            }
-
-                            break;
-
-                        case MotionEvent.ACTION_UP:
-
-                            ScrollY_Up = v.getScrollY();// 记录下手指抬起时ScrollY值
-
-                            isFirst = true;// 将isFirst还原为初始化
-
-                            if (ScrollY_Up == 0)
-
-                            {
-
-                                headerLayout.setVisibility(View.VISIBLE);
-
-                            }
-
-                            // Log.e("ACTION_UP--->", "scrollY_up:" + scrollY_up + "   "
-
-                            // + "eventY_up:" + eventY_up);
+                        }
 
 
+                        // 当ScrollY_Move<First_ScrollY_Move时证明滑动方向是向上；
 
-                            break;
+                        // 加上判断差值的目的：当Actionbar显示的时候，手指按住往上滑过一段距离还未抬起时，Actionbar也能显示
+
+                        // 判断ScrollY_Move < 150目的：当Scrollview滑动接近顶端时必须显示Actionbar
+
+                        else if (First_ScrollY_Move > ScrollY_Move || Cha < -200
+
+                                || ScrollY_Move < 150)
+
+                        {
+
+                            headerLayout.setVisibility(View.VISIBLE);
+
+                        }
+
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+
+                        ScrollY_Up = v.getScrollY();// 记录下手指抬起时ScrollY值
+
+                        isFirst = true;// 将isFirst还原为初始化
+
+                        if (ScrollY_Up == 0)
+
+                        {
+
+                            headerLayout.setVisibility(View.VISIBLE);
+
+                        }
+
+                        // Log.e("ACTION_UP--->", "scrollY_up:" + scrollY_up + "   "
+
+                        // + "eventY_up:" + eventY_up);
 
 
+                        break;
 
-                        default:
 
-                            break;
+                    default:
 
-                    }
+                        break;
 
-                    return false;
+                }
+
+                return false;
             }
         });
 
@@ -495,8 +509,6 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
 
 
     }
-
-
 
 
 

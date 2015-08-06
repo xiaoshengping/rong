@@ -28,6 +28,8 @@ public class JobDetailsDialog extends Dialog {
     public int OFFER = 2;//邀约
     public int BEDEFEATED = 3;//加载失败
     public int ING = 4;//加载中
+    public int SUCCEED = 5;//邀约成功
+    public int FAILURE = 6;//邀约失败
 //    private TextView eliminate_tv;
 //    private ImageButton seek_ib;
 
@@ -66,8 +68,14 @@ public class JobDetailsDialog extends Dialog {
         }else if(tipsType == ING){
             tips_tv.setText("正在加载");
         }else if(tipsType == OFFER){
-            tips_tv.setText("邀约");
+            tips_tv.setText("邀约日期为："+cc.i);
             cancel.setVisibility(View.VISIBLE);
+        }else if(tipsType == SUCCEED){
+            tips_tv.setText("邀约详细信息已用短信方式发送到你手机号码中！");
+            cancel.setVisibility(View.INVISIBLE);
+        }else if(tipsType == FAILURE){
+            tips_tv.setText("邀约失败请稍后重试！");
+            cancel.setVisibility(View.INVISIBLE);
         }
         super.setContentView(mView);
     }

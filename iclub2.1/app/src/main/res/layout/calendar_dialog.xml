@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:padding="0dp"
     android:background="@drawable/jobdetails_dialog_shape">
-    <TextView
+    <!--<TextView
         android:id="@+id/tips"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         android:textColor="#EBE9EB"
         android:background="@drawable/jobdetails_tips_shape"
         android:gravity="center"
-        android:padding="5dp"/>
+        android:padding="5dp"/>-->
 
     <LinearLayout
         android:id="@+id/register_or_cancel"

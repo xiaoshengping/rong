@@ -2,6 +2,7 @@ package com.example.administrator.iclub21.bean.talent;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -32,14 +33,21 @@ public class MusicActivity extends Activity{
     private int PLAY = 1;
     private int PAUSE = 2;
     private int state = 0;
+    private boolean pause = false;
 
     private String musicName;
+    private Drawable play_03,pause_03;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
+        play_03=getResources().getDrawable(R.mipmap.play_03);
+        play_03.setBounds(0, 0, play_03.getMinimumWidth(), play_03.getMinimumHeight());
+        pause_03=getResources().getDrawable(R.mipmap.pause_03);
+        pause_03.setBounds(0, 0, pause_03.getMinimumWidth(), pause_03.getMinimumHeight());
+//        textview1.setCompoundDrawables(null, null, nav_up, null);
 
         tipsView=(TextView) this.findViewById(R.id.tips);
         tipsView.setOnClickListener(new ClickEvent());
@@ -85,11 +93,21 @@ public class MusicActivity extends Activity{
 
             if (arg0 == tipsView) {
                 if(state==NOSTATE) {
+                    tipsView.setCompoundDrawables(null,null,pause_03,null);
                     state=PLAY;
                     player.play();
 
                 }else{
+                    if(pause) {
+                        tipsView.setCompoundDrawables(null,null,pause_03,null);
+                        pause=false;
+                    }else {
+                        tipsView.setCompoundDrawables(null,null,play_03,null);
+                        pause=true;
+                    }
                     player.pause();
+
+
                 }
             }
             if(arg0 == music_back_ll){

@@ -16,10 +16,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.example.administrator.iclub21.bean.artist.MyGridView
+                    android:id="@+id/artist_list_gridView"
+                    android:numColumns="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="275dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/title_h" />
@@ -89,12 +101,11 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent" />
                 </LinearLayout>
-                <com.example.administrator.iclub21.bean.artist.MyGridView
-                    android:id="@+id/artist_list_gridView"
-                    android:numColumns="2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
             </LinearLayout>
+
+                </RelativeLayout>
+
+
 
         </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
         <ProgressBar
