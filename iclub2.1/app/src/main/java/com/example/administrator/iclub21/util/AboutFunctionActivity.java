@@ -22,13 +22,13 @@ public class AboutFunctionActivity extends ActionBarActivity implements View.OnC
     private List<View> views;
     private ImageButton experience_immediately;
 
-    //Òıµ¼Í¼Æ¬×ÊÔ´
+    //å¼•å¯¼å›¾ç‰‡èµ„æº
     private static final int[] pics = {R.mipmap.guidance1, R.mipmap.guidance2, R.mipmap.guidance3 };
 
-    //µ×²¿Ğ¡µêÍ¼Æ¬
+    //åº•éƒ¨å°åº—å›¾ç‰‡
     private ImageView[] dots ;
 
-    //¼ÇÂ¼µ±Ç°Ñ¡ÖĞÎ»ÖÃ
+    //è®°å½•å½“å‰é€‰ä¸­ä½ç½®
     private int currentIndex;
 
     /** Called when the activity is first created. */
@@ -51,7 +51,7 @@ public class AboutFunctionActivity extends ActionBarActivity implements View.OnC
             LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
 
-            //³õÊ¼»¯Òıµ¼Í¼Æ¬ÁĞ±í
+            //åˆå§‹åŒ–å¼•å¯¼å›¾ç‰‡åˆ—è¡¨
             for (int i = 0; i < pics.length; i++) {
                 ImageView iv = new ImageView(this);
                 iv.setLayoutParams(mParams);
@@ -60,13 +60,13 @@ public class AboutFunctionActivity extends ActionBarActivity implements View.OnC
                 views.add(iv);
             }
             vp = (ViewPager) findViewById(R.id.viewpager);
-            //³õÊ¼»¯Adapter
+            //åˆå§‹åŒ–Adapter
             vpAdapter = new ViewPagerAdapter(views);
             vp.setAdapter(vpAdapter);
-            //°ó¶¨»Øµ÷
+            //ç»‘å®šå›è°ƒ
             vp.setOnPageChangeListener(this);
 
-            //³õÊ¼»¯µ×²¿Ğ¡µã
+            //åˆå§‹åŒ–åº•éƒ¨å°ç‚¹
 //        initDots();
     }
 
@@ -75,20 +75,20 @@ public class AboutFunctionActivity extends ActionBarActivity implements View.OnC
 
         dots = new ImageView[pics.length];
 
-        //Ñ­»·È¡µÃĞ¡µãÍ¼Æ¬
+        //å¾ªç¯å–å¾—å°ç‚¹å›¾ç‰‡
         for (int i = 0; i < pics.length; i++) {
             dots[i] = (ImageView) ll.getChildAt(i);
-            dots[i].setEnabled(true);//¶¼ÉèÎª»ÒÉ«
+            dots[i].setEnabled(true);//éƒ½è®¾ä¸ºç°è‰²
             dots[i].setOnClickListener(this);
-            dots[i].setTag(i);//ÉèÖÃÎ»ÖÃtag£¬·½±ãÈ¡³öÓëµ±Ç°Î»ÖÃ¶ÔÓ¦
+            dots[i].setTag(i);//è®¾ç½®ä½ç½®tagï¼Œæ–¹ä¾¿å–å‡ºä¸å½“å‰ä½ç½®å¯¹åº”
         }
 
         currentIndex = 0;
-        dots[currentIndex].setEnabled(false);//ÉèÖÃÎª°×É«£¬¼´Ñ¡ÖĞ×´Ì¬
+        dots[currentIndex].setEnabled(false);//è®¾ç½®ä¸ºç™½è‰²ï¼Œå³é€‰ä¸­çŠ¶æ€
     }
 
     /**
-     *ÉèÖÃµ±Ç°µÄÒıµ¼Ò³
+     *è®¾ç½®å½“å‰çš„å¼•å¯¼é¡µ
      */
     private void setCurView(int position)
     {
@@ -100,7 +100,7 @@ public class AboutFunctionActivity extends ActionBarActivity implements View.OnC
     }
 
     /**
-     *ÕâÖ»µ±Ç°Òıµ¼Ğ¡µãµÄÑ¡ÖĞ
+     *è¿™åªå½“å‰å¼•å¯¼å°ç‚¹çš„é€‰ä¸­
      */
     private void setCurDot(int positon)
     {
@@ -114,24 +114,24 @@ public class AboutFunctionActivity extends ActionBarActivity implements View.OnC
         currentIndex = positon;
     }
 
-    //µ±»¬¶¯×´Ì¬¸Ä±äÊ±µ÷ÓÃ
+    //å½“æ»‘åŠ¨çŠ¶æ€æ”¹å˜æ—¶è°ƒç”¨
     @Override
     public void onPageScrollStateChanged(int arg0) {
         // TODO Auto-generated method stub
 
     }
 
-    //µ±µ±Ç°Ò³Ãæ±»»¬¶¯Ê±µ÷ÓÃ
+    //å½“å½“å‰é¡µé¢è¢«æ»‘åŠ¨æ—¶è°ƒç”¨
     @Override
     public void onPageScrolled(int arg0, float arg1, int arg2) {
         // TODO Auto-generated method stub
 
     }
 
-    //µ±ĞÂµÄÒ³Ãæ±»Ñ¡ÖĞÊ±µ÷ÓÃ
+    //å½“æ–°çš„é¡µé¢è¢«é€‰ä¸­æ—¶è°ƒç”¨
     @Override
     public void onPageSelected(int arg0) {
-        //ÉèÖÃµ×²¿Ğ¡µãÑ¡ÖĞ×´Ì¬
+        //è®¾ç½®åº•éƒ¨å°ç‚¹é€‰ä¸­çŠ¶æ€
         if(arg0==2){
             experience_immediately.setVisibility(View.VISIBLE);
         }else {
