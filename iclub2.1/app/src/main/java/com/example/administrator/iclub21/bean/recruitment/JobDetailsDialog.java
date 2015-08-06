@@ -74,7 +74,7 @@ public class JobDetailsDialog extends Dialog {
             tips_tv.setText("邀约详细信息已用短信方式发送到你手机号码中！");
             cancel.setVisibility(View.INVISIBLE);
         }else if(tipsType == FAILURE){
-            tips_tv.setText("邀约失败请稍后重试！");
+            tips_tv.setText("网络异常请稍后重试！");
             cancel.setVisibility(View.INVISIBLE);
         }
         super.setContentView(mView);

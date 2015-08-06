@@ -70,6 +70,8 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     public int OFFER = 2;//邀约
     public int BEDEFEATED = 3;//加载失败
     public int ING = 4;//加载中
+    public int SUCCEED = 5;//邀约成功、
+    public int FAILURE = 6;//邀约失败
 
     private int tipsType;
     private int resumeid;
@@ -591,16 +593,19 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
                 if (result != null) {
                     SendParme<ViewCountBean> viewCountBean = JSONObject.parseObject(result, new TypeReference<SendParme<ViewCountBean>>() {
                     });
-                    Toast.makeText(CalendarActivity.this, i, Toast.LENGTH_LONG).show();
+//                    Toast.makeText(CalendarActivity.this, i, Toast.LENGTH_LONG).show();
                     if (viewCountBean.getState().equals("success")) {
                         ViewCountBean viewCountData = JSONObject.parseObject(viewCountBean.getValue(), ViewCountBean.class);
 
                         if (viewCountData.getMessage().equals("success")) {
-                            Toast.makeText(CalendarActivity.this, "邀约成功", Toast.LENGTH_LONG).show();
+                            dialog(SUCCEED);
+//                            Toast.makeText(CalendarActivity.this, "邀约成功", Toast.LENGTH_LONG).show();
 
                         } else if (viewCountData.getMessage().equals("failure")) {
-                            Toast.makeText(CalendarActivity.this, "邀约失败", Toast.LENGTH_LONG).show();
+                            dialog(FAILURE);
+//                            Toast.makeText(CalendarActivity.this, "邀约失败", Toast.LENGTH_LONG).show();
                         } else {
+
 //                                Toast.makeText(CalendarActivity.this, "邀约失败", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -612,7 +617,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                dialog(FAILURE);
             }
         });
     }
@@ -633,6 +638,9 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
             public void onClick(View v) {
                 if(tipsTyp==OFFER) {
                     Invite();
+                }
+                if(tipsTyp==SUCCEED){
+                    finish();
                 }
                 dialog2.dismiss();
             }
