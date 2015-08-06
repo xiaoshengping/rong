@@ -213,10 +213,10 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
             case R.id.commit_comment_tv:
                 String falge=getIntent().getStringExtra("falgeData");
                 if (falge.equals("SuccessfulInviteFragment")){
-                    commentContentData(uid,inviteMessgaeListValueBeans.getInvitePerson().getId());
+                    commentContentData(uid,inviteMessgaeListValueBeans.getInvitePerson().getId(),AppUtilsUrl.getCommentCommit());
                     commentGradeData(inviteMessgaeListValueBeans.getInviteResume().getPersonid());
                 }else if (falge.equals("MerchantSuccessfulInviteFragment")){
-                    commentContentData(uid,merchantInviteValueBeans.getInviteResume().getPersonid()+"");
+                    commentContentData(uid,merchantInviteValueBeans.getInviteResume().getPersonid()+"",AppUtilsUrl.getCommentResume());
                     commentGradeData(merchantInviteValueBeans.getInviteResume().getPersonid()+"");
                 }
 
@@ -251,14 +251,15 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
 
     }
 
-    private void commentContentData(String uid,String beuid) {
+    private void commentContentData(String uid,String beuid,String url) {
         requestParams.addBodyParameter("uid",uid);
         requestParams.addBodyParameter("beuid",beuid );
         requestParams.addBodyParameter("body",commentContextEt.getText().toString());
-        httpUtils.send(HttpRequest.HttpMethod.POST,AppUtilsUrl.getCommentCommit() , requestParams, new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST,url , requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 //Log.e("sjdjjjfjj",responseInfo.result);
+                finish();
             }
 
             @Override

@@ -218,6 +218,16 @@ public class AppUtilsUrl  {
         return BaseUrl+"modifyGrade.action";
 
     }
+    //商家评论人才
+    public static String getCommentResume(){
+        // addCommentByPerson.action
+        return BaseUrl+"addCommentByBePerson.action";
+
+    }
+
+
+
+
        //商家--来自人才的评论
        public static String getResumeCommentData(){
            // modifyGrade.action
