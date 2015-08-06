@@ -167,7 +167,7 @@
 
         </LinearLayout>
     </LinearLayout>
-    <RadioGroup
+    <!--<RadioGroup
         android:id="@+id/merchant_radio_rg"
         android:background="#242424"
         android:gravity="center"
@@ -206,6 +206,6 @@
             style="@style/paren_radiogrud"
             />
 
-    </RadioGroup>
+    </RadioGroup>-->
 
 </RelativeLayout>

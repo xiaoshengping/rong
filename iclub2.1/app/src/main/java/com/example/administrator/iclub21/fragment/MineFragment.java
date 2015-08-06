@@ -186,10 +186,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
-
-
-
     //分享
     private void showShare() {
         ShareSDK.initSDK(getActivity());
