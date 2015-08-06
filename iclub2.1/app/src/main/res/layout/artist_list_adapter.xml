@@ -5,7 +5,7 @@
 
     <ImageView
         android:id="@+id/artist_person_picture"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
     <TextView

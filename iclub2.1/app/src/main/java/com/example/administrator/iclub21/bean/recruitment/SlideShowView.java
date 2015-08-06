@@ -189,11 +189,12 @@ public class SlideShowView extends FrameLayout {
 
         for(int i=0;i<artistPicture.size();i++){//int imageID : imagesResIds){
             ImageView view =  new ImageView(context);
+
             BitmapUtils bitmapUtils = new BitmapUtils(context);
             if(artistPicture!=null)
                 bitmapUtils.display(view, "http://www.iclubapps.com/upload/"+artistPicture.get(i).getName());
 //            view.setImageResource(imageID);
-            view.setScaleType(ScaleType.FIT_XY);
+            view.setScaleType(ScaleType.CENTER_CROP);
             imageViewsList.add(view);
 
 //            LinearLayout slideshow_ll = (LinearLayout)view.findViewById(R.id.slideshow_ll);

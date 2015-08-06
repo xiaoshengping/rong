@@ -11,8 +11,8 @@
             android:text="歌曲"
             android:id="@+id/tips"
             android:textSize="15sp"
-            android:paddingRight="5sp"
-            android:layout_margin="10dp"
+            android:padding="10sp"
+            android:layout_marginRight="5dp"
             android:gravity="center_vertical"
             android:drawableRight="@mipmap/play_03"/>
 
