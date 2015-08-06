@@ -35,10 +35,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MerchantInformationFragment extends Fragment {
+public class MerchantInformationFragment extends Fragment implements View.OnClickListener {
 
     @ViewInject(R.id.text_tv)
     private TextView textTv;
+    @ViewInject(R.id.role_retrun_tv)
+    private TextView retrunTextView;
     @ViewInject(R.id.information_lv)
     private ListView informationListv;
 
@@ -61,7 +63,7 @@ public class MerchantInformationFragment extends Fragment {
     }
 
     private void intiInfomation() {
-        //retrunTv.setOnClickListener(this);
+        retrunTextView.setOnClickListener(this);
         intiData();
 
 
@@ -112,5 +114,10 @@ public class MerchantInformationFragment extends Fragment {
 
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        getActivity().finish();
     }
 }

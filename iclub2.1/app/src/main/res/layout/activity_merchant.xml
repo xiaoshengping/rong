@@ -19,9 +19,8 @@
         android:layout_height="60dp">
         <RadioButton
             android:id="@+id/huste_radio_button"
-            android:text="历史招聘"
+            android:text="招聘记录"
             android:textSize="@dimen/textSize12"
-
             android:textColor="@color/home_color_seletor"
             android:drawableTop="@drawable/resume_radio_button_selector_1"
             style="@style/paren_radiogrud"
