@@ -63,8 +63,8 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
     private TextView artist_tupe_tv;
     @ViewInject(R.id.artist_title_search_ib)
     private ImageButton artist_title_search_ib;
-    @ViewInject(R.id.back_ib)
-    private ImageButton back_ib;
+//    @ViewInject(R.id.back_ib)
+//    private ImageButton back_ib;
     @ViewInject(R.id.fascrollView)
     //private ScrollView fascrollView;
     private PullToRefreshScrollView fascrollView;
@@ -231,17 +231,17 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
             }
         });
 
-        back_ib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                initListData("", "", "", offset);
-                back_ib.setVisibility(View.INVISIBLE);
-                artist_area_tv.setText("区域");
-                artist_sex_tv.setText("性别");
-                artist_tupe_tv.setText("类型");
-            }
-        });
+//        back_ib.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                initListData("", "", "", offset);
+//                back_ib.setVisibility(View.INVISIBLE);
+//                artist_area_tv.setText("区域");
+//                artist_sex_tv.setText("性别");
+//                artist_tupe_tv.setText("类型");
+//            }
+//        });
         artist_title_search_ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -328,25 +328,25 @@ public class ArtistFragment extends Fragment implements PullToRefreshBase.OnRefr
         tupe = bundle.getString("Tupe");
         artist_tupe_tv.setText(bundle.getString("TupeName"));
 //        }
-        if(area.equals("")&&sex.equals("")&&tupe.equals("")){}else {
-            initListData(area.toString(), sex.toString(), tupe.toString(), 0);
-
-        }
-        if (bundle.getString("Sex").equals("")) {
-        } else {
-            sex = bundle.getString("Sex");
-            artist_sex_tv.setText(bundle.getString("SexName"));
+        if(area.equals("no")){}else {
+//            initListData(area.toString(), sex.toString(), tupe.toString(), 0);
             fascrollView.setRefreshing();
         }
-        if (bundle.getString("Tupe").equals("")) {
-            fascrollView.setRefreshing();
-        } else {
-            tupe = bundle.getString("Tupe");
-            artist_tupe_tv.setText(bundle.getString("TupeName"));
-            fascrollView.setRefreshing();
-        }
+//        if (bundle.getString("Sex").equals("")) {
+//        } else {
+//            sex = bundle.getString("Sex");
+//            artist_sex_tv.setText(bundle.getString("SexName"));
+//            fascrollView.setRefreshing();
+//        }
+//        if (bundle.getString("Tupe").equals("")) {
+//            fascrollView.setRefreshing();
+//        } else {
+//            tupe = bundle.getString("Tupe");
+//            artist_tupe_tv.setText(bundle.getString("TupeName"));
+//            fascrollView.setRefreshing();
+//        }
         //initListData(area.toString(), sex.toString(), tupe.toString(), offset);
-        back_ib.setVisibility(View.VISIBLE);
+//        back_ib.setVisibility(View.VISIBLE);
 
 
     }
