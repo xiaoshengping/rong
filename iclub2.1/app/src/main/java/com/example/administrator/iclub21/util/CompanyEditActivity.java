@@ -106,40 +106,67 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
             editCompanyPhoneEt.setVisibility(View.VISIBLE);
 
             editCompanyTextTv.setText("电话");
-            if (!TextUtils.isEmpty(bMerchantValueBean.getBEphone())){
-                editCompanyPhoneEt.setText(bMerchantValueBean.getBEphone());
+            if (bMerchantValueBean!=null){
+                if (!TextUtils.isEmpty(bMerchantValueBean.getBEphone())){
+                    editCompanyPhoneEt.setText(bMerchantValueBean.getBEphone());
+
+                }else {
+                    editCompanyPhoneEt.setHint("请输入电话");
+                }
 
             }else {
                 editCompanyPhoneEt.setHint("请输入电话");
+
             }
+
 
         }else if (data.equals("email")){
+
             editCompanyEmailEt.setVisibility(View.VISIBLE);
             editCompanyTextTv.setText("Email");
-            if (!TextUtils.isEmpty(bMerchantValueBean.getBEemail())){
-                editCompanyEmailEt.setText(bMerchantValueBean.getBEemail());
+            if (bMerchantValueBean!=null){
+                if (!TextUtils.isEmpty(bMerchantValueBean.getBEemail())){
+                    editCompanyEmailEt.setText(bMerchantValueBean.getBEemail());
 
+                }else {
+                    editCompanyEmailEt.setHint("请输入Email");
+                }
             }else {
+
+
                 editCompanyEmailEt.setHint("请输入Email");
+
             }
+
 
 
         }else if (data.equals("http")){
+
             editCompanyHttpEt.setVisibility(View.VISIBLE);
 
             editCompanyTextTv.setText("官网");
-            if (!TextUtils.isEmpty(bMerchantValueBean.getBEweb())){
-                editCompanyHttpEt.setText(bMerchantValueBean.getBEweb());
+            if (bMerchantValueBean!=null){
+                if (!TextUtils.isEmpty(bMerchantValueBean.getBEweb())){
+                    editCompanyHttpEt.setText(bMerchantValueBean.getBEweb());
+
+                }else {
+                    editCompanyHttpEt.setHint("请输入官网");
+                }
 
             }else {
+
                 editCompanyHttpEt.setHint("请输入官网");
             }
+
         }else if (data.equals("adress")){
             addressLayout.setVisibility(View.VISIBLE);
             editCompanyTextTv.setText("公司地址");
-            if (!TextUtils.isEmpty(bMerchantValueBean.getBEaddress())){
-                editCompanyAddressEt.setText(bMerchantValueBean.getBEaddress());
+            if (bMerchantValueBean!=null){
+                if (!TextUtils.isEmpty(bMerchantValueBean.getBEaddress())){
+                    editCompanyAddressEt.setText(bMerchantValueBean.getBEaddress());
+                }
             }
+
 
         }
 
