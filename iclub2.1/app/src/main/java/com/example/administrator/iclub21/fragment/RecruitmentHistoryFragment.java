@@ -170,21 +170,32 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
         switch (v.getId()){
             case R.id.save_text:
 
-                if (TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getCompanyName())||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getPhone())||
-                TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getEmail())||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getWeb())
-                ||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getAddress())
-                        )
-                {
-                    MyAppliction.showToast("先完善公司资料才能添加招聘信息");
-                 Intent intent =new Intent(getActivity(),CompanyMessageActivity.class)   ;
-                   startActivity(intent);
+                if (recruitmentHistoryValueBean.size()!=0){
+
+                    if (TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getCompanyName())||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getPhone())||
+                            TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getEmail())||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getWeb())
+                            ||TextUtils.isEmpty(recruitmentHistoryValueBean.get(0).getAddress())
+                            )
+                    {
+                        MyAppliction.showToast("先完善公司资料才能添加招聘信息");
+                        Intent intent =new Intent(getActivity(),CompanyMessageActivity.class)   ;
+                        startActivity(intent);
+                    }else {
+                        Intent intent=new Intent(getActivity(), AddRecruitmentActivity.class);
+                        intent.putExtra("falgeData","");
+                        startActivity(intent);
+
+
+                    }
                 }else {
-                    Intent intent=new Intent(getActivity(), AddRecruitmentActivity.class);
-                    intent.putExtra("falgeData","");
+                    MyAppliction.showToast("先完善公司资料才能添加招聘信息");
+                    Intent intent =new Intent(getActivity(),CompanyMessageActivity.class)   ;
                     startActivity(intent);
-
-
                 }
+
+
+
+
                 break;
             case R.id.company_message_retrun_tv:
 //                Intent intent=new Intent(getActivity(), RoleActivity.class);

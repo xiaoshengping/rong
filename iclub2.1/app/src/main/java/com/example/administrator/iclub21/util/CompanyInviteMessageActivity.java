@@ -156,6 +156,7 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
         phoneInviteTv.setText(inviteMessgaeListValueBean.getInvitePerson().getBEphone());
         emailInviteTv.setText(inviteMessgaeListValueBean.getInvitePerson().getBEemail());
         addressInviteTv.setText(inviteMessgaeListValueBean.getInvitePerson().getBEaddress());
+        inviteSchedule.setText(inviteMessgaeListValueBean.getTripTime());
         String flage= intent.getStringExtra("flage");
         if (flage.equals("AcceptInviteFragment")){
             commentLayout.setVisibility(View.GONE);

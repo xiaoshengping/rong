@@ -130,6 +130,8 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     @ViewInject(R.id.progressbar)
     private ProgressBar progressbar;
 
+    private  Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,7 +176,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
 
 
     private void intiData() {
-        Intent intent=getIntent();
+        intent=getIntent();
         resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("resumeValueBeans");
         if (intent.getSerializableExtra("flage").equals("MerchantInviteMessageFragment")){
             compileListTv.setVisibility(View.GONE);
@@ -373,11 +375,11 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         switch (v.getId()){
 
             case R.id.list_compile_text:
-                Intent intent=new Intent(ResumeListParticularActivity.this,AddResumeActivity.class);
-                intent.putExtra("compiledata",resumeValueBean);
-                intent.putExtra("resumeNuber", "1111");
+                Intent intentCompile=new Intent(ResumeListParticularActivity.this,AddResumeActivity.class);
+                intentCompile.putExtra("compiledata",resumeValueBean);
+                intentCompile.putExtra("resumeNuber", "1111");
                 //startActivity(intent);
-                startActivityForResult(intent,18);
+                startActivityForResult(intentCompile,18);
                 break;
             case R.id.list_retrun_tv:
                 finish();
@@ -392,9 +394,9 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
 
                 break;
             case R.id.talen_back_iv:
-
-                showExitHeadPhotoAlert();
-
+                if ((intent.getSerializableExtra("flage")).equals("ResumeFragment")){
+                    showExitHeadPhotoAlert();
+                }
                 break;
 
         }
