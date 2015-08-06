@@ -90,11 +90,16 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
         if (data.equals("name")){
             editCompanyNameEv.setVisibility(View.VISIBLE);
             editCompanyTextTv.setText("公司名称");
-            if (!TextUtils.isEmpty(bMerchantValueBean.getBEcompanyName())){
-                editCompanyNameEv.setText(bMerchantValueBean.getBEcompanyName());
+            if (bMerchantValueBean!=null){
+                if (!TextUtils.isEmpty(bMerchantValueBean.getBEcompanyName())){
+                    editCompanyNameEv.setText(bMerchantValueBean.getBEcompanyName());
+                }else {
+                    editCompanyNameEv.setHint("请输入公司名称");
+                }
             }else {
                 editCompanyNameEv.setHint("请输入公司名称");
             }
+
 
 
         }else if (data.equals("phone")){

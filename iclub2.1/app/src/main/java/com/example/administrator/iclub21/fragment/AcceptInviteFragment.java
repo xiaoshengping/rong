@@ -80,6 +80,12 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        accpetListLv.setRefreshing();
+    }
+
     private void intiData(int offset) {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
