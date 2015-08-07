@@ -1,6 +1,7 @@
 package com.example.administrator.iclub21.fragment;
 
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -178,12 +179,22 @@ public class CompanyMessageFragment extends Fragment implements View.OnClickList
 
    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+       SQLhelper sqLhelper=new SQLhelper(getActivity());
+       SQLiteDatabase db= sqLhelper.getWritableDatabase();
+       Cursor cursor=db.query("user", null, null, null, null, null, null);
+       String uid=null;
+       while (cursor.moveToNext()) {
+           uid = cursor.getString(0);
+
+
+
+       }
         switch (resultCode){
+
             case 17:
                String name=data.getStringExtra("name").toString();
                 companyNmeTv.setText(name);
-
-
+                update(uid,name);
                 break;
             case 18:
                 String phone=data.getStringExtra("phone").toString();
@@ -211,7 +222,18 @@ public class CompanyMessageFragment extends Fragment implements View.OnClickList
 
 
 
-
+    /**
+     * 更新公司名字记录的
+     */
+    public void update(String uid,String name){
+        SQLhelper sqLhelper= new SQLhelper(getActivity());
+        SQLiteDatabase db = sqLhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLhelper.COMPANYNAME, name);
+        db.update(SQLhelper.tableName, contentValues,
+                "uid=?",
+                new String[]{uid});
+    }
 
     @Override
     public void onClick(View v) {
