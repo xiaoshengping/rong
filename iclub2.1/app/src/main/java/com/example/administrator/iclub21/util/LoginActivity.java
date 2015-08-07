@@ -275,7 +275,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                     if (loginValueBean.getState().equals("success")) {
                         LoginValueBean loginValueData = com.alibaba.fastjson.JSONObject.parseObject(loginValueBean.getValue(), LoginValueBean.class);
                         SQLhelper sqLhelper=new SQLhelper(LoginActivity.this);
-                        insertData(sqLhelper, loginValueData.getUid(), loginValueData.getUserName(), loginValueData.getUserIcon(), loginValueData.getState(), loginValueData.getMobile(),loginValueData.getPersonId());
+                        insertData(sqLhelper, loginValueData.getUid(), loginValueData.getUserName(), loginValueData.getUserIcon(), loginValueData.getState(), loginValueData.getMobile(),loginValueData.getPersonId(),loginValueData.getCompanyName());
                         finish();
 
                     }
@@ -354,7 +354,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                         if ("success".equals(artistParme.getState())&&uid.equals(loginValueBean.getUid())){
                            //Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
                             SQLhelper sqLhelper=new SQLhelper(LoginActivity.this);
-                            insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(), loginValueBean.getMobile(), loginValueBean.getPersonId());
+                            insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(),
+                                    loginValueBean.getMobile(), loginValueBean.getPersonId(),loginValueBean.getCompanyName());
                             Intent intent = new Intent();
                             LoginActivity.this.setResult(12, intent);
                         /*结束本Activity*/
@@ -388,7 +389,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
 
     }
-    public void insertData(SQLhelper sqLhelper,String uid,String userName,String userIcon,String state,String mobile,String personid ){
+    public void insertData(SQLhelper sqLhelper,String uid,String userName,String userIcon,String state,String mobile,String personid ,String companyName){
         SQLiteDatabase db=sqLhelper.getWritableDatabase();
        // db.execSQL("insert into user(uid,userName,userIcon,state) values('战士',3,5,7)");
         ContentValues values=new ContentValues();
@@ -398,6 +399,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         values.put(SQLhelper.USERICON, userIcon);
         values.put(SQLhelper.STSTE, state);
         values.put(SQLhelper.MOBILE, mobile);
+        values.put(SQLhelper.COMPANYNAME,companyName);
         db.insert(SQLhelper.tableName, SQLhelper.UID, values);
         db.close();
     }

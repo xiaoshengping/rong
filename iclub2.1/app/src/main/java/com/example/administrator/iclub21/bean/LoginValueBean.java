@@ -12,6 +12,15 @@ public class LoginValueBean implements Serializable {
         private   String userIcon;
         private   String state;
         private   String mobile;
+        private   String companyName;
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
     public String getPersonId() {
         return personId;

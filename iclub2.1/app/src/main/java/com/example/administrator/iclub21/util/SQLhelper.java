@@ -13,6 +13,7 @@ public class SQLhelper extends SQLiteOpenHelper{
 	public static final String USERICON="userIcon";
 	public static final String STSTE="state";
 	public static final String MOBILE="mobile";
+	public static final String COMPANYNAME="companyName";
 	private static final int VERSION=1;
 
 	public SQLhelper(Context context
@@ -23,7 +24,7 @@ public class SQLhelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db){
 //		db.execSQL("create table if not exists "+tableName+"("+ID+" integer primary key,"+NAME+" varchar,"
 //				+ATT+" integer,"+AGI+" integer,"+INT+" integer)");		
-		db.execSQL("create table if not exists user(uid varchar pr imary key,personId varchar,userName varchar,userIcon varchar,state varchar,mobile varchar )");
+		db.execSQL("create table if not exists user(uid varchar pr imary key,personId varchar,userName varchar,userIcon varchar,state varchar,mobile varchar ,companyName varchar)");
 	}
 
 	@Override
