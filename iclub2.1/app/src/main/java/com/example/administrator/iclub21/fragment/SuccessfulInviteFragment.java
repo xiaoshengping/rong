@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.adapter.InviteMessageListAdapter;
 import com.example.administrator.iclub21.bean.InviteMessgaeListValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.CooperationCommentActivity;
@@ -71,6 +73,13 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        inviteSuccessfulListLv.setRefreshing();
+    }
+
     private void inti() {
         intiView();
         //intiData();
@@ -98,7 +107,7 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
             requestParams.addBodyParameter("uid",uid);
         }
         requestParams.addBodyParameter("value", "complete");*/
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessage(uid,"complete",offset), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessage(uid, "complete", offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -143,7 +152,15 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
         inviteSuccessfulListLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showExitGameAlert(position);
+                Log.e("kjjjsjjj",inviteMessgaeListValueBeans.get(position - 1).getStatus());
+                if (inviteMessgaeListValueBeans.get(position - 1).getStatus().equals("3") ||
+                        inviteMessgaeListValueBeans.get(position - 1).getStatus().equals("4")) {
+                    MyAppliction.showToast("您已经完成评论!");
+                } else {
+                    showExitGameAlert(position);
+                }
+
+
             }
         });
 
@@ -164,10 +181,11 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
         ok.setText("失败");
         ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), FailureCommentActivity.class);
-                intent.putExtra("inviteMessgaeListValueBeans", (Serializable) inviteMessgaeListValueBeans.get(position-1));
+                Intent intent = new Intent(getActivity(), FailureCommentActivity.class);
+                intent.putExtra("inviteMessgaeListValueBeans", (Serializable) inviteMessgaeListValueBeans.get(position - 1));
                 intent.putExtra("falgeData", "SuccessfulInviteFragment");
                 startActivity(intent);
+
                 dlg.cancel();
             }
         });
@@ -177,14 +195,24 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
         cancel.setText("成功");
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), CooperationCommentActivity.class);
-                intent.putExtra("inviteMessgaeListValueBeans", (Serializable) inviteMessgaeListValueBeans.get(position-1));
-                intent.putExtra("falgeData","SuccessfulInviteFragment");
+
+                Intent intent = new Intent(getActivity(), CooperationCommentActivity.class);
+                intent.putExtra("inviteMessgaeListValueBeans", (Serializable) inviteMessgaeListValueBeans.get(position - 1));
+                intent.putExtra("falgeData", "SuccessfulInviteFragment");
                 startActivity(intent);
                 dlg.cancel();
             }
         });
     }
+
+
+
+
+
+
+
+
+
 
 
     @Override

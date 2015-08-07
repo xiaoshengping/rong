@@ -200,6 +200,20 @@ public class AppUtilsUrl  {
         return BaseUrl+"modifyInviteByPerson.action";
 
     }
+    //商家--修改邀约状态
+    public static String getModificationMerchant(){
+        // modifyInviteByPerson.action
+        return BaseUrl+"modifyInviteByBusiness.action";
+
+    }
+    //人才--修改邀约状态
+    public static String getModificationResume(){
+        // modifyInviteByPerson.action
+        return BaseUrl+"modifyInviteByPerson.action";
+
+    }
+
+
    //信誉值
    public static String getReputationData(){
        // grade.action

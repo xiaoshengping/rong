@@ -213,9 +213,11 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
             case R.id.commit_comment_tv:
                 String falge=getIntent().getStringExtra("falgeData");
                 if (falge.equals("SuccessfulInviteFragment")){
+                    adoptData(AppUtilsUrl.getModificationResume(),"3",inviteMessgaeListValueBeans.getInviteid());
                     commentContentData(uid,inviteMessgaeListValueBeans.getInvitePerson().getId(),AppUtilsUrl.getCommentCommit());
                     commentGradeData(inviteMessgaeListValueBeans.getInviteResume().getPersonid());
                 }else if (falge.equals("MerchantSuccessfulInviteFragment")){
+                    adoptData(AppUtilsUrl.getModificationMerchant(),"3",merchantInviteValueBeans.getInviteid());
                     commentContentData(uid,merchantInviteValueBeans.getInviteResume().getPersonid()+"",AppUtilsUrl.getCommentResume());
                     commentGradeData(merchantInviteValueBeans.getInviteResume().getPersonid()+"");
                 }
@@ -227,6 +229,25 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
         }
 
     }
+
+    private void adoptData(String url,String status,String inviteid) {
+
+        requestParams.addBodyParameter("inviteid",inviteid);
+        requestParams.addBodyParameter("status", status);
+        httpUtils.send(HttpRequest.HttpMethod.POST, url,requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure",s);
+            }
+        });
+    }
+
+
 
     private void commentGradeData(String personid) {
         requestParams.addBodyParameter("integrity",honestyGrade );

@@ -111,7 +111,7 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getResumeCommentData(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("111111111",responseInfo.result);
+               // Log.e("111111111",responseInfo.result);
                   if (responseInfo.result!=null){
                       ArtistParme<ResumeCommentValueBean> artistParme=JSONObject.parseObject(responseInfo.result,new TypeReference<ArtistParme<ResumeCommentValueBean>>(){});
                       if (artistParme.getState().equals("success")){
