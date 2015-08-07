@@ -64,10 +64,10 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
     private MerchantInviteValueBean merchantInviteValueBeans;
     //真实性
     private String authenticity;
-    private String truthGrade;
+    private boolean truthGrade;
     //诚实性
     private String integrity;
-    private String honestyGrade;
+    private boolean honestyGrade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,12 +122,12 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
                      switch (checkedId){
                          case R.id.append_radio_button:
 
-                             truthGrade=authenticity;
+                             truthGrade=true;
                              //Toast.makeText(CooperationCommentActivity.this, truthGrade, Toast.LENGTH_LONG).show();
                              //Log.e("truthGrade",truthGrade);
                              break;
                          case R.id.subtract_radio_button:
-                             truthGrade="-"+authenticity;
+                             truthGrade=false;
                              //Log.e("truthGrade","-"+truthGrade);
                              //requestParams.addBodyParameter("authenticity", "-"+authenticity);
                             // Toast.makeText(CooperationCommentActivity.this, "-"+truthGrade, Toast.LENGTH_LONG).show();
@@ -139,13 +139,13 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
                     switch (checkedId){
                         case R.id.honesty_apappend_rb:
                             //Toast.makeText(CooperationCommentActivity.this,"11111111111",Toast.LENGTH_LONG).show();
-                            honestyGrade=integrity;
+                            honestyGrade=true;
                             //requestParams.addBodyParameter("integrity", integrity);
 
                             break;
                         case R.id.honesty_subtract_rb:
                             //Toast.makeText(CooperationCommentActivity.this,"222222222222222",Toast.LENGTH_LONG).show();
-                            honestyGrade="-"+integrity;
+                            honestyGrade=false;
                             //requestParams.addBodyParameter("integrity", "-"+integrity);
                             break;
 
@@ -250,8 +250,18 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
 
 
     private void commentGradeData(String personid) {
-        requestParams.addBodyParameter("integrity",honestyGrade );
-        requestParams.addBodyParameter("authenticity",truthGrade );
+        if (truthGrade){
+            requestParams.addBodyParameter("authenticity","-"+authenticity );
+        }else {
+            requestParams.addBodyParameter("authenticity",authenticity );
+        }
+        if (honestyGrade){
+            requestParams.addBodyParameter("integrity", "-"+integrity);
+        }else {
+            requestParams.addBodyParameter("integrity", integrity);
+        }
+
+
         requestParams.addBodyParameter("personid", personid);
         //Log.e("truthGrade", truthGrade);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCommentGrade(), requestParams, new RequestCallBack<String>() {
