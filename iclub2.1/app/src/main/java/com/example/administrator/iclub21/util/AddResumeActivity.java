@@ -477,7 +477,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteResume(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                     finish();
+
+                setResult(18,getIntent().putExtra("closeActivity","close"));
+                finish();
             }
 
             @Override
@@ -533,19 +535,19 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             alert("您填写的资料不完整");
 
         } else {
-            compileRequestParams.addBodyParameter("resumeSex ", sex);
+            compileRequestParams.addBodyParameter("resumeSex", sex);
             compileRequestParams.addBodyParameter("resumeid", resumeValueBean.getResumeid() + "");
             compileRequestParams.addBodyParameter("resumeWorkExperience", userWork);
             compileRequestParams.addBodyParameter("resumeInfo", userInfo);
             compileRequestParams.addBodyParameter("resumeEmail", userEmail);
             compileRequestParams.addBodyParameter("resumeQq", userQq);
             compileRequestParams.addBodyParameter("resumeJobName", userJobName);
-            compileRequestParams.addBodyParameter("resumeZhName ", userName);
+            compileRequestParams.addBodyParameter("resumeZhName", userName);
             if (resumeValueBean.getUsericon()==null){
                 compileRequestParams.addBodyParameter("usericon", new File(touXiangPath));
             }
 
-            compileRequestParams.addBodyParameter("resumeJobCategory ", job_classfite_num+"");
+            compileRequestParams.addBodyParameter("resumeJobCategory", job_classfite_num+"");
             compileRequestParams.addBodyParameter("resumeCityId", job_city_num+"");
             compileRequestParams.addBodyParameter("resumeMobile", uid);
 
@@ -604,16 +606,16 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             alert("您填写的资料不完整");
 
         } else {
-            requestParams.addBodyParameter("resumeSex ", sex);
+            requestParams.addBodyParameter("resumeSex", sex);
             requestParams.addBodyParameter("uid", uid);
             requestParams.addBodyParameter("resumeWorkExperience", userWork);
             requestParams.addBodyParameter("resumeInfo", userInfo);
             requestParams.addBodyParameter("resumeEmail", userEmail);
             requestParams.addBodyParameter("resumeQq", userQq);
             requestParams.addBodyParameter("resumeJobName", userJobName);
-            requestParams.addBodyParameter("resumeZhName ", userName);
+            requestParams.addBodyParameter("resumeZhName", userName);
             requestParams.addBodyParameter("usericon", new File(touXiangPath));
-            requestParams.addBodyParameter("resumeJobCategory ", job_classfite_num+"");
+            requestParams.addBodyParameter("resumeJobCategory", job_classfite_num+"");
             requestParams.addBodyParameter("resumeCityId", job_city_num+"");
             requestParams.addBodyParameter("resumeMobile", uid);
 
@@ -754,8 +756,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 int job = bundle.getInt("Position");//职业号
                 String pName = bundle.getString("PositionName");//职业名
                 if(job>=0&&job!=10){
-                    //job_classfite_tv.setText(pName+"（职业编号："+job+"）");
-                    job_classfite_tv.setText(pName);
+             //       job_classfite_tv.setText(pName+"（职业编号："+job+"）");
+                  job_classfite_tv.setText(pName);
                     job_classfite_num = job;
                 }
                 break;
