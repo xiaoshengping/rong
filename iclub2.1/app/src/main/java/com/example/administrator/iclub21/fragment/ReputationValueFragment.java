@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -52,6 +53,7 @@ public class ReputationValueFragment extends Fragment {
     private RecruitmentListBean recruitmentListBean;
     private TextView title_name_tv;
     private ImageView authenticity_relatively_iv,integrity_relatively_iv;
+    private ImageButton back_ib;
 
 
     @Override
@@ -73,6 +75,13 @@ public class ReputationValueFragment extends Fragment {
 
         reputation_list = (ListView)view.findViewById(R.id.reputation_list);
         title_name_tv = (TextView)view.findViewById(R.id.title_name_tv);
+        back_ib = (ImageButton)view.findViewById(R.id.back_ib);
+        back_ib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
 
         init();
         return view;
@@ -94,6 +103,7 @@ public class ReputationValueFragment extends Fragment {
             authenticity_relatively_iv = (ImageView)header.findViewById(R.id.authenticity_relatively_iv);
             integrity_relatively_iv = (ImageView)header.findViewById(R.id.integrity_relatively_iv);
             reputation_list.addHeaderView(header);//添加头部
+
 
 //        }else if(i==2){
 //            title_name_tv.setText("公司详情");
@@ -207,9 +217,9 @@ public class ReputationValueFragment extends Fragment {
         });
     }
 
-    public void back(View v){
-        getActivity().finish();
-    }
+//    public void back(View v){
+//        getActivity().finish();
+//    }
 
 
 }
