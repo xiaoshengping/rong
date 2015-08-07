@@ -114,6 +114,8 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     private LinearLayout listViewLayout;
     @ViewInject(R.id.resume_video_list_view)
     private ListView videoListView;
+    @ViewInject(R.id.progressbar)
+    private ProgressBar progressbar;
 
     //背景
     @ViewInject(R.id.talen_back_iv)
@@ -127,8 +129,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
             getPhotoFileName());
 
     private WordWrapView wordWrapView;
-    @ViewInject(R.id.progressbar)
-    private ProgressBar progressbar;
+
 
     private  Intent intent;
 
@@ -296,7 +297,6 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
             Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
             if (bitmap!=null){
                 videoListView.setVisibility(View.VISIBLE);
-
             }
 
         }else {
@@ -408,6 +408,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         switch (buttonView.getId()){
             case R.id.video_togglButton:
                 if (isChecked) {
+                    progressbar.setVisibility(View.VISIBLE);
                     listViewLayout.setVisibility(View.VISIBLE);
                     videoListView.setVisibility(View.VISIBLE);
                     videoData();

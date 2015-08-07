@@ -477,7 +477,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteResume(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                     finish();
+
+                setResult(18,getIntent().putExtra("closeActivity","close"));
+                finish();
             }
 
             @Override
