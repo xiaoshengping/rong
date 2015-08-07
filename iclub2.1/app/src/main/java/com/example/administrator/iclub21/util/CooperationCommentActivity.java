@@ -214,11 +214,11 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
                 String falge=getIntent().getStringExtra("falgeData");
                 if (falge.equals("SuccessfulInviteFragment")){
                     adoptData(AppUtilsUrl.getModificationResume(),"3",inviteMessgaeListValueBeans.getInviteid());
-                    commentContentData(uid,inviteMessgaeListValueBeans.getInvitePerson().getId(),AppUtilsUrl.getCommentCommit());
+                    commentContentData(uid, "beuid",inviteMessgaeListValueBeans.getInvitePerson().getId(), AppUtilsUrl.getCommentCommit());
                     commentGradeData(inviteMessgaeListValueBeans.getInviteResume().getPersonid());
                 }else if (falge.equals("MerchantSuccessfulInviteFragment")){
                     adoptData(AppUtilsUrl.getModificationMerchant(),"3",merchantInviteValueBeans.getInviteid());
-                    commentContentData(uid,merchantInviteValueBeans.getInviteResume().getPersonid()+"",AppUtilsUrl.getCommentResume());
+                    commentContentData(uid, "resumeid", merchantInviteValueBeans.getInviteResume().getPersonid() + "", AppUtilsUrl.getCommentResume());
                     commentGradeData(merchantInviteValueBeans.getInviteResume().getPersonid()+"");
                 }
 
@@ -282,9 +282,9 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
 
     }
 
-    private void commentContentData(String uid,String beuid,String url) {
+    private void commentContentData(String uid,String beuid,String beuidValue,String url) {
         requestParams.addBodyParameter("uid",uid);
-        requestParams.addBodyParameter("beuid",beuid );
+        requestParams.addBodyParameter(beuid,beuidValue );
         requestParams.addBodyParameter("body",commentContextEt.getText().toString());
         httpUtils.send(HttpRequest.HttpMethod.POST,url , requestParams, new RequestCallBack<String>() {
             @Override
