@@ -89,11 +89,16 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
         listView.setAdapter(resumeListAdapter);
         resumeListLv.setMode(PullToRefreshBase.Mode.BOTH);
         resumeListLv.setOnRefreshListener(this);
-        ILoadingLayout loadingLayout = resumeListLv
-                .getLoadingLayoutProxy();
-        loadingLayout.setPullLabel("加载更多数据...");// 刚下拉时，显示的提示
-        loadingLayout.setRefreshingLabel("正在刷新...");// 刷新时
-        loadingLayout.setReleaseLabel("加载更多数据...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout endLabels  = resumeListLv
+                .getLoadingLayoutProxy(false, true);
+        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout startLabels  = resumeListLv
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
         resumeListLv.setRefreshing();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

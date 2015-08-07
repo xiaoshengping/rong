@@ -39,6 +39,7 @@ public class InviteFragment extends Fragment {
         return view;
     }
 
+
     private void inti() {
         addFragment();
         FragmentTabAdapter fragmentTabAdapter=new FragmentTabAdapter(getActivity(),fragments,R.id.invite_fragment_layout,inviteRadioGrop);

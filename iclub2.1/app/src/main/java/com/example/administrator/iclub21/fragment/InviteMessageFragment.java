@@ -55,6 +55,7 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,14 +75,26 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
         intiListView();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        inviteMessageLv.setRefreshing();
+
+    }
+
     public void intiPullToRefresh(){
         inviteMessageLv.setMode(PullToRefreshBase.Mode.BOTH);
         inviteMessageLv.setOnRefreshListener(this);
-        ILoadingLayout loadingLayout = inviteMessageLv
-                .getLoadingLayoutProxy();
-        loadingLayout.setPullLabel("你可劲拉，拉...");// 刚下拉时，显示的提示
-        loadingLayout.setRefreshingLabel("好嘞，正在刷新...");// 刷新时
-        loadingLayout.setReleaseLabel("你敢放，我就敢刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout endLabels  = inviteMessageLv
+                .getLoadingLayoutProxy(false, true);
+        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout startLabels  = inviteMessageLv
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
         inviteMessageLv.setRefreshing();
     }
     /**
