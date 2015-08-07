@@ -30,6 +30,7 @@ public class JobDetailsDialog extends Dialog {
     public int ING = 4;//加载中
     public int SUCCEED = 5;//邀约成功
     public int FAILURE = 6;//邀约失败
+    public int NULL = 7;//无公司名
 //    private TextView eliminate_tv;
 //    private ImageButton seek_ib;
 
@@ -64,7 +65,7 @@ public class JobDetailsDialog extends Dialog {
         if(tipsType == PASTDUE){
             tips_tv.setText("该日期已过时");
         }else if(tipsType == BEDEFEATED){
-            tips_tv.setText("加载失败");
+            tips_tv.setText("网络异常请稍后重试！");
         }else if(tipsType == ING){
             tips_tv.setText("正在加载");
         }else if(tipsType == OFFER){
@@ -75,6 +76,9 @@ public class JobDetailsDialog extends Dialog {
             cancel.setVisibility(View.INVISIBLE);
         }else if(tipsType == FAILURE){
             tips_tv.setText("网络异常请稍后重试！");
+            cancel.setVisibility(View.INVISIBLE);
+        }else if(tipsType == NULL){
+            tips_tv.setText("您的公司信息尚未填写或未填写完整，将无法邀约人才。");
             cancel.setVisibility(View.INVISIBLE);
         }
         super.setContentView(mView);

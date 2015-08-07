@@ -72,12 +72,15 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     public int ING = 4;//加载中
     public int SUCCEED = 5;//邀约成功、
     public int FAILURE = 6;//邀约失败
+    public int NULL = 7;//无公司名
 
     private int tipsType;
     private int resumeid;
     private String uid;
+    private String companyName;
     private int month=0;
     private boolean toMonth = true;
+    private boolean touch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +160,16 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         uid=null;
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
+            companyName = cursor.getString(6);
+        }
+
+        if(companyName.equals("")){
+            calendar_confirm_b.setBackgroundResource(R.drawable.calendar_button_n_shape);
+            touch = false;
+            dialog(NULL);
+        }else {
+            calendar_confirm_b.setBackgroundResource(R.drawable.calendar_button_shape);
+            touch = true;
         }
 
 //        List<DayBean> list = new ArrayList<DayBean>();
@@ -422,8 +435,18 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
             @Override
             public void onFailure(HttpException e, String s) {
-                tipsType = BEDEFEATED;
+
 //                monthText.setText(s);
+                if(tipsType!=BEDEFEATED) {
+                    CalendarCard[] views = new CalendarCard[3];
+                    for (int i = 0; i < 3; i++) {
+                        views[i] = new CalendarCard(CalendarActivity.this, CalendarActivity.this);
+                    }
+                    adapter = new CalendarViewAdapter<CalendarCard>(views);
+                    setViewPager();
+                    dialog(FAILURE);
+                }
+                tipsType = BEDEFEATED;
             }
         });
 
@@ -516,8 +539,27 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
             @Override
             public void onFailure(HttpException e, String s) {
-                tipsType = BEDEFEATED;
+
 //                monthText.setText(s);
+                if(tipsType!=BEDEFEATED) {
+                    new Handler().postDelayed(new Runnable() {
+
+                        public void run() {
+
+                            CalendarCard[] views = new CalendarCard[3];
+                            for (int i = 0; i < 3; i++) {
+                                views[i] = new CalendarCard(CalendarActivity.this, CalendarActivity.this);
+                            }
+                            adapter = new CalendarViewAdapter<CalendarCard>(views);
+                            setViewPager();
+                            tipsType = -1;
+
+                        }
+
+                    }, 300);
+                    dialog(FAILURE);
+                }
+                tipsType = BEDEFEATED;
             }
         });
 
@@ -551,7 +593,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         }
 
         HttpUtils httpUtils = new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getModificationRoute(id,s,yearAndMonth), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getModificationRoute(id, s, yearAndMonth), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -663,17 +705,18 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     }
 
     public void offer(View v) {
-
-        if(userType==1) {
-            if (i != "") {
-                dialog(OFFER);
+        if(touch) {
+            if (userType == 1) {
+                if (i != "") {
+                    dialog(OFFER);
+                } else {
+                    Toast.makeText(CalendarActivity.this, "未选择邀约日期", Toast.LENGTH_LONG).show();
+                }
             } else {
-                Toast.makeText(CalendarActivity.this, "未选择邀约日期", Toast.LENGTH_LONG).show();
+                modificationRoute(DateUtil.getYear() + "-" + (DateUtil.getMonth() > 9 ? DateUtil.getMonth() : ("0" + DateUtil.getMonth())), true);
+                modificationRoute(DateUtil.getYear() + "-" + ((DateUtil.getMonth() + 1) > 9 ? (DateUtil.getMonth() + 1) : ("0" + (DateUtil.getMonth() + 1))), false);
+                finish();
             }
-        }else {
-            modificationRoute(DateUtil.getYear() + "-" + (DateUtil.getMonth() > 9 ? DateUtil.getMonth() : ("0" + DateUtil.getMonth())), true);
-            modificationRoute(DateUtil.getYear() + "-" + ((DateUtil.getMonth() + 1) > 9 ? (DateUtil.getMonth() + 1) : ("0" + (DateUtil.getMonth() + 1))),false);
-            finish();
         }
     }
 
