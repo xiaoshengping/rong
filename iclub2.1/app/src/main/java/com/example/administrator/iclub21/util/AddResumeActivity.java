@@ -21,6 +21,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -164,7 +165,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private File tempFile = new File(Environment.getExternalStorageDirectory(),
             getPhotoFileName());
 
-
+    //加载滚动条
+    @ViewInject(R.id.progressbar)
+    private ProgressBar ProgressBar;
 
 
 
@@ -500,7 +503,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
         window.setContentView(R.layout.shrew_exit_dialog);
         TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
-        tailte.setText("必须把必填项填写完整后，才能展示在简历列表");
+        tailte.setText("要放弃此次操作?");
         // 为确认按钮添加事件,执行退出应用操作
         TextView ok = (TextView) window.findViewById(R.id.btn_ok);
         ok.setText("确定");
@@ -530,8 +533,6 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             alert("您填写的资料不完整");
 
         } else {
-           // touXiangPath=resumeValueBean.getUsericon();
-
             compileRequestParams.addBodyParameter("resumeSex ", sex);
             compileRequestParams.addBodyParameter("resumeid", resumeValueBean.getResumeid() + "");
             compileRequestParams.addBodyParameter("resumeWorkExperience", userWork);
@@ -552,7 +553,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), compileRequestParams, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
-                    Log.e("onSuccess111111", responseInfo.result);
+                   Log.e("onSuccess111111", responseInfo.result);
                     String result = responseInfo.result;
                     if (result != null) {
                         ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
@@ -560,7 +561,6 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                         if (parmeBean.getState().equals("success")) {
 
                             String ResumeId = resumeValueBean.getResumeid() + "";
-
                             if (!TextUtils.isEmpty(ResumeId) && !TextUtils.isEmpty(userVideoPath)) {
                                 initAddVideoData(ResumeId, userVideoPath);
                             }
@@ -599,7 +599,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         touXiangPath = screenshotFile.getAbsolutePath();
         if (TextUtils.isEmpty(touXiangPath) || TextUtils.isEmpty(userName)
                 || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
-                || TextUtils.isEmpty(userInfo) || TextUtils.isEmpty(userWork)) {
+                || TextUtils.isEmpty(userInfo) || TextUtils.isEmpty(userWork)||TextUtils.isEmpty(job_classfite_num+"")
+                ||TextUtils.isEmpty(job_city_num+"")) {
             alert("您填写的资料不完整");
 
         } else {
@@ -621,18 +622,16 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {
-                        Log.e("onSuccess", responseInfo.result);
+                       Log.e("onSuccess", responseInfo.result);
                         String result = responseInfo.result;
                         if (result != null) {
                             ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
                             });
                             if (parmeBean.getState().equals("success")) {
-                                //addResumeTv.setVisibility(View.VISIBLE);
-                                // compileScroView.setVisibility(View.GONE);
                                 SaveResumeValueBean saveValueBean = parmeBean.getValue();
-                                // Log.e("saveValueBean",saveValueBean.getResumeid());
-                                //String videoPath=videoFile.getAbsolutePath();
+                               MyAppliction.showToast(saveValueBean.getMessage());
                                 if (!TextUtils.isEmpty(saveValueBean.getResumeid()) && !TextUtils.isEmpty(userVideoPath)) {
+                                    ProgressBar.setVisibility(View.VISIBLE);
                                     initAddVideoData(saveValueBean.getResumeid(), userVideoPath);
 
                                 }
@@ -641,6 +640,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                                     intiPhotoData(saveValueBean.getResumeid(), userPicturePath);
                                 }
                                 if (!TextUtils.isEmpty(saveValueBean.getResumeid()) && !TextUtils.isEmpty(userMusicPath)) {
+                                    ProgressBar.setVisibility(View.VISIBLE);
                                     intiMusicData(saveValueBean.getResumeid(), userMusicPath);
 
                                 }
@@ -924,6 +924,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                // Log.e("initAddVideoData", responseInfo.result);
+                ProgressBar.setVisibility(View.GONE);
             }
 
             @Override
@@ -944,6 +945,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                // Log.e("intiPhotoData", responseInfo.result);
+
             }
 
             @Override
@@ -965,6 +967,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                // Log.e("onSuccess", responseInfo.result);
+                ProgressBar.setVisibility(View.GONE);
             }
 
             @Override
