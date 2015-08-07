@@ -128,11 +128,16 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
         accpetListLv.setAdapter(inviteMessagelistAdapter);
         accpetListLv.setMode(PullToRefreshBase.Mode.BOTH);
         accpetListLv.setOnRefreshListener(this);
-        ILoadingLayout loadingLayout = accpetListLv
-                .getLoadingLayoutProxy();
-        loadingLayout.setPullLabel("你可劲拉，拉...");// 刚下拉时，显示的提示
-        loadingLayout.setRefreshingLabel("好嘞，正在刷新...");// 刷新时
-        loadingLayout.setReleaseLabel("你敢放，我就敢刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout endLabels  = accpetListLv
+                .getLoadingLayoutProxy(false, true);
+        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout startLabels  = accpetListLv
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
         accpetListLv.setRefreshing();
         accpetListLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
