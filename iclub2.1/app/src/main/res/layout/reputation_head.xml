@@ -10,7 +10,7 @@
     android:orientation="horizontal"
     android:background="#20ffffff"
         android:gravity="center_vertical"
-    android:layout_marginBottom="3dp"
+    android:layout_marginBottom="1dp"
         android:layout_marginTop="@dimen/title_h">
     <TextView
         android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#20ffffff"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="1dp"
         android:gravity="center_vertical">
         <TextView
             android:layout_width="wrap_content"
@@ -114,16 +114,16 @@
         android:layout_height="wrap_content"
         android:background="#20ffffff"
         android:text="  合作评论"
-        android:textColor="#D7D5FE"
-        android:textSize="18dp"
+        android:textColor="#8E9FBD"
+        android:textSize="@dimen/reputation_head_texth"
         android:paddingLeft="18dp"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:drawableLeft="@mipmap/comment"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#80ffffff"/>
+        android:layout_height="1px"
+        android:background="#60ffffff"/>
 
 
 </LinearLayout>

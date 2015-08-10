@@ -148,6 +148,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 //initRecruitmentListData(0,0,offset);
                 back_ib.setVisibility(View.GONE);
 //                initRecruitmentListData(0,0,"");
+                initRecruitmentListData(citynum,jobnum,offset);
             }
         });
 

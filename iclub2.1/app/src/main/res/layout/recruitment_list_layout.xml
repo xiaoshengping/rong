@@ -28,7 +28,7 @@
                 android:text="酒吧singer"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textColor="#9CACD4"
                 android:paddingTop="15dp"
                 android:paddingBottom="10dp"/>
@@ -39,7 +39,7 @@
                 android:text="09-02"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="#DDD0E3"/>
             <TextView
                 android:id="@+id/recruitment_companyName"
@@ -48,7 +48,7 @@
                 android:text="广州娱乐文化传播有限公司"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:textColor="#DDD0E3"
                 android:paddingTop="8dp"
                 android:paddingBottom="15dp"/>
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="广州"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="#DDD0E3"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"/>

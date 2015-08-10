@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             >
 
-            <com.example.administrator.iclub21.bean.talent.RoundAngleImageView
+            <!--<com.example.administrator.iclub21.bean.talent.RoundAngleImageView
                 xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
                 android:id="@+id/head_portrait_iv"
                 android:layout_width="46dp"
@@ -25,13 +25,12 @@
                 app:roundHeight = "23dp"
                 android:background="#00ffffff"
                 android:src="@mipmap/mine_head_default"
-                />
+                />-->
             <TextView
                 android:id="@+id/comment_neme_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/head_portrait_iv"
-                android:layout_toRightOf="@+id/head_portrait_iv"
+
                 android:text="广州文化娱乐传媒有限公司"
                 android:layout_marginLeft="15dp"
                 android:textSize="18sp"
@@ -60,8 +59,8 @@
         android:layout_marginBottom="8dp"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#80ffffff"
+        android:layout_height="1px"
+        android:background="#40ffffff"
         android:layout_marginLeft="25dp"/>
 
 </LinearLayout>
