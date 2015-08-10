@@ -240,7 +240,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         talentData.clear();
-        int offset=0;
+         offset=0;
         initTalentData(citynum, jobnum,offset);
     }
 
