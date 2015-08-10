@@ -5,11 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.iclub21.bean.talent.CommentBean;
-import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.lidroid.xutils.BitmapUtils;
 
 import java.util.List;
@@ -60,7 +58,7 @@ public class ReputationAdapter extends BaseAdapter {
             viewHodle.comment_neme_tv = (TextView) convertView.findViewById(id.comment_neme_tv);
             viewHodle.comment_time_tv = (TextView) convertView.findViewById(id.comment_time_tv);
             viewHodle.comment_body_tv = (TextView) convertView.findViewById(id.comment_body_tv);
-            viewHodle.head_portrait_iv = (ImageView) convertView.findViewById(id.head_portrait_iv);
+//            viewHodle.head_portrait_iv = (ImageView) convertView.findViewById(id.head_portrait_iv);
             convertView.setTag(viewHodle);
         }
         else{
@@ -70,7 +68,7 @@ public class ReputationAdapter extends BaseAdapter {
         viewHodle.comment_time_tv.setText(commentDate.get(position).getTime());
         viewHodle.comment_body_tv.setText(commentDate.get(position).getBody());
         BitmapUtils bitmapUtils=new BitmapUtils(mContext);
-        bitmapUtils.display(viewHodle.head_portrait_iv, AppUtilsUrl.ImageBaseUrl + commentDate.get(position).getIcon());
+//        bitmapUtils.display(viewHodle.head_portrait_iv, AppUtilsUrl.ImageBaseUrl + commentDate.get(position).getIcon());
 
 
         return convertView;
@@ -80,7 +78,7 @@ public class ReputationAdapter extends BaseAdapter {
         private TextView comment_neme_tv;
         private TextView comment_time_tv;
         private TextView comment_body_tv;
-        private ImageView head_portrait_iv;
+//        private ImageView head_portrait_iv;
 
     }
 }
