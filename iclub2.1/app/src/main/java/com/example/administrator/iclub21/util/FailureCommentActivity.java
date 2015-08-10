@@ -165,12 +165,13 @@ public class FailureCommentActivity extends ActionBarActivity implements RadioGr
                     if (!TextUtils.isEmpty(commentContextEt.getText().toString())){
                         commentContentData(uid,inviteMessgaeListValueBeans.getInvitePerson().getId(),commentContextEt.getText().toString());
                     }
-
+                    adoptData(AppUtilsUrl.getModificationResume(),"4",inviteMessgaeListValueBeans.getInviteid());
                     commentGradeData(inviteMessgaeListValueBeans.getInviteResume().getPersonid());
                 }else if (falge.equals("MerchantSuccessfulInviteFragment")){
                     if (!TextUtils.isEmpty(commentContextEt.getText().toString())){
                         commentContentData(uid, merchantInviteValueBeans.getInviteResume().getPersonid() + "", commentContextEt.getText().toString());
                     }
+                    adoptData(AppUtilsUrl.getModificationMerchant(),"4",merchantInviteValueBeans.getInviteid());
                     commentGradeData(merchantInviteValueBeans.getInviteResume().getPersonid()+"");
                 }
 
@@ -180,7 +181,28 @@ public class FailureCommentActivity extends ActionBarActivity implements RadioGr
                 break;
         }
 
+
+
+
     }
+
+    private void adoptData(String url,String status,String inviteid) {
+
+        requestParams.addBodyParameter("inviteid",inviteid);
+        requestParams.addBodyParameter("status", status);
+        httpUtils.send(HttpRequest.HttpMethod.POST, url,requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure",s);
+            }
+        });
+    }
+
 
     private void commentGradeData(String personid) {
         requestParams.addBodyParameter("integrity",integrity );

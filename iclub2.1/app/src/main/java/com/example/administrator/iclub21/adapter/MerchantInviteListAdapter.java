@@ -46,10 +46,42 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
     }
 
     private void inti(int position) {
-        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+data.get(position).getInviteResume().getUsericon(),viewHodle.talentImageIv,MyAppliction.RoundedOptions);
+        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + data.get(position).getInviteResume().getUsericon(), viewHodle.talentImageIv, MyAppliction.RoundedOptions);
         viewHodle.talentNameTv.setText(data.get(position).getInviteResume().getResumeZhName());
         viewHodle.talentTime.setText(data.get(position).getTripTime());
         viewHodle.talentJobTv.setText(data.get(position).getInviteResume().getResumeJobName());
+        String status=data.get(position).getBeStatus();
+        if (status.equals("0")){
+            viewHodle.talentStateTv.setText("new");
+            viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor9a4274));
+            viewHodle.talentStateTv.setBackgroundResource(R.mipmap.new_icon);
+
+        }else if (status.equals("2")){
+            viewHodle.talentStateTv.setText("拒绝");
+            viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.talentStateTv.setBackgroundResource(R.mipmap.new_one_icon);
+        }else if (status.equals("6")){
+            viewHodle.talentStateTv.setText("过期");
+            viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.talentStateTv.setBackgroundResource(R.mipmap.new_one_icon);
+        }else if (status.equals("5")){
+            viewHodle.talentStateTv.setText("完成");
+            viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.talentStateTv.setBackgroundResource(R.mipmap.new_one_icon);
+        }else if (status.equals("1")){
+            viewHodle.talentStateTv.setText("接受");
+            viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.talentStateTv.setBackgroundResource(R.mipmap.new_one_icon);
+        }else if (status.equals("3")){
+            viewHodle.talentStateTv.setText("成功");
+            viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.talentStateTv.setBackgroundResource(R.mipmap.new_one_icon);
+        }else if (status.equals("4")){
+            viewHodle.talentStateTv.setText("失败");
+            viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.talentStateTv.setBackgroundResource(R.mipmap.new_one_icon);
+        }
+
         if ((data.get(position).getInviteResume().getResumeSex())==0){
             viewHodle.talentSexIv.setBackgroundResource(R.mipmap.man_icon);
         }else if ((data.get(position).getInviteResume().getResumeSex())==1){
@@ -75,6 +107,8 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
         private TextView talentJobTv;
         @ViewInject(R.id.talent_time)
         private TextView talentTime;
+        @ViewInject(R.id.talent_state_tv)
+        private TextView talentStateTv;
 
         public ViewHodle(View view) {
             ViewUtils.inject(this,view);

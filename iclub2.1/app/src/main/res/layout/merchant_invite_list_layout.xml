@@ -71,4 +71,11 @@
 
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/talent_state_tv"
+        android:textColor="@color/textColor9a4274"
+        android:textSize="@dimen/textSize13"
+        android:text="city"
+        android:layout_marginRight="20dp"
+        style="@style/textview_paren_width"/>
 </LinearLayout>

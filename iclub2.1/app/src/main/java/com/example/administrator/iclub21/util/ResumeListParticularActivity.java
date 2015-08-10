@@ -289,6 +289,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     private void videoData() {
 
         if (resumeValueBean.getResumeMovie()!=null&&resumeValueBean.getResumeMovie().size()!=0){
+            progressbar.setVisibility(View.VISIBLE);
             ResumeVideoAdapter resumeVideoAdapter=new ResumeVideoAdapter(resumeValueBean.getResumeMovie(),this);
             videoListView.setAdapter(resumeVideoAdapter);
             resumeVideoAdapter.notifyDataSetChanged();
@@ -296,6 +297,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
             String imagpath= AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumeMovie().get(0).getPath();
             Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
             if (bitmap!=null){
+
                 videoListView.setVisibility(View.VISIBLE);
             }
 
@@ -408,7 +410,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         switch (buttonView.getId()){
             case R.id.video_togglButton:
                 if (isChecked) {
-                    progressbar.setVisibility(View.VISIBLE);
+
                     listViewLayout.setVisibility(View.VISIBLE);
                     videoListView.setVisibility(View.VISIBLE);
                     videoData();

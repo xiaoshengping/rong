@@ -21,6 +21,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.adapter.MerchantInviteListAdapter;
 import com.example.administrator.iclub21.bean.MerchantInviteValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.CooperationCommentActivity;
@@ -79,6 +80,13 @@ public class MerchantSuccessfulInviteFragment extends Fragment implements PullTo
 
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        merchantInviteMessageLv.setRefreshing();
+    }
+
     private void intiData(int offset) {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
@@ -90,7 +98,7 @@ public class MerchantSuccessfulInviteFragment extends Fragment implements PullTo
         }
 
 
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getMerchantInvite(uid,"complete",offset), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getMerchantInvite(uid, "complete", offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -135,12 +143,21 @@ public class MerchantSuccessfulInviteFragment extends Fragment implements PullTo
         startLabels.setRefreshingLabel("正在刷新...");// 刷新时
         startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
 
-
         merchantInviteMessageLv.setRefreshing();
         merchantInviteMessageLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showExitGameAlert(position);
+
+
+              if (merchantInviteValueBeans.get(position-1).getBeStatus().equals("3")
+                      ||merchantInviteValueBeans.get(position-1).getBeStatus().equals("4")){
+                  MyAppliction.showToast("您已经完成评论!");
+              }else {
+                  showExitGameAlert(position);
+              }
+
+
+
             }
         });
 
