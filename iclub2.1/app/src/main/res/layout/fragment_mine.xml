@@ -13,24 +13,18 @@ android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="165dp">
         <ImageView
-            android:src="@mipmap/mine_head_icon"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:src="@mipmap/logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_centerHorizontal="true"
-           android:layout_marginTop="20dp"
+           android:layout_marginTop="30dp"
             android:id="@+id/imageView" />
-          <ImageView
-              android:id="@+id/mine_head_iv"
-              android:layout_marginTop="25dp"
-              android:src="@mipmap/mine_head_default"
-              android:layout_centerHorizontal="true"
-              android:layout_width="100dp"
-              android:layout_height="100dp" />
+
 
           <TextView
               android:visibility="gone"
               style="@style/paren_layout_width"
-              android:text="注册/登录"
+              android:text="点击图标注册/登录"
               android:textSize="@dimen/textSize14"
               android:textColor="@color/white"
               android:id="@+id/mine_name"

@@ -40,7 +40,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     @ViewInject(R.id.login_cancel)
     private LinearLayout cancel;
-    @ViewInject(R.id.mine_head_iv)
+    @ViewInject(R.id.imageView)
     private ImageView headTv;
     @ViewInject(R.id.mine_name)
     private TextView mineName;
@@ -126,7 +126,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         }
 
         switch (v.getId()){
-            case R.id.mine_head_iv:
+            case R.id.imageView:
                 if (uid!=null){
                     cancel.setVisibility(View.VISIBLE);
                    // MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + imageIcon, headTv, MyAppliction.RoundedOptions);
