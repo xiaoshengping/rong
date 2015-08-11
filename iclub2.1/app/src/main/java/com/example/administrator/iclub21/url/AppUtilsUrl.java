@@ -244,8 +244,8 @@ public class AppUtilsUrl  {
 
        //商家--来自人才的评论
        public static String getResumeCommentData(){
-           // modifyGrade.action
-           return BaseUrl+"getCommentByPerson.action";
+           // getCommentByBePerson.action
+           return BaseUrl+"getCommentByBePerson.action";
 
        }
     //商家邀约列表

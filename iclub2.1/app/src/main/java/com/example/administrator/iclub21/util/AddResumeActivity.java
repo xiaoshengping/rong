@@ -555,7 +555,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), compileRequestParams, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
-                   Log.e("onSuccess111111", responseInfo.result);
+                  // Log.e("onSuccess111111", responseInfo.result);
                     String result = responseInfo.result;
                     if (result != null) {
                         ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
@@ -624,7 +624,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {
-                       Log.e("onSuccess", responseInfo.result);
+                      // Log.e("onSuccess", responseInfo.result);
                         String result = responseInfo.result;
                         if (result != null) {
                             ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
@@ -632,13 +632,13 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                             if (parmeBean.getState().equals("success")) {
                                 SaveResumeValueBean saveValueBean = parmeBean.getValue();
                                MyAppliction.showToast(saveValueBean.getMessage());
+                                ProgressBar.setVisibility(View.VISIBLE);
                                 if (!TextUtils.isEmpty(saveValueBean.getResumeid()) && !TextUtils.isEmpty(userVideoPath)) {
-                                    ProgressBar.setVisibility(View.VISIBLE);
+
                                     initAddVideoData(saveValueBean.getResumeid(), userVideoPath);
 
                                 }
                                 if (!TextUtils.isEmpty(saveValueBean.getResumeid()) && !TextUtils.isEmpty(userPicturePath)) {
-
                                     intiPhotoData(saveValueBean.getResumeid(), userPicturePath);
                                 }
                                 if (!TextUtils.isEmpty(saveValueBean.getResumeid()) && !TextUtils.isEmpty(userMusicPath)) {

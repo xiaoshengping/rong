@@ -1,8 +1,6 @@
 package com.example.administrator.iclub21.util;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
@@ -68,7 +66,8 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
    //评论
     @ViewInject(R.id.comment_listview)
     private CustomHomeScrollListView commentListView;
-
+    @ViewInject(R.id.adout_tv)
+    private TextView adoutTextView;
 
 
     //接受和拒绝按钮
@@ -98,16 +97,11 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
     }
       //评论
     private void intiCommentData() {
-       // Log.e("11111111100", inviteMessgaeListValueBean.getInvitePerson().getId());
-        SQLhelper sqLhelper=new SQLhelper(this);
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
-        String personid=null;
-        while (cursor.moveToNext()) {
-            personid = cursor.getString(1);
 
-        }
-        requestParams.addBodyParameter("personid", personid);
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("personid", inviteMessgaeListValueBean.getInvitePerson().getId());
+        //Log.e("111111111", inviteMessgaeListValueBean.getInvitePerson().getId());
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getResumeCommentData(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -115,7 +109,12 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
                   if (responseInfo.result!=null){
                       ArtistParme<ResumeCommentValueBean> artistParme=JSONObject.parseObject(responseInfo.result,new TypeReference<ArtistParme<ResumeCommentValueBean>>(){});
                       if (artistParme.getState().equals("success")){
-                          intiListView(artistParme.getValue());
+                          if (artistParme.getValue().size()!=0){
+                              intiListView(artistParme.getValue());
+                          }else {
+                              adoutTextView.setVisibility(View.VISIBLE);
+                          }
+
 
 
                       }

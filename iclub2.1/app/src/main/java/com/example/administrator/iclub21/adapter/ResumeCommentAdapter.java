@@ -45,7 +45,7 @@ public class ResumeCommentAdapter extends AppBaseAdapter<ResumeCommentValueBean>
     }
 
     private void intiView(int position) {
-        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+data.get(position).getUid(),viewHodle.commentIcon,MyAppliction.RoundedOptionsOne);
+        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+data.get(position).getIcon(),viewHodle.commentIcon,MyAppliction.RoundedOptionsOne);
         viewHodle.commentCompanyName.setText(data.get(position).getNickname());
         viewHodle.timeTv.setText(data.get(position).getTime());
         viewHodle.bodyTv.setText(data.get(position).getBody());
