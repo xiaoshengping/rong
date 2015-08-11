@@ -99,8 +99,8 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
         inviteMessgaeListValueBeans= (InviteMessgaeListValueBean) getIntent().getSerializableExtra("inviteMessgaeListValueBeans");
         merchantInviteValueBeans= (MerchantInviteValueBean) getIntent().getSerializableExtra("MerchantInviteValueBean");
 
-        honestyThreeGrade.setChecked(true);
-        truthThreeGrade.setChecked(true);
+       // honestyThreeGrade.setChecked(true);
+        //truthThreeGrade.setChecked(true);
         /*appendRButton.setChecked(true);
         honestyRButton.setChecked(true);*/
         truthRadiogroup.setOnCheckedChangeListener(this);
@@ -214,11 +214,12 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
                 String falge=getIntent().getStringExtra("falgeData");
                 if (falge.equals("SuccessfulInviteFragment")){
                     adoptData(AppUtilsUrl.getModificationResume(),"3",inviteMessgaeListValueBeans.getInviteid());
-                    commentContentData(uid, "beuid",inviteMessgaeListValueBeans.getInvitePerson().getId(), AppUtilsUrl.getCommentCommit());
-                    commentGradeData(inviteMessgaeListValueBeans.getInviteResume().getPersonid());
+                    commentContentData("resumeid",inviteMessgaeListValueBeans.getInviteResume().getResumeid(), "beid", inviteMessgaeListValueBeans.getInvitePerson().getId(), AppUtilsUrl.getCommentCommit());
+                    commentGradeData(inviteMessgaeListValueBeans.getInvitePerson().getId());
                 }else if (falge.equals("MerchantSuccessfulInviteFragment")){
                     adoptData(AppUtilsUrl.getModificationMerchant(),"3",merchantInviteValueBeans.getInviteid());
-                    commentContentData(uid, "resumeid", merchantInviteValueBeans.getInviteResume().getPersonid() + "", AppUtilsUrl.getCommentResume());
+                    //Log.e("jjsjfjfj",merchantInviteValueBeans.getInviteResume().getResumeid() + "");
+                    commentContentData("uid", uid, "resumeid", merchantInviteValueBeans.getInviteResume().getResumeid()+"", AppUtilsUrl.getCommentResume());
                     commentGradeData(merchantInviteValueBeans.getInviteResume().getPersonid()+"");
                 }
 
@@ -251,14 +252,16 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
 
     private void commentGradeData(String personid) {
         if (truthGrade){
-            requestParams.addBodyParameter("authenticity","-"+authenticity );
-        }else {
             requestParams.addBodyParameter("authenticity",authenticity );
+
+        }else {
+            requestParams.addBodyParameter("authenticity","-"+authenticity );
         }
         if (honestyGrade){
-            requestParams.addBodyParameter("integrity", "-"+integrity);
-        }else {
             requestParams.addBodyParameter("integrity", integrity);
+
+        }else {
+            requestParams.addBodyParameter("integrity", "-"+integrity);
         }
 
 
@@ -282,9 +285,9 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
 
     }
 
-    private void commentContentData(String uid,String beuid,String beuidValue,String url) {
-        requestParams.addBodyParameter("uid",uid);
-        requestParams.addBodyParameter(beuid,beuidValue );
+    private void commentContentData(String id,String uid,String beuid,String beuidValue,String url) {
+        requestParams.addBodyParameter(id,uid);
+        requestParams.addBodyParameter(beuid,beuidValue);
         requestParams.addBodyParameter("body",commentContextEt.getText().toString());
         httpUtils.send(HttpRequest.HttpMethod.POST,url , requestParams, new RequestCallBack<String>() {
             @Override
