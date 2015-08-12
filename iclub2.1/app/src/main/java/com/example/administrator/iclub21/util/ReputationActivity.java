@@ -49,6 +49,7 @@ public class ReputationActivity extends Activity {
         Bundle bundle = getIntent().getExtras();
         id = bundle.getInt("Personid");
         type = bundle.getInt("UserType");
+//        Toast.makeText(ReputationActivity.this, id+"", Toast.LENGTH_LONG).show();
         init(type);
     }
 
@@ -73,7 +74,7 @@ public class ReputationActivity extends Activity {
             integrity_relatively_tv = (TextView)header.findViewById(R.id.integrity_relatively_tv);
             reputation_list.addHeaderView(header);//添加头部
 
-            initcCollaborateComment("getCommentByPerson.action?personid=");
+            initcCollaborateComment("getCommentByPerson.action?resumeid=");
 
         }else if(i==2){
             title_name_tv.setText("公司详情");
@@ -120,8 +121,8 @@ public class ReputationActivity extends Activity {
                         if (reputationValueBean.getValue() != null) {
                             ReputationValueBean reputationValueDate = JSONObject.parseObject(reputationValueBean.getValue(), ReputationValueBean.class);
                             authenticity_tv.setText(reputationValueDate.getAuthenticity()+"");
-                            integrity_tv.setText(reputationValueDate.getIntegrity()+"");
-                            record_tv.setText(reputationValueDate.getTransactionRecord()+"");
+                            integrity_tv.setText(reputationValueDate.getIntegrity() + "");
+                            record_tv.setText(reputationValueDate.getTransactionRecord() + "");
                             if(type==1){
                                 if(reputationValueDate.getAuthenticity()<=60){
                                     authenticity_relatively_iv.setImageResource(R.mipmap.red_down);
@@ -177,6 +178,8 @@ public class ReputationActivity extends Activity {
                             adapter.notifyDataSetChanged();
                         if(commentDate.size()!=0) {
                             reputation_tipe_tv.setTextColor(0x00000000);
+                        }else {
+                            reputation_tipe_tv.setTextColor(0xffDEDDE2);
                         }
 //                        }
 
@@ -189,7 +192,8 @@ public class ReputationActivity extends Activity {
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                reputation_tipe_tv.setTextColor(0xffDEDDE2);
+                reputation_tipe_tv.setText("网路异常，请稍后再试！");
             }
         });
     }
