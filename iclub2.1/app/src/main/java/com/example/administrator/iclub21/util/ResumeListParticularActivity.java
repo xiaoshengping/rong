@@ -240,29 +240,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         }
 
            if (resumeValueBean.getResumeMusic()!=null&&resumeValueBean.getResumeMusic().size()!=0){
-               /*for (int j = 0; j < resumeValueBean.getResumeMusic().size(); j++) {
-                   TextView musicTextView=new TextView(ResumeListParticularActivity.this);
-                   musicTextView.setText(resumeValueBean.getResumeMusic().get(j).getTitle());
-                   musicTextView.setTextColor(Color.WHITE);
-                 Drawable drawable= getResources().getDrawable(R.mipmap.music_button_icon);
-                   /// 这一步必须要做,否则不会显示.
-                   drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                   musicTextView.setCompoundDrawables(null, null, drawable, null);
-                   musicTextView.setCompoundDrawablePadding(100);
-                   //musicTextView.setBackgroundResource(R.mipmap.misuc_beiji_icon);
-                   showMusicWordWrapView.addView(musicTextView);
-                   final int finalI = j;
-                   musicTextView.setOnClickListener(new View.OnClickListener() {
-                       @Override
-                       public void onClick(View v) {
-                           Intent musicIntent = new Intent(Intent.ACTION_VIEW);
-                           Uri musicUri = Uri.parse(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMusic().get(finalI).getPath());
-                           musicIntent.setDataAndType(musicUri, "audio/mp3");
-                           startActivity(musicIntent);
-                       }
-                   });
 
-               }*/
                ResumeMusicAdapter resumeMusicAdapter=new ResumeMusicAdapter(resumeValueBean.getResumeMusic(),ResumeListParticularActivity.this);
                showMusicListView.setAdapter(resumeMusicAdapter);
                resumeMusicAdapter.notifyDataSetChanged();
@@ -287,9 +265,8 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     }
 
     private void videoData() {
-
+        progressbar.setVisibility(View.VISIBLE);
         if (resumeValueBean.getResumeMovie()!=null&&resumeValueBean.getResumeMovie().size()!=0){
-            progressbar.setVisibility(View.VISIBLE);
             ResumeVideoAdapter resumeVideoAdapter=new ResumeVideoAdapter(resumeValueBean.getResumeMovie(),this);
             videoListView.setAdapter(resumeVideoAdapter);
             resumeVideoAdapter.notifyDataSetChanged();

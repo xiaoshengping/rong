@@ -145,7 +145,7 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         merchantInviteValueBeans.clear();
-        int offset=0;
+         offset=0;
         intiData(offset);
     }
 

@@ -97,6 +97,12 @@ public class AppUtilsUrl  {
         return BaseUrl+"getPersonMsgList.action?uid="+uid+"&offset="+offset+"&limit=0";
 
     }
+    //用户--投递消息（商家用户使用）
+    public static String getMessageMerchantList(String uid){
+        //getMsgListIOS?offset=0&limit=10
+        return BaseUrl+"getApplyList.action?uid="+uid;
+
+    }
 
 
     //修改密码
@@ -123,6 +129,12 @@ public class AppUtilsUrl  {
     public static String getDeleteResume(){
         //deleteResume.action
         return BaseUrl+"deleteResume.action";
+
+    }
+    //预览人才简历
+    public static String getPreviewResume(){
+        //deleteResume.action
+        return BaseUrl+"getResumePreview.action";
 
     }
 
