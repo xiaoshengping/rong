@@ -40,7 +40,7 @@ public class ReputationActivity extends Activity {
     private RecruitmentListBean recruitmentListBean;
     private TextView title_name_tv;
     private ImageView authenticity_relatively_iv,integrity_relatively_iv;
-    private TextView reputation_tipe_tv;
+    private TextView reputation_tipe_tv,authenticity_relatively_tv,integrity_relatively_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +69,11 @@ public class ReputationActivity extends Activity {
             record_tv = (TextView) header.findViewById(R.id.record_tv);
             authenticity_relatively_iv = (ImageView)header.findViewById(R.id.authenticity_relatively_iv);
             integrity_relatively_iv = (ImageView)header.findViewById(R.id.integrity_relatively_iv);
+            authenticity_relatively_tv = (TextView)header.findViewById(R.id.authenticity_relatively_tv);
+            integrity_relatively_tv = (TextView)header.findViewById(R.id.integrity_relatively_tv);
             reputation_list.addHeaderView(header);//添加头部
 
-            initcCollaborateComment("getCommentByBePerson.action?personid=");
+            initcCollaborateComment("getCommentByPerson.action?personid=");
 
         }else if(i==2){
             title_name_tv.setText("公司详情");
@@ -94,7 +96,7 @@ public class ReputationActivity extends Activity {
             company_location.setText(recruitmentListBean.getAddress());
             company_name_tv.setText(recruitmentListBean.getCompanyName());
 //            company_name_tv.setText(id+"");
-            initcCollaborateComment("getCommentByPerson.action?personid=");
+            initcCollaborateComment("getCommentByBePerson.action?personid=");
 
         }
 
@@ -123,6 +125,7 @@ public class ReputationActivity extends Activity {
                             if(type==1){
                                 if(reputationValueDate.getAuthenticity()<=60){
                                     authenticity_relatively_iv.setImageResource(R.mipmap.red_down);
+//                                    authenticity_relatively_tv.
                                 }else if(reputationValueDate.getAuthenticity()<=90){
                                     authenticity_relatively_iv.setImageResource(R.mipmap.grey_flat);
                                 }else{

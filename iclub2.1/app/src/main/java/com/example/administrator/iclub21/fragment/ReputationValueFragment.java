@@ -66,7 +66,7 @@ public class ReputationValueFragment extends Fragment {
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            id = Integer.parseInt(cursor.getString(1));
+            id = Integer.parseInt(cursor.getString(0));
 
         }
 
