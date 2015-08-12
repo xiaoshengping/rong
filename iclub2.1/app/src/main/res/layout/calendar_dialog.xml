@@ -49,9 +49,9 @@
                 android:textSize="15sp"
                 android:gravity="center"
                 android:padding="10dp"
-
+                android:layout_marginRight="20dp"
                 android:background="@drawable/jobdetails_button_shape"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/register"
@@ -63,7 +63,7 @@
                 android:textSize="15sp"
                 android:gravity="center"
                 android:padding="10dp"
-                android:layout_marginLeft="20dp"
+
                 android:background="@drawable/jobdetails_button_shape"/>
         </LinearLayout>
 

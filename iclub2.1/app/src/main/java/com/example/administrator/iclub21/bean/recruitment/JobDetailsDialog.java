@@ -73,13 +73,13 @@ public class JobDetailsDialog extends Dialog {
             cancel.setVisibility(View.VISIBLE);
         }else if(tipsType == SUCCEED){
             tips_tv.setText("邀约详细信息已用短信方式发送到你手机号码中！");
-            cancel.setVisibility(View.INVISIBLE);
+            cancel.setVisibility(View.GONE);
         }else if(tipsType == FAILURE){
             tips_tv.setText("网络异常请稍后重试！");
-            cancel.setVisibility(View.INVISIBLE);
+            cancel.setVisibility(View.GONE);
         }else if(tipsType == NULL){
             tips_tv.setText("您的公司信息尚未填写或未填写完整，将无法邀约人才。");
-            cancel.setVisibility(View.INVISIBLE);
+            cancel.setVisibility(View.GONE);
         }
         super.setContentView(mView);
     }

@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/tips"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:text="提示"
         android:textSize="15sp"
         android:textColor="#EBE9EB"

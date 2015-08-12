@@ -244,7 +244,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         if(date.getMonth()==mou) {
             String str = date.year + "-" + (date.month > 9 ? date.month : ("0" + date.month)) + "-" + (date.day > 9 ? date.day : ("0" + date.day));
 
-            if (DateUtil.isCurrentMonth(date) && date.getDay() < DateUtil.getCurrentMonthDay()) {
+            if (DateUtil.isCurrentMonth(date) && date.getDay() <= DateUtil.getCurrentMonthDay()) {
                 dialog(PASTDUE);
             } else {
 

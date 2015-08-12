@@ -178,7 +178,7 @@
             android:layout_height="wrap_content"
             android:text="点击日历设置邀约状态"
             android:textColor="#B3B5B9"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_marginTop="0dp"
             android:layout_marginLeft="20dp"/>
             <LinearLayout
@@ -195,8 +195,8 @@
                     android:layout_marginLeft="0dp"
                     android:layout_gravity="center_vertical">
                     <TextView
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
                         android:background="@drawable/green_dot_shape"
                         android:layout_marginBottom="0dp"/>
                     <TextView
@@ -205,8 +205,8 @@
                         android:gravity="center_vertical"
                         android:text="红色状态表示没空"
                         android:textColor="#B3B5B9"
-                        android:textSize="18sp"
-                        android:layout_marginTop="3sp"/>
+                        android:textSize="16sp"
+                        android:layout_marginTop="2sp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/calendar_tips_ll"
@@ -216,8 +216,8 @@
                     android:layout_marginLeft="0dp"
                     android:layout_gravity="center_vertical">
                     <TextView
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
+                        android:layout_width="18sp"
+                        android:layout_height="18sp"
                         android:background="@drawable/yellow_dot_shape"/>
                     <TextView
                         android:id="@+id/calendar_tips_tv"
@@ -226,10 +226,19 @@
                         android:gravity="center_vertical"
                         android:text="黄色状态为邀约日期"
                         android:textColor="#B3B5B9"
-                        android:textSize="18sp"
-                        android:layout_marginTop="3sp"/>
+                        android:textSize="16sp"
+                        android:layout_marginTop="2sp"/>
                 </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="（:需提前一天邀约）"
+                    android:textColor="#B3B5B9"
+                    android:textSize="13sp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="40dp"/>
         </LinearLayout>
+
 
 
         <Button
