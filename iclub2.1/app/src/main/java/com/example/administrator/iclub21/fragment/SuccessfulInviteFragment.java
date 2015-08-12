@@ -218,7 +218,7 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         inviteMessgaeListValueBeans.clear();
-        int offset=0;
+         offset=0;
         intiData(offset);
     }
 

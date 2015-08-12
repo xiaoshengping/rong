@@ -204,7 +204,7 @@ public class MerchantSuccessfulInviteFragment extends Fragment implements PullTo
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
 
         merchantInviteValueBeans.clear();
-        int offset=0;
+         offset=0;
         intiData(offset);
     }
 

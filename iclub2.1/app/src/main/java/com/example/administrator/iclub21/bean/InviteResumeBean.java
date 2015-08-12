@@ -10,6 +10,15 @@ public class InviteResumeBean implements Serializable {
         private String resumeJobName;
         private String resumeWorkPlace;
         private String personid;
+        private String resumeid;
+
+    public String getResumeid() {
+        return resumeid;
+    }
+
+    public void setResumeid(String resumeid) {
+        this.resumeid = resumeid;
+    }
 
     public String getPersonid() {
         return personid;

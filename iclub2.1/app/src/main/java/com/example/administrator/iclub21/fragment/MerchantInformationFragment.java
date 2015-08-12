@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +16,19 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.example.administrator.iclub21.adapter.InfomationAdapter;
-import com.example.administrator.iclub21.bean.InformationValueBean;
+import com.example.administrator.iclub21.adapter.MerchantMessageListAdapter;
+import com.example.administrator.iclub21.bean.MerchantMessageValueBean;
+import com.example.administrator.iclub21.bean.ParmeBean;
+import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
-import com.example.administrator.iclub21.util.DetailedInformationActivity;
+import com.example.administrator.iclub21.util.ResumeListParticularActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
@@ -41,10 +45,10 @@ public class MerchantInformationFragment extends Fragment implements View.OnClic
     private TextView textTv;
     @ViewInject(R.id.role_retrun_tv)
     private TextView retrunTextView;
-    @ViewInject(R.id.information_lv)
+    @ViewInject(R.id.merchant_message_lv)
     private ListView informationListv;
 
-    private List<InformationValueBean> informationValueBeans;
+    private List<MerchantMessageValueBean> informationValueBeans;
 
     public MerchantInformationFragment() {
 
@@ -81,27 +85,59 @@ public class MerchantInformationFragment extends Fragment implements View.OnClic
 
         }
         HttpUtils httpUtils=new HttpUtils();
-        String informationUrl= AppUtilsUrl.getMessageList(uid,"30");
+        String informationUrl= AppUtilsUrl.getMessageMerchantList(uid);
         httpUtils.send(HttpRequest.HttpMethod.POST, informationUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
-                ArtistParme<InformationValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<InformationValueBean>>() {
+
+                ArtistParme<MerchantMessageValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<MerchantMessageValueBean>>() {
                 });
                 informationValueBeans = artistParme.getValue();
-                InfomationAdapter infomationAdapter = new InfomationAdapter(informationValueBeans, getActivity());
-                informationListv.setAdapter(infomationAdapter);
-                infomationAdapter.notifyDataSetChanged();
+                MerchantMessageListAdapter merchantMessageListAdapter = new MerchantMessageListAdapter(informationValueBeans, getActivity());
+                informationListv.setAdapter(merchantMessageListAdapter);
+                merchantMessageListAdapter.notifyDataSetChanged();
+
                 informationListv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent = new Intent(getActivity(),DetailedInformationActivity.class);
-                        intent.putExtra("informationValueBeans", informationValueBeans.get(position));
-                        startActivity(intent);
+                        intiResumeData(informationValueBeans.get(position).getApplyerResumeid());
 
 
                     }
                 });
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure", s);
+            }
+        });
+
+
+
+
+    }
+
+    private void intiResumeData(String resumeid) {
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("resumeid",resumeid);
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getPreviewResume(), requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result=responseInfo.result;
+                if (result!=null){
+                    ParmeBean<ResumeValueBean> artistParme=JSONObject.parseObject(result,new TypeReference<ParmeBean<ResumeValueBean>>(){});
+                    ResumeValueBean resumeValueBeans=    artistParme.getValue();
+                    Intent intent = new Intent(getActivity(), ResumeListParticularActivity.class);
+                    intent.putExtra("resumeValueBeans", resumeValueBeans);
+                    intent.putExtra("flage", "MerchantInviteMessageFragment");
+                    startActivity(intent);
+                }
+
+
 
             }
 

@@ -53,14 +53,14 @@
     -->
     
     <ShareSDK 
-        AppKey = "61ed8d0309b0"/> <!-- 修改成你在sharesdk后台注册的应用的appkey"-->
+        AppKey = "9799a1fb9f10"/> <!-- 修改成你在sharesdk后台注册的应用的appkey"-->
     
     <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
     <SinaWeibo
         Id="1"
         SortId="1"
-        AppKey="348063366"
-        AppSecret="e219de0d8b3c58f15a3ee18670134392"
+        AppKey="568898243"
+        AppSecret="38a4f8204cc784f81f9f0daaf31e02e3"
         RedirectUrl="http://www.sharesdk.cn"
         ShareByAppClient="false"
         Enable="true" />
@@ -79,7 +79,7 @@
         SortId="3"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         Enable="true" />
     
     <!-- 
@@ -97,17 +97,17 @@
     <Wechat
         Id="4"
         SortId="4"
-        AppId="wx10239210053dad9c"
-        AppSecret="e46b06893ee127dc42cf3fb00f450f5e"
+        AppId="wx4868b35061f87885"
+        AppSecret="64020361b8ec4c99936c0e3999a9f249"
         BypassApproval="false"
         Enable="true" />
     
     <WechatMoments
         Id="5"
         SortId="5"
-        AppId="wx10239210053dad9c"
-        AppSecret="e46b06893ee127dc42cf3fb00f450f5e"
-        BypassApproval="false"
+        AppId="wx4868b35061f87885"
+        AppSecret="64020361b8ec4c99936c0e3999a9f249"
+        BypassApproval="true"
         Enable="true" />
         
 	<WechatFavorite
@@ -123,7 +123,7 @@
         SortId="7"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
-        ShareByAppClient="false"
+        ShareByAppClient="true"
         Enable="true" />
     
     <Facebook
@@ -137,8 +137,8 @@
     <Twitter
         Id="9"
         SortId="9"
-        ConsumerKey="TKantJ5z9s7P82pAjzSWLe5cy"
-        ConsumerSecret="Eq6g48dFwURskGlAFCq5Y4WqTwl7kfW3aFYKQ6KwG82trbSBwD"
+        ConsumerKey="LRBM0H75rWrU9gNHvlEAA2aOy"
+        ConsumerSecret="gbeWsZvA9ELJSdoBzJ5oLKX0TU09UOwrzdGfo9Tg7DjyGuMe8G"
         CallbackUrl="http://www.mob.com"
         Enable="true" />
 
