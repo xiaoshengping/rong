@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jeremy.Customer"
     android:versionCode="2"
-    android:versionName="2.1.1">
+    android:versionName="2.1.1" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 拨打电话 -->
@@ -202,6 +202,10 @@
         <activity
             android:name="com.example.administrator.iclub21.util.CompanyMessageActivity"
             android:label="@string/title_activity_company_message" >
+        </activity>
+        <activity
+            android:name="com.example.administrator.iclub21.util.MerchantJobParticularActivity"
+            android:label="@string/title_activity_merchant_job_particular" >
         </activity>
     </application>
 

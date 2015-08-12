@@ -40,7 +40,7 @@
             style="@style/paren_radiogrud"
             />
         <RadioButton
-            android:text="消息通知"
+            android:text="投递消息"
             android:textSize="@dimen/textSize12"
             android:textColor="@color/home_color_seletor"
             android:drawableTop="@drawable/message_radio_button_selector"

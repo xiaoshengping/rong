@@ -16,11 +16,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.example.administrator.iclub21.adapter.InfomationAdapter;
-import com.example.administrator.iclub21.bean.InformationValueBean;
+import com.example.administrator.iclub21.adapter.ResumeMessageListAdapter;
+import com.example.administrator.iclub21.bean.ResumeMessageValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
-import com.example.administrator.iclub21.util.DetailedInformationActivity;
+import com.example.administrator.iclub21.util.MerchantJobParticularActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
@@ -44,7 +44,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
     @ViewInject(R.id.message_listView)
     private ListView MessageListView;
 
-    private List<InformationValueBean> informationValueBeans;
+    private List<ResumeMessageValueBean> informationValueBeans;
     public MessageFragment() {
         // Required empty public constructor
     }
@@ -71,23 +71,23 @@ public class MessageFragment extends Fragment implements View.OnClickListener {
             uid = cursor.getString(0);
         }
         HttpUtils httpUtils=new HttpUtils();
-        String informationUrl= AppUtilsUrl.getMessageList(uid,"30");
+        String informationUrl= AppUtilsUrl.getMessageList(uid);
         httpUtils.send(HttpRequest.HttpMethod.POST, informationUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 Log.e("1111111",result);
-                ArtistParme<InformationValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<InformationValueBean>>() {
+                ArtistParme<ResumeMessageValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<ResumeMessageValueBean>>() {
                 });
                 informationValueBeans = artistParme.getValue();
-                InfomationAdapter infomationAdapter = new InfomationAdapter(informationValueBeans, getActivity());
-                MessageListView.setAdapter(infomationAdapter);
-                infomationAdapter.notifyDataSetChanged();
+                ResumeMessageListAdapter resumeMessageListAdapter = new ResumeMessageListAdapter(informationValueBeans, getActivity());
+                MessageListView.setAdapter(resumeMessageListAdapter);
+                resumeMessageListAdapter.notifyDataSetChanged();
                 MessageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent = new Intent(getActivity(),DetailedInformationActivity.class);
-                        intent.putExtra("informationValueBeans", informationValueBeans.get(position));
+                      Intent intent = new Intent(getActivity(),MerchantJobParticularActivity.class);
+                        intent.putExtra("informationValueBeans", informationValueBeans.get(position).getJobid());
                         startActivity(intent);
 
 

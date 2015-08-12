@@ -92,9 +92,9 @@ public class AppUtilsUrl  {
 
     }
     //列表信息通知
-    public static String getMessageList(String uid,String offset){
+    public static String getMessageList(String uid){
         //getMsgListIOS?offset=0&limit=10
-        return BaseUrl+"getPersonMsgList.action?uid="+uid+"&offset="+offset+"&limit=0";
+        return BaseUrl+"getApplyListByPerson.action?uid="+uid;
 
     }
     //用户--投递消息（商家用户使用）
@@ -181,6 +181,12 @@ public class AppUtilsUrl  {
     public static String getDeleteJob(){
         // deleteJob.action
         return BaseUrl+"deleteJob.action";
+
+    }
+      //招聘商家招聘职位详情
+    public static String getJodParticular(){
+        // addJob.action
+        return BaseUrl+"getJobPreview.action";
 
     }
     //删除图片

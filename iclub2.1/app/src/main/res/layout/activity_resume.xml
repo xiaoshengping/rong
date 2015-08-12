@@ -48,7 +48,7 @@
                     />
                 <RadioButton
                     android:id="@+id/message_radio_bt"
-                    android:text="消息通知"
+                    android:text="投递消息"
                     android:layout_weight="1"
                     android:textSize="@dimen/textSize12"
                     android:textColor="@color/home_color_seletor"
