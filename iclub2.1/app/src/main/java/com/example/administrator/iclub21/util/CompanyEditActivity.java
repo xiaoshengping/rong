@@ -63,6 +63,10 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
     private  String email;
     private RequestParams requestParams;
     private  BMerchantValueBean bMerchantValueBean;
+    private  int city;
+    private String province;
+    private String cName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -257,8 +261,22 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
             requestParams.addBodyParameter("BEweb", web);
 
         }else if (data.equals("adress")){
+
             address=editCompanyAddressEt.getText().toString();
-            requestParams.addBodyParameter("BEaddress",address );
+            if(city>=0) {
+
+                if (province!=null) {
+                    requestParams.addBodyParameter("BEaddress", province + "省" + cName + "市" + address);
+
+
+                }else {
+                    requestParams.addBodyParameter("BEaddress", cName + "市" + address);
+
+                }
+            }else {
+                requestParams.addBodyParameter("BEaddress",address );
+
+            }
 
         }
 
@@ -321,7 +339,20 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
 
                     finish();
                 } else if (data.equals("adress")) {
-                    intent.putExtra("adress", editCompanyAddressEt.getText().toString());
+                    if(city>=0) {
+
+                        if (province!=null) {
+
+                            intent.putExtra("adress", province+"省"+cName+"市"+editCompanyAddressEt.getText().toString());
+                        }else {
+                            intent.putExtra("adress", cName+"市" + editCompanyAddressEt.getText().toString());
+
+                        }
+                    }else {
+                        intent.putExtra("adress",editCompanyAddressEt.getText().toString());
+
+                    }
+
                     setResult(21, intent);
                     finish();
                 }
@@ -342,14 +373,14 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
         Bundle bundle = data.getExtras();
 
          /*获取Bundle中的数据，注意类型和key*/
-        int city = bundle.getInt("City");
-        String cName = bundle.getString("CityName");
-        String province = bundle.getString("PROVINCE");
+        city = bundle.getInt("City");
+         cName = bundle.getString("CityName");
+         province = bundle.getString("PROVINCE");
         if(city>=0) {
             if (province!=null) {
-                company_city_tv.setText(province+"、"+cName+"("+city+")");
+                company_city_tv.setText(province+"省"+cName+"市");
             }else {
-                company_city_tv.setText(cName+"("+city+")");
+                company_city_tv.setText(cName);
 //                selected_city.setText("选择城市");
             }
 
