@@ -370,10 +370,10 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
 
                         }
+                        }
+
+
                     }
-
-
-                }
 
                 @Override
                 public void onFailure(HttpException e, String s) {
