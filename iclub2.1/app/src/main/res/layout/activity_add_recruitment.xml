@@ -28,12 +28,12 @@
               android:text="必填"
               android:layout_marginLeft="55dp"
               android:textColor="@color/textColor9a4274"
-              android:textSize="@dimen/textSize14"
+              android:textSize="@dimen/textSize15"
               android:layout_width="match_parent"
               android:layout_height="wrap_content" />
       </LinearLayout>
         <ImageView
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@mipmap/line_icon"
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
         <ImageView
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@mipmap/line_icon"
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
         <ImageView
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@mipmap/line_icon"
@@ -116,12 +116,12 @@
             android:text="必填"
             android:layout_marginLeft="54dp"
             android:textColor="@color/textColor9a4274"
-            android:textSize="@dimen/textSize14"
+            android:textSize="@dimen/textSize15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
         <ImageView
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@mipmap/line_icon"

@@ -112,7 +112,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditJod(),requestParams, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
-                    Log.e("result",responseInfo.result);
+                   // Log.e("result",responseInfo.result);
                     finish();
                 }
 
@@ -235,6 +235,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 if(city>=0) {
                     //workAddressTv.setText(cName+"（城市编号："+city+"）");
                     workAddressTv.setText(cName);
+                    workAddressTv.setTextColor(getResources().getColor(R.color.white));
                     job_city_num = city;
                 }
                 int job = bundle.getInt("Position");//职业号
@@ -242,7 +243,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 if(job>=0&&job!=10){
                     //professionClassfitionTv.setText(pName+"（职业编号："+job+"）");
                     professionClassfitionTv.setText(pName);
-
+                    professionClassfitionTv.setTextColor(getResources().getColor(R.color.white));
                     job_classfite_num = job;
                 }
                 break;

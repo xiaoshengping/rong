@@ -122,6 +122,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
     public void onResume() {
         super.onResume();
         intitData();
+        recruitmentHistoryLv.setRefreshing();
     }
 
     private void initView() {
