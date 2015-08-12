@@ -8,13 +8,14 @@ android {
         applicationId "com.jeremy.Customer"
         minSdkVersion 10
         targetSdkVersion 22
-        versionCode 2
-        versionName "2.1.1"
+        versionCode 3
+        versionName "2.1.2"
     }
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-rules.pro'
         }
     }
 }
