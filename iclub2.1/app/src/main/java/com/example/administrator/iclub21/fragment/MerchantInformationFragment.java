@@ -1,6 +1,7 @@
 package com.example.administrator.iclub21.fragment;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,8 +18,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.adapter.MerchantMessageListAdapter;
 import com.example.administrator.iclub21.bean.MerchantMessageValueBean;
+import com.example.administrator.iclub21.bean.ParmeBean;
+import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.util.ResumeListParticularActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
@@ -97,7 +101,7 @@ public class MerchantInformationFragment extends Fragment implements View.OnClic
                 informationListv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                        intiResumeData(informationValueBeans.get(position).getApplyerResumeid());
 
 
                     }
@@ -123,6 +127,17 @@ public class MerchantInformationFragment extends Fragment implements View.OnClic
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getPreviewResume(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result=responseInfo.result;
+                if (result!=null){
+                    ParmeBean<ResumeValueBean> artistParme=JSONObject.parseObject(result,new TypeReference<ParmeBean<ResumeValueBean>>(){});
+                    ResumeValueBean resumeValueBeans=    artistParme.getValue();
+                    Intent intent = new Intent(getActivity(), ResumeListParticularActivity.class);
+                    intent.putExtra("resumeValueBeans", resumeValueBeans);
+                    intent.putExtra("flage", "MerchantInviteMessageFragment");
+                    startActivity(intent);
+                }
+
+
 
             }
 
