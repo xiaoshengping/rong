@@ -120,9 +120,11 @@
                     android:layout_toRightOf="@+id/companyName"
                     android:layout_alignBottom="@+id/companyName"
                     android:layout_marginLeft="8dp"
-                    android:text="广州天河娱乐文化传播管理有限公司"
+                    android:text="广州天河娱乐文化传播管理有限公司werhsdfsghsghsghsdgsdfgsgsgsdfgsgsgwthgnehrjn"
                     android:textSize="15sp"
-                    android:textColor="#D2C8DC"/>
+                    android:textColor="#D2C8DC"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
                 <TextView
                     android:id="@+id/workplace"
                     android:layout_width="wrap_content"

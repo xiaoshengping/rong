@@ -16,7 +16,7 @@
                     android:id="@+id/talen_back_iv"
                     android:layout_width="match_parent"
                     android:layout_height="230dp"
-                    android:src="@mipmap/list_touxiang_icon"
+                    android:background="@mipmap/list_touxiang_icon"
                     android:scaleType="centerCrop"
                     />
 
@@ -35,7 +35,7 @@
                     android:id="@+id/talent_head_civ"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@mipmap/mine_head_default"
+                    android:background="@mipmap/mine_head_default"
                     android:scaleType="fitXY"
                     android:layout_marginLeft="18dp"
                     android:layout_marginTop="-66dp"
