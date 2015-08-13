@@ -39,14 +39,14 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="7dp"
-            android:background="#10000000">
+            android:background="#99000000">
 
             <ImageButton
                 android:id="@+id/btn_play_ib"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:src="@mipmap/btn_play"
-                android:background="#000000"
+                android:background="@mipmap/list_touxiang_icon"
                 android:layout_centerInParent="true"/>
 
         </RelativeLayout>

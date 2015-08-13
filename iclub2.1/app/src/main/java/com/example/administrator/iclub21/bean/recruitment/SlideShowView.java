@@ -157,11 +157,13 @@ public class SlideShowView extends FrameLayout {
 
         for(int i=0;i<data.size();i++){//int imageID : imagesResIds){
             ImageView view =  new ImageView(context);
+            view.setScaleType(ScaleType.CENTER_CROP);
+            view.setImageResource(R.mipmap.list_touxiang_icon);
             BitmapUtils bitmapUtils = new BitmapUtils(context);
         if(data!=null)
             bitmapUtils.display(view, "http://www.iclubapps.com/upload/"+data.get(i).getPath());
 //            view.setImageResource(imageID);
-            view.setScaleType(ScaleType.FIT_XY);
+
             imageViewsList.add(view);
 
 //            LinearLayout slideshow_ll = (LinearLayout)view.findViewById(R.id.slideshow_ll);
@@ -189,12 +191,13 @@ public class SlideShowView extends FrameLayout {
 
         for(int i=0;i<artistPicture.size();i++){//int imageID : imagesResIds){
             ImageView view =  new ImageView(context);
-
+            view.setScaleType(ScaleType.CENTER_CROP);
+            view.setImageResource(R.mipmap.list_touxiang_icon);
             BitmapUtils bitmapUtils = new BitmapUtils(context);
             if(artistPicture!=null)
                 bitmapUtils.display(view, "http://www.iclubapps.com/upload/"+artistPicture.get(i).getName());
 //            view.setImageResource(imageID);
-            view.setScaleType(ScaleType.CENTER_CROP);
+
             imageViewsList.add(view);
 
 //            LinearLayout slideshow_ll = (LinearLayout)view.findViewById(R.id.slideshow_ll);
@@ -223,11 +226,12 @@ public class SlideShowView extends FrameLayout {
 
         for(int i=0;i<artistHeadBean.size();i++){//int imageID : imagesResIds){
             ImageView view =  new ImageView(context);
+            view.setScaleType(ScaleType.CENTER_CROP);
+            view.setImageResource(R.mipmap.list_touxiang_icon);
             BitmapUtils bitmapUtils = new BitmapUtils(context);
             if(artistHeadBean!=null)
                 bitmapUtils.display(view, "http://www.iclubapps.com/upload/"+artistHeadBean.get(i).getPath());
 //            view.setImageResource(imageID);
-            view.setScaleType(ScaleType.FIT_XY);
             imageViewsList.add(view);
 
 //            LinearLayout slideshow_ll = (LinearLayout)view.findViewById(R.id.slideshow_ll);

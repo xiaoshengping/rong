@@ -44,7 +44,9 @@
                 android:id="@+id/albumicon_iv"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="#ffffff"/>
+                android:src="@mipmap/list_touxiang_icon"
+                android:scaleType="centerCrop"
+                android:background="#00ffffff"/>
             <TextView
                 android:id="@+id/albumname_tv"
                 android:layout_width="wrap_content"

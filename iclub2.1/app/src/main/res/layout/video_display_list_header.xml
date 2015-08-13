@@ -16,7 +16,7 @@
                     android:id="@+id/talen_back_iv"
                     android:layout_width="match_parent"
                     android:layout_height="230dp"
-                    android:src="@mipmap/resume_background_icon"
+                    android:src="@mipmap/list_touxiang_icon"
                     android:scaleType="centerCrop"
                     />
 
