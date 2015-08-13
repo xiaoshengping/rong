@@ -21,11 +21,10 @@
         android:id="@+id/talent_list_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@mipmap/mine_head_default"
         android:layout_margin="14dp"
         app:roundWidth = "35dp"
         app:roundHeight = "35dp"
-        android:background="#00ffffff"
+        android:background="@mipmap/mine_head_default"
         android:scaleType="centerCrop"
         android:focusable="false"
         android:focusableInTouchMode="false"/>
