@@ -230,9 +230,10 @@
                         android:layout_marginTop="2sp"/>
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/calendar_tips_tips_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="（:需提前一天邀约）"
+                    android:text="（提示:需提前一天邀约）"
                     android:textColor="#B3B5B9"
                     android:textSize="13sp"
                     android:layout_marginTop="0dp"

@@ -46,12 +46,13 @@ public class ReputationValueFragment extends Fragment {
     private ListView reputation_list;
     private ReputationAdapter adapter;
     private int id = -1;
+    private String uid = "123";
     private int type = -1;
     //    private
     private TextView authenticity_tv,integrity_tv,record_tv;
     private TextView company_url,company_phone,company_mailbox,company_location,company_name_tv;
     private RecruitmentListBean recruitmentListBean;
-    private TextView title_name_tv;
+    private TextView title_name_tv,reputation_tipe_tv;
     private ImageView authenticity_relatively_iv,integrity_relatively_iv;
     private ImageButton back_ib;
 
@@ -66,8 +67,8 @@ public class ReputationValueFragment extends Fragment {
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            id = Integer.parseInt(cursor.getString(0));
-
+            id = Integer.parseInt(cursor.getString(1));
+            uid = cursor.getString(0);
         }
 
         View view = inflater.inflate(R.layout.activity_reputation, container, false);
@@ -75,6 +76,7 @@ public class ReputationValueFragment extends Fragment {
 
         reputation_list = (ListView)view.findViewById(R.id.reputation_list);
         title_name_tv = (TextView)view.findViewById(R.id.title_name_tv);
+        reputation_tipe_tv = (TextView)view.findViewById(R.id.reputation_tipe_tv);
         back_ib = (ImageButton)view.findViewById(R.id.back_ib);
         back_ib.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,7 +189,7 @@ public class ReputationValueFragment extends Fragment {
     //初始化合作评论
     private void initcCollaborateComment(){
         HttpUtils httpUtils=new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id,"getCommentByPerson.action?personid="), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(uid,"getCommentByPersonUid.action?uid="), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -202,6 +204,11 @@ public class ReputationValueFragment extends Fragment {
                         reputation_list.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
 //                        }
+                        if(commentDate.size()!=0) {
+                            reputation_tipe_tv.setTextColor(0x00000000);
+                        }else {
+                            reputation_tipe_tv.setTextColor(0xffDEDDE2);
+                        }
 
                     }
 
@@ -212,7 +219,8 @@ public class ReputationValueFragment extends Fragment {
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                reputation_tipe_tv.setTextColor(0xffDEDDE2);
+                reputation_tipe_tv.setText("网路异常，请稍后再试！");
             }
         });
     }

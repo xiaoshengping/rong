@@ -345,8 +345,14 @@ public class AppUtilsUrl  {
     public static String getReputationValue(int personid){
         return BaseUrl+"grade.action?personid="+personid;
     }
+    public static String getReputationValue(String personid){
+        return BaseUrl+"grade.action?personid="+personid;
+    }
     public static String getComment(int personid , String Url){
         return BaseUrl+Url+personid+"&offset=0&limit=15";
+    }
+    public static String getComment(String uid , String Url){
+        return BaseUrl+Url+uid+"&offset=0&limit=15";
     }
     public static String getModificationRoute(String uid,String tripValues , String yearAndMonth){
         return BaseUrl+"editTrip.action?uid="+uid+"&tripValues="+tripValues+"&yearAndMonth="+yearAndMonth;

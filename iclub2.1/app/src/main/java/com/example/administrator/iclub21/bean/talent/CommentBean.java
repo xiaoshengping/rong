@@ -8,7 +8,7 @@ public class CommentBean {
     private String body;
     private String time;
     private String uid;
-    private String icon;
+    private String resumeName;
 
     public String getUid() {
         return uid;
@@ -26,12 +26,12 @@ public class CommentBean {
         this.time = time;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getResumeName() {
+        return resumeName;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setResumeName(String resumeName) {
+        this.resumeName = resumeName;
     }
 
     public String getCompanyName() {
@@ -57,7 +57,7 @@ public class CommentBean {
                 ", companyName='" + companyName + '\'' +
                 ", time='" + time + '\'' +
                 ", uid='" + uid + '\'' +
-                ", icon='" + icon + '\'' +
+                ", resumeName='" + resumeName + '\'' +
                 '}';
     }
 }

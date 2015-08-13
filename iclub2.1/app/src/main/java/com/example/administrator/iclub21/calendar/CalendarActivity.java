@@ -52,7 +52,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     private LinearLayout preImgBtn, nextImgBtn;
     private TextView monthText;
     private ImageButton closeImgBtn;
-    private TextView calendar_tips_tv;
+    private TextView calendar_tips_tv,calendar_tips_tips_tv;
     private LinearLayout calendar_tips_ll;
     private Button calendar_confirm_b;
 
@@ -138,6 +138,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         nextImgBtn = (LinearLayout) this.findViewById(R.id.btnNextMonth);
         monthText = (TextView) this.findViewById(R.id.tvCurrentMonth);
         calendar_tips_ll = (LinearLayout)this.findViewById(R.id.calendar_tips_ll);
+        calendar_tips_tips_tv = (TextView)this.findViewById(R.id.calendar_tips_tips_tv);
         calendar_confirm_b = (Button)this.findViewById(R.id.calendar_confirm_b);
 //        closeImgBtn = (ImageButton) this.findViewById(R.id.btnClose);
         preImgBtn.setOnClickListener((View.OnClickListener) this);
@@ -150,6 +151,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         i="";
         if(userType==2){
             calendar_tips_ll.setVisibility(View.INVISIBLE);
+            calendar_tips_tips_tv.setVisibility(View.INVISIBLE);
 //            calendar_confirm_b.setVisibility(View.INVISIBLE);
         }
 
