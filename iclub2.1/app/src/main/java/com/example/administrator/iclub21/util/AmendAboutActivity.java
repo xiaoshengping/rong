@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -130,7 +129,7 @@ public class AmendAboutActivity extends ActionBarActivity implements View.OnClic
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                  String result= responseInfo.result;
-                Log.e("result",result);
+              //  Log.e("result",result);
             }
 
             @Override
