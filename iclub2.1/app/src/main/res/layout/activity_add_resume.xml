@@ -373,6 +373,8 @@
                 layout="@layout/experience_layout"/>
 
             <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/next_layout"
                 android:background="#3Affffff"
                 android:layout_marginTop="5dp"
                 android:orientation="vertical"
@@ -440,7 +442,20 @@
                    android:background="@mipmap/delete_icon_button"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content" />
-
+            <TextView
+                android:visibility="gone"
+                android:text="下一步"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize15"
+                android:id="@+id/next_resume_tv"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@mipmap/delete_icon_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </ScrollView>

@@ -17,6 +17,7 @@ import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
@@ -123,8 +124,9 @@ public class AmendAboutActivity extends ActionBarActivity implements View.OnClic
 
     private void aboutIntiData() {
         HttpUtils httpUtils=new HttpUtils();
-
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAboutIdea(aboutIdeaEdit.getText().toString()), new RequestCallBack<String>() {
+        RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("content",aboutIdeaEdit.getText().toString());
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAboutIdea(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                  String result= responseInfo.result;

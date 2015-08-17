@@ -136,7 +136,11 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private RadioButton girlRadioButton;
     @ViewInject(R.id.delete_resume_tv)
     private TextView deleteResumeTv;
-
+   //下一步
+    @ViewInject(R.id.next_layout)
+    private LinearLayout nextLayout;
+    @ViewInject(R.id.next_resume_tv)
+    private TextView nextTextView;
 
     private   String uid=null;
 
@@ -225,6 +229,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         addResumeSaveTv.setOnClickListener(this);
         sexRadioGroup.setOnCheckedChangeListener(this);
         deleteResumeTv.setOnClickListener(this);
+        nextTextView.setOnClickListener(this);
         //获取系统时间
         Calendar calendar = Calendar.getInstance();
         year1 = calendar.get(Calendar.YEAR);
@@ -271,7 +276,12 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             resumeAgeTv.setText("必填");
         }
         if (resumeNuber.equals("1111")){
+            nextLayout.setVisibility(View.VISIBLE);
             deleteResumeTv.setVisibility(View.VISIBLE);
+            addResumeSaveTv.setVisibility(View.VISIBLE);
+        }else {
+            nextTextView.setVisibility(View.VISIBLE);
+
         }
 
 
@@ -466,6 +476,11 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             case R.id.delete_resume_tv:
                 deleteResumeData();
                 break;
+            case R.id.next_resume_tv:
+
+                intiSaveData();
+                break;
+
 
         }
     }
@@ -631,9 +646,13 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                             });
                             if (parmeBean.getState().equals("success")) {
                                 SaveResumeValueBean saveValueBean = parmeBean.getValue();
-                               MyAppliction.showToast(saveValueBean.getMessage());
-                                ProgressBar.setVisibility(View.VISIBLE);
-                                if (!TextUtils.isEmpty(saveValueBean.getResumeid()) && !TextUtils.isEmpty(userVideoPath)) {
+                                MyAppliction.showToast(saveValueBean.getMessage());
+                               // ProgressBar.setVisibility(View.VISIBLE);
+                                Intent intent=new Intent(AddResumeActivity.this,NextResumeActivity.class);
+                                intent.putExtra("resumeid",saveValueBean.getResumeid());
+                                startActivity(intent);
+
+                              /*  if (!TextUtils.isEmpty(saveValueBean.getResumeid()) && !TextUtils.isEmpty(userVideoPath)) {
 
                                     initAddVideoData(saveValueBean.getResumeid(), userVideoPath);
 
@@ -645,7 +664,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                                     ProgressBar.setVisibility(View.VISIBLE);
                                     intiMusicData(saveValueBean.getResumeid(), userMusicPath);
 
-                                }
+                                }*/
                                 setResult(18,getIntent().putExtra("closeActivity","close"));
                                 finish();
 

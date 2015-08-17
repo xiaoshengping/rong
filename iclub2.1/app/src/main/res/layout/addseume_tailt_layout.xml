@@ -19,6 +19,7 @@
         android:layout_width="50dp"
         android:layout_height="30dp" />
      <TextView
+         android:id="@+id/text_resume"
          android:text="编辑资料"
          android:layout_marginTop="15dp"
          android:textSize="@dimen/textSize16"
@@ -27,6 +28,7 @@
          style="@style/paren_layout_width"
          />
     <TextView
+        android:visibility="gone"
         android:id="@+id/addresume_save_tv"
         android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
