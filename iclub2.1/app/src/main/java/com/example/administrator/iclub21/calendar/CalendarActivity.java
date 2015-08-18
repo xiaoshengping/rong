@@ -165,7 +165,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
             companyName = cursor.getString(6);
         }
 
-        if(companyName.equals("")){
+        if(companyName.equals("")&&userType==1){
             calendar_confirm_b.setBackgroundResource(R.drawable.calendar_button_n_shape);
             touch = false;
             dialog(NULL);
