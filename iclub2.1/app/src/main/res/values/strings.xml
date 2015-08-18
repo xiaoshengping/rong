@@ -79,6 +79,7 @@
     <string name="title_activity_company_message">CompanyMessageActivity</string>
     <string name="title_activity_iclub_about">IclubAboutActivity</string>
     <string name="title_activity_merchant_job_particular">MerchantJobParticularActivity</string>
+    <string name="title_activity_next_resume">NextResumeActivity</string>
 
 
 </resources>

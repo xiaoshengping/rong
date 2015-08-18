@@ -280,6 +280,13 @@ public class AppUtilsUrl  {
 
     }
 
+    public static String LoginWeiBo(){
+        // login_weibo.action
+        return BaseUrl+"login_weibo.action";
+
+    }
+
+
     //角色用户
     public static String getAddRoleTalents(){
         // deleteJob.action

@@ -9,9 +9,9 @@ import android.view.ViewGroup;
  * Created by xiaoshengping on 2015/6/30.
  */
 public class WordWrapView extends ViewGroup {
-    private static final int PADDING_HOR = 10;//水平方向padding
+    private static final int PADDING_HOR = 5;//水平方向padding
     private static final int PADDING_VERTICAL = 5;//垂直方向padding
-    private static final int SIDE_MARGIN = 70;//左右间距
+    private static final int SIDE_MARGIN = 10;//左右间距
     private static final int TEXT_MARGIN = 10;
     /**
      * @param context

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +17,6 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.example.administrator.iclub21.AccessTokenKeeper;
-import com.example.administrator.iclub21.Constantser;
 import com.example.administrator.iclub21.bean.LoginValueBean;
 import com.example.administrator.iclub21.bean.ParmeBean;
 import com.example.administrator.iclub21.bean.recruitment.SendParme;
@@ -26,24 +25,28 @@ import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.sina.weibo.sdk.auth.AuthInfo;
-import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-import com.sina.weibo.sdk.auth.WeiboAuthListener;
-import com.sina.weibo.sdk.auth.sso.SsoHandler;
-import com.sina.weibo.sdk.exception.WeiboException;
 import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.controller.UMServiceFactory;
+import com.umeng.socialize.controller.UMSocialService;
+import com.umeng.socialize.controller.listener.SocializeListeners;
+import com.umeng.socialize.exception.SocializeException;
+import com.umeng.socialize.sso.SinaSsoHandler;
+import com.umeng.socialize.sso.UMSsoHandler;
 
 import org.json.JSONException;
 
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
+import java.util.Map;
+import java.util.Set;
 
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
     @ViewInject(R.id.edit_phone)
@@ -72,14 +75,14 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     /** 显示认证后的信息，如 AccessToken */
 //    private TextView mTokenText;
 
-    private AuthInfo mAuthInfo;
+   /* private AuthInfo mAuthInfo;
 
-    /** 封装了 "access_token"，"expires_in"，"refresh_token"，并提供了他们的管理功能  */
+    *//** 封装了 "access_token"，"expires_in"，"refresh_token"，并提供了他们的管理功能  *//*
     private Oauth2AccessToken mAccessToken;
 
-    /** 注意：SsoHandler 仅当 SDK 支持 SSO 时有效 */
-    private SsoHandler mSsoHandler;
-
+    *//** 注意：SsoHandler 仅当 SDK 支持 SSO 时有效 *//*
+    private SsoHandler mSsoHandler;*/
+    UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.login");
 
 
     @Override
@@ -92,9 +95,17 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
      //程序入口
     private void init() {
        intiView();
+        intWeiBo();
         sqLhelper=new SQLhelper(this);
 
     }
+
+    private void intWeiBo() {
+
+
+
+    }
+
     private void intiView() {
         // loginButton.setOnClickListener(this);
         returnTV.setOnClickListener(this);
@@ -136,7 +147,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 doLogin();
                 break;
             case R.id.weibo_login:
-                weibodenglu();
+                //weibodenglu();
+                weiBoLogin();
                 break;
             case R.id.register_tv:
                Intent registerIntent=new Intent(LoginActivity.this,RegisterActivity.class);
@@ -154,7 +166,113 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
     }
 
-    private void weibodenglu(){
+    private void weiBoLogin() {
+
+
+        mController.doOauthVerify(LoginActivity.this, SHARE_MEDIA.SINA,new SocializeListeners.UMAuthListener() {
+            @Override
+            public void onError(SocializeException e, SHARE_MEDIA platform) {
+            }
+            @Override
+            public void onComplete(Bundle value, SHARE_MEDIA platform) {
+                if (value != null && !TextUtils.isEmpty(value.getString("uid"))) {
+                    Toast.makeText(LoginActivity.this, "授权成功.",                      Toast.LENGTH_SHORT).show();
+                  weiboLogData(value.getString("uid"));
+                } else {
+                    Toast.makeText(LoginActivity.this, "授权失败",                       Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancel(SHARE_MEDIA platform) {}
+            @Override
+            public void onStart(SHARE_MEDIA platform) {}
+        });
+
+        mController.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.SINA, new SocializeListeners.UMDataListener() {
+            @Override
+            public void onStart() {
+                Toast.makeText(LoginActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onComplete(int status, Map<String, Object> info) {
+                if (status == 200 && info != null) {
+                    StringBuilder sb = new StringBuilder();
+                    Set<String> keys = info.keySet();
+                    for (String key : keys) {
+                        sb.append(key + "=" + info.get(key).toString() + "\r\n");
+                    }
+                    Log.d("TestData", sb.toString());
+                } else {
+                    Log.d("TestData", "发生错误：" + status);
+                }
+            }
+        });
+        //设置新浪SSO handler
+        mController.getConfig().setSsoHandler(new SinaSsoHandler());
+    }
+
+    private void weiboLogData(String weibouid) {
+        HttpUtils httpUtils=new HttpUtils();
+        final RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("weibouid",weibouid);
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.LoginWeiBo(), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String rerult=responseInfo.result;
+                if (rerult!=null){
+
+                    ParmeBean<LoginValueBean> artistParme= JSONObject.parseObject(rerult, new TypeReference<ParmeBean<LoginValueBean>>() {
+                    });
+                    LoginValueBean loginValueBean=  artistParme.getValue();
+                    if ("success".equals(artistParme.getState())){
+                        //Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
+                        SQLhelper sqLhelper=new SQLhelper(LoginActivity.this);
+                        insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(),
+                                loginValueBean.getMobile(), loginValueBean.getPersonId(),loginValueBean.getCompanyName());
+                        Intent intent = new Intent();
+                        LoginActivity.this.setResult(12, intent);
+                        /*结束本Activity*/
+                        LoginActivity.this.finish();
+
+//                            finish();
+                            /*Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
+                            startActivity(intent);*/
+
+                    }else {
+                        Toast.makeText(LoginActivity.this,"密码或用户名错误",Toast.LENGTH_LONG).show();
+
+
+                    }
+                }
+
+
+            }
+
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+            }
+        });
+
+
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /**使用SSO授权必须添加如下代码 */
+        UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode);
+        if(ssoHandler != null){
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
+    }
+
+
+    /*private void weibodenglu(){
         // 获取 Token View，并让提示 View 的内容可滚动（小屏幕可能显示不全）
 
 //        TextView hintView = (TextView) findViewById(com.sina.weibo.sdk.demo.R.id.obtain_token_hint);
@@ -167,7 +285,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 //            updateTokenView(true);
 //            Intent intent = new Intent();
 //            LoginActivity.this.setResult(12, intent);
-//                        /*结束本Activity*/
+//                        *//*结束本Activity*//*
 //            LoginActivity.this.finish();
         }
             // 快速授权时，请不要传入 SCOPE，否则可能会授权不成功
@@ -177,13 +295,13 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             mSsoHandler.authorize(new AuthListener());
 
 
-    }
+    }*/
     /**
      * 当 SSO 授权 Activity 退出时，该函数被调用。
      *
      * @see {@link Activity#onActivityResult}
      */
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -193,7 +311,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
 
-    }
+    }*/
 
     /**
      * 微博认证授权回调类。
@@ -202,7 +320,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
      * 2. 非 SSO 授权时，当授权结束后，该回调就会被执行。
      * 当授权成功后，请保存该 access_token、expires_in、uid 等信息到 SharedPreferences 中。
      */
-    class AuthListener implements WeiboAuthListener {
+    /*class AuthListener implements WeiboAuthListener {
 
         @Override
         public void onComplete(Bundle values) {
@@ -242,11 +360,11 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         }
     }
 
-    /**
+    *//**
      * 显示当前 Token 信息。
      *
-     * @param hasExisted 配置文件中是否已存在 token 信息并且合法
-     */
+     * @param //hasExisted 配置文件中是否已存在 token 信息并且合法
+     *//*
     private void updateTokenView(boolean hasExisted) {
         String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(
                 new java.util.Date(mAccessToken.getExpiresTime()));
@@ -259,7 +377,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         }
 //        mTokenText.setText(message);
         denglu(AppUtilsUrl.getLoginWeibo(mAccessToken.getToken()));
-    }
+    }*/
 
 
     //登录
