@@ -50,32 +50,49 @@ public class ReputationAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        if (convertView == null) {
-            convertView = mInflater.inflate(layout.reputation_list,null);
-            viewHodle = new ViewHodle();
-
-            viewHodle.comment_neme_tv = (TextView) convertView.findViewById(id.comment_neme_tv);
-            viewHodle.comment_time_tv = (TextView) convertView.findViewById(id.comment_time_tv);
-            viewHodle.comment_body_tv = (TextView) convertView.findViewById(id.comment_body_tv);
-//            viewHodle.head_portrait_iv = (ImageView) convertView.findViewById(id.head_portrait_iv);
-            convertView.setTag(viewHodle);
-        }
-        else{
-            viewHodle = (ViewHodle)convertView.getTag();
-        }
         if(commentDate.get(position).getResumeName()==null) {
+            if (convertView == null) {
+                convertView = mInflater.inflate(layout.reputation_list, null);
+                viewHodle = new ViewHodle();
+
+                viewHodle.comment_neme_tv = (TextView) convertView.findViewById(id.comment_neme_tv);
+                viewHodle.comment_time_tv = (TextView) convertView.findViewById(id.comment_time_tv);
+                viewHodle.comment_body_tv = (TextView) convertView.findViewById(id.comment_body_tv);
+//            viewHodle.head_portrait_iv = (ImageView) convertView.findViewById(id.head_portrait_iv);
+
+                convertView.setTag(viewHodle);
+            } else {
+                viewHodle = (ViewHodle) convertView.getTag();
+            }
+
             viewHodle.comment_neme_tv.setText(commentDate.get(position).getCompanyName());
 
-        }else {
-            viewHodle.comment_neme_tv.setText("\"" + commentDate.get(position).getCompanyName() + "\"评论了你的" + "\"" + commentDate.get(position).getResumeName() + "\"");
-        }
-        viewHodle.comment_time_tv.setText(commentDate.get(position).getTime());
-        viewHodle.comment_body_tv.setText(commentDate.get(position).getBody());
-        BitmapUtils bitmapUtils=new BitmapUtils(mContext);
+            viewHodle.comment_time_tv.setText(commentDate.get(position).getTime());
+            viewHodle.comment_body_tv.setText(commentDate.get(position).getBody());
+            BitmapUtils bitmapUtils = new BitmapUtils(mContext);
 //        bitmapUtils.display(viewHodle.head_portrait_iv, AppUtilsUrl.ImageBaseUrl + commentDate.get(position).getIcon());
 
+        }else {
+            if (convertView == null) {
+                convertView = mInflater.inflate(layout.reputation_talents_list, null);
+                viewHodle = new ViewHodle();
 
+                viewHodle.comment_neme_tv = (TextView) convertView.findViewById(id.comment_neme_tv);
+                viewHodle.comment_time_tv = (TextView) convertView.findViewById(id.comment_time_tv);
+                viewHodle.comment_body_tv = (TextView) convertView.findViewById(id.comment_body_tv);
+                viewHodle.resume_neme_tv = (TextView) convertView.findViewById(id.resume_neme_tv);
+//            viewHodle.head_portrait_iv = (ImageView) convertView.findViewById(id.head_portrait_iv);
+
+                convertView.setTag(viewHodle);
+            } else {
+                viewHodle = (ViewHodle) convertView.getTag();
+            }
+
+            viewHodle.comment_neme_tv.setText(commentDate.get(position).getCompanyName());
+            viewHodle.resume_neme_tv.setText(commentDate.get(position).getResumeName());
+            viewHodle.comment_time_tv.setText(commentDate.get(position).getTime());
+            viewHodle.comment_body_tv.setText(commentDate.get(position).getBody());
+        }
         return convertView;
     }
 
@@ -83,6 +100,7 @@ public class ReputationAdapter extends BaseAdapter {
         private TextView comment_neme_tv;
         private TextView comment_time_tv;
         private TextView comment_body_tv;
+        private TextView resume_neme_tv;
 //        private ImageView head_portrait_iv;
 
     }

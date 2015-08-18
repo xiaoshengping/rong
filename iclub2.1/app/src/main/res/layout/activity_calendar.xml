@@ -237,7 +237,7 @@
                     android:textColor="#B3B5B9"
                     android:textSize="13sp"
                     android:layout_marginTop="0dp"
-                    android:layout_marginLeft="40dp"/>
+                    android:layout_marginLeft="0dp"/>
         </LinearLayout>
 
 

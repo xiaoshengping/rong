@@ -262,7 +262,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     }
 
 
-    //qq登录
+    //登录
     private void denglu(String token){
         HttpUtils httpUtils = new HttpUtils();
         httpUtils.send(HttpRequest.HttpMethod.GET, token, new RequestCallBack<String>() {

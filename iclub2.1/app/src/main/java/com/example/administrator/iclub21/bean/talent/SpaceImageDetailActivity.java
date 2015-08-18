@@ -2,8 +2,11 @@ package com.example.administrator.iclub21.bean.talent;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Gallery;
 
 import com.jeremy.Customer.R;
@@ -41,6 +44,23 @@ public class SpaceImageDetailActivity extends Activity {
         spaceimge_g.setAdapter(siAdater);
         siAdater.notifyDataSetChanged();
         spaceimge_g.setSelection(num);
+
+        spaceimge_g.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                finish();
+                overridePendingTransition(R.anim.out_to_not, R.anim.spaceimagedetail_out);
+            }
+        });
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            finish();
+            overridePendingTransition(R.anim.out_to_not, R.anim.spaceimagedetail_out);
+            return true;
+        } else
+            return super.onKeyDown(keyCode, event);
     }
 
 

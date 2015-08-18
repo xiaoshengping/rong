@@ -254,13 +254,13 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 //            tv.setText(dayBeanslist.get(date.day-1).getDay());
                     if (tipsType == -1) {
                         if (toMonth) {
-                            if (todayBeanslist.get(date.day - 1).getStatus().equals("1") && todayBeanslist.get(date.day - 1).getDay().equals(str)) {
+                            if (todayBeanslist.get(date.day - 1).getStatus().equals("0") && todayBeanslist.get(date.day - 1).getDay().equals(str)) {
 
                             } else {
                                 i = str;
                             }
                         } else {
-                            if (nextdayBeanslist.get(date.day - 1).getStatus().equals("1") && nextdayBeanslist.get(date.day - 1).getDay().equals(str)) {
+                            if (nextdayBeanslist.get(date.day - 1).getStatus().equals("0") && nextdayBeanslist.get(date.day - 1).getDay().equals(str)) {
 
                             } else {
                                 i = str;
@@ -281,18 +281,18 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
                     if (tipsType == -1) {
                         if (toMonth) {
-                            if (todayBeanslist.get(date.day - 1).getStatus().equals("0")) {
-                                todayBeanslist.get(date.day - 1).setStatus("1");
+                            if (todayBeanslist.get(date.day - 1).getStatus().equals("1")) {
+                                todayBeanslist.get(date.day - 1).setStatus("0");
 //                            modificationRoute(DateUtil.getYear() + "-" + (DateUtil.getMonth() > 9 ? DateUtil.getMonth() : ("0" + DateUtil.getMonth())));
                             } else {
-                                todayBeanslist.get(date.day - 1).setStatus("0");
+                                todayBeanslist.get(date.day - 1).setStatus("1");
                             }
                         } else {
-                            if (nextdayBeanslist.get(date.day - 1).getStatus().equals("0")) {
-                                nextdayBeanslist.get(date.day - 1).setStatus("1");
+                            if (nextdayBeanslist.get(date.day - 1).getStatus().equals("1")) {
+                                nextdayBeanslist.get(date.day - 1).setStatus("0");
 //                            modificationRoute(DateUtil.getYear() + "-" + (DateUtil.getMonth() > 9 ? DateUtil.getMonth() : ("0" + DateUtil.getMonth())));
                             } else {
-                                nextdayBeanslist.get(date.day - 1).setStatus("0");
+                                nextdayBeanslist.get(date.day - 1).setStatus("1");
                             }
                         }
 
@@ -414,16 +414,25 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
                     ArtistParme<DayBean> dayBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<DayBean>>() {
                     });
                     if (dayBean.getState().equals("success")) {
+
                         if(tomonth) {
                             todayBeanslist = dayBean.getValue();
                         }else {
                             nextdayBeanslist = dayBean.getValue();
-                            CalendarCard[] views = new CalendarCard[3];
-                            for (int i = 0; i < 3; i++) {
-                                views[i] = new CalendarCard(CalendarActivity.this, CalendarActivity.this);
-                            }
-                            adapter = new CalendarViewAdapter<CalendarCard>(views);
-                            setViewPager();
+
+                            new Handler().postDelayed(new Runnable(){
+
+                                public void run() {
+
+                                    CalendarCard[] views = new CalendarCard[3];
+                                    for (int i = 0; i < 3; i++) {
+                                        views[i] = new CalendarCard(CalendarActivity.this, CalendarActivity.this);
+                                    }
+                                    adapter = new CalendarViewAdapter<CalendarCard>(views);
+                                    setViewPager();
+                                }
+
+                            }, 300);
                         }
 //                            updateCalendarView(7);
                             tipsType = -1;
@@ -572,7 +581,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         String s = "";
         if(tomonmod) {
             for (int i = 0; i < todayBeanslist.size(); i++) {
-                if (todayBeanslist.get(i).getStatus().equals("1")) {
+                if (todayBeanslist.get(i).getStatus().equals("0")) {
                     if ((i + 1) != todayBeanslist.size()) {
                         s = s + todayBeanslist.get(i).getDay() + ",";
                     } else {
@@ -583,7 +592,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
             }
         }else{
             for (int i = 0; i < nextdayBeanslist.size(); i++) {
-                if (nextdayBeanslist.get(i).getStatus().equals("1")) {
+                if (nextdayBeanslist.get(i).getStatus().equals("0")) {
                     if ((i + 1) != nextdayBeanslist.size()) {
                         s = s + nextdayBeanslist.get(i).getDay() + ",";
                     } else {
