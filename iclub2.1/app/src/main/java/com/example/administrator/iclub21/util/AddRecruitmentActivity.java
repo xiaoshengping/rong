@@ -339,7 +339,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                 Log.e("jdjfjjf",s);
             }
         });
 
