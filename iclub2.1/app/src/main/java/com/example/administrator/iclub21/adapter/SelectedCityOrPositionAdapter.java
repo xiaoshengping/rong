@@ -118,6 +118,11 @@ public class SelectedCityOrPositionAdapter extends BaseAdapter{
                 viewHodle.position_ll.setVisibility(View.VISIBLE);
                 viewHodle.position_tv.setText(s);
             }
+            if(ba){
+                if(position==0) {
+                    viewHodle.province_ll.setVisibility(View.GONE);
+                }
+            }
         }
 
         return convertView;

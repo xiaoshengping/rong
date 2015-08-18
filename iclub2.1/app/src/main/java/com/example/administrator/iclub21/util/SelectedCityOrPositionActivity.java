@@ -62,7 +62,12 @@ public class SelectedCityOrPositionActivity extends Activity {
         status = bundle.getInt("Status");
         company = bundle.getInt("Company");
         if(company==-1){
-            initProvince(true);
+            if(status==areaBean.PROVINCE) {
+                initProvince(true);
+            }else if(status==areaBean.POSITION){
+                initPosition(true);
+            }
+
         }else if(status==areaBean.PROVINCE) {
             initProvince();
         }else if(status==areaBean.POSITION){
@@ -137,6 +142,16 @@ public class SelectedCityOrPositionActivity extends Activity {
         status=areaBean.POSITION;
 
         scAdaper = new SelectedCityOrPositionAdapter(this,status);
+        selecte_city_lv.setAdapter(scAdaper);
+        scAdaper.notifyDataSetChanged();
+
+    }
+    //初始化职位
+    private  void initPosition(boolean b){
+        title_name_tv.setText("选择职位");
+        status=areaBean.POSITION;
+
+        scAdaper = new SelectedCityOrPositionAdapter(this,status,b);
         selecte_city_lv.setAdapter(scAdaper);
         scAdaper.notifyDataSetChanged();
 

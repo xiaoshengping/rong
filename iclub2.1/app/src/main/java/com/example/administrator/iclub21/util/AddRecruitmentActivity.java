@@ -306,6 +306,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             case R.id.profession_classification_tv:
                 Intent intentClassfite = new Intent(AddRecruitmentActivity.this, SelectedCityOrPositionActivity.class);  //方法1
                 intentClassfite.putExtra("Status", areaBean.POSITION);
+                intentClassfite.putExtra("Company",-1);
                 startActivityForResult(intentClassfite, 12);
                 overridePendingTransition(R.anim.in_from_right, R.anim.out_to_not);
 
@@ -313,6 +314,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             case R.id.work_address_tv:
                 Intent intentCity = new Intent(AddRecruitmentActivity.this, SelectedCityOrPositionActivity.class);  //方法1
                 intentCity.putExtra("Status", areaBean.PROVINCE);
+                intentCity.putExtra("Company",-1);
                 startActivityForResult(intentCity, 12);
                 overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_not);
 
