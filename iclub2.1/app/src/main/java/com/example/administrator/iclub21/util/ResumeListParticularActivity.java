@@ -265,18 +265,14 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     }
 
     private void videoData() {
-        progressbar.setVisibility(View.VISIBLE);
+        //progressbar.setVisibility(View.VISIBLE);
         if (resumeValueBean.getResumeMovie()!=null&&resumeValueBean.getResumeMovie().size()!=0){
             ResumeVideoAdapter resumeVideoAdapter=new ResumeVideoAdapter(resumeValueBean.getResumeMovie(),this);
             videoListView.setAdapter(resumeVideoAdapter);
             resumeVideoAdapter.notifyDataSetChanged();
-
-            String imagpath= AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumeMovie().get(0).getPath();
-            Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
-            if (bitmap!=null){
-
+           // String imagpath= AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumeMovie().get(0).getPath();
+           // Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
                 videoListView.setVisibility(View.VISIBLE);
-            }
 
         }else {
             noShowViewTv.setVisibility(View.VISIBLE);

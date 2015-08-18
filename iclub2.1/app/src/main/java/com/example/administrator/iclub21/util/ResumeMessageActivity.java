@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
@@ -119,6 +120,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     @ViewInject(R.id.video_xshi_layout)
     private RelativeLayout showVideoImage;
     private  String videoPath=null;
+    private ResumeDeleteVideoAdapter resumeVideoAdapter;
 
     //音乐
     @ViewInject(R.id.add_music_layout)
@@ -219,8 +221,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     relativePictureLayout=new RelativeLayout(ResumeMessageActivity.this);
                     final ImageView imageView=new ImageView(ResumeMessageActivity.this);
                     imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    imageView.setMinimumWidth(200);
-                    imageView.setMinimumHeight(200);
+                    imageView.setMaxWidth(100);
+                    imageView.setMaxHeight(100);
                     deletePictureImageView=new ImageView(ResumeMessageActivity.this);
                     RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     lp1.addRule(RelativeLayout.CENTER_HORIZONTAL);
@@ -256,44 +258,15 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
             resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("resumeInfoData");
             //Log.e("00000000",resumeValueBean.getResumeMovie().get(0).getPath());
             if (resumeValueBean.getResumeMovie()!=null&&resumeValueBean.getResumeMovie().size()!=0) {
-
-               /*for (int i = 0; i < resumeValueBean.getResumeMovie().size(); i++) {
-                   RelativeLayout videoRelativeLayout = new RelativeLayout(ResumeMessageActivity.this);
-                    final ImageView videoImageView = new ImageView(ResumeMessageActivity.this);
-                    videoImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    videoImageView.setMaxWidth(800);
-                    videoImageView.setMaxHeight(400);
-                    ImageView deleteVideoIv = new ImageView(ResumeMessageActivity.this);
-                    RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    lp1.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                    lp1.addRule(RelativeLayout.CENTER_VERTICAL);
-                    deleteVideoIv.setBackgroundResource(R.mipmap.delete_button_icon);
-                    deleteVideoIv.setLayoutParams(lp1);
-                    //videoRelativeLayout.addView(videoRelativeLayout);
-                    videoRelativeLayout.addView(deleteVideoIv);
-                    videoRelativeLayout.addView(videoImageView);
-                    videowordWrapView.addView(videoRelativeLayout);
-                    String imagpath = AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(i).getPath();
-                    Bitmap bitmap = createVideoThumbnail(imagpath, 10, 10);
-                    videoImageView.setImageBitmap(bitmap);
-
-                }*/
-                ResumeDeleteVideoAdapter resumeVideoAdapter=new ResumeDeleteVideoAdapter(resumeValueBean.getResumeMovie(),ResumeMessageActivity.this);
+                 resumeVideoAdapter=new ResumeDeleteVideoAdapter(resumeValueBean.getResumeMovie(),ResumeMessageActivity.this);
                 videowordListView.setAdapter(resumeVideoAdapter);
                 resumeVideoAdapter.notifyDataSetChanged();
                 videowordListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                        videowordListView.reclaimViews(view.getFocusables(position));
-
+                        showVideoGameAlert(position);
                     }
                 });
-
-
-
-
-
             }
 
 
@@ -353,6 +326,61 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
         }
 
 
+    }
+
+    private void deleteVideoDate(int position) {
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("resumeid",resumeValueBean.getResumeid()+"");
+        requestParams.addBodyParameter("id",resumeValueBean.getResumeMovie().get(position).getResumemovieid()+"");
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteVideo(),requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                Log.e("hsdhfhfhf",responseInfo.result);
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+            }
+        });
+
+
+
+
+
+    }
+
+    //删除视频对话框
+    private void showVideoGameAlert(final int position ) {
+        final AlertDialog dlg = new AlertDialog.Builder(ResumeMessageActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.shrew_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText("确定要删除视频？");
+        // 为确认按钮添加事件,执行退出应用操作
+        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
+        ok.setText("确定");
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                resumeValueBean.getResumeMovie().remove(position);
+                resumeVideoAdapter.notifyDataSetChanged();
+                deleteVideoDate(position);
+                dlg.cancel();
+            }
+        });
+
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("取消");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlg.cancel();
+            }
+        });
     }
 
     //删除音乐对话框

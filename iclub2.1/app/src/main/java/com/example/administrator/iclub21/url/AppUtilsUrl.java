@@ -113,9 +113,9 @@ public class AppUtilsUrl  {
     }
 
     //意见反馈
-    public static String getAboutIdea(String content){
+    public static String getAboutIdea(){
         //submitFeedback.action?content=XXX
-        return BaseUrl+"submitFeedback.action?content="+content;
+        return BaseUrl+"submitFeedback.action";
 
     }
     //编辑简历
@@ -199,6 +199,13 @@ public class AppUtilsUrl  {
     public static String getDeleteMusic(){
         // editResumeDeleteMusic_V2_2.action
         return BaseUrl+"editResumeDeleteMusic_V2_2.action";
+
+    }
+
+    //删除视频
+    public static String getDeleteVideo(){
+        // editResumeDeleteMovie_V2_2.action?resumeid=13&id=33
+        return BaseUrl+"editResumeDeleteMovie_V2_2.action";
 
     }
     //邀约通知列表
