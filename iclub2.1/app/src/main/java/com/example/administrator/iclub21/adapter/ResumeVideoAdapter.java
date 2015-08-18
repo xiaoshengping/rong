@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.iclub21.bean.talent.ResumeMovie;
-import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -47,10 +46,23 @@ public class ResumeVideoAdapter extends AppBaseAdapter<ResumeMovie> {
         return convertView;
     }
 
-    private void inti(int position) {
-        String imagpath= AppUtilsUrl.ImageBaseUrl+data.get(position).getPath();
+    private void inti(final int position) {
+
+        viewHodle.showVideoImage.setBackgroundResource(R.mipmap.list_touxiang_icon);
+
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String imagpath= AppUtilsUrl.ImageBaseUrl+data.get(position).getPath();
+                Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
+                viewHodle.showVideoImage.setImageBitmap(bitmap);
+            }
+        }).start();*/
+
+
+       /* String imagpath= AppUtilsUrl.ImageBaseUrl+data.get(position).getPath();
         Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
-          viewHodle.showVideoImage.setImageBitmap(bitmap);
+          viewHodle.showVideoImage.setImageBitmap(bitmap);*/
 
 
 

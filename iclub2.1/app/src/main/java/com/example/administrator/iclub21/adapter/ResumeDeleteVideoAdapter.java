@@ -10,10 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.administrator.iclub21.bean.talent.ResumeMovie;
-import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -48,9 +46,12 @@ public class ResumeDeleteVideoAdapter extends AppBaseAdapter<ResumeMovie> {
     }
 
     private void inti(int position) {
-        String imagpath= AppUtilsUrl.ImageBaseUrl+data.get(position).getPath();
+
+        viewHodle.showVideoImage.setBackgroundResource(R.mipmap.list_touxiang_icon);
+
+        /*String imagpath= AppUtilsUrl.ImageBaseUrl+data.get(position).getPath();
         Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
-          viewHodle.showVideoImage.setImageBitmap(bitmap);
+          viewHodle.showVideoImage.setImageBitmap(bitmap);*/
 
 
 
@@ -88,8 +89,6 @@ public class ResumeDeleteVideoAdapter extends AppBaseAdapter<ResumeMovie> {
 
 
     private class  ViewHodle{
-        @ViewInject(R.id.show_video_button_tv)
-        private TextView showVideoTextView;
         @ViewInject(R.id.show_video_imageView)
         private ImageView showVideoImage;
 
