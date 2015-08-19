@@ -1,14 +1,17 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
     android:background="@mipmap/iculd_beijin_icon"
     tools:context="com.example.administrator.iclub21.util.CompanyInviteMessageActivity"
    >
-    <RelativeLayout
-        android:orientation="vertical"
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <include
         android:id="@+id/company_invite_tailot"
         android:layout_width="match_parent"
@@ -391,6 +394,9 @@
      </LinearLayout>
     </LinearLayout>
 
+
+        </LinearLayout>
+    </ScrollView>
     <LinearLayout
         android:id="@+id/comment_layout"
         android:gravity="center"
@@ -409,18 +415,18 @@
             android:textSize="@dimen/textSize15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             />
+            />
 
-           <Button
-               android:id="@+id/adopt_invite_bt"
-               android:layout_marginLeft="5dp"
-               android:layout_weight="1"
-               android:text="接受"
-               android:layout_marginBottom="3dp"
-               android:textColor="@color/white"
-               android:background="@mipmap/invite_buttto_icon"
-               android:layout_width="match_parent"
-               android:layout_height="35dp" />
+        <Button
+            android:id="@+id/adopt_invite_bt"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:text="接受"
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/white"
+            android:background="@mipmap/invite_buttto_icon"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
         <Button
             android:id="@+id/refuse_invite_bt"
             android:layout_marginLeft="5dp"
@@ -433,6 +439,4 @@
             android:layout_width="match_parent"
             android:layout_height="35dp" />
     </LinearLayout>
-
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

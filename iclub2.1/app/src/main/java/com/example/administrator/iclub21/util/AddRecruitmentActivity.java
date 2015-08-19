@@ -195,7 +195,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         if (recruitmentHistoryValueBean!=null){
             deleteRecruitmentTv.setVisibility(View.VISIBLE);
             professionClassfitionTv.setText(areaBean.getNumPositionName(this ,recruitmentHistoryValueBean.getJobcategory()));
-            workAddressTv.setText(recruitmentHistoryValueBean.getAddress());
+            workAddressTv.setText(recruitmentHistoryValueBean.getWorkPlace());
             workAddressTv.setTextColor(getResources().getColor(R.color.white));
             professionClassfitionTv.setTextColor(getResources().getColor(R.color.white));
             positionEdit.setText(recruitmentHistoryValueBean.getPosition());
