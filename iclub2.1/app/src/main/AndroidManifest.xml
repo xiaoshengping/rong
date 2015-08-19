@@ -239,7 +239,11 @@
             android:name="com.example.administrator.iclub21.util.NextResumeActivity"
             android:label="@string/title_activity_next_resume" >
         </activity>
-        <activity android:name="com.example.administrator.iclub21.util.ChooseAresumeActivity"></activity>
+        <activity android:name="com.example.administrator.iclub21.util.ChooseAresumeActivity" />
+        <activity
+            android:name="com.example.administrator.iclub21.util.AdeaAboutActivity"
+            android:label="@string/title_activity_adea_about" >
+        </activity>
     </application>
 
 </manifest>
