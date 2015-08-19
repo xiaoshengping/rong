@@ -60,6 +60,7 @@ public class TalendDetailsActivity extends Activity {
     private ListView video_display_lv;
 //    private ScrollView scrollView;
     private TextView picturesshow_more_tv;
+    private LinearLayout picturesshow_ll;
     private RoundAngleImageView picturesshow1_iv,picturesshow2_iv,picturesshow3_iv,picturesshow4_iv;
     private List<ResumePicture> resumePictureData;
 
@@ -95,6 +96,7 @@ public class TalendDetailsActivity extends Activity {
         phone_tv = (TextView) view.findViewById(R.id.phone_tv);
         contact_information_tips_tv = (TextView) view.findViewById(R.id.contact_information_tips_tv);
         picturesshow_more_tv = (TextView) view.findViewById(R.id.picturesshow_more_tv);
+        picturesshow_ll = (LinearLayout) view.findViewById(R.id.picturesshow_ll);
         //点击更多
         picturesshow_more_tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,6 +175,9 @@ public class TalendDetailsActivity extends Activity {
         talentValueBean = (TalentValueBean) getIntent().getSerializableExtra("Detail");
 //        status = bundle.getInt("Status");
         resumePictureData = talentValueBean.getResumePicture();
+        if(resumePictureData.size()==0){
+            picturesshow_ll.setVisibility(View.GONE);
+        }
         if(resumePictureData.size()>=1) {
             bitmapUtils.display(picturesshow1_iv, AppUtilsUrl.ImageBaseUrl + resumePictureData.get(0).getPath());
             picturesshow1_iv.setOnClickListener(new View.OnClickListener() {

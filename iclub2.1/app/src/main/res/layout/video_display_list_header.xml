@@ -439,6 +439,7 @@
                     android:layout_height="1dp"
                     android:background="#08ffffff"/>
                 <LinearLayout
+                    android:id="@+id/picturesshow_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingRight="20dp"
