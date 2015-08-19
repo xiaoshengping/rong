@@ -32,8 +32,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.adapter.ResumeDeleteVideoAdapter;
+import com.example.administrator.iclub21.bean.ParmeBean;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
+import com.example.administrator.iclub21.bean.VideoValueBean;
 import com.example.administrator.iclub21.http.ImageUtil;
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
@@ -794,8 +798,17 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                 // Log.e("initAddVideoData", responseInfo.result);
                 // ProgressBar.setVisibility(View.GONE);
                 if (!TextUtils.isEmpty(responseInfo.result)){
-                    progressbar.setVisibility(View.GONE);
-                    finish();
+                    ParmeBean<VideoValueBean> parmeBean= JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<VideoValueBean>>(){});
+                    if(parmeBean.getValue().getMessage().equals("success")){
+                        progressbar.setVisibility(View.GONE);
+                        finish();
+
+                            }
+
+
+
+
+
 
                 }
             }
