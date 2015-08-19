@@ -33,6 +33,7 @@
         android:layout_below="@+id/tips"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/tipss_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="亲，请先登录并注册为人才用户"

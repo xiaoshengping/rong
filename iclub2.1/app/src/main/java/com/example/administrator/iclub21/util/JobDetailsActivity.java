@@ -10,13 +10,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.bean.RatingBarStar;
 import com.example.administrator.iclub21.bean.recruitment.JobDetailsDialog;
 import com.example.administrator.iclub21.bean.recruitment.RecruitmentListBean;
-import com.example.administrator.iclub21.bean.recruitment.SendParme;
-import com.example.administrator.iclub21.bean.recruitment.ViewCountBean;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
@@ -181,43 +177,55 @@ public class JobDetailsActivity extends Activity {
     public void send(View v){
 
         if(register) {
+            Intent intent = new Intent(JobDetailsActivity.this, ChooseAresumeActivity.class);
+            intent.putExtra("jobId", recruitmentListBean.getJobId());
+            startActivityForResult(intent, 0);
+//            Bundle bundle = new Bundle();
+//            bundle.putInt("UserType",2);
+//            bundle.putInt("Personid", recruitmentListBean.getPersonid());
+//            bundle.putSerializable("Detail", recruitmentListBean);
+//        bundle.putInt("Resumeid",talentValueBean.getResumeid());
+//        Toast.makeText(this, talentValueBean.getPersonid()+"", Toast.LENGTH_LONG).show();
+//            intent.putExtras(bundle);
+//            startActivity(intent);
+//            HttpUtils httpUtils = new HttpUtils();fyukjhk
+//            httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getSend(recruitmentListBean.getJobId(), 13), new RequestCallBack<String>() {
+//                @Override
+//                public void onSuccess(ResponseInfo<String> responseInfo) {gfyuiky
+//                    String result = responseInfo.result;
+//                    if (result != null) {
+//                    SendParme<ViewCountBean> viewCountBean = JSONObject.parseObject(result, new TypeReference<SendParme<ViewCountBean>>() {
+//                    });
+//                    if (viewCountBean.getState().equals("success")) {
+//                        ViewCountBean viewCountData = JSONObject.parseObject(viewCountBean.getValue(), ViewCountBean.class);
+//
+//                        if (viewCountData.getMessage().equals("success")) {
+//                            sendBl = true;
+//
+//                        } else if (viewCountData.getMessage().equals("failure")){
+//                            sendBl = false;
+//                        }else {
+//                            sendBl = false;
+//                        }
+//                    }
+//
+//                    }
+//
+//
+//                    }
+//
+//                @Override
+//                public void onFailure(HttpException e, String s) {
+//
+//                }
+//            });
+        }else {
 
-            HttpUtils httpUtils = new HttpUtils();
-            httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getSend(recruitmentListBean.getJobId(), 13), new RequestCallBack<String>() {
-                @Override
-                public void onSuccess(ResponseInfo<String> responseInfo) {
-                    String result = responseInfo.result;
-                    if (result != null) {
-                    SendParme<ViewCountBean> viewCountBean = JSONObject.parseObject(result, new TypeReference<SendParme<ViewCountBean>>() {
-                    });
-                    if (viewCountBean.getState().equals("success")) {
-                        ViewCountBean viewCountData = JSONObject.parseObject(viewCountBean.getValue(), ViewCountBean.class);
-
-                        if (viewCountData.getMessage().equals("success")) {
-                            sendBl = true;
-
-                        } else if (viewCountData.getMessage().equals("failure")){
-                            sendBl = false;
-                        }else {
-                            sendBl = false;
-                        }
-                    }
-
-                    }
-
-
-                    }
-
-                @Override
-                public void onFailure(HttpException e, String s) {
-
-                }
-            });
+            dialog();
         }
 
-        dialog();
-
     }
+
 
     //公司详情
     public void company_details(View v){
@@ -241,9 +249,13 @@ public class JobDetailsActivity extends Activity {
     }
 
     public void onActivityResult(int requestCode,int resultCode,Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-            init();
-
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data!=null) {
+            Bundle bundle = data.getExtras();
+            sendBl = bundle.getBoolean("SendBl");
+//        position.setText(sendBl+"");
+            dialog();
+        }
     }
 
 }

@@ -42,6 +42,10 @@ public class JobDetailsDialog extends Dialog {
         super(context, R.style.JobDetailsDialog);
         setCustomDialog(register,send);
     }
+    public JobDetailsDialog(Context context,String resume) {
+        super(context, R.style.JobDetailsDialog);
+        setCustomDialog(resume);
+    }
 
     public JobDetailsDialog(Context context,int tipsType) {
         super(context, R.style.JobDetailsDialog);
@@ -127,6 +131,30 @@ public class JobDetailsDialog extends Dialog {
 
     public EditText getEt(){
         return search_import_et;
+    }
+    //招聘投递
+    private void setCustomDialog(String resume) {
+        View mView = LayoutInflater.from(getContext()).inflate(R.layout.jobdetails_dialog, null);
+        tips_tv = (TextView) mView.findViewById(R.id.tips_tv);
+        TextView tipss_tv = (TextView) mView.findViewById(R.id.tipss_tv);
+        register_or_cancel = (LinearLayout) mView.findViewById(R.id.register_or_cancel);
+        register = (TextView) mView.findViewById(R.id.register);
+        cancel = (TextView) mView.findViewById(R.id.cancel);
+        tipss_tv.setText("确定投递\""+resume+"\"简历吗？");
+        register.setText("确定");
+//        if(registers){
+//            register_or_cancel.setVisibility(View.INVISIBLE);
+//            tips_tv.setVisibility(View.VISIBLE);
+////            if(send){
+////                tips_tv.setText("恭喜你，投递成功");
+////            }else {
+////                tips_tv.setText("投递失败，请稍后重试");
+////            }
+//        }else {
+            register_or_cancel.setVisibility(View.VISIBLE);
+            tips_tv.setVisibility(View.INVISIBLE);
+//        }
+        super.setContentView(mView);
     }
     //招聘投递
     private void setCustomDialog(boolean registers,boolean send) {
