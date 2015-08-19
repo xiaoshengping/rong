@@ -38,6 +38,7 @@ import com.umeng.socialize.sso.SinaSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.sso.UMSsoHandler;
 import com.umeng.socialize.weixin.controller.UMWXHandler;
+import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
 
 /**
@@ -111,6 +112,19 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         UMWXHandler wxCircleHandler = new UMWXHandler(getActivity(),appID,appSecret);
         wxCircleHandler.setToCircle(true);
         wxCircleHandler.addToSocialSDK();
+        //设置微信好友分享内容
+        WeiXinShareContent weixinContent = new WeiXinShareContent();
+        //设置分享文字
+        weixinContent.setShareContent("我开始用【iclub】App了,全新的演艺招聘模式，专业的娱乐行业服务平台!");
+        //设置title
+        weixinContent.setTitle("微信分享");
+       //设置分享内容跳转URL
+        weixinContent.setTargetUrl("http://www.iclubapps.com/");
+        //设置分享图片
+        weixinContent.setShareImage(new UMImage(getActivity(), R.mipmap.icon));
+        mController.setShareMedia(weixinContent);
+
+
 
         //qq好友
         //参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.

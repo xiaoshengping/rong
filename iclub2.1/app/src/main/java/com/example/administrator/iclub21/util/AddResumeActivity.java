@@ -1,8 +1,6 @@
 package com.example.administrator.iclub21.util;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,6 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
@@ -136,13 +135,16 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private RadioButton girlRadioButton;
     @ViewInject(R.id.delete_resume_tv)
     private TextView deleteResumeTv;
+    private String mobile;
+    private   String uid=null;
    //下一步
     @ViewInject(R.id.next_layout)
     private LinearLayout nextLayout;
     @ViewInject(R.id.next_resume_tv)
     private TextView nextTextView;
 
-    private   String uid=null;
+
+
 
     @ViewInject(R.id.job_classfite_layout)
     private LinearLayout jodClassfiteLayout;
@@ -296,11 +298,11 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
-
+            mobile=cursor.getString(5);
         }
-        if (!TextUtils.isEmpty(uid)){
+        if (!TextUtils.isEmpty(mobile)){
             phoneTextView.setVisibility(View.VISIBLE);
-            phoneTextView.setText(uid);
+            phoneTextView.setText(mobile);
 
         }else {
             phoneEdit.setVisibility(View.VISIBLE);
@@ -547,7 +549,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         if (TextUtils.isEmpty(touXiangPath) || TextUtils.isEmpty(userName)
                 || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
                 || TextUtils.isEmpty(userInfo) || TextUtils.isEmpty(userWork)) {
-            alert("您填写的资料不完整");
+            MyAppliction.showExitGameAlert("您填写的信息不全或错误", AddResumeActivity.this);
 
         } else {
             compileRequestParams.addBodyParameter("resumeSex", sex);
@@ -570,7 +572,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), compileRequestParams, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
-                  // Log.e("onSuccess111111", responseInfo.result);
+                    // Log.e("onSuccess111111", responseInfo.result);
                     String result = responseInfo.result;
                     if (result != null) {
                         ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
@@ -589,7 +591,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                             }
                             //Intent intent = new Intent(AddResumeActivity.this, ResumeActivity.class);
                             //startActivity(intent);
-                            setResult(18,getIntent().putExtra("closeActivity","close"));
+                            setResult(18, getIntent().putExtra("closeActivity", "close"));
                             finish();
 
 
@@ -618,8 +620,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
                 || TextUtils.isEmpty(userInfo) || TextUtils.isEmpty(userWork)||TextUtils.isEmpty(job_classfite_num+"")
                 ||TextUtils.isEmpty(job_city_num+"")) {
-            alert("您填写的资料不完整");
 
+            MyAppliction.showExitGameAlert("您填写的信息不全或错误", AddResumeActivity.this);
         } else {
             requestParams.addBodyParameter("resumeSex", sex);
             requestParams.addBodyParameter("uid", uid);
@@ -871,16 +873,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     }
 
 
-    private void alert(String text) {
-        Dialog dialog = new AlertDialog.Builder(this).setTitle("提示")
-                .setMessage(text)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                }).create();
-        dialog.show();
-    }
 
 
 
@@ -999,5 +992,12 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK){
+            showExitGameAlert();
+        }
 
+        return super.onKeyDown(keyCode, event);
+    }
 }

@@ -3,6 +3,10 @@ package com.example.administrator.iclub21.http;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremy.Customer.R;
@@ -79,49 +83,23 @@ public class MyAppliction extends Application {
 		Toast.makeText(app, msg, Toast.LENGTH_SHORT).show();
 	}
 
-	private String companyName;
-	private String companyPhoen;
-	private String companyEmail;
-	private String companyWeb;
-	private String companyAddress;
-
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
-	public String getCompanyPhoen() {
-		return companyPhoen;
-	}
-
-	public void setCompanyPhoen(String companyPhoen) {
-		this.companyPhoen = companyPhoen;
-	}
-
-	public String getCompanyEmail() {
-		return companyEmail;
-	}
-
-	public void setCompanyEmail(String companyEmail) {
-		this.companyEmail = companyEmail;
-	}
-
-	public String getCompanyWeb() {
-		return companyWeb;
-	}
-
-	public void setCompanyWeb(String companyWeb) {
-		this.companyWeb = companyWeb;
-	}
-
-	public String getCompanyAddress() {
-		return companyAddress;
-	}
-
-	public void setCompanyAddress(String companyAddress) {
-		this.companyAddress = companyAddress;
+	//对话框
+	public static void showExitGameAlert(String text,Context app) {
+		final AlertDialog dlg = new AlertDialog.Builder(app).create();
+		dlg.show();
+		Window window = dlg.getWindow();
+		// *** 主要就是在这里实现这种效果的.
+		// 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+		window.setContentView(R.layout.tishi_exit_dialog);
+		TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+		tailte.setText(text);
+		// 关闭alert对话框架
+		TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+		cancel.setText("确定");
+		cancel.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				dlg.cancel();
+			}
+		});
 	}
 }

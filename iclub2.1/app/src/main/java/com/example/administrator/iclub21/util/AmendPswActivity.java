@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -121,8 +120,8 @@ public class AmendPswActivity extends ActionBarActivity implements View.OnClickL
                     intiAmndPswData();
 
                 }else {
-                    Toast.makeText(AmendPswActivity.this,"您填写的信息不全",Toast.LENGTH_LONG).show();
-
+                    //Toast.makeText(AmendPswActivity.this,"您填写的信息不全",Toast.LENGTH_LONG).show();
+                MyAppliction.showExitGameAlert("您填写的信息不全或错误",AmendPswActivity.this);
                 }
 
 
