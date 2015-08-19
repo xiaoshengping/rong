@@ -581,7 +581,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         String s = "";
         if(tomonmod) {
             for (int i = 0; i < todayBeanslist.size(); i++) {
-                if (todayBeanslist.get(i).getStatus().equals("0")) {
+                if (todayBeanslist.get(i).getStatus().equals("1")) {
                     if ((i + 1) != todayBeanslist.size()) {
                         s = s + todayBeanslist.get(i).getDay() + ",";
                     } else {
@@ -592,7 +592,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
             }
         }else{
             for (int i = 0; i < nextdayBeanslist.size(); i++) {
-                if (nextdayBeanslist.get(i).getStatus().equals("0")) {
+                if (nextdayBeanslist.get(i).getStatus().equals("1")) {
                     if ((i + 1) != nextdayBeanslist.size()) {
                         s = s + nextdayBeanslist.get(i).getDay() + ",";
                     } else {
