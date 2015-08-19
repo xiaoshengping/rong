@@ -20,7 +20,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -171,9 +170,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private File tempFile = new File(Environment.getExternalStorageDirectory(),
             getPhotoFileName());
 
-    //加载滚动条
+    /*//加载滚动条
     @ViewInject(R.id.progressbar)
-    private ProgressBar ProgressBar;
+    private ProgressBar ProgressBar;*/
 
 
 
@@ -399,10 +398,10 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 if (resumeValueBean!=null){
                     pictureIntent.putExtra("caseData", "picture");
                     pictureIntent.putExtra("resumeInfoData",resumeValueBean);
-                } else{
+                } /*else{
                     pictureIntent.putExtra("caseData", "pictureNo");
 
-                }
+                }*/
 
                 startActivityForResult(pictureIntent, 9);
 
@@ -413,9 +412,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                     videoIntent.putExtra("caseData", "video");
                     videoIntent.putExtra("resumeInfoData",resumeValueBean);
 
-                }else {
+                }/*else {
                     videoIntent.putExtra("caseData", "videoNo");
-                }
+                }*/
 
                 startActivityForResult(videoIntent, 10);
 
@@ -425,10 +424,10 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 if (resumeValueBean!=null){
                     musicIntent.putExtra("caseData", "music");
                     musicIntent.putExtra("resumeInfoData",resumeValueBean);
-                } else{
+                } /*else{
                     musicIntent.putExtra("caseData", "musicNo");
 
-                }
+                }*/
 
                 startActivityForResult(musicIntent, 11);
                 break;
@@ -580,7 +579,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                         if (parmeBean.getState().equals("success")) {
 
                             String ResumeId = resumeValueBean.getResumeid() + "";
-                            if (!TextUtils.isEmpty(ResumeId) && !TextUtils.isEmpty(userVideoPath)) {
+                            /*if (!TextUtils.isEmpty(ResumeId) && !TextUtils.isEmpty(userVideoPath)) {
                                 initAddVideoData(ResumeId, userVideoPath);
                             }
                             if (!TextUtils.isEmpty(ResumeId) && !TextUtils.isEmpty(userPicturePath)) {
@@ -588,7 +587,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                             }
                             if (!TextUtils.isEmpty(ResumeId) && !TextUtils.isEmpty(userMusicPath)) {
                                 intiMusicData(ResumeId, userMusicPath);
-                            }
+                            }*/
                             //Intent intent = new Intent(AddResumeActivity.this, ResumeActivity.class);
                             //startActivity(intent);
                             setResult(18, getIntent().putExtra("closeActivity", "close"));
@@ -751,7 +750,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 }
 
                 break;
-            case 9:
+            /*case 9:
                 userPicturePath = data.getStringExtra("userPicturePath").toString();
                  //Log.e("userPicturePath",userPicturePath);
                 break;
@@ -761,7 +760,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 break;
             case 11:
                 userMusicPath = data.getStringExtra("usermusicPath").toString();
-                break;
+                break;*/
             case 12:
                 /*取得来自SecondActivity页面的数据，并显示到画面*/
                 Bundle bundle = data.getExtras();
@@ -929,7 +928,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
 
 
-    private void initAddVideoData(String resumeid, String videoPath) {
+    /*private void initAddVideoData(String resumeid, String videoPath) {
 
         RequestParams requestParams = new RequestParams();
         requestParams.addBodyParameter("resumeid", resumeid);
@@ -938,7 +937,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                // Log.e("initAddVideoData", responseInfo.result);
-                ProgressBar.setVisibility(View.GONE);
+               // ProgressBar.setVisibility(View.GONE);
             }
 
             @Override
@@ -981,7 +980,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                // Log.e("onSuccess", responseInfo.result);
-                ProgressBar.setVisibility(View.GONE);
+                //ProgressBar.setVisibility(View.GONE);
             }
 
             @Override
@@ -990,7 +989,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             }
         });
 
-    }
+    }*/
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
