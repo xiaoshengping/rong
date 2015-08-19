@@ -3,23 +3,13 @@ package com.example.administrator.iclub21.util;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
-
-import java.io.File;
 
 public class NextResumeActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -83,36 +73,27 @@ public class NextResumeActivity extends ActionBarActivity implements View.OnClic
             case R.id.add_iamge_tv:
                 Intent pictureIntent = new Intent(NextResumeActivity.this, ResumeMessageActivity.class);
                 pictureIntent.putExtra("caseData", "pictureNo");
+                pictureIntent.putExtra("resumeid",resumeid);
                 startActivityForResult(pictureIntent, 9);
 
                 break;
             case R.id.add_video_tv:
                 Intent videoIntent = new Intent(NextResumeActivity.this, ResumeMessageActivity.class);
                 videoIntent.putExtra("caseData", "videoNo");
+                videoIntent.putExtra("resumeid",resumeid);
                 startActivityForResult(videoIntent, 10);
 
                 break;
             case R.id.add_music_tv:
                 Intent musicIntent = new Intent(NextResumeActivity.this, ResumeMessageActivity.class);
                 musicIntent.putExtra("caseData", "musicNo");
+                musicIntent.putExtra("resumeid",resumeid);
                 startActivityForResult(musicIntent, 11);
                 break;
             case R.id.addresume_return_tv:
                 finish();
                 break;
             case R.id.complete_resume_tv:
-                if (!TextUtils.isEmpty(resumeid) && !TextUtils.isEmpty(userVideoPath)) {
-
-                    initAddVideoData(resumeid, userVideoPath);
-
-                }
-                if (!TextUtils.isEmpty(resumeid) && !TextUtils.isEmpty(userPicturePath)) {
-                    intiPhotoData(resumeid, userPicturePath);
-                }
-                if (!TextUtils.isEmpty(resumeid) && !TextUtils.isEmpty(userMusicPath)) {
-                    intiMusicData(resumeid, userMusicPath);
-
-                }
                finish();
                 break;
 
@@ -126,7 +107,7 @@ public class NextResumeActivity extends ActionBarActivity implements View.OnClic
 
     }
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
@@ -148,69 +129,13 @@ public class NextResumeActivity extends ActionBarActivity implements View.OnClic
         }
 
 
-    }
-
-    private void initAddVideoData(String resumeid, String videoPath) {
-
-        RequestParams requestParams = new RequestParams();
-        requestParams.addBodyParameter("resumeid", resumeid);
-        requestParams.addBodyParameter("movie", new File(videoPath));
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddMovie(), requestParams, new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                // Log.e("initAddVideoData", responseInfo.result);
-               // ProgressBar.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onFailure(HttpException e, String s) {
-                Log.e("onFailure", s);
-            }
-        });
+    }*/
 
 
-    }
-
-    private void intiPhotoData(String resumeid, String userPicturePath) {
-        RequestParams requestParams = new RequestParams();
-        requestParams.addBodyParameter("resumeid", resumeid);
-        requestParams.addBodyParameter("picture", new File(userPicturePath));
-
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddPicture(), requestParams, new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                // Log.e("intiPhotoData", responseInfo.result);
-
-            }
-
-            @Override
-            public void onFailure(HttpException e, String s) {
-                Log.e("onFailure", s);
-            }
-        });
 
 
-    }
 
 
-    private void intiMusicData(String resumeid, String musicPath) {
 
-        RequestParams requestParams = new RequestParams();
-        requestParams.addBodyParameter("resumeid", resumeid);
-        requestParams.addBodyParameter("music", new File(musicPath));
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddMusic(), requestParams, new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                // Log.e("onSuccess", responseInfo.result);
-               // ProgressBar.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onFailure(HttpException e, String s) {
-                Log.e("onFailure", s);
-            }
-        });
-
-    }
 
 }

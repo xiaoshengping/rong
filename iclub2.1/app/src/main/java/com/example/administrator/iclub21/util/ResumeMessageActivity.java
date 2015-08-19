@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -143,6 +144,11 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private  RelativeLayout relativeMusicLayout;
+    private String resumeid;
+
+    //加载
+    @ViewInject(R.id.progressbar)
+    private ProgressBar progressbar;
 
 
     @Override
@@ -180,6 +186,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     private void intiInfoData() {
          intent=getIntent();
         data= intent.getStringExtra("caseData");
+        resumeid=intent.getStringExtra("resumeid");
         if (data.equals("oneself")){
             resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("resumeInfoData");
             particularLayout.setVisibility(View.VISIBLE);
@@ -336,7 +343,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteVideo(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("hsdhfhfhf",responseInfo.result);
+                //Log.e("hsdhfhfhf",responseInfo.result);
             }
 
             @Override
@@ -550,9 +557,13 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                 }else if (data.equals("picture")){
                    userPicturePath=screenshotFile.getAbsolutePath();
                     if (!TextUtils.isEmpty(userPicturePath)) {
-                        intent.putExtra("userPicturePath", userPicturePath);
-                        setResult(9, intent);
-                        finish();
+//                        intent.putExtra("userPicturePath", userPicturePath);
+//                        setResult(9, intent);
+                        if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"") && !TextUtils.isEmpty(userPicturePath)) {
+                            progressbar.setVisibility(View.VISIBLE);
+                            intiPhotoData(resumeValueBean.getResumeid()+"", userPicturePath);
+                        }
+                       // finish();
                     }else {
                         intent.putExtra("userPicturePath", "");
                         setResult(9, intent);
@@ -563,9 +574,13 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                 }else if (data.equals("pictureNo")){
                     userPicturePath=screenshotFile.getAbsolutePath();
                     if (!TextUtils.isEmpty(userPicturePath)) {
-                        intent.putExtra("userPicturePath", userPicturePath);
-                        setResult(9, intent);
-                        finish();
+                        //intent.putExtra("userPicturePath", userPicturePath);
+                        //setResult(9, intent);
+                        if (!TextUtils.isEmpty(resumeid) && !TextUtils.isEmpty(userPicturePath)) {
+                            progressbar.setVisibility(View.VISIBLE);
+                            intiPhotoData(resumeid, userPicturePath);
+                        }
+                       // finish();
                     }else {
                         intent.putExtra("userPicturePath", "");
                         setResult(9, intent);
@@ -577,8 +592,12 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
                     //String userVideoPath=videoFile.getAbsolutePath();
                     if (!TextUtils.isEmpty(videoPath)) {
-                        intent.putExtra("userVideoPath", videoPath);
-                        setResult(10, intent);
+                        /*intent.putExtra("userVideoPath", videoPath);
+                        setResult(10, intent);*/
+                        if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"") && !TextUtils.isEmpty(videoPath)) {
+                            progressbar.setVisibility(View.VISIBLE);
+                            initAddVideoData(resumeValueBean.getResumeid()+"", videoPath);
+                        }
                         finish();
                     }else {
                         intent.putExtra("userVideoPath", "");
@@ -591,9 +610,13 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
                     //String userVideoPath=videoFile.getAbsolutePath();
                     if (!TextUtils.isEmpty(videoPath)) {
-                        intent.putExtra("userVideoPath", videoPath);
-                        setResult(10, intent);
-                        finish();
+                       // intent.putExtra("userVideoPath", videoPath);
+                        //setResult(10, intent);
+                        if (!TextUtils.isEmpty(resumeid) && !TextUtils.isEmpty(videoPath)) {
+                            progressbar.setVisibility(View.VISIBLE);
+                            initAddVideoData(resumeid, videoPath);
+                        }
+                        //finish();
                     }else {
                         intent.putExtra("userVideoPath", "");
                         setResult(10, intent);
@@ -605,9 +628,14 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
                     //String usermusicPath=musicFile.getAbsolutePath();
                     if (!TextUtils.isEmpty(musicPath)) {
-                        intent.putExtra("usermusicPath", musicPath);
+                        /*intent.putExtra("usermusicPath", musicPath);
                         setResult(11, intent);
-                        finish();
+                        finish();*/
+                        if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"") && !TextUtils.isEmpty(musicPath)) {
+                            progressbar.setVisibility(View.VISIBLE);
+                            intiMusicData(resumeValueBean.getResumeid()+"", musicPath);
+                        }
+
                     }else {
                         intent.putExtra("usermusicPath", "");
                         setResult(11, intent);
@@ -618,9 +646,14 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
                     //String usermusicPath=musicFile.getAbsolutePath();
                     if (!TextUtils.isEmpty(musicPath)) {
-                        intent.putExtra("usermusicPath", musicPath);
-                        setResult(11, intent);
-                        finish();
+                       // intent.putExtra("usermusicPath", musicPath);
+                       // setResult(11, intent);
+                        if (!TextUtils.isEmpty(resumeid) && !TextUtils.isEmpty(musicPath)) {
+                            progressbar.setVisibility(View.VISIBLE);
+                            intiMusicData(resumeid, musicPath);
+
+                        }
+                       // finish();
                     }else {
                         intent.putExtra("usermusicPath", "");
                         setResult(11, intent);
@@ -695,6 +728,90 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
 
     }
+
+
+    //上传图片
+    private void intiPhotoData(String resumeid, String userPicturePath) {
+        RequestParams requestParams = new RequestParams();
+        requestParams.addBodyParameter("resumeid", resumeid);
+        requestParams.addBodyParameter("picture", new File(userPicturePath));
+
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddPicture(), requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                // Log.e("intiPhotoData", responseInfo.result);
+                if (!TextUtils.isEmpty(responseInfo.result)){
+                    progressbar.setVisibility(View.GONE);
+                    finish();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure", s);
+            }
+        });
+
+
+    }
+
+    //上传音乐
+    private void intiMusicData(String resumeid, String musicPath) {
+
+        RequestParams requestParams = new RequestParams();
+        requestParams.addBodyParameter("resumeid", resumeid);
+        requestParams.addBodyParameter("music", new File(musicPath));
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddMusic(), requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                // Log.e("onSuccess", responseInfo.result);
+                // ProgressBar.setVisibility(View.GONE);
+                if (!TextUtils.isEmpty(responseInfo.result)){
+                    progressbar.setVisibility(View.GONE);
+                    finish();
+
+                }
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure", s);
+            }
+        });
+
+    }
+         //上传视频
+    private void initAddVideoData(String resumeid, String videoPath) {
+
+        RequestParams requestParams = new RequestParams();
+        requestParams.addBodyParameter("resumeid", resumeid);
+        requestParams.addBodyParameter("movie", new File(videoPath));
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddMovie(), requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                // Log.e("initAddVideoData", responseInfo.result);
+                // ProgressBar.setVisibility(View.GONE);
+                if (!TextUtils.isEmpty(responseInfo.result)){
+                    progressbar.setVisibility(View.GONE);
+                    finish();
+
+                }
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure", s);
+            }
+        });
+
+
+    }
+
+
+
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
