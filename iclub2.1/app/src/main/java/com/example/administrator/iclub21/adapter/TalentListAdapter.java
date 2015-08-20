@@ -53,7 +53,7 @@ public class TalentListAdapter extends AppBaseAdapter<TalentValueBean> {
 
         }
         viewHodle.talentCity.setText(data.get(position).getResumeWorkPlace());
-        viewHodle.talentJob.setText(data.get(position).getResumeName() + "师");
+        viewHodle.talentJob.setText(data.get(position).getResumeName());
         if(data.get(position).getResumeLabel().equals("HOT")) {
             viewHodle.talent_hot.setVisibility(View.VISIBLE);
         }else {
