@@ -12,7 +12,16 @@ public class InviteMessgaeListValueBean implements Serializable{
     private InviteResumeBean inviteResume;
     private String inviteid;
     private String status;
+    private String beStatus;
     private String tripTime;
+
+    public String getBeStatus() {
+        return beStatus;
+    }
+
+    public void setBeStatus(String beStatus) {
+        this.beStatus = beStatus;
+    }
 
     public String getBreakTime() {
         return breakTime;

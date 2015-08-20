@@ -3,23 +3,13 @@ package com.example.administrator.iclub21.util;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
-import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.RequestParams;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 public class AmendAboutActivity extends ActionBarActivity implements View.OnClickListener {
@@ -36,20 +26,12 @@ public class AmendAboutActivity extends ActionBarActivity implements View.OnClic
     @ViewInject(R.id.about_function_layout)
     private LinearLayout aboutFubctionLayout;
 
-
-    //意见反馈
-    @ViewInject(R.id.about_layout)
-    private LinearLayout aboutLayout;
-    @ViewInject(R.id.about_idea_edit)
-    private EditText aboutIdeaEdit;
     @ViewInject(R.id.about_idea_layout)
     private LinearLayout aboutIdeaLayout;
-    @ViewInject(R.id.feedback_layout)
-    private  LinearLayout feedbackLayout;
-    @ViewInject(R.id.about_retrun_tv)
-    private TextView feedbackRetrunTv;
-    @ViewInject(R.id.about_commit_tv)
-    private TextView feedbackCommitTv;
+
+    @ViewInject(R.id.about_layout)
+    private LinearLayout aboutLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +50,10 @@ public class AmendAboutActivity extends ActionBarActivity implements View.OnClic
     }
 
     private void aboutInitView() {
-        aboutReturnTv.setOnClickListener(this);
-        aboutIdeaLayout.setOnClickListener(this);
-        feedbackRetrunTv.setOnClickListener(this);
-        feedbackCommitTv.setOnClickListener(this);
-        aboutFubctionLayout.setOnClickListener(this);
 
+        aboutReturnTv.setOnClickListener(this);
+        aboutFubctionLayout.setOnClickListener(this);
+        aboutIdeaLayout.setOnClickListener(this);
 
 
 
@@ -93,52 +73,18 @@ public class AmendAboutActivity extends ActionBarActivity implements View.OnClic
 
                 break;
             case R.id.about_idea_layout:
-                aboutLayout.setVisibility(View.GONE);
-                aboutTaileLayout.setVisibility(View.GONE);
-                feedbackLayout.setVisibility(View.VISIBLE);
-                break;
-            case R.id.about_retrun_tv:
-                aboutTaileLayout.setVisibility(View.VISIBLE);
-                aboutLayout.setVisibility(View.VISIBLE);
-                feedbackLayout.setVisibility(View.GONE);
-                break;
-            case R.id.about_commit_tv:
-                String aboutIdeaString =aboutIdeaEdit.getText().toString();
-                if (!TextUtils.isEmpty(aboutIdeaString)){
-                    aboutTaileLayout.setVisibility(View.VISIBLE);
-                    aboutLayout.setVisibility(View.VISIBLE);
-                    feedbackLayout.setVisibility(View.GONE);
-                    aboutIntiData();
-                }else {
-                    Toast.makeText(AmendAboutActivity.this,"您还没有输入内容",Toast.LENGTH_LONG).show();
 
-                }
+                Intent adeaIntent=new Intent(AmendAboutActivity.this,AdeaAboutActivity.class);
+                startActivity(adeaIntent);
 
                 break;
+
+
 
 
         }
 
     }
 
-    private void aboutIntiData() {
-        HttpUtils httpUtils=new HttpUtils();
-        RequestParams requestParams=new RequestParams();
-        requestParams.addBodyParameter("content",aboutIdeaEdit.getText().toString());
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAboutIdea(),requestParams, new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                 String result= responseInfo.result;
-              //  Log.e("result",result);
-            }
 
-            @Override
-            public void onFailure(HttpException e, String s) {
-
-            }
-        });
-
-
-
-    }
 }

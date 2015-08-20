@@ -27,21 +27,20 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
+import com.example.administrator.iclub21.adapter.ResumeDeleteMusicAdapter;
 import com.example.administrator.iclub21.adapter.ResumeDeleteVideoAdapter;
-import com.example.administrator.iclub21.bean.ParmeBean;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
-import com.example.administrator.iclub21.bean.VideoValueBean;
 import com.example.administrator.iclub21.http.ImageUtil;
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.view.CustomHomeScrollListView;
+import com.example.administrator.iclub21.view.MusicWordWrapView;
 import com.example.administrator.iclub21.view.WordWrapView;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
@@ -134,9 +133,12 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     private RelativeLayout addUplaodMusicTv;
     private String musicPath;
     @ViewInject(R.id.music_view_wordwrap)
-    private WordWrapView musicWordWrapView;
+    private MusicWordWrapView musicWordWrapView;
+    @ViewInject(R.id.music_list_view)
+    private ListView musicListView;
     private TextView musicTextView;
     private ImageView deleteMusicIv;
+    private ResumeDeleteMusicAdapter resumeDeleteMusicAdapter;
 
     //数据
     private Intent intent;
@@ -232,8 +234,9 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     relativePictureLayout=new RelativeLayout(ResumeMessageActivity.this);
                     final ImageView imageView=new ImageView(ResumeMessageActivity.this);
                     imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    imageView.setMaxWidth(100);
-                    imageView.setMaxHeight(100);
+                    imageView.setMaxWidth(200);
+                    imageView.setMaxHeight(200);
+
                     deletePictureImageView=new ImageView(ResumeMessageActivity.this);
                     RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     lp1.addRule(RelativeLayout.CENTER_HORIZONTAL);
@@ -292,42 +295,16 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
             addMusicLayout.setVisibility(View.VISIBLE);
             messageCommentTv.setText("音乐分享");
             if (resumeValueBean.getResumeMusic()!=null&&resumeValueBean.getResumeMusic().size()!=0){
-                for (int i = 0; i < resumeValueBean.getResumeMusic().size(); i++) {
-                    relativeMusicLayout=new RelativeLayout(ResumeMessageActivity.this);
-                     musicTextView=new TextView(ResumeMessageActivity.this);
-                    musicTextView.setText(resumeValueBean.getResumeMusic().get(i).getTitle());
-                    Drawable drawable= getResources().getDrawable(R.mipmap.music_button_icon);
-                    /// 这一步必须要做,否则不会显示.
-                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    musicTextView.setCompoundDrawables(null, null, drawable, null);
-                    musicTextView.setTextColor(Color.WHITE);
-                    musicTextView.setBackgroundResource(R.drawable.rounded_textview);
-                    musicTextView.setPadding(20, 20, 20, 20);
-                    musicTextView.setHeight(100);
-                    musicTextView.setWidth(800);
-                    deleteMusicIv = new ImageView(ResumeMessageActivity.this);
-                    RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    lp1.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                    lp1.addRule(RelativeLayout.CENTER_VERTICAL);
-                    deleteMusicIv.setBackgroundResource(R.mipmap.delete_button_icon);
-                    deleteMusicIv.setLayoutParams(lp1);
-                    relativeMusicLayout.addView(musicTextView);
-                    relativeMusicLayout.addView(deleteMusicIv);
-                    musicWordWrapView.addView(relativeMusicLayout);
-                    final int finalI = i;
-                    deleteMusicIv.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            showMusicGameAlert(finalI);
+                resumeDeleteMusicAdapter=new ResumeDeleteMusicAdapter(resumeValueBean.getResumeMusic(),ResumeMessageActivity.this);
+                musicListView.setAdapter(resumeDeleteMusicAdapter);
+                resumeDeleteMusicAdapter.notifyDataSetChanged();
+                musicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        showMusicGameAlert(position);
+                    }
+                });
 
-                        }
-
-
-                    });
-
-
-
-                }
 
 
             }
@@ -339,7 +316,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
     }
 
-    private void deleteVideoDate(int position) {
+    private void deleteVideoDate(final int position) {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeValueBean.getResumeid()+"");
@@ -348,6 +325,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 //Log.e("hsdhfhfhf",responseInfo.result);
+                resumeValueBean.getResumeMovie().remove(position);
+                resumeVideoAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -377,8 +356,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
         ok.setText("确定");
         ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                resumeValueBean.getResumeMovie().remove(position);
-                resumeVideoAdapter.notifyDataSetChanged();
+
                 deleteVideoDate(position);
                 dlg.cancel();
             }
@@ -395,7 +373,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
     }
 
     //删除音乐对话框
-    private void showMusicGameAlert( final int finalI) {
+    private void showMusicGameAlert( final int position) {
         final AlertDialog dlg = new AlertDialog.Builder(ResumeMessageActivity.this).create();
         dlg.show();
         Window window = dlg.getWindow();
@@ -409,7 +387,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
         ok.setText("确定");
         ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                deleteMusicData(finalI);
+
+                deleteMusicData(position);
                 dlg.cancel();
             }
         });
@@ -461,15 +440,20 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
 
 
-    private void deleteMusicData(int i) {
+    private void deleteMusicData(final int position) {
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeValueBean.getResumeid()+"");
-        requestParams.addBodyParameter("musicid",resumeValueBean.getResumeMusic().get(i).getResumemusicid()+"");
+        requestParams.addBodyParameter("musicid",resumeValueBean.getResumeMusic().get(position).getResumemusicid()+"");
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteMusic(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
 
-                relativeMusicLayout.removeView(musicTextView);
-                deleteMusicIv.setVisibility(View.GONE);
+                //relativeMusicLayout.removeView(musicTextView);
+                //deleteMusicIv.setVisibility(View.GONE);
+                resumeValueBean.getResumeMusic().remove(position);
+                resumeDeleteMusicAdapter.notifyDataSetChanged();
+                MyAppliction.showToast("删除成功");
             }
 
             @Override
@@ -798,17 +782,13 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                 // Log.e("initAddVideoData", responseInfo.result);
                 // ProgressBar.setVisibility(View.GONE);
                 if (!TextUtils.isEmpty(responseInfo.result)){
-                    ParmeBean<VideoValueBean> parmeBean= JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<VideoValueBean>>(){});
+                    /*ParmeBean<VideoValueBean> parmeBean= JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<VideoValueBean>>(){});
                     if(parmeBean.getValue().getMessage().equals("success")){
-                        progressbar.setVisibility(View.GONE);
-                        finish();
-
-                            }
 
 
-
-
-
+                            }*/
+                    progressbar.setVisibility(View.GONE);
+                    finish();
 
                 }
             }

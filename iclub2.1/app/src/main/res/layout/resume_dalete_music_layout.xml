@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:textColor="@color/white"
+        android:id="@+id/show_music_tv"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
+        android:paddingTop="7dp"
+        android:paddingLeft="10dp"
+        android:drawableRight="@mipmap/delete_button_icon"
+       android:paddingRight="100dp"
+        android:paddingBottom="7dp"
+        android:background="@drawable/rounded_textview"
+        android:layout_width="match_parent"
+        android:layout_height="35dp" />
+
+</RelativeLayout>

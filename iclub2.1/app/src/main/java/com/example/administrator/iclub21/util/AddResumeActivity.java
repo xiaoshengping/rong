@@ -994,7 +994,12 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode==KeyEvent.KEYCODE_BACK){
-            showExitGameAlert();
+            if (resumeNuber.equals("2222")){
+                showExitGameAlert();
+            }else {
+                setResult(18,getIntent().putExtra("closeActivity","Noclose"));
+                finish();
+            }
         }
 
         return super.onKeyDown(keyCode, event);

@@ -162,7 +162,9 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
         }
         reputationData();
 
-
+        if (inviteMessgaeListValueBean.getBeStatus().equals("2")){
+            commentLayout.setVisibility(View.GONE);
+        }
 
 
     }
@@ -207,7 +209,10 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
                 adoptData("1");
                 break;
             case R.id.refuse_invite_bt:
-                adoptData("2");
+
+                   adoptData("2");
+
+
                 break;
             case R.id.return_tv:
                 finish();
@@ -222,7 +227,7 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAdoptAndRefuse(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("responseInfo",responseInfo.result);
+               // Log.e("responseInfo",responseInfo.result);
                 if (responseInfo.result!=null){
                     finish();
                 }
