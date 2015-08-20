@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.administrator.iclub21.bean.InviteMessgaeListValueBean;
 import com.example.administrator.iclub21.bean.MerchantInviteValueBean;
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
@@ -232,11 +233,17 @@ public class FailureCommentActivity extends ActionBarActivity implements RadioGr
     private void commentContentData(String uid,String beuid,String body) {
         requestParams.addBodyParameter("uid",uid);
         requestParams.addBodyParameter("beuid",beuid );
-        requestParams.addBodyParameter("body",body);
+        if (!TextUtils.isEmpty(commentContextEt.getText().toString())){
+            requestParams.addBodyParameter("body",body);
+
+        }else {
+            MyAppliction.showExitGameAlert("您还没有输入评论内容", FailureCommentActivity.this);
+        }
+
         httpUtils.send(HttpRequest.HttpMethod.POST,AppUtilsUrl.getCommentCommit() , requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("sjdjjjfjj",responseInfo.result);
+                //Log.e("sjdjjjfjj",responseInfo.result);
             }
 
             @Override

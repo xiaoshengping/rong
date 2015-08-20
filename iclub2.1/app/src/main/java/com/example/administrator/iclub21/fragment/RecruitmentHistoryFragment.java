@@ -61,6 +61,8 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
 
     private  BMerchantValueBean bMerchantValueBean;
     private RequestParams requestParams;
+    private String uid;
+    private String bdName;
 
 
     public RecruitmentHistoryFragment() {
@@ -131,18 +133,19 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
         saveTv.setText("添加");
         saveTv.setOnClickListener(this);
         recruitmentRetrunTv.setOnClickListener(this);
+        SQLhelper sqLhelper=new SQLhelper(getActivity());
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+            bdName=cursor.getString(6);
+        }
 
     }
 
     private void initRecruitmentHistoryData(int offset) {
-        SQLhelper sqLhelper=new SQLhelper(getActivity());
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
-        String uid=null;
-        while (cursor.moveToNext()) {
-          uid = cursor.getString(0);
 
-        }
         if (!TextUtils.isEmpty(uid)){
             HttpUtils httpUtils=new HttpUtils();
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRecruitmentHistoryList(uid,offset), new RequestCallBack<String>() {
@@ -171,8 +174,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
 
 
         }
-        cursor.close();
-        db.close();
+
 
 
 
@@ -187,11 +189,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
 
                 if (bMerchantValueBean!=null){
 
-                    if (TextUtils.isEmpty(bMerchantValueBean.getBEcompanyName())||TextUtils.isEmpty(bMerchantValueBean.getBEphone())||
-                            TextUtils.isEmpty(bMerchantValueBean.getBEemail())||TextUtils.isEmpty(bMerchantValueBean.getBEweb())
-                            ||TextUtils.isEmpty(bMerchantValueBean.getBEaddress())
-                            )
-                    {
+                    if (TextUtils.isEmpty(bdName)) {
                         MyAppliction.showToast("先完善公司资料才能添加招聘信息");
                         Intent intent =new Intent(getActivity(),CompanyMessageActivity.class)   ;
                         startActivity(intent);

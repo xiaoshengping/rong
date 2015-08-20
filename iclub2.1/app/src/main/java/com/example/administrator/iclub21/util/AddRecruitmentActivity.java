@@ -1,13 +1,10 @@
 package com.example.administrator.iclub21.util;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.administrator.iclub21.bean.RecruitmentHistoryValueBean;
 import com.example.administrator.iclub21.bean.recruitment.AreaBean;
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
@@ -101,8 +99,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         String recruitingNumbers=recruitingNumbersEdit.getText().toString();
         if (!TextUtils.isEmpty(position)&&!TextUtils.isEmpty(workPay)&&!TextUtils.isEmpty(recruitingNumbers)){
             requestParams.addBodyParameter("jobid",recruitmentHistoryValueBean.getJobId()+"");
-            requestParams.addBodyParameter("jobCategory","1");
-            requestParams.addBodyParameter("cityid","1");
+            requestParams.addBodyParameter("jobCategory",job_classfite_num+"");
+            requestParams.addBodyParameter("cityid",job_city_num+"");
             requestParams.addBodyParameter("position",position);
             requestParams.addBodyParameter("workPay",workPay);
             requestParams.addBodyParameter("recruitingNumbers",recruitingNumbers);
@@ -123,9 +121,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             });
 
 
-        }else {
-
-            alert("您输入的内容不全");
+        }else{
+            MyAppliction.showExitGameAlert("您输入的内容不全", AddRecruitmentActivity.this);
 
         }
 
@@ -144,8 +141,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         String recruitingNumbers=recruitingNumbersEdit.getText().toString();
         if (!TextUtils.isEmpty(position)&&!TextUtils.isEmpty(workPay)&&!TextUtils.isEmpty(recruitingNumbers)){
             requestParams.addBodyParameter("uid",uid);
-            requestParams.addBodyParameter("jobCategory","1");
-            requestParams.addBodyParameter("cityid","1");
+            requestParams.addBodyParameter("jobCategory",job_classfite_num+"");
+            requestParams.addBodyParameter("cityid",job_city_num+"");
             requestParams.addBodyParameter("position",position);
             requestParams.addBodyParameter("workPay",workPay);
             requestParams.addBodyParameter("recruitingNumbers",recruitingNumbers);
@@ -168,7 +165,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
 
         }else {
 
-            alert("您输入的内容不全");
+            MyAppliction.showExitGameAlert("您输入的内容不全", AddRecruitmentActivity.this);
 
         }
 
@@ -352,14 +349,4 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
     }
 
 
-    private void alert(String text) {
-        Dialog dialog = new AlertDialog.Builder(this).setTitle("提示")
-                .setMessage(text)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                }).create();
-        dialog.show();
-    }
 }
