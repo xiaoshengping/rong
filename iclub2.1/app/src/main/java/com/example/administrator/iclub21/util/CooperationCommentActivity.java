@@ -4,8 +4,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.administrator.iclub21.bean.InviteMessgaeListValueBean;
 import com.example.administrator.iclub21.bean.MerchantInviteValueBean;
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
@@ -252,16 +256,14 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
 
     private void commentGradeData(String personid) {
         if (truthGrade){
-            requestParams.addBodyParameter("authenticity",authenticity );
-
-        }else {
-            requestParams.addBodyParameter("authenticity","-"+authenticity );
+                requestParams.addBodyParameter("authenticity",authenticity );
+        } else {
+                requestParams.addBodyParameter("authenticity", "-" + authenticity);
         }
         if (honestyGrade){
-            requestParams.addBodyParameter("integrity", integrity);
-
+                requestParams.addBodyParameter("integrity", integrity);
         }else {
-            requestParams.addBodyParameter("integrity", "-"+integrity);
+                requestParams.addBodyParameter("integrity", "-"+integrity);
         }
 
 
@@ -270,7 +272,7 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCommentGrade(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-               finish();
+                showExitGameAlert("评论成功。");
             }
 
             @Override
@@ -285,15 +287,41 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
 
     }
 
+    //评论成功对话框
+    public void showExitGameAlert(String text) {
+        final AlertDialog dlg = new AlertDialog.Builder(CooperationCommentActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.tishi_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText(text);
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("确定");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+                dlg.cancel();
+            }
+        });
+    }
+
+
     private void commentContentData(String id,String uid,String beuid,String beuidValue,String url) {
         requestParams.addBodyParameter(id,uid);
-        requestParams.addBodyParameter(beuid,beuidValue);
-        requestParams.addBodyParameter("body",commentContextEt.getText().toString());
-        httpUtils.send(HttpRequest.HttpMethod.POST,url , requestParams, new RequestCallBack<String>() {
+        requestParams.addBodyParameter(beuid, beuidValue);
+        if (!TextUtils.isEmpty(commentContextEt.getText().toString())){
+            requestParams.addBodyParameter("body",commentContextEt.getText().toString());
+        }else {
+            MyAppliction.showExitGameAlert("您还没有输入评论内容", CooperationCommentActivity.this);
+        }
+        httpUtils.send(HttpRequest.HttpMethod.POST, url, requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 //Log.e("sjdjjjfjj",responseInfo.result);
-                finish();
+
             }
 
             @Override
