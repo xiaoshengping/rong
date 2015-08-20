@@ -28,6 +28,7 @@ import com.example.administrator.iclub21.adapter.ResumeMusicAdapter;
 import com.example.administrator.iclub21.adapter.ResumeVideoAdapter;
 import com.example.administrator.iclub21.bean.ResumeValueBean;
 import com.example.administrator.iclub21.bean.talent.CircleImageView;
+import com.example.administrator.iclub21.bean.talent.MusicActivity;
 import com.example.administrator.iclub21.bean.talent.PicturesshowMoreActivity;
 import com.example.administrator.iclub21.bean.talent.SpaceImageDetailActivity;
 import com.example.administrator.iclub21.http.MyAppliction;
@@ -176,6 +177,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
     }
 
 
+
     private void intiData() {
         intent=getIntent();
         resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("resumeValueBeans");
@@ -184,6 +186,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         }else {
             compileListTv.setVisibility(View.VISIBLE);
         }
+        //Log.e("jdjfjgjg",AppUtilsUrl.ImageBaseUrl + resumeValueBean.getUsericon());
         MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getUsericon(), userIconIv, MyAppliction.RoundedOptions);
         resumeZhName.setText(resumeValueBean.getResumeZhName());
         if (resumeValueBean.getResumeSex()==0){
@@ -194,7 +197,8 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
 
         }
         if(!TextUtils.isEmpty(resumeValueBean.getResumeUserbg())){
-            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeUserbg(), talenBackIv,MyAppliction.options);
+
+            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeUserbg(), talenBackIv, MyAppliction.options);
         }else {
             talenBackIv.setBackgroundResource(R.mipmap.resume_background_icon);
         }
@@ -247,9 +251,11 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
                showMusicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                    @Override
                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                       Intent musicIntent = new Intent(Intent.ACTION_VIEW);
+                       Intent musicIntent = new Intent(ResumeListParticularActivity.this, MusicActivity.class);
                        Uri musicUri = Uri.parse(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMusic().get(position).getPath());
-                       musicIntent.setDataAndType(musicUri, "audio/mp3");
+                       //musicIntent.setDataAndType(musicUri, "audio/mp3");
+                       musicIntent.putExtra("url",AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMusic().get(position).getPath());
+                       musicIntent.putExtra("musicName",resumeValueBean.getResumeMusic().get(position).getTitle());
                        startActivity(musicIntent);
                    }
                });
