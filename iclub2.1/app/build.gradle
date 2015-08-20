@@ -8,8 +8,8 @@ android {
         applicationId "com.jeremy.Customer"
         minSdkVersion 10
         targetSdkVersion 22
-        versionCode 3
-        versionName "2.1.2"
+        versionCode 4
+        versionName "2.1.3"
     }
     buildTypes {
         release {

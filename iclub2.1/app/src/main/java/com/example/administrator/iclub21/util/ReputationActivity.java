@@ -33,6 +33,7 @@ public class ReputationActivity extends Activity {
     private ListView reputation_list;
     private ReputationAdapter adapter;
     private int id = -1;
+    private int rid = -1;
     private int type = -1;
 //    private
     private TextView authenticity_tv,integrity_tv,record_tv;
@@ -48,6 +49,7 @@ public class ReputationActivity extends Activity {
         setContentView(R.layout.activity_reputation);
         Bundle bundle = getIntent().getExtras();
         id = bundle.getInt("Personid");
+        rid = bundle.getInt("Resumeid");
         type = bundle.getInt("UserType");
 //        Toast.makeText(ReputationActivity.this, id+"", Toast.LENGTH_LONG).show();
         init(type);
@@ -74,7 +76,7 @@ public class ReputationActivity extends Activity {
             integrity_relatively_tv = (TextView)header.findViewById(R.id.integrity_relatively_tv);
             reputation_list.addHeaderView(header);//添加头部
 
-            initcCollaborateComment("getCommentByPerson.action?resumeid=");
+            initcCollaborateComment("getCommentByPerson.action?resumeid=",rid);
 
         }else if(i==2){
             title_name_tv.setText("公司详情");
@@ -97,7 +99,7 @@ public class ReputationActivity extends Activity {
             company_location.setText(recruitmentListBean.getAddress());
             company_name_tv.setText(recruitmentListBean.getCompanyName());
 //            company_name_tv.setText(id+"");
-            initcCollaborateComment("getCommentByBePerson.action?personid=");
+            initcCollaborateComment("getCommentByBePerson.action?personid=",id);
 
         }
 
@@ -160,9 +162,9 @@ public class ReputationActivity extends Activity {
     }
 
     //初始化合作评论
-    private void initcCollaborateComment(String url){
+    private void initcCollaborateComment(String url,int mid){
         HttpUtils httpUtils=new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id,url), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(mid,url), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;

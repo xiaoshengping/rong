@@ -51,7 +51,9 @@ public class ArtistListAdapter extends AppBaseAdapter<ArtistListBean> {
 //        bigPicDisplayConfig.setBitmapMaxSize(BitmapCommonUtils.getScreenSize(context));
 
         BitmapUtils bitmapUtils=new BitmapUtils(context);
-        bitmapUtils.display(viewHolde.personPicture, AppUtilsUrl.ImageBaseUrl+data.get(position).getArtistPicture().get(0).getName());
+        if(data.get(position).getArtistPicture().size()==0) {
+            bitmapUtils.display(viewHolde.personPicture, AppUtilsUrl.ImageBaseUrl + data.get(position).getArtistPicture().get(0).getName());
+        }
         viewHolde.nameTextV.setText(data.get(position).getName());
 
     }
