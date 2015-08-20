@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 public class WordWrapView extends ViewGroup {
     private static final int PADDING_HOR = 5;//水平方向padding
     private static final int PADDING_VERTICAL = 5;//垂直方向padding
-    private static final int SIDE_MARGIN = 10;//左右间距
+    private static final int SIDE_MARGIN = 20;//左右间距
     private static final int TEXT_MARGIN = 10;
     /**
      * @param context

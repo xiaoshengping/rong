@@ -234,19 +234,21 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     relativePictureLayout=new RelativeLayout(ResumeMessageActivity.this);
                     final ImageView imageView=new ImageView(ResumeMessageActivity.this);
                     imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                    imageView.setMaxWidth(200);
-                    imageView.setMaxHeight(200);
 
+                    RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(200, 200);
+                    imageView.setLayoutParams(param);
                     deletePictureImageView=new ImageView(ResumeMessageActivity.this);
-                    RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    lp1.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                    lp1.addRule(RelativeLayout.CENTER_VERTICAL);
                     deletePictureImageView.setBackgroundResource(R.mipmap.delete_button_icon);
-                    deletePictureImageView.setLayoutParams(lp1);
+                    //deletePictureImageView.setLayoutParams(param);
                     relativePictureLayout.addView(imageView);
                     relativePictureLayout.addView(deletePictureImageView);
                     wordWrapView.addView(relativePictureLayout);
+                    //Log.e("ggggggg",AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(i).getPath());
+                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(i).getPath(), imageView, MyAppliction.RoundedOptionsOne);
                     final int finalI = i;
+                    RelativeLayout.LayoutParams param1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    param1.addRule(RelativeLayout.CENTER_IN_PARENT);
+                    deletePictureImageView.setLayoutParams(param1);
                     deletePictureImageView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -255,7 +257,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                             //Toast.makeText(ResumeMessageActivity.this,"hsdjdskak",Toast.LENGTH_LONG).show();
                         }
                     });
-                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumePicture().get(i).getPath(), imageView, MyAppliction.RoundedOptionsOne);
+                    //Log.e("dfgggggggg",resumeValueBean.getResumePicture().get(i).getPath());
+
                 }
 
             }
@@ -1180,6 +1183,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
         if (bundle != null) {
             Bitmap photo = bundle.getParcelable("data");
             ImageView imageView=new ImageView(ResumeMessageActivity.this);
+            RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(230, 230);
+            imageView.setLayoutParams(param);
             //showAddPictureLayout.addView(imageView);
             wordWrapView.addView(imageView);
             if (photo == null) {

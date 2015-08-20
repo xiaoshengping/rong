@@ -363,8 +363,6 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.resume_age_tv:
                 datePickerDialogData().show();
-
-
                 break;
             case R.id.updata_image:
                 showExitHeadPhotoAlert();

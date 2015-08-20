@@ -153,11 +153,11 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_marginLeft="10dp"
-                    android:background="#20000000"
+                    android:background="@drawable/rounded_textview"
                     android:layout_width="90dp"
                     android:layout_height="90dp" />
                 <TextView
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginLeft="45dp"
                     android:background="@mipmap/add_image_icon"
                     android:layout_width="wrap_content"
                     android:layout_alignParentLeft="true"
