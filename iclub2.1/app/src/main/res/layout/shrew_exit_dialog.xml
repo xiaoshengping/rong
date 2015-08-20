@@ -43,7 +43,7 @@
        android:gravity="center"
         android:layout_height="40dp"
         android:layout_width="90dp"
-        android:background="#ffffff" />
+        android:background="@mipmap/shrew_button_icon" />
 
 
     <!-- 确认按钮 -->
@@ -56,5 +56,5 @@
         android:layout_alignRight="@+id/exitGameBackground"
         android:layout_height="40dp"
         android:layout_width="90dp"
-        android:background="#ffffff" />
+        android:background="@mipmap/shrew_button_icon" />
 </RelativeLayout>

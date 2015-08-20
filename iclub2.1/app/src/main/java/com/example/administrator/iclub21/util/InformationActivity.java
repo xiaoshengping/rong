@@ -31,6 +31,8 @@ public class InformationActivity extends ActionBarActivity implements View.OnCli
 
     @ViewInject(R.id.role_retrun_tv)
     private TextView retrunTv;
+    @ViewInject(R.id.text_tv)
+    private TextView text;
 
 
 
@@ -47,6 +49,7 @@ public class InformationActivity extends ActionBarActivity implements View.OnCli
     }
 
     private void intiInfomation() {
+        text.setText("公告消息");
         retrunTv.setOnClickListener(this);
         intiData();
 

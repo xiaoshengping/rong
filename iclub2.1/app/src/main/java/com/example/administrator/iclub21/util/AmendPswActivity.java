@@ -4,8 +4,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -78,18 +80,19 @@ public class AmendPswActivity extends ActionBarActivity implements View.OnClickL
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("uid",uid);
-        requestParams.addBodyParameter("oldpwd",MD5Uutils.MD5(formerPswEdit.getText().toString()));
+        requestParams.addBodyParameter("oldpwd", MD5Uutils.MD5(formerPswEdit.getText().toString()));
         requestParams.addBodyParameter("newpwd", MD5Uutils.MD5(newPswEdit.getText().toString()));
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAmendPsw(),requestParams, new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAmendPsw(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                  String result=   responseInfo.result;
-                ParmeBean<PswValueBean> parmeBean = JSONObject.parseObject(result,new TypeReference<ParmeBean<PswValueBean>>(){});
-                if (parmeBean.getState().equals("success")){
-                    if (parmeBean.getValue().getMessage().equals("success")){
-                        finish();
+                String result = responseInfo.result;
+                ParmeBean<PswValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<PswValueBean>>() {
+                });
+                if (parmeBean.getState().equals("success")) {
+                    if (parmeBean.getValue().getMessage().equals("success")) {
+                        showExitGameAlert("修改密码成功");
 
-                    }else {
+                    } else {
                         MyAppliction.showToast("旧密码错误!");
 
                     }
@@ -131,4 +134,26 @@ public class AmendPswActivity extends ActionBarActivity implements View.OnClickL
 
 
     }
+
+    //修改密码成功对话框
+    public void showExitGameAlert(String text) {
+        final AlertDialog dlg = new AlertDialog.Builder(AmendPswActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.tishi_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText(text);
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("确定");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+                dlg.cancel();
+            }
+        });
+    }
+
 }

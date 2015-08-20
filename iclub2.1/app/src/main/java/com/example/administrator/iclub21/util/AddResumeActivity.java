@@ -442,8 +442,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_not);
                 break;
             case R.id.addresume_save_tv:
-                         intiSaveData();
-
+               intiSaveData();
                 break;
             case R.id.addresume_return_tv:
                /* Intent intent=new Intent(AddResumeActivity.this,ResumeActivity.class);
@@ -473,7 +472,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 startActivity(intentSchedule);
                 break;
             case R.id.delete_resume_tv:
-                deleteResumeData();
+                showDeleteResumeAlert();
+
                 break;
             case R.id.next_resume_tv:
 
@@ -510,7 +510,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     }
 
 
-    //对话框
+    //返回对话框
     private void showExitGameAlert() {
         final AlertDialog dlg = new AlertDialog.Builder(AddResumeActivity.this).create();
         dlg.show();
@@ -541,7 +541,35 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     }
 
 
+    //删除简历对话框
+    private void showDeleteResumeAlert() {
+        final AlertDialog dlg = new AlertDialog.Builder(AddResumeActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.shrew_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText("要放弃此次操作?");
+        // 为确认按钮添加事件,执行退出应用操作
+        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
+        ok.setText("确定");
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                deleteResumeData();
+                dlg.cancel();
+            }
+        });
 
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("取消");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlg.cancel();
+            }
+        });
+    }
     private void intiCompileData() {
         if (TextUtils.isEmpty(touXiangPath) || TextUtils.isEmpty(userName)
                 || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
@@ -645,7 +673,12 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                             });
                             if (parmeBean.getState().equals("success")) {
                                 SaveResumeValueBean saveValueBean = parmeBean.getValue();
-                                MyAppliction.showToast(saveValueBean.getMessage());
+                                if (saveValueBean.getMessage().equals("success")){
+                                    MyAppliction.showToast("提交数据成功");
+                                }else {
+                                    MyAppliction.showToast(saveValueBean.getMessage());
+                                }
+
                                // ProgressBar.setVisibility(View.VISIBLE);
                                 Intent intent=new Intent(AddResumeActivity.this,NextResumeActivity.class);
                                 intent.putExtra("resumeid",saveValueBean.getResumeid());
