@@ -35,7 +35,11 @@ public class AreaBean {
     }
 
     public String getNumPositionName(Context context,int num){
-        return context.getString(R.string.position).split(num+":")[1].split(",")[0];
+        if(num==1) {
+            return "编剧";//context.getString(R.string.position).split(num + ":")[1].split(",")[0];
+        }else {
+            return context.getString(R.string.position).split(num + ":")[1].split(",")[0];
+        }
 
     }
 

@@ -53,10 +53,10 @@ public class TalendDetailsActivity extends Activity {
     private TextView self_introduction_tv;//自我介绍
     private TextView work_experience_tv;//工作经历
     private RelativeLayout contact_information_rl;//联系方式
-    private TextView qq_tv;//qq
-    private TextView email_tv;//email
-    private TextView phone_tv;//手机号码
-    private TextView contact_information_tips_tv;//联系方式提示
+//    private TextView qq_tv;//qq
+//    private TextView email_tv;//email
+//    private TextView phone_tv;//手机号码
+//    private TextView contact_information_tips_tv;//联系方式提示
     private ListView video_display_lv;
 //    private ScrollView scrollView;
     private TextView picturesshow_more_tv;
@@ -91,10 +91,10 @@ public class TalendDetailsActivity extends Activity {
         self_introduction_tv = (TextView) view.findViewById(R.id.self_introduction_tv);
         work_experience_tv = (TextView) view.findViewById(R.id.work_experience_tv);
         contact_information_rl = (RelativeLayout) view.findViewById(R.id.contact_information_rl);
-        qq_tv = (TextView) view.findViewById(R.id.qq_tv);
-        email_tv = (TextView) view.findViewById(R.id.email_tv);
-        phone_tv = (TextView) view.findViewById(R.id.phone_tv);
-        contact_information_tips_tv = (TextView) view.findViewById(R.id.contact_information_tips_tv);
+//        qq_tv = (TextView) view.findViewById(R.id.qq_tv);
+//        email_tv = (TextView) view.findViewById(R.id.email_tv);
+//        phone_tv = (TextView) view.findViewById(R.id.phone_tv);
+//        contact_information_tips_tv = (TextView) view.findViewById(R.id.contact_information_tips_tv);
         picturesshow_more_tv = (TextView) view.findViewById(R.id.picturesshow_more_tv);
         picturesshow_ll = (LinearLayout) view.findViewById(R.id.picturesshow_ll);
         //点击更多
@@ -264,15 +264,15 @@ public class TalendDetailsActivity extends Activity {
         self_introduction_tv.setText(talentValueBean.getResumeInfo());
         work_experience_tv.setText(talentValueBean.getResumeWorkExperience());
         if(register) {
-            contact_information_rl.setVisibility(View.VISIBLE);
-            contact_information_tips_tv.setVisibility(View.GONE);
+//            contact_information_rl.setVisibility(View.VISIBLE);
+//            contact_information_tips_tv.setVisibility(View.GONE);
         }else {
-            contact_information_rl.setVisibility(View.GONE);
-            contact_information_tips_tv.setVisibility(View.VISIBLE);
+//            contact_information_rl.setVisibility(View.GONE);
+//            contact_information_tips_tv.setVisibility(View.VISIBLE);
         }
-        qq_tv.setText(talentValueBean.getResumeQq());
-        email_tv.setText(talentValueBean.getResumeEmail());
-        phone_tv.setText(talentValueBean.getResumeMobile());
+//        qq_tv.setText(talentValueBean.getResumeQq());
+//        email_tv.setText(talentValueBean.getResumeEmail());
+//        phone_tv.setText(talentValueBean.getResumeMobile());
 //        video_display_lv.setVisibility(View.GONE);
         video_display_lv.addHeaderView(header);//添加头部
         initMovieList();

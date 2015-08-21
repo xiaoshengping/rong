@@ -322,7 +322,8 @@
                     android:layout_margin="20dp"
                     android:text="(登录后成为招聘商家才能看到人才联系方式)"
                     android:textSize="15sp"
-                    android:textColor="#A53FFE"/>
+                    android:textColor="#A53FFE"
+                    android:visibility="gone"/>
 
 
                 <RelativeLayout

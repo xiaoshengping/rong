@@ -238,9 +238,9 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 int job = bundle.getInt("Position");//职业号
                 String pName = bundle.getString("PositionName");//职业名
                 if(job>=0&&job!=10){
-                    //professionClassfitionTv.setText(pName+"（职业编号："+job+"）");
+                    professionClassfitionTv.setText(pName+"（职业编号："+job+"）");
                     professionClassfitionTv.setText(pName);
-                    professionClassfitionTv.setTextColor(getResources().getColor(R.color.white));
+//                    professionClassfitionTv.setTextColor(getResources().getColor(R.color.white));
                     job_classfite_num = job;
                 }
                 break;
