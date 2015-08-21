@@ -98,9 +98,9 @@ public class AppUtilsUrl  {
 
     }
     //用户--投递消息（商家用户使用）
-    public static String getMessageMerchantList(String uid){
+    public static String getMessageMerchantList(String uid,int offset){
         //getMsgListIOS?offset=0&limit=10
-        return BaseUrl+"getApplyList.action?uid="+uid;
+        return BaseUrl+"getApplyList.action?uid="+uid+"&offset="+offset +"&limit=10";
 
     }
 

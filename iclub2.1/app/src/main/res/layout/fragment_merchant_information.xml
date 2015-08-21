@@ -1,13 +1,29 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
     tools:context="com.example.administrator.iclub21.fragment.MerchantInformationFragment">
+      <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+
           <include layout="@layout/resume_tailt_layout"></include>
-   <ListView
+   <com.handmark.pulltorefresh.library.PullToRefreshListView
        android:id="@+id/merchant_message_lv"
        android:dividerHeight="3dp"
+       xmlns:ptr="http://schemas.android.com/apk/res-auto"
+       ptr:ptrHeaderTextColor="#ffffff"
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
-   </ListView>
-</LinearLayout>
+       android:layout_height="match_parent"/>
+      </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+</RelativeLayout>
