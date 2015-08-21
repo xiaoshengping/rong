@@ -27,7 +27,7 @@
          style="@style/paren_layout_width"
          />
     <TextView
-        android:visibility="gone"
+
         android:id="@+id/list_compile_text"
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"

@@ -5,9 +5,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -297,8 +299,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                      finish();
                 break;
             case R.id.delete_recuitment:
-                deleteJob();
 
+                showExitGameAlert();
                 break;
             case R.id.profession_classification_tv:
                 Intent intentClassfite = new Intent(AddRecruitmentActivity.this, SelectedCityOrPositionActivity.class);  //方法1
@@ -323,22 +325,53 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
 
     }
 
+
+    //对话框
+    private void showExitGameAlert() {
+        final AlertDialog dlg = new AlertDialog.Builder(AddRecruitmentActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.shrew_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText("确定注册账号？");
+        // 为确认按钮添加事件,执行退出应用操作
+        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
+        ok.setText("确定");
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                deleteJob();
+                dlg.cancel();
+            }
+        });
+
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("取消");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlg.cancel();
+            }
+        });
+    }
+
     private void deleteJob() {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("jobid",recruitmentHistoryValueBean.getJobId()+"");
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteJob(),requestParams, new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteJob(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                String result=responseInfo.result;
-                        if (!TextUtils.isEmpty(result)){
-                            finish();
-                        }
+                String result = responseInfo.result;
+                if (!TextUtils.isEmpty(result)) {
+                    finish();
+                }
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
-                 Log.e("jdjfjjf",s);
+                Log.e("jdjfjjf", s);
             }
         });
 

@@ -317,27 +317,44 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
             case R.id.edit_company_save_text:
 
                 if (data.equals("name")){
-                    intent.putExtra("name",editCompanyNameEv.getText().toString());
-                    setResult(17, intent);
-                    finish();
+                    if (!TextUtils.isEmpty(editCompanyNameEv.getText().toString())){
+                        intent.putExtra("name",editCompanyNameEv.getText().toString());
+                        setResult(17, intent);
+                        finish();
+                    }else {
+                       MyAppliction.showExitGameAlert("你还没有输入公司名字",CompanyEditActivity.this);
+                    }
+
                 } else if (data.equals("phone")) {
-                    intent.putExtra("phone",editCompanyPhoneEt.getText().toString());
-                    setResult(18, intent);
+
+                    if (!TextUtils.isEmpty(editCompanyPhoneEt.getText().toString())){
+                        intent.putExtra("phone",editCompanyPhoneEt.getText().toString());
+                        setResult(18, intent);
+                        finish();
+                    }else {
+                        MyAppliction.showExitGameAlert("你还没有输入电话号码",CompanyEditActivity.this);
+                    }
 
 
-                    finish();
+
                 } else if (data.equals("email")) {
-                    intent.putExtra("email",editCompanyEmailEt.getText().toString());
-                    setResult(19, intent);
+                    if (!TextUtils.isEmpty(editCompanyEmailEt.getText().toString())){
+                        intent.putExtra("email",editCompanyEmailEt.getText().toString());
+                        setResult(19, intent);
+                        finish();
+                    }else {
+                        MyAppliction.showExitGameAlert("你还没有输入Email",CompanyEditActivity.this);
+                    }
 
-
-                    finish();
                 } else if (data.equals("http")) {
-                    intent.putExtra("http", editCompanyHttpEt.getText().toString());
-                    setResult(20, intent);
 
-
-                    finish();
+                    if (!TextUtils.isEmpty(editCompanyHttpEt.getText().toString())){
+                        intent.putExtra("http", editCompanyHttpEt.getText().toString());
+                        setResult(20, intent);
+                        finish();
+                    }else {
+                        MyAppliction.showExitGameAlert("你还没有输入公司官网",CompanyEditActivity.this);
+                    }
                 } else if (data.equals("adress")) {
                     if(city>=0) {
 
