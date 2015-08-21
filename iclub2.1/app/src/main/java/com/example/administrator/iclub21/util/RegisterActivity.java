@@ -1,15 +1,15 @@
 package com.example.administrator.iclub21.util;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.bean.ParmeBean;
 import com.example.administrator.iclub21.bean.RegisterValueBean;
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
@@ -48,6 +49,8 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     private TextView registerTitleTv;
     private  String  data;
     private TimeCount time;
+    @ViewInject(R.id.progressbar)
+    private ProgressBar progressbar;
 
 
 
@@ -91,9 +94,9 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                 break;
             case R.id.register_commit_tv:
                if (data.equals("2")){
-                   intiRegisterData(AppUtilsUrl.getRegisterData(),"注册成功，您可以登录了!");
+                   intiRegisterData(AppUtilsUrl.getRegisterData(),"恭喜您注册成功!","正在注册.....");
                }else if (data.equals("3")){
-                   intiRegisterData(AppUtilsUrl.getForgetData(),"密码已找回，您可以登录了!");
+                   intiRegisterData(AppUtilsUrl.getForgetData(),"恭喜您密码已找回!","修改密码中.....");
                }
 
                 break;
@@ -128,7 +131,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
     }
 
-    private void intiRegisterData(String url, final String text) {
+    private void intiRegisterData(String url, final String text,String tiShiYu) {
 
        String psw= MD5Uutils.MD5(setPswEdit.getText().toString());
        String  verifypsw=  MD5Uutils.MD5(verifyPswEdit.getText().toString());
@@ -138,6 +141,8 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
             if (capcha!=null&&capcha.length()==6){
 
                      if (setPswEdit.getText().toString()!=null&&verifyPswEdit.getText().toString()!=null&&(verifyPswEdit.getText().toString()).equals(setPswEdit.getText().toString())) {
+                         progressbar.setVisibility(View.VISIBLE);
+                         MyAppliction.showToast(tiShiYu);
                          RequestParams requestParams=new RequestParams();
                          requestParams.addBodyParameter("uid",registerPhoneEdit.getText().toString());
                          requestParams.addBodyParameter("pwd",MD5Uutils.MD5(setPswEdit.getText().toString()));
@@ -158,7 +163,10 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                          intent.putExtra("psw", MD5Uutils.MD5(setPswEdit.getText().toString()));
                                          //设置返回数据
                                          RegisterActivity.this.setResult(RESULT_OK, intent);*/
-                                         alert(text);
+                                         progressbar.setVisibility(View.GONE);
+                                         showExitGameAlert(text);
+
+
 
                                      } else {
                                          Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_LONG).show();
@@ -193,16 +201,28 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
 
     }
-    private void alert(String text) {
-        Dialog dialog = new AlertDialog.Builder(this).setTitle("提示")
-                .setMessage(text)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                }).create();
-        dialog.show();
+    //修改密码成功对话框
+    public void showExitGameAlert(String text) {
+        final AlertDialog dlg = new AlertDialog.Builder(RegisterActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.tishi_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText(text);
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("确定");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+                dlg.cancel();
+            }
+        });
     }
+
+
     class TimeCount extends CountDownTimer {
         public TimeCount(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);//参数依次为总时长,和计时的时间间隔

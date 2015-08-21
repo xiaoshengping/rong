@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.bean.LoginValueBean;
 import com.example.administrator.iclub21.bean.ParmeBean;
 import com.example.administrator.iclub21.bean.recruitment.SendParme;
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
@@ -67,10 +69,13 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     private ImageView weibo_login;
     private HttpUtils httpUtils;
     private SQLhelper sqLhelper;
+    @ViewInject(R.id.progressbar)
+    private ProgressBar progressbar;
 
     public static Tencent mTencent;
 
     private static final String TAG = "weibosdk";
+
 
     /** 显示认证后的信息，如 AccessToken */
 //    private TextView mTokenText;
@@ -456,9 +461,11 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     private void intiLoginData(final String uid,String psw) throws NoSuchAlgorithmException {
 
         if (uid.length()!=11&&uid!="0"&&psw!="0"){
-            Toast.makeText(LoginActivity.this,"您输入的电话号码不正确",Toast.LENGTH_LONG).show();
-
+            //Toast.makeText(LoginActivity.this,"",Toast.LENGTH_LONG).show();
+            MyAppliction.showToast("您输入的电话号码不正确");
         }else {
+            MyAppliction.showToast("正在登录......");
+            progressbar.setVisibility(View.VISIBLE);
             httpUtils.send(HttpRequest.HttpMethod.POST,AppUtilsUrl.getLoginData(uid,psw) , new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -476,16 +483,13 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                                     loginValueBean.getMobile(), loginValueBean.getPersonId(),loginValueBean.getCompanyName());
                             Intent intent = new Intent();
                             LoginActivity.this.setResult(12, intent);
+                            MyAppliction.showToast("登录成功");
+                            progressbar.setVisibility(View.GONE);
                         /*结束本Activity*/
                             LoginActivity.this.finish();
 
-//                            finish();
-                            /*Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
-                            startActivity(intent);*/
-
                         }else {
-                            Toast.makeText(LoginActivity.this,"密码或用户名错误",Toast.LENGTH_LONG).show();
-
+                            MyAppliction.showToast("密码或用户名错误");
 
                         }
                         }

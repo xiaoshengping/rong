@@ -23,6 +23,15 @@ public class RecruitmentHistoryValueBean implements Serializable {
        private String jobRequirements;
        private String email;
        private int viewCount;
+       private int cityid;
+
+    public int getCityid() {
+        return cityid;
+    }
+
+    public void setCityid(int cityid) {
+        this.cityid = cityid;
+    }
 
     public String getPosition() {
         return position;

@@ -104,7 +104,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         String workPay=workPayEdit.getText().toString();
         String recruitingNumbers=recruitingNumbersEdit.getText().toString();
         if (!TextUtils.isEmpty(position)&&!TextUtils.isEmpty(workPay)&&!TextUtils.isEmpty(recruitingNumbers)
-                &&job_classfite_num!=-1&&job_city_num!=-1){
+                &&job_classfite_num!=-1&&job_city_num!=-1&&!TextUtils.isEmpty(merchantWork)
+                &&!TextUtils.isEmpty(merchantInfo)){
             requestParams.addBodyParameter("jobid",recruitmentHistoryValueBean.getJobId()+"");
             requestParams.addBodyParameter("jobCategory",job_classfite_num+"");
             requestParams.addBodyParameter("cityid",job_city_num+"");
@@ -113,7 +114,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             requestParams.addBodyParameter("recruitingNumbers",recruitingNumbers);
             requestParams.addBodyParameter("jobRequirements",merchantWork);
             requestParams.addBodyParameter("jobInfo",merchantInfo);
-            MyAppliction.showToast("正在加载数据......");
+            MyAppliction.showToast("正在保存数据......");
             progressbar.setVisibility(View.VISIBLE);
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditJod(),requestParams, new RequestCallBack<String>() {
                 @Override
@@ -121,6 +122,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                    // Log.e("result",responseInfo.result);
                     if (responseInfo.result!=null){
                         progressbar.setVisibility(View.GONE);
+                        MyAppliction.showToast("保存数据成功");
                         finish();
                     }
 
@@ -151,8 +153,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         String position=positionEdit.getText().toString();
         String workPay=workPayEdit.getText().toString();
         String recruitingNumbers=recruitingNumbersEdit.getText().toString();
-        if (!TextUtils.isEmpty(position)&&!TextUtils.isEmpty(workPay)
-                &&!TextUtils.isEmpty(recruitingNumbers)&&job_classfite_num!=-1&&job_city_num!=-1){
+        if (!TextUtils.isEmpty(position)&&!TextUtils.isEmpty(workPay)&&!TextUtils.isEmpty(merchantWork)
+                &&!TextUtils.isEmpty(merchantInfo)&&!TextUtils.isEmpty(recruitingNumbers)&&job_classfite_num!=-1&&job_city_num!=-1){
             requestParams.addBodyParameter("uid",uid);
             requestParams.addBodyParameter("jobCategory",job_classfite_num+"");
             requestParams.addBodyParameter("cityid",job_city_num+"");
@@ -211,7 +213,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         if (recruitmentHistoryValueBean!=null){
             deleteRecruitmentTv.setVisibility(View.VISIBLE);
             job_classfite_num=recruitmentHistoryValueBean.getJobcategory();
-            //job_city_num=recruitmentHistoryValueBean
+            job_city_num=recruitmentHistoryValueBean.getCityid();
             professionClassfitionTv.setText(areaBean.getNumPositionName(this ,recruitmentHistoryValueBean.getJobcategory()));
             workAddressTv.setText(recruitmentHistoryValueBean.getWorkPlace());
             workAddressTv.setTextColor(getResources().getColor(R.color.white));
