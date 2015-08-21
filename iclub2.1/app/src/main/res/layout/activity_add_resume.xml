@@ -5,7 +5,14 @@
     android:background="@mipmap/iculd_beijin_icon"
     android:orientation="vertical"
     tools:context="com.example.administrator.iclub21.util.AddResumeActivity">
-
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

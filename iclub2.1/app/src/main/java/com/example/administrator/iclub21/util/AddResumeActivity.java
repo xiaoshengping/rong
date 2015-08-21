@@ -20,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -136,6 +137,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private TextView deleteResumeTv;
     private String mobile;
     private   String uid=null;
+    @ViewInject(R.id.progressbar)
+    private ProgressBar progressbar;
    //下一步
     @ViewInject(R.id.next_layout)
     private LinearLayout nextLayout;
@@ -488,12 +491,13 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeValueBean.getResumeid()+"");
+        progressbar.setVisibility(View.VISIBLE);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteResume(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
+                progressbar.setVisibility(View.GONE);
 
-                setResult(18,getIntent().putExtra("closeActivity","close"));
-                finish();
+                showExitGameAlert("删除简历成功!");
             }
 
             @Override
@@ -508,6 +512,29 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
 
     }
+
+    public void showExitGameAlert(String text) {
+        final AlertDialog dlg = new AlertDialog.Builder(AddResumeActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.tishi_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText(text);
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("确定");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setResult(18,getIntent().putExtra("closeActivity","close"));
+                finish();
+
+                dlg.cancel();
+            }
+        });
+    }
+
 
 
     //返回对话框
@@ -593,7 +620,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             compileRequestParams.addBodyParameter("resumeCityId", job_city_num+"");
             compileRequestParams.addBodyParameter("resumeMobile", uid);
 
-
+             progressbar.setVisibility(View.VISIBLE);
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), compileRequestParams, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -605,19 +632,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                         if (parmeBean.getState().equals("success")) {
 
                             String ResumeId = resumeValueBean.getResumeid() + "";
-                            /*if (!TextUtils.isEmpty(ResumeId) && !TextUtils.isEmpty(userVideoPath)) {
-                                initAddVideoData(ResumeId, userVideoPath);
-                            }
-                            if (!TextUtils.isEmpty(ResumeId) && !TextUtils.isEmpty(userPicturePath)) {
-                                intiPhotoData(ResumeId, userPicturePath);
-                            }
-                            if (!TextUtils.isEmpty(ResumeId) && !TextUtils.isEmpty(userMusicPath)) {
-                                intiMusicData(ResumeId, userMusicPath);
-                            }*/
-                            //Intent intent = new Intent(AddResumeActivity.this, ResumeActivity.class);
-                            //startActivity(intent);
-                            setResult(18, getIntent().putExtra("closeActivity", "close"));
-                            finish();
+                            progressbar.setVisibility(View.GONE);
+                            showExitGameAlert("保存简历成功!");
 
 
                         }
@@ -662,7 +678,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             requestParams.addBodyParameter("resumeMobile", uid);
 
             if (resumeNuber.equals("2222")) {
-
+                progressbar.setVisibility(View.VISIBLE);
                 httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -683,20 +699,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                                 Intent intent=new Intent(AddResumeActivity.this,NextResumeActivity.class);
                                 intent.putExtra("resumeid",saveValueBean.getResumeid());
                                 startActivity(intent);
-
-                              /*  if (!TextUtils.isEmpty(saveValueBean.getResumeid()) && !TextUtils.isEmpty(userVideoPath)) {
-
-                                    initAddVideoData(saveValueBean.getResumeid(), userVideoPath);
-
-                                }
-                                if (!TextUtils.isEmpty(saveValueBean.getResumeid()) && !TextUtils.isEmpty(userPicturePath)) {
-                                    intiPhotoData(saveValueBean.getResumeid(), userPicturePath);
-                                }
-                                if (!TextUtils.isEmpty(saveValueBean.getResumeid()) && !TextUtils.isEmpty(userMusicPath)) {
-                                    ProgressBar.setVisibility(View.VISIBLE);
-                                    intiMusicData(saveValueBean.getResumeid(), userMusicPath);
-
-                                }*/
+                                progressbar.setVisibility(View.GONE);
                                 setResult(18,getIntent().putExtra("closeActivity","close"));
                                 finish();
 

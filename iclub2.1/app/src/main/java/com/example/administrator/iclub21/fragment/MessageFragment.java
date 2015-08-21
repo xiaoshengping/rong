@@ -91,7 +91,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener,  
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),MerchantJobParticularActivity.class);
-                intent.putExtra("informationValueBeans", informationValueBeans.get(position).getJobid());
+                intent.putExtra("informationValueBeans", informationValueBeans.get(position-1).getJobid());
                 startActivity(intent);
 
 
