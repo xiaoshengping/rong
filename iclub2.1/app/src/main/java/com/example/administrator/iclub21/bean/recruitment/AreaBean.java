@@ -41,6 +41,7 @@ public class AreaBean {
             return context.getString(R.string.position).split(num + ":")[1].split(",")[0];
         }
 
+
     }
 
     public int getsCityCount(String str){
