@@ -65,7 +65,7 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginLeft="5dp"
-                  android:layout_alignBottom="@+id/resumeZhName_tv"
+                  android:layout_marginTop="5dp"
                   android:layout_alignTop="@+id/resumeZhName_tv"
                   android:layout_toRightOf="@+id/resumeZhName_tv"/>
               <TextView
@@ -505,7 +505,7 @@
                       android:text="音乐作品"
                       android:gravity="center"
                       android:drawablePadding="5dp"
-                      android:layout_marginLeft="20dp"
+                      android:layout_marginLeft="15dp"
                       android:drawableLeft="@mipmap/music_icon"
                       android:textSize="@dimen/textSize15"
                       android:textColor="@color/whiteOne"

@@ -183,9 +183,22 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("resumeValueBeans");
         if (intent.getSerializableExtra("flage").equals("MerchantInviteMessageFragment")){
             compileListTv.setVisibility(View.GONE);
+            resumeQqTv.setText("********");
+            resumeEmailTv.setText("**********");
+            resumeMobileTv.setText("**********");
+        }else if (intent.getSerializableExtra("flage").equals("MerchantAcceptInviteFragment")){
+            compileListTv.setVisibility(View.GONE);
+            resumeQqTv.setText(resumeValueBean.getResumeQq());
+            resumeEmailTv.setText(resumeValueBean.getResumeEmail());
+            resumeMobileTv.setText(resumeValueBean.getResumeMobile());
         }else {
-            compileListTv.setVisibility(View.VISIBLE);
+            resumeQqTv.setText(resumeValueBean.getResumeQq());
+            resumeEmailTv.setText(resumeValueBean.getResumeEmail());
+            resumeMobileTv.setText(resumeValueBean.getResumeMobile());
         }
+
+
+        Log.e("kdfjjfj",resumeValueBean.getResumeMobile().toString());
         //Log.e("jdjfjgjg",AppUtilsUrl.ImageBaseUrl + resumeValueBean.getUsericon());
         MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getUsericon(), userIconIv, MyAppliction.RoundedOptions);
         resumeZhName.setText(resumeValueBean.getResumeZhName());
@@ -209,9 +222,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         resumeJobNameTv.setText(resumeValueBean.getResumeJobCategoryName());
         resumeInfoTv.setText(resumeValueBean.getResumeInfo());
         resumeWorkExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
-        resumeQqTv.setText(resumeValueBean.getResumeQq());
-        resumeEmailTv.setText(resumeValueBean.getResumeEmail());
-        resumeMobileTv.setText(resumeValueBean.getResumeMobile());
+
         if (resumeValueBean.getResumePicture()!=null&&resumeValueBean.getResumePicture().size()!=0){
             for (int i = 0; i <resumeValueBean.getResumePicture().size() ; i++) {
                 ImageView pictureImage=new ImageView(ResumeListParticularActivity.this);
