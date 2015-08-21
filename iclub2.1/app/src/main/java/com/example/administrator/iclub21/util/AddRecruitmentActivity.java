@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.administrator.iclub21.bean.RecruitmentHistoryValueBean;
@@ -67,6 +68,9 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
     private AreaBean areaBean = new AreaBean();
     private int job_classfite_num = -1;//职业类别
     private int job_city_num = -1;//工作地点
+    @ViewInject(R.id.progressbar)
+    private ProgressBar progressbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +103,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         String position=positionEdit.getText().toString();
         String workPay=workPayEdit.getText().toString();
         String recruitingNumbers=recruitingNumbersEdit.getText().toString();
-        if (!TextUtils.isEmpty(position)&&!TextUtils.isEmpty(workPay)&&!TextUtils.isEmpty(recruitingNumbers)){
+        if (!TextUtils.isEmpty(position)&&!TextUtils.isEmpty(workPay)&&!TextUtils.isEmpty(recruitingNumbers)
+                &&job_classfite_num!=-1&&job_city_num!=-1){
             requestParams.addBodyParameter("jobid",recruitmentHistoryValueBean.getJobId()+"");
             requestParams.addBodyParameter("jobCategory",job_classfite_num+"");
             requestParams.addBodyParameter("cityid",job_city_num+"");
@@ -108,12 +113,17 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             requestParams.addBodyParameter("recruitingNumbers",recruitingNumbers);
             requestParams.addBodyParameter("jobRequirements",merchantWork);
             requestParams.addBodyParameter("jobInfo",merchantInfo);
-
+            MyAppliction.showToast("正在加载数据......");
+            progressbar.setVisibility(View.VISIBLE);
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditJod(),requestParams, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
                    // Log.e("result",responseInfo.result);
-                    finish();
+                    if (responseInfo.result!=null){
+                        progressbar.setVisibility(View.GONE);
+                        finish();
+                    }
+
                 }
 
                 @Override
@@ -141,7 +151,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         String position=positionEdit.getText().toString();
         String workPay=workPayEdit.getText().toString();
         String recruitingNumbers=recruitingNumbersEdit.getText().toString();
-        if (!TextUtils.isEmpty(position)&&!TextUtils.isEmpty(workPay)&&!TextUtils.isEmpty(recruitingNumbers)){
+        if (!TextUtils.isEmpty(position)&&!TextUtils.isEmpty(workPay)
+                &&!TextUtils.isEmpty(recruitingNumbers)&&job_classfite_num!=-1&&job_city_num!=-1){
             requestParams.addBodyParameter("uid",uid);
             requestParams.addBodyParameter("jobCategory",job_classfite_num+"");
             requestParams.addBodyParameter("cityid",job_city_num+"");
@@ -150,12 +161,18 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             requestParams.addBodyParameter("recruitingNumbers",recruitingNumbers);
             requestParams.addBodyParameter("jobRequirements",merchantWork);
             requestParams.addBodyParameter("jobInfo",merchantInfo);
-
+            MyAppliction.showToast("正在保存数据......");
+            progressbar.setVisibility(View.VISIBLE);
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddJod(),requestParams, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
                     //Log.e("result", responseInfo.result);
-                    finish();
+                    if (responseInfo.result!=null){
+                        progressbar.setVisibility(View.GONE);
+                        MyAppliction.showToast("保存数据成功");
+                        finish();
+                    }
+
                 }
 
                 @Override
@@ -193,6 +210,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         recruitmentHistoryValueBean= (RecruitmentHistoryValueBean) intent.getSerializableExtra("recruitmentHistoryValueBean");
         if (recruitmentHistoryValueBean!=null){
             deleteRecruitmentTv.setVisibility(View.VISIBLE);
+            job_classfite_num=recruitmentHistoryValueBean.getJobcategory();
+            //job_city_num=recruitmentHistoryValueBean
             professionClassfitionTv.setText(areaBean.getNumPositionName(this ,recruitmentHistoryValueBean.getJobcategory()));
             workAddressTv.setText(recruitmentHistoryValueBean.getWorkPlace());
             workAddressTv.setTextColor(getResources().getColor(R.color.white));
@@ -288,6 +307,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 break;
             case R.id.add_recruitment_save_text:
                String data= intent.getStringExtra("falgeData");
+
                 if (data.equals("RecruitmentHistoryFragment")){
                     intiEditData();
                 }else{

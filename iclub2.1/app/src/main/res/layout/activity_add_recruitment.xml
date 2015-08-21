@@ -1,9 +1,21 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
     android:background="@mipmap/iculd_beijin_icon"
     tools:context="com.example.administrator.iclub21.util.AddRecruitmentActivity">
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <include layout="@layout/add_recruitment_tailt_layout"/>
     <LinearLayout
         android:background="#20ffffff"
@@ -230,3 +242,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
+</RelativeLayout>
