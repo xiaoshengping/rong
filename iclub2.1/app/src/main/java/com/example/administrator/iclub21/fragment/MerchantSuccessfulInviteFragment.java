@@ -21,11 +21,11 @@ import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.adapter.MerchantInviteListAdapter;
 import com.example.administrator.iclub21.bean.MerchantInviteValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
-import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.util.CooperationCommentActivity;
 import com.example.administrator.iclub21.util.FailureCommentActivity;
+import com.example.administrator.iclub21.util.ResumeListParticularActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -151,7 +151,10 @@ public class MerchantSuccessfulInviteFragment extends Fragment implements PullTo
 
               if (merchantInviteValueBeans.get(position-1).getBeStatus().equals("3")
                       ||merchantInviteValueBeans.get(position-1).getBeStatus().equals("4")){
-                  MyAppliction.showToast("您已经完成评论!");
+                  Intent intent = new Intent(getActivity(), ResumeListParticularActivity.class);
+                  intent.putExtra("resumeValueBeans", merchantInviteValueBeans.get(position-1).getInviteResume());
+                  intent.putExtra("flage", "MerchantAcceptInviteFragment");
+                  startActivity(intent);
               }else {
                   showExitGameAlert(position);
               }

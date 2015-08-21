@@ -92,14 +92,14 @@ public class AppUtilsUrl  {
 
     }
     //列表信息通知
-    public static String getMessageList(String uid){
+    public static String getMessageList(String uid,int offset){
         //getMsgListIOS?offset=0&limit=10
-        return BaseUrl+"getApplyListByPerson.action?uid="+uid;
+        return BaseUrl+"getApplyListByPerson.action?uid="+uid+"&offset="+offset+"&limit=10";
 
     }
     //用户--投递消息（商家用户使用）
     public static String getMessageMerchantList(String uid,int offset){
-        //getMsgListIOS?offset=0&limit=10
+        //getApplyList.action?uid=15088138598&offset=0&limit=10
         return BaseUrl+"getApplyList.action?uid="+uid+"&offset="+offset +"&limit=10";
 
     }

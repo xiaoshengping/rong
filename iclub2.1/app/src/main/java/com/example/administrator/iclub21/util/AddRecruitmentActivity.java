@@ -381,13 +381,16 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
     private void deleteJob() {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
-        requestParams.addBodyParameter("jobid",recruitmentHistoryValueBean.getJobId()+"");
+        requestParams.addBodyParameter("jobid", recruitmentHistoryValueBean.getJobId() + "");
+        progressbar.setVisibility(View.VISIBLE);
+        MyAppliction.showToast("正在删除中.....");
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteJob(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (!TextUtils.isEmpty(result)) {
-                    finish();
+                    progressbar.setVisibility(View.GONE);
+                    showExitGameAlert("删除招聘记录成功!");
                 }
             }
 
@@ -403,5 +406,23 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
 
     }
 
-
+    public void showExitGameAlert(String text) {
+        final AlertDialog dlg = new AlertDialog.Builder(AddRecruitmentActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.tishi_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText(text);
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("确定");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+                dlg.cancel();
+            }
+        });
+    }
 }
