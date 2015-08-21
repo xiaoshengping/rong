@@ -12,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.bean.BMerchantValueBean;
 import com.example.administrator.iclub21.bean.ParmeBean;
+import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.util.CompanyEditActivity;
 import com.example.administrator.iclub21.util.SQLhelper;
@@ -69,7 +71,8 @@ public class CompanyMessageFragment extends Fragment implements View.OnClickList
 
 
     private RequestParams requestParams;
-
+    @ViewInject(R.id.progressbar)
+    private ProgressBar progressbar;
 
     public CompanyMessageFragment() {
         // Required empty public constructor
@@ -90,6 +93,8 @@ public class CompanyMessageFragment extends Fragment implements View.OnClickList
     private void inti() {
         textTv.setText("公司信息");
         intiView();
+        progressbar.setVisibility(View.VISIBLE);
+        MyAppliction.showToast("正在加载数据......");
         intitData();
 
     }
@@ -148,6 +153,7 @@ public class CompanyMessageFragment extends Fragment implements View.OnClickList
                         }else {
                             companyAdressTv.setText("请填写公司地址(必填)");
                         }
+                        progressbar.setVisibility(View.GONE);
                     }
                 }
 

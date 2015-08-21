@@ -1,11 +1,23 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/iculd_beijin_icon"
-    android:orientation="vertical"
-    tools:context="com.example.administrator.iclub21.util.LoginActivity">
 
+    tools:context="com.example.administrator.iclub21.util.LoginActivity">
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:visibility="gone"
+       android:layout_centerHorizontal="true"
+       android:layout_below="@+id/layout"
+        />
+    <LinearLayout
+        android:id="@+id/layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <include layout="@layout/login_tailt_layout" />
 
 
@@ -58,6 +70,7 @@
         android:text="登录" />
 
     <LinearLayout
+
         style="@style/paren_layout_match_horgrivity"
         android:layout_marginTop="10dp">
 
@@ -81,9 +94,11 @@
             android:text="忘记密码？"
             android:textColor="@color/white" />
     </LinearLayout>
+    </LinearLayout>
     <LinearLayout
         android:gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -96,6 +111,7 @@
               android:layout_weight="1"
               android:text="用其他方式登录"
               android:textSize="@dimen/textSize14"
+              android:gravity="center"
               android:textColor="@color/white"
               android:layout_width="match_parent"
               android:layout_height="wrap_content" />
@@ -107,6 +123,7 @@
 
     </LinearLayout>
 <LinearLayout
+    android:layout_alignParentBottom="true"
     android:layout_marginTop="20dp"
     android:layout_marginBottom="20dp"
     android:orientation="horizontal"
@@ -134,4 +151,4 @@
 
 
 
-</LinearLayout>
+</RelativeLayout>

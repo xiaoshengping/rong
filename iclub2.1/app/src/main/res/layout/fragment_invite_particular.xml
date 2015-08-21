@@ -18,7 +18,7 @@
         android:layout_height="wrap_content">
         <RadioButton
             android:id="@+id/resume_radio_bt"
-            android:text="邀约历史"
+            android:text="邀约通知"
             android:textSize="@dimen/textSize12"
             android:checked="true"
             android:layout_weight="1"

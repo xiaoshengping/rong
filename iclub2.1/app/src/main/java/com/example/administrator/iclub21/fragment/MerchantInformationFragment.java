@@ -107,7 +107,7 @@ public class MerchantInformationFragment extends Fragment implements View.OnClic
         informationListv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ProgressBar.setVisibility(View.VISIBLE);
+
                 intiResumeData(informationValueBeans.get(position-1).getApplyerResumeid());
 
 
@@ -136,7 +136,7 @@ public class MerchantInformationFragment extends Fragment implements View.OnClic
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
-
+                //Log.e("hsdhdfh",responseInfo.result);
                /* ArtistParme<MerchantMessageValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<MerchantMessageValueBean>>() {
                 });
                 informationValueBeans = artistParme.getValue();*/
@@ -160,6 +160,7 @@ public class MerchantInformationFragment extends Fragment implements View.OnClic
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeid);
+        ProgressBar.setVisibility(View.VISIBLE);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getPreviewResume(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {

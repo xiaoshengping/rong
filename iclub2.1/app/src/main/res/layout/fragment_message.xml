@@ -4,9 +4,11 @@
     android:orientation="vertical"
     tools:context="com.example.administrator.iclub21.fragment.MessageFragment">
     <include layout="@layout/information_tailt_layout"/>
-    <ListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/message_listView"
         android:dividerHeight="3dp"
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        ptr:ptrHeaderTextColor="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
