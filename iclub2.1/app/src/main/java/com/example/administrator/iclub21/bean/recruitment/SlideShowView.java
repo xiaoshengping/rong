@@ -1,7 +1,9 @@
 package com.example.administrator.iclub21.bean.recruitment;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
@@ -54,6 +56,7 @@ public class SlideShowView extends FrameLayout {
 //Handler
     private Handler handler = new Handler(){
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
         public void handleMessage(Message msg) {
 // TODO Auto-generated method stub
@@ -120,7 +123,7 @@ public class SlideShowView extends FrameLayout {
  */
     private void startPlay(){
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
-        scheduledExecutorService.scheduleAtFixedRate(new SlideShowTask(), 1, 4, TimeUnit.SECONDS);
+        scheduledExecutorService.scheduleAtFixedRate(new SlideShowTask(), 2, 5, TimeUnit.SECONDS);
     }
 /**
  * 停止轮播图切换

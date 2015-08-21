@@ -240,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/phone"
                     android:layout_marginLeft="8dp"
-                    android:text="1345886456"
+                    android:text="***********"
                     android:textSize="15sp"
                     android:textColor="#D2C8DC"/>
                 <TextView
@@ -259,7 +259,7 @@
                     android:layout_toRightOf="@+id/email"
                     android:layout_alignBottom="@+id/email"
                     android:layout_marginLeft="8dp"
-                    android:text="56898452"
+                    android:text="*************"
                     android:textSize="15sp"
                     android:textColor="#D2C8DC"/>
                 <TextView
@@ -279,7 +279,7 @@
                     android:layout_toRightOf="@+id/web"
                     android:layout_alignBottom="@+id/web"
                     android:layout_marginLeft="8dp"
-                    android:text="www.app.com"
+                    android:text="***********"
                     android:textSize="15sp"
                     android:textColor="#D2C8DC"/>
                 <TextView
@@ -299,7 +299,7 @@
                     android:layout_toRightOf="@+id/address"
                     android:layout_alignBottom="@+id/address"
                     android:layout_marginLeft="8dp"
-                    android:text="广州越秀区中山四路148号"
+                    android:text="*****************"
                     android:textSize="15sp"
                     android:textColor="#D2C8DC"/>
 

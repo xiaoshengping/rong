@@ -71,6 +71,7 @@ public class JobDetailsActivity extends Activity {
     private RecruitmentListBean recruitmentListBean;
 
     private void init() {
+
         binding();
 
         //获取登录状态
@@ -100,10 +101,12 @@ public class JobDetailsActivity extends Activity {
         recruitingNumbers.setText(recruitmentListBean.getRecruitingNumbers() + "人");
         jobRequirements.setText(recruitmentListBean.getJobRequirements());
         jobInfo.setText(recruitmentListBean.getJobInfo());
-        phone.setText(recruitmentListBean.getPhone());
-        email.setText(recruitmentListBean.getEmail());
-        web.setText(recruitmentListBean.getWeb());
-        address.setText(recruitmentListBean.getAddress());
+        if(register) {
+            phone.setText(recruitmentListBean.getPhone());
+            email.setText(recruitmentListBean.getEmail());
+            web.setText(recruitmentListBean.getWeb());
+            address.setText(recruitmentListBean.getAddress());
+        }
         position.setText(recruitmentListBean.getPosition());
         puttime.setText("发布时间：" + recruitmentListBean.getPuttime().split(" ")[0]);
         viewCount.setText("浏览量:" + recruitmentListBean.getViewCount());
