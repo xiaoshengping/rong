@@ -3,12 +3,14 @@ package com.example.administrator.iclub21.util;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -21,10 +23,9 @@ import com.example.administrator.iclub21.bean.ResumeCommentValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
 import com.example.administrator.iclub21.url.HttpHelper;
-import com.example.administrator.iclub21.view.CustomHomeScrollListView;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -38,7 +39,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompanyInviteMessageActivity extends ActionBarActivity implements View.OnClickListener ,PullToRefreshBase.OnRefreshListener2<ScrollView> {
+public class CompanyInviteMessageActivity extends ActionBarActivity implements View.OnClickListener ,PullToRefreshBase.OnRefreshListener2<ListView> {
     //头部
     @ViewInject(R.id.text_tv)
     private TextView titleText;
@@ -71,11 +72,13 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
 
    //评论
     @ViewInject(R.id.comment_listview)
-    private CustomHomeScrollListView commentListView;
+   // private CustomHomeScrollListView commentListView;
+    private PullToRefreshListView commentListView;
     @ViewInject(R.id.adout_tv)
     private TextView adoutTextView;
-    @ViewInject(R.id.comapny_invite_scrollView)
-    private PullToRefreshScrollView  comapnyInviteScrollView;
+    /*@ViewInject(R.id.comapny_invite_scrollView)
+    private PullToRefreshScrollView  comapnyInviteScrollView;*/
+    private View view;
 
 
     //接受和拒绝按钮
@@ -101,9 +104,10 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
     }
 
     private void inti() {
+
         intiView();
         intiListView();
-        intiCommentData(offset);
+        //intiCommentData(offset);
 
 
     }
@@ -114,25 +118,22 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
        /* RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("personid", inviteMessgaeListValueBean.getInvitePerson().getId());*/
 
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getResumeCommentData(inviteMessgaeListValueBean.getInvitePerson().getId(),offset), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getResumeCommentData(inviteMessgaeListValueBean.getInvitePerson().getId(), offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-               // Log.e("111111111",responseInfo.result);
-                  if (responseInfo.result!=null){
-                      resumeCommentAdapter=new ResumeCommentAdapter(data,CompanyInviteMessageActivity.this);
-                      commentListView.setAdapter(resumeCommentAdapter);
-                      HttpHelper.baseToUrl(responseInfo.result, new TypeReference<ArtistParme<ResumeCommentValueBean>>() {
-                      }, data, resumeCommentAdapter);
-                      resumeCommentAdapter.notifyDataSetChanged();
-                      comapnyInviteScrollView.onRefreshComplete();
-                      if (data.size()==0){
-                          adoutTextView.setVisibility(View.VISIBLE);
-                      }
+                // Log.e("111111111",responseInfo.result);
+                if (responseInfo.result != null) {
+
+                    HttpHelper.baseToUrl(responseInfo.result, new TypeReference<ArtistParme<ResumeCommentValueBean>>() {
+                    }, data, resumeCommentAdapter);
+                    //resumeCommentAdapter.notifyDataSetChanged();
+                    commentListView.onRefreshComplete();
+                    if (data.size() == 0) {
+                        adoutTextView.setVisibility(View.VISIBLE);
+                    }
 
 
-
-
-                  }
+                }
 
 
             }
@@ -140,7 +141,7 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("onFailure",s);
+                Log.e("onFailure", s);
             }
         });
 
@@ -149,22 +150,30 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
     }
     private void intiListView() {
         data=new ArrayList<>();
-        comapnyInviteScrollView.setMode(PullToRefreshBase.Mode.BOTH);
-        comapnyInviteScrollView.setOnRefreshListener(this);
-        ILoadingLayout endLabels = comapnyInviteScrollView
+        resumeCommentAdapter = new ResumeCommentAdapter(data, CompanyInviteMessageActivity.this);
+        commentListView.setAdapter(resumeCommentAdapter);
+
+       ListView listView= commentListView.getRefreshableView();
+
+        listView.addHeaderView(view);
+        commentListView.setMode(PullToRefreshBase.Mode.BOTH);
+        commentListView.setOnRefreshListener(this);
+        ILoadingLayout endLabels = commentListView
                 .getLoadingLayoutProxy(false, true);
         endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
         endLabels.setRefreshingLabel("正在刷新...");// 刷新时
         endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
-        ILoadingLayout startLabels = comapnyInviteScrollView
+        ILoadingLayout startLabels = commentListView
                 .getLoadingLayoutProxy(true, false);
         startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
         startLabels.setRefreshingLabel("正在刷新...");// 刷新时
         startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
-        comapnyInviteScrollView.setRefreshing();
+        commentListView.setRefreshing();
 
     }
     private void intiView() {
+        view=getLayoutInflater().inflate(R.layout.compsny_invite_message_layout,null);
+        ViewUtils.inject(this,view);
         httpUtils=new HttpUtils();
         requestParams=new RequestParams();
         titleText.setText("邀约详情");
@@ -232,11 +241,12 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.adopt_invite_bt:
-                adoptData("1");
+                showExitGameAlert();
+
                 break;
             case R.id.refuse_invite_bt:
+                showExitAlert();
 
-                   adoptData("2");
 
 
                 break;
@@ -246,6 +256,66 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
 
         }
     }
+
+      //接受邀约
+    private void showExitGameAlert() {
+        final AlertDialog dlg = new AlertDialog.Builder(CompanyInviteMessageActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.shrew_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText("确定要接受邀约？");
+        // 为确认按钮添加事件,执行退出应用操作
+        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
+        ok.setText("确定");
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adoptData("1");
+                dlg.cancel();
+            }
+        });
+
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("取消");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlg.cancel();
+            }
+        });
+    }
+    //拒绝邀约
+    private void showExitAlert() {
+        final AlertDialog dlg = new AlertDialog.Builder(CompanyInviteMessageActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.shrew_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText("确定要拒绝邀约？");
+        // 为确认按钮添加事件,执行退出应用操作
+        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
+        ok.setText("确定");
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                adoptData("2");
+                dlg.cancel();
+            }
+        });
+
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("取消");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlg.cancel();
+            }
+        });
+    }
+
 
     private void adoptData(String status) {
         requestParams.addBodyParameter("inviteid",inviteMessgaeListValueBean.getInviteid());
@@ -269,14 +339,14 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
     }
 
     @Override
-    public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         data.clear();
         offset=0;
         intiCommentData(offset);
     }
 
     @Override
-    public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
         offset=offset+10;
         intiCommentData(offset);    }
 }
