@@ -154,12 +154,12 @@ public class CalendarCard extends View {
 
                         if (ca.userType == 1) {
                             if (DateUtil.getMonth() == mShowDate.getMonth()) {
-                                if (ca.todayBeanslist != null && ca.todayBeanslist.size() >= 27 && ca.todayBeanslist.get(day - 1).getStatus().equals("0") && ca.todayBeanslist.get(day - 1).getDay().equals(str)) {
+                                if (ca.todayBeanslist != null && ca.todayBeanslist.size() >= 27 && ca.todayBeanslist.get(day - 1).getStatus().equals("1") && ca.todayBeanslist.get(day - 1).getDay().equals(str)) {
                                     CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
                                     rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
                                 }
                             } else {
-                                if (ca.nextdayBeanslist != null && ca.nextdayBeanslist.size() >= 27 && ca.nextdayBeanslist.get(day - 1).getStatus().equals("0") && ca.nextdayBeanslist.get(day - 1).getDay().equals(str)) {
+                                if (ca.nextdayBeanslist != null && ca.nextdayBeanslist.size() >= 27 && ca.nextdayBeanslist.get(day - 1).getStatus().equals("1") && ca.nextdayBeanslist.get(day - 1).getDay().equals(str)) {
                                     CustomDate date = CustomDate.modifiDayForObject(mShowDate, day);
                                     rows[j].cells[i] = new Cell(date, State.SETUP, i, j, colos);
                                 }
