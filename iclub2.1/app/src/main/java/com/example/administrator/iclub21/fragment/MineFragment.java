@@ -284,7 +284,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
         window.setContentView(R.layout.shrew_exit_dialog);
         TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
-        tailte.setText("确定注册账号？");
+        tailte.setText("确定注销账号？");
         // 为确认按钮添加事件,执行退出应用操作
         TextView ok = (TextView) window.findViewById(R.id.btn_ok);
         ok.setText("确定");

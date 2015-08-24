@@ -193,6 +193,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private  int monthOfYear;
     private  int dayOfMonth;
     private String  age;
+    private int selectYear;
+    private int selectMonthOfYear;
+    private int selectDayOfMonth;
 
     private AreaBean areaBean = new AreaBean();
 
@@ -216,7 +219,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     }
 
     private void intiView() {
-        compileRequestParams = new RequestParams();
+
         requestParams = new RequestParams();
         httpUtils = new HttpUtils();
         updataImage.setOnClickListener(this);
@@ -323,20 +326,17 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-               age = (year1 - year)+"";
+
+                age = (year1 - year)+"";
                 //Log.e("age00000",age+"");
                 if (Integer.valueOf(age)>0){
                     resumeAgeTv.setText(age);
                 }else {
                     Toast.makeText(AddResumeActivity.this,"亲,您设置的年龄要大于0哦!",Toast.LENGTH_LONG).show();
                 }
-                if (resumeValueBean!=null){
-                    if (resumeValueBean.getBirthday()!=age&&Integer.valueOf(age)!=0){
-                        compileRequestParams.addBodyParameter("birthday", year + "-" + monthOfYear + "-" + dayOfMonth);
-                    }
-                }
-
-                requestParams.addBodyParameter("birthday", year+"-"+monthOfYear+"-"+dayOfMonth);
+                selectYear=year;
+                selectMonthOfYear=monthOfYear;
+                selectDayOfMonth =dayOfMonth;
             }
         }, year1, monthOfYear, dayOfMonth);
          return datePickerDialog;
@@ -399,11 +399,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 if (resumeValueBean!=null){
                     pictureIntent.putExtra("caseData", "picture");
                     pictureIntent.putExtra("resumeInfoData",resumeValueBean);
-                } /*else{
-                    pictureIntent.putExtra("caseData", "pictureNo");
-
-                }*/
-
+                }
                 startActivityForResult(pictureIntent, 9);
 
                 break;
@@ -413,10 +409,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                     videoIntent.putExtra("caseData", "video");
                     videoIntent.putExtra("resumeInfoData",resumeValueBean);
 
-                }/*else {
-                    videoIntent.putExtra("caseData", "videoNo");
-                }*/
-
+                }
                 startActivityForResult(videoIntent, 10);
 
                 break;
@@ -425,11 +418,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 if (resumeValueBean!=null){
                     musicIntent.putExtra("caseData", "music");
                     musicIntent.putExtra("resumeInfoData",resumeValueBean);
-                } /*else{
-                    musicIntent.putExtra("caseData", "musicNo");
-
-                }*/
-
+                }
                 startActivityForResult(musicIntent, 11);
                 break;
             case R.id.job_classfite_layout:
@@ -600,10 +589,12 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private void intiCompileData() {
         if (TextUtils.isEmpty(touXiangPath) || TextUtils.isEmpty(userName)
                 || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
-                || TextUtils.isEmpty(userInfo) || TextUtils.isEmpty(userWork)) {
+                || TextUtils.isEmpty(userInfo) || TextUtils.isEmpty(userWork)||job_classfite_num==-1
+                ||job_city_num==-1) {
             MyAppliction.showExitGameAlert("您填写的信息不全或错误", AddResumeActivity.this);
 
         } else {
+            compileRequestParams = new RequestParams();
             compileRequestParams.addBodyParameter("resumeSex", sex);
             compileRequestParams.addBodyParameter("resumeid", resumeValueBean.getResumeid() + "");
             compileRequestParams.addBodyParameter("resumeWorkExperience", userWork);
@@ -617,8 +608,13 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             }
 
             compileRequestParams.addBodyParameter("resumeJobCategory", job_classfite_num+"");
-            compileRequestParams.addBodyParameter("resumeCityId", job_city_num+"");
+            compileRequestParams.addBodyParameter("resumeCityId", job_city_num + "");
             compileRequestParams.addBodyParameter("resumeMobile", uid);
+            if (selectYear!=0&&selectMonthOfYear!=0&&selectDayOfMonth!=0){
+              compileRequestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
+           }
+
+
 
              progressbar.setVisibility(View.VISIBLE);
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), compileRequestParams, new RequestCallBack<String>() {
@@ -651,71 +647,70 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     }
 
     private void intiSaveData() {
-
        userName = resumeZhName.getText().toString();
         userJobName = resumeJobName.getText().toString();
         userQq = resumeQq.getText().toString();
         userEmail = resumeEmail.getText().toString();
         touXiangPath = screenshotFile.getAbsolutePath();
-        if (TextUtils.isEmpty(touXiangPath) || TextUtils.isEmpty(userName)
-                || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
-                || TextUtils.isEmpty(userInfo) || TextUtils.isEmpty(userWork)||TextUtils.isEmpty(job_classfite_num+"")
-                ||TextUtils.isEmpty(job_city_num+"")) {
-
-            MyAppliction.showExitGameAlert("您填写的信息不全或错误", AddResumeActivity.this);
-        } else {
-            requestParams.addBodyParameter("resumeSex", sex);
-            requestParams.addBodyParameter("uid", uid);
-            requestParams.addBodyParameter("resumeWorkExperience", userWork);
-            requestParams.addBodyParameter("resumeInfo", userInfo);
-            requestParams.addBodyParameter("resumeEmail", userEmail);
-            requestParams.addBodyParameter("resumeQq", userQq);
-            requestParams.addBodyParameter("resumeJobName", userJobName);
-            requestParams.addBodyParameter("resumeZhName", userName);
-            requestParams.addBodyParameter("usericon", new File(touXiangPath));
-            requestParams.addBodyParameter("resumeJobCategory", job_classfite_num+"");
-            requestParams.addBodyParameter("resumeCityId", job_city_num+"");
-            requestParams.addBodyParameter("resumeMobile", uid);
-
             if (resumeNuber.equals("2222")) {
-                progressbar.setVisibility(View.VISIBLE);
-                httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
-                    @Override
-                    public void onSuccess(ResponseInfo<String> responseInfo) {
-                      // Log.e("onSuccess", responseInfo.result);
-                        String result = responseInfo.result;
-                        if (result != null) {
-                            ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
-                            });
-                            if (parmeBean.getState().equals("success")) {
-                                SaveResumeValueBean saveValueBean = parmeBean.getValue();
-                                if (saveValueBean.getMessage().equals("success")){
-                                    MyAppliction.showToast("提交数据成功");
-                                }else {
-                                    MyAppliction.showToast(saveValueBean.getMessage());
+                if (TextUtils.isEmpty(touXiangPath) || TextUtils.isEmpty(userName)
+                        || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
+                        || TextUtils.isEmpty(userInfo) || TextUtils.isEmpty(userWork)||job_classfite_num==-1
+                        ||job_city_num==-1||selectYear==0||selectMonthOfYear==0||selectDayOfMonth==0) {
+                    MyAppliction.showExitGameAlert("您填写的信息不全或错误", AddResumeActivity.this);
+                } else {
+                    requestParams = new RequestParams();
+                    requestParams.addBodyParameter("resumeSex", sex);
+                    requestParams.addBodyParameter("uid", uid);
+                    requestParams.addBodyParameter("resumeWorkExperience", userWork);
+                    requestParams.addBodyParameter("resumeInfo", userInfo);
+                    requestParams.addBodyParameter("resumeEmail", userEmail);
+                    requestParams.addBodyParameter("resumeQq", userQq);
+                    requestParams.addBodyParameter("resumeJobName", userJobName);
+                    requestParams.addBodyParameter("resumeZhName", userName);
+                    requestParams.addBodyParameter("usericon", new File(touXiangPath));
+                    requestParams.addBodyParameter("resumeJobCategory", job_classfite_num + "");
+                    requestParams.addBodyParameter("resumeCityId", job_city_num + "");
+                    requestParams.addBodyParameter("resumeMobile", uid);
+                    requestParams.addBodyParameter("birthday", selectYear+"-"+selectMonthOfYear+"-"+selectDayOfMonth);
+
+                    progressbar.setVisibility(View.VISIBLE);
+                    httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
+                        @Override
+                        public void onSuccess(ResponseInfo<String> responseInfo) {
+                            // Log.e("onSuccess", responseInfo.result);
+                            String result = responseInfo.result;
+                            if (result != null) {
+                                ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
+                                });
+                                if (parmeBean.getState().equals("success")) {
+                                    SaveResumeValueBean saveValueBean = parmeBean.getValue();
+                                    if (saveValueBean.getMessage().equals("success")) {
+                                        MyAppliction.showToast("提交数据成功");
+                                    } else {
+                                        MyAppliction.showToast(saveValueBean.getMessage());
+                                    }
+                                    Intent intent = new Intent(AddResumeActivity.this, NextResumeActivity.class);
+                                    intent.putExtra("resumeid", saveValueBean.getResumeid());
+                                    startActivity(intent);
+                                    progressbar.setVisibility(View.GONE);
+                                    setResult(18, getIntent().putExtra("closeActivity", "close"));
+                                    finish();
+
+
                                 }
-
-                               // ProgressBar.setVisibility(View.VISIBLE);
-                                Intent intent=new Intent(AddResumeActivity.this,NextResumeActivity.class);
-                                intent.putExtra("resumeid",saveValueBean.getResumeid());
-                                startActivity(intent);
-                                progressbar.setVisibility(View.GONE);
-                                setResult(18,getIntent().putExtra("closeActivity","close"));
-                                finish();
-
-
                             }
+
+                            //
+
                         }
 
-                        //
-
-                    }
-
-                    @Override
-                    public void onFailure(HttpException e, String s) {
-                        Log.e("onFailure", s);
-                    }
-                });
+                        @Override
+                        public void onFailure(HttpException e, String s) {
+                            Log.e("onFailure", s);
+                        }
+                    });
+                }
                 //deleteResumeTv.setVisibility(View.GONE);
             }else if (resumeNuber.equals("1111")){
 
@@ -723,7 +718,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
             }
 
-        }
+
 
 
     }
