@@ -4,19 +4,24 @@
     android:background="@mipmap/iculd_beijin_icon"
     tools:context="com.example.administrator.iclub21.util.CompanyInviteMessageActivity"
    >
-    <ScrollView
-        android:scrollbars="none"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
     <include
         android:id="@+id/company_invite_tailot"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         layout="@layout/invite_tail_layout"/>
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        ptr:ptrHeaderTextColor="#ffffff"
+        android:scrollbars="none"
+        android:id="@+id/comapny_invite_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/company_invite_tailot">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
 
     <LinearLayout
 
@@ -397,7 +402,7 @@
 
 
         </LinearLayout>
-    </ScrollView>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
     <LinearLayout
         android:id="@+id/comment_layout"
         android:gravity="center"

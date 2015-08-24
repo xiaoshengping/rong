@@ -47,6 +47,12 @@
         <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">80dp</item>
     </style>
+    <style name="image_paren1">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+    </style>
+
     <style name="textview_paren_width" parent="paren_layout_width">
         <item name="android:padding">2dp</item>
     </style>

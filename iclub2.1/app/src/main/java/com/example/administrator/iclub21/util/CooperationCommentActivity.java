@@ -72,6 +72,8 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
     //诚实性
     private String integrity;
     private boolean honestyGrade;
+    private  String falge;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,7 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
     }
 
     private void intiView() {
+        falge=getIntent().getStringExtra("falgeData");
         returnTv.setOnClickListener(this);
         textTv.setText("评论");
         SQLhelper sqLhelper=new SQLhelper(CooperationCommentActivity.this);
@@ -102,11 +105,6 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
         }
         inviteMessgaeListValueBeans= (InviteMessgaeListValueBean) getIntent().getSerializableExtra("inviteMessgaeListValueBeans");
         merchantInviteValueBeans= (MerchantInviteValueBean) getIntent().getSerializableExtra("MerchantInviteValueBean");
-
-       // honestyThreeGrade.setChecked(true);
-        //truthThreeGrade.setChecked(true);
-        /*appendRButton.setChecked(true);
-        honestyRButton.setChecked(true);*/
         truthRadiogroup.setOnCheckedChangeListener(this);
         honestyRadioGroup.setOnCheckedChangeListener(this);
         gradeRadiogroup.setOnCheckedChangeListener(this);
@@ -116,6 +114,9 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
         httpUtils=new HttpUtils();
         requestParams=new RequestParams();
         //Log.e("2222222222", inviteMessgaeListValueBeans.getInviteResume().getPersonid());
+
+
+
     }
 
 
@@ -215,16 +216,28 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.commit_comment_tv:
-                String falge=getIntent().getStringExtra("falgeData");
                 if (falge.equals("SuccessfulInviteFragment")){
-                    adoptData(AppUtilsUrl.getModificationResume(),"3",inviteMessgaeListValueBeans.getInviteid());
-                    commentContentData("resumeid",inviteMessgaeListValueBeans.getInviteResume().getResumeid(), "beid", inviteMessgaeListValueBeans.getInvitePerson().getId(), AppUtilsUrl.getCommentCommit());
-                    commentGradeData(inviteMessgaeListValueBeans.getInvitePerson().getId());
+
+                    if (!TextUtils.isEmpty(commentContextEt.getText().toString())&&!TextUtils.isEmpty(authenticity)&&!TextUtils.isEmpty(integrity)){
+                        commentContentData("resumeid", inviteMessgaeListValueBeans.getInviteResume().getResumeid(), "beid", inviteMessgaeListValueBeans.getInvitePerson().getId(), AppUtilsUrl.getCommentCommit());
+                        commentGradeData(inviteMessgaeListValueBeans.getInvitePerson().getId());
+                        adoptData(AppUtilsUrl.getModificationResume(), "3", inviteMessgaeListValueBeans.getInviteid());
+                    }else {
+                        MyAppliction.showExitGameAlert("您还没有输入评论内容或者分数", CooperationCommentActivity.this);
+                    }
+
+
                 }else if (falge.equals("MerchantSuccessfulInviteFragment")){
-                    adoptData(AppUtilsUrl.getModificationMerchant(),"3",merchantInviteValueBeans.getInviteid());
-                    //Log.e("jjsjfjfj",merchantInviteValueBeans.getInviteResume().getResumeid() + "");
-                    commentContentData("uid", uid, "resumeid", merchantInviteValueBeans.getInviteResume().getResumeid()+"", AppUtilsUrl.getCommentResume());
-                    commentGradeData(merchantInviteValueBeans.getInviteResume().getPersonid()+"");
+
+
+                    if (!TextUtils.isEmpty(commentContextEt.getText().toString())&&!TextUtils.isEmpty(authenticity)&&!TextUtils.isEmpty(integrity)){
+                        commentContentData("uid", uid, "resumeid", merchantInviteValueBeans.getInviteResume().getResumeid()+"", AppUtilsUrl.getCommentResume());
+                        commentGradeData(merchantInviteValueBeans.getInviteResume().getPersonid() + "");
+                        adoptData(AppUtilsUrl.getModificationMerchant(), "3", merchantInviteValueBeans.getInviteid());
+                    }else {
+                        MyAppliction.showExitGameAlert("您还没有输入评论内容或者分数", CooperationCommentActivity.this);
+                    }
+
                 }
 
                 break;
@@ -312,11 +325,8 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
     private void commentContentData(String id,String uid,String beuid,String beuidValue,String url) {
         requestParams.addBodyParameter(id,uid);
         requestParams.addBodyParameter(beuid, beuidValue);
-        if (!TextUtils.isEmpty(commentContextEt.getText().toString())){
-            requestParams.addBodyParameter("body",commentContextEt.getText().toString());
-        }else {
-            MyAppliction.showExitGameAlert("您还没有输入评论内容", CooperationCommentActivity.this);
-        }
+        requestParams.addBodyParameter("body",commentContextEt.getText().toString());
+
         httpUtils.send(HttpRequest.HttpMethod.POST, url, requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -326,7 +336,7 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("onFailure",s);
+                Log.e("onFailure", s);
             }
         });
 

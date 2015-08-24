@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -19,7 +20,11 @@ import com.example.administrator.iclub21.bean.ReputationValueBean;
 import com.example.administrator.iclub21.bean.ResumeCommentValueBean;
 import com.example.administrator.iclub21.bean.artist.ArtistParme;
 import com.example.administrator.iclub21.url.AppUtilsUrl;
+import com.example.administrator.iclub21.url.HttpHelper;
 import com.example.administrator.iclub21.view.CustomHomeScrollListView;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.jeremy.Customer.R;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -30,9 +35,10 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CompanyInviteMessageActivity extends ActionBarActivity implements View.OnClickListener {
+public class CompanyInviteMessageActivity extends ActionBarActivity implements View.OnClickListener ,PullToRefreshBase.OnRefreshListener2<ScrollView> {
     //头部
     @ViewInject(R.id.text_tv)
     private TextView titleText;
@@ -68,6 +74,8 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
     private CustomHomeScrollListView commentListView;
     @ViewInject(R.id.adout_tv)
     private TextView adoutTextView;
+    @ViewInject(R.id.comapny_invite_scrollView)
+    private PullToRefreshScrollView  comapnyInviteScrollView;
 
 
     //接受和拒绝按钮
@@ -81,6 +89,9 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private ReputationValueBean reputationValueBean;
+    private  ResumeCommentAdapter resumeCommentAdapter;
+    private List<ResumeCommentValueBean> data;
+    private int offset=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,33 +102,36 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
 
     private void inti() {
         intiView();
-        intiCommentData();
+        intiListView();
+        intiCommentData(offset);
 
 
     }
       //评论
-    private void intiCommentData() {
+    private void intiCommentData(int offset) {
 
         HttpUtils httpUtils=new HttpUtils();
-        RequestParams requestParams=new RequestParams();
-        requestParams.addBodyParameter("personid", inviteMessgaeListValueBean.getInvitePerson().getId());
-        //Log.e("111111111", inviteMessgaeListValueBean.getInvitePerson().getId());
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getResumeCommentData(), requestParams, new RequestCallBack<String>() {
+       /* RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("personid", inviteMessgaeListValueBean.getInvitePerson().getId());*/
+
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getResumeCommentData(inviteMessgaeListValueBean.getInvitePerson().getId(),offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                // Log.e("111111111",responseInfo.result);
                   if (responseInfo.result!=null){
-                      ArtistParme<ResumeCommentValueBean> artistParme=JSONObject.parseObject(responseInfo.result,new TypeReference<ArtistParme<ResumeCommentValueBean>>(){});
-                      if (artistParme.getState().equals("success")){
-                          if (artistParme.getValue().size()!=0){
-                              intiListView(artistParme.getValue());
-                          }else {
-                              adoutTextView.setVisibility(View.VISIBLE);
-                          }
-
-
-
+                      resumeCommentAdapter=new ResumeCommentAdapter(data,CompanyInviteMessageActivity.this);
+                      commentListView.setAdapter(resumeCommentAdapter);
+                      HttpHelper.baseToUrl(responseInfo.result, new TypeReference<ArtistParme<ResumeCommentValueBean>>() {
+                      }, data, resumeCommentAdapter);
+                      resumeCommentAdapter.notifyDataSetChanged();
+                      comapnyInviteScrollView.onRefreshComplete();
+                      if (data.size()==0){
+                          adoutTextView.setVisibility(View.VISIBLE);
                       }
+
+
+
+
                   }
 
 
@@ -133,11 +147,21 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
 
 
     }
-    private void intiListView(List<ResumeCommentValueBean> data) {
-        ResumeCommentAdapter resumeCommentAdapter=new ResumeCommentAdapter(data,CompanyInviteMessageActivity.this);
-        commentListView.setAdapter(resumeCommentAdapter);
-        resumeCommentAdapter.notifyDataSetChanged();
-
+    private void intiListView() {
+        data=new ArrayList<>();
+        comapnyInviteScrollView.setMode(PullToRefreshBase.Mode.BOTH);
+        comapnyInviteScrollView.setOnRefreshListener(this);
+        ILoadingLayout endLabels = comapnyInviteScrollView
+                .getLoadingLayoutProxy(false, true);
+        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout startLabels = comapnyInviteScrollView
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        comapnyInviteScrollView.setRefreshing();
 
     }
     private void intiView() {
@@ -165,6 +189,8 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
         if (inviteMessgaeListValueBean.getBeStatus().equals("2")){
             commentLayout.setVisibility(View.GONE);
         }
+
+
 
 
     }
@@ -241,4 +267,16 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
 
 
     }
+
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+        data.clear();
+        offset=0;
+        intiCommentData(offset);
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+        offset=offset+10;
+        intiCommentData(offset);    }
 }
