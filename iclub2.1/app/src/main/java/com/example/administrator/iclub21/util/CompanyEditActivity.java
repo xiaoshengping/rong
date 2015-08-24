@@ -49,8 +49,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
     private TextView editCompanyTextTv;
     @ViewInject(R.id.edit_company_save_text)
     private TextView editCompanySaveTv;
-    @ViewInject(R.id.company_city_tv)
-    private TextView company_city_tv;
+
 
     private  Intent intent;
     private  String data;
@@ -186,7 +185,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
         editCompanyRetrunTv.setOnClickListener(this);
         editCompanyTextTv.setOnClickListener(this);
         editCompanySaveTv.setOnClickListener(this);
-        company_city_tv.setOnClickListener(this);
+
         myAppliction= (MyAppliction) getApplication();
 
     }
@@ -263,20 +262,10 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
         }else if (data.equals("adress")){
 
             address=editCompanyAddressEt.getText().toString();
-            if(city>=0) {
 
-                if (province!=null) {
-                    requestParams.addBodyParameter("BEaddress", province + "省" + cName + "市" + address);
-
-
-                }else {
-                    requestParams.addBodyParameter("BEaddress", cName + "市" + address);
-
-                }
-            }else {
                 requestParams.addBodyParameter("BEaddress",address );
 
-            }
+
 
         }
 
@@ -334,9 +323,6 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
                     }else {
                         MyAppliction.showExitGameAlert("你还没有输入电话号码",CompanyEditActivity.this);
                     }
-
-
-
                 } else if (data.equals("email")) {
                     if (!TextUtils.isEmpty(editCompanyEmailEt.getText().toString())){
                         intent.putExtra("email",editCompanyEmailEt.getText().toString());
@@ -356,20 +342,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
                         MyAppliction.showExitGameAlert("你还没有输入公司官网",CompanyEditActivity.this);
                     }
                 } else if (data.equals("adress")) {
-                    if(city>=0) {
-
-                        if (province!=null) {
-
-                            intent.putExtra("adress", province+"省"+cName+"市"+editCompanyAddressEt.getText().toString());
-                        }else {
-                            intent.putExtra("adress", cName+"市" + editCompanyAddressEt.getText().toString());
-
-                        }
-                    }else {
                         intent.putExtra("adress",editCompanyAddressEt.getText().toString());
-
-                    }
-
                     setResult(21, intent);
                     finish();
                 }
@@ -393,18 +366,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
         city = bundle.getInt("City");
          cName = bundle.getString("CityName");
          province = bundle.getString("PROVINCE");
-        if(city>=0) {
-            if (province!=null) {
-                company_city_tv.setText(province+"省"+cName+"市");
-            }else {
-                company_city_tv.setText(cName);
-//                selected_city.setText("选择城市");
-            }
 
-//            update(getActivity(),citynum,jobnum,sousuo);
-//            initRecruitmentListData(citynum,jobnum,"");
-
-        }
 
     }
 
