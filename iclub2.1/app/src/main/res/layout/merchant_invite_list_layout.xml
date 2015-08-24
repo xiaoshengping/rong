@@ -8,7 +8,8 @@
         android:layout_marginLeft="10dp"
         android:id="@+id/talent_list_image"
         android:src="@mipmap/ic_launcher"
-        style="@style/image_paren"
+        style="@style/image_paren1"
+
         />
     <LinearLayout
         android:layout_weight="1"
