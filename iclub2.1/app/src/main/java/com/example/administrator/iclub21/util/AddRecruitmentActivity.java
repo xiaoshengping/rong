@@ -300,11 +300,17 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             case R.id.jobRequirements_layout:
                 Intent jobRequirementsInent=new Intent(this,ExperienceWorkActivity.class);
                 jobRequirementsInent.putExtra("addRecruitment","jobRequirements");
+                if (recruitmentHistoryValueBean!=null){
+                    jobRequirementsInent.putExtra("recruitmentHistoryValueBean",recruitmentHistoryValueBean.getJobRequirements());
+                }
                 startActivityForResult(jobRequirementsInent,15);
                 break;
             case R.id.jobInfo_layout:
                 Intent jobInfoInent=new Intent(this,ExperienceWorkActivity.class);
                 jobInfoInent.putExtra("addRecruitment","jobInfo");
+                if (recruitmentHistoryValueBean!=null){
+                    jobInfoInent.putExtra("recruitmentHistoryValueBean",recruitmentHistoryValueBean.getJobInfo());
+                }
                 startActivityForResult(jobInfoInent,16);
                 break;
             case R.id.add_recruitment_save_text:

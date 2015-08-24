@@ -163,17 +163,30 @@ public class FailureCommentActivity extends ActionBarActivity implements RadioGr
             case R.id.commit_comment_tv:
                 String falge=getIntent().getStringExtra("falgeData");
                 if (falge.equals("SuccessfulInviteFragment")){
-                    if (!TextUtils.isEmpty(commentContextEt.getText().toString())){
+                    if (!TextUtils.isEmpty(commentContextEt.getText().toString())&&!TextUtils.isEmpty(integrity)&&!TextUtils.isEmpty(authenticity)){
                         commentContentData(uid,inviteMessgaeListValueBeans.getInvitePerson().getId(),commentContextEt.getText().toString());
+                        adoptData(AppUtilsUrl.getModificationResume(),"4",inviteMessgaeListValueBeans.getInviteid());
+                        commentGradeData(inviteMessgaeListValueBeans.getInviteResume().getPersonid());
+                    }else {
+                        MyAppliction.showExitGameAlert("您还没有输入评论内容或者分数", FailureCommentActivity.this);
                     }
-                    adoptData(AppUtilsUrl.getModificationResume(),"4",inviteMessgaeListValueBeans.getInviteid());
-                    commentGradeData(inviteMessgaeListValueBeans.getInviteResume().getPersonid());
+
                 }else if (falge.equals("MerchantSuccessfulInviteFragment")){
-                    if (!TextUtils.isEmpty(commentContextEt.getText().toString())){
+                    if (!TextUtils.isEmpty(commentContextEt.getText().toString())&&!TextUtils.isEmpty(integrity)&&!TextUtils.isEmpty(authenticity)){
                         commentContentData(uid, merchantInviteValueBeans.getInviteResume().getPersonid() + "", commentContextEt.getText().toString());
+                        adoptData(AppUtilsUrl.getModificationMerchant(),"4",merchantInviteValueBeans.getInviteid());
+                        commentGradeData(merchantInviteValueBeans.getInviteResume().getPersonid() + "");
+                    }else {
+                        MyAppliction.showExitGameAlert("您还没有输入评论内容或者分数", FailureCommentActivity.this);
                     }
-                    adoptData(AppUtilsUrl.getModificationMerchant(),"4",merchantInviteValueBeans.getInviteid());
-                    commentGradeData(merchantInviteValueBeans.getInviteResume().getPersonid()+"");
+
+
+
+
+
+
+
+
                 }
 
                 break;
@@ -233,14 +246,10 @@ public class FailureCommentActivity extends ActionBarActivity implements RadioGr
     private void commentContentData(String uid,String beuid,String body) {
         requestParams.addBodyParameter("uid",uid);
         requestParams.addBodyParameter("beuid",beuid );
-        if (!TextUtils.isEmpty(commentContextEt.getText().toString())){
+
             requestParams.addBodyParameter("body",body);
 
-        }else {
-            MyAppliction.showExitGameAlert("您还没有输入评论内容", FailureCommentActivity.this);
-        }
-
-        httpUtils.send(HttpRequest.HttpMethod.POST,AppUtilsUrl.getCommentCommit() , requestParams, new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCommentCommit(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 //Log.e("sjdjjjfjj",responseInfo.result);
@@ -248,7 +257,7 @@ public class FailureCommentActivity extends ActionBarActivity implements RadioGr
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("onFailure",s);
+                Log.e("onFailure", s);
             }
         });
 

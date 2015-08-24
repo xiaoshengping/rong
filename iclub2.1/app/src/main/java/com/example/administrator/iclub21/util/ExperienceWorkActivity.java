@@ -3,6 +3,7 @@ package com.example.administrator.iclub21.util;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -55,12 +56,23 @@ public class ExperienceWorkActivity extends ActionBarActivity implements View.On
     private void intiData() {
         intent=getIntent();
         data=intent.getStringExtra("addRecruitment");
+
          if (data.equals("jobRequirements")){
              experienceWorkLayout.setVisibility(View.VISIBLE);
              messageCommentTv.setText("经验要求");
+             String recruitmentHistoryValueBean=intent.getStringExtra("recruitmentHistoryValueBean");
+            if (!TextUtils.isEmpty(recruitmentHistoryValueBean)){
+                experienceInfoEdit.setText(recruitmentHistoryValueBean);
+            }
+
          }else if (data.equals("jobInfo")){
              experienceInfoLayout.setVisibility(View.VISIBLE);
              messageCommentTv.setText("职位描述");
+             String recruitmentHistoryValueBean=intent.getStringExtra("recruitmentHistoryValueBean");
+             if (!TextUtils.isEmpty(recruitmentHistoryValueBean)){
+                 experienceWorkEdit.setText(recruitmentHistoryValueBean);
+             }
+
          }
 
     }
