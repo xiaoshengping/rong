@@ -489,7 +489,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                                       progressbar.setVisibility(View.GONE);
                                       showExitGameAlert("登录成功");
 
-
                                   }else {
                                       progressbar.setVisibility(View.GONE);
                                       MyAppliction.showExitGameAlert("用户名或密码错误",LoginActivity.this);
@@ -502,7 +501,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
                           @Override
                           public void onFailure(HttpException e, String s) {
-                              // Log.e("onFailure",s);
                               MyAppliction.showExitGameAlert("网络出错了",LoginActivity.this);
                               progressbar.setVisibility(View.GONE);
 
@@ -511,7 +509,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
 
                   }else {
-                      MyAppliction.showToast("请输入长度大于6位的密码");
+                      MyAppliction.showToast("密码长度大于或等于6");
 
                   }
               }else {
@@ -524,7 +522,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
               }
 
           }else {
-              MyAppliction.showToast("您输入您的手机号码");
+              MyAppliction.showToast("请输入您的手机号码");
 
           }
 
