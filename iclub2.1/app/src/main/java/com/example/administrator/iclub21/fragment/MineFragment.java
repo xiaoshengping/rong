@@ -2,6 +2,7 @@ package com.example.administrator.iclub21.fragment;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.util.AmendAboutActivity;
@@ -90,6 +92,16 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         amendAboutTv.setOnClickListener(this);
         shareLayout.setOnClickListener(this);
              intiSocial();
+        SharedPreferences setting = getActivity().getSharedPreferences("myMineFragment", 0);
+        Boolean user_first = setting.getBoolean("FIRST",true);
+        if(user_first){//第一次
+            setting.edit().putBoolean("FIRST", false).commit();
+            Toast.makeText(getActivity(), "第一次", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getActivity(), "不是第一次", Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
     private void intiSocial() {
