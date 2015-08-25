@@ -45,6 +45,9 @@ public class MessageFragment extends Fragment implements View.OnClickListener,  
     @ViewInject(R.id.role_retrun_tv)
     private TextView retrunTv;
 
+    @ViewInject(R.id.message_tv)
+    private TextView messageTv;
+
     @ViewInject(R.id.message_listView)
     //private ListView MessageListView;
     private PullToRefreshListView MessageListView;
@@ -90,8 +93,8 @@ public class MessageFragment extends Fragment implements View.OnClickListener,  
         MessageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(),MerchantJobParticularActivity.class);
-                intent.putExtra("informationValueBeans", informationValueBeans.get(position-1).getJobid());
+                Intent intent = new Intent(getActivity(), MerchantJobParticularActivity.class);
+                intent.putExtra("informationValueBeans", informationValueBeans.get(position - 1).getJobid());
                 startActivity(intent);
 
 
@@ -121,6 +124,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener,  
                 HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ResumeMessageValueBean>>() {
                 }, informationValueBeans, resumeMessageListAdapter);
                 MessageListView.onRefreshComplete();
+
             }
 
             @Override
