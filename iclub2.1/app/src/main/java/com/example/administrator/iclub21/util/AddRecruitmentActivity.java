@@ -130,6 +130,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
 
                 @Override
                 public void onFailure(HttpException e, String s) {
+                    progressbar.setVisibility(View.GONE);
                     Log.e("onFailure",s);
                 }
             });
@@ -179,7 +180,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
 
                 @Override
                 public void onFailure(HttpException e, String s) {
-
+                    progressbar.setVisibility(View.GONE);
                 }
             });
 

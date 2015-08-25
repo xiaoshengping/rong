@@ -57,7 +57,6 @@
                 <RadioButton
                     android:id="@+id/append_radio_button"
                     android:layout_marginLeft="20dp"
-
                      android:background="@drawable/comment_radio_button_selector"
                     style="@style/paren_radiogrud" />
                 <RadioButton

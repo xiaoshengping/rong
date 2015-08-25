@@ -17,7 +17,6 @@ import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
@@ -547,10 +546,10 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     }
                 }else if (data.equals("picture")){
                    userPicturePath=screenshotFile.getAbsolutePath();
-                    if (!TextUtils.isEmpty(userPicturePath)) {
+                    if (screenshotFile.exists()) {
 //                        intent.putExtra("userPicturePath", userPicturePath);
 //                        setResult(9, intent);
-                        if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"") && !TextUtils.isEmpty(userPicturePath)) {
+                        if (resumeValueBean.getResumeid()!=0&&screenshotFile.exists()) {
                             progressbar.setVisibility(View.VISIBLE);
                             intiPhotoData(resumeValueBean.getResumeid()+"", userPicturePath);
                         }
@@ -558,16 +557,16 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     }else {
                         intent.putExtra("userPicturePath", "");
                         setResult(9, intent);
-                        alert("你还没有选择图片文件");
+                        MyAppliction.showExitGameAlert("您还没有选择照片",ResumeMessageActivity.this);
                     }
 
 
                 }else if (data.equals("pictureNo")){
                     userPicturePath=screenshotFile.getAbsolutePath();
-                    if (!TextUtils.isEmpty(userPicturePath)) {
+                    if (screenshotFile.exists()) {
                         //intent.putExtra("userPicturePath", userPicturePath);
                         //setResult(9, intent);
-                        if (!TextUtils.isEmpty(resumeid) && !TextUtils.isEmpty(userPicturePath)) {
+                        if (!TextUtils.isEmpty(resumeid) && screenshotFile.exists()) {
                             progressbar.setVisibility(View.VISIBLE);
                             intiPhotoData(resumeid, userPicturePath);
                         }
@@ -575,7 +574,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     }else {
                         intent.putExtra("userPicturePath", "");
                         setResult(9, intent);
-                        alert("你还没有选择图片文件");
+                        MyAppliction.showExitGameAlert("您还没有选择照片", ResumeMessageActivity.this);
                     }
 
 
@@ -593,7 +592,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     }else {
                         intent.putExtra("userVideoPath", "");
                         setResult(10, intent);
-                        alert("你还没有选择视频文件");
+                        MyAppliction.showExitGameAlert("你还没有选择视频文件", ResumeMessageActivity.this);
                     }
 
 
@@ -611,7 +610,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     }else {
                         intent.putExtra("userVideoPath", "");
                         setResult(10, intent);
-                        alert("你还没有选择视频文件");
+                        MyAppliction.showExitGameAlert("你还没有选择视频文件", ResumeMessageActivity.this);
                     }
 
 
@@ -630,7 +629,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     }else {
                         intent.putExtra("usermusicPath", "");
                         setResult(11, intent);
-                        alert("你还没有选择音乐文件");
+                        MyAppliction.showExitGameAlert("你还没有选择音乐文件", ResumeMessageActivity.this);
                     }
 
                 }else if(data.equals("musicNo")){
@@ -648,7 +647,7 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
                     }else {
                         intent.putExtra("usermusicPath", "");
                         setResult(11, intent);
-                        alert("你还没有选择音乐文件");
+                        MyAppliction.showExitGameAlert("你还没有选择音乐文件", ResumeMessageActivity.this);
                     }
 
                 }
@@ -741,7 +740,9 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("onFailure", s);
+                progressbar.setVisibility(View.GONE);
+                MyAppliction.showToast("网络出错了");
+
             }
         });
 
@@ -768,7 +769,9 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("onFailure", s);
+                progressbar.setVisibility(View.GONE);
+                MyAppliction.showToast("网络出错了");
+
             }
         });
 
@@ -798,7 +801,8 @@ public class ResumeMessageActivity extends ActionBarActivity implements View.OnC
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("onFailure", s);
+                progressbar.setVisibility(View.GONE);
+                MyAppliction.showToast("网络出错了");
             }
         });
 

@@ -639,7 +639,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
                 @Override
                 public void onFailure(HttpException e, String s) {
-                    Log.e("onFailure", s);
+                    progressbar.setVisibility(View.GONE);
+                    MyAppliction.showToast("网络出错了");
                 }
             });
         }
@@ -707,7 +708,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
                         @Override
                         public void onFailure(HttpException e, String s) {
-                            Log.e("onFailure", s);
+                            progressbar.setVisibility(View.GONE);
+                            MyAppliction.showToast("网络出错了");
+
                         }
                     });
                 }

@@ -114,8 +114,12 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
         httpUtils=new HttpUtils();
         requestParams=new RequestParams();
         //Log.e("2222222222", inviteMessgaeListValueBeans.getInviteResume().getPersonid());
-
-
+         if (truthGrade){
+             appendRButton.isChecked();
+         }
+        if (honestyGrade){
+            honestyRButton.isChecked();
+        }
 
     }
 
@@ -126,16 +130,10 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
                  case  R.id.truth_radiogroup:
                      switch (checkedId){
                          case R.id.append_radio_button:
-
                              truthGrade=true;
-                             //Toast.makeText(CooperationCommentActivity.this, truthGrade, Toast.LENGTH_LONG).show();
-                             //Log.e("truthGrade",truthGrade);
                              break;
                          case R.id.subtract_radio_button:
                              truthGrade=false;
-                             //Log.e("truthGrade","-"+truthGrade);
-                             //requestParams.addBodyParameter("authenticity", "-"+authenticity);
-                            // Toast.makeText(CooperationCommentActivity.this, "-"+truthGrade, Toast.LENGTH_LONG).show();
                              break;
                      }
 

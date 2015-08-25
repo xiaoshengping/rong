@@ -29,7 +29,7 @@
      <TextView
          android:id="@+id/text_tv"
          android:layout_marginTop="15dp"
-         android:textSize="@dimen/textSize16"
+         android:textSize="@dimen/textSize18"
          android:text="投递消息"
          android:textColor="@color/white"
          android:layout_centerHorizontal="true"

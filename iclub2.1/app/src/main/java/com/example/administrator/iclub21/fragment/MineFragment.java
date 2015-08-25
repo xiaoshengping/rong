@@ -16,7 +16,6 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.administrator.iclub21.http.MyAppliction;
 import com.example.administrator.iclub21.util.AmendAboutActivity;
@@ -96,9 +95,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         Boolean user_first = setting.getBoolean("FIRST",true);
         if(user_first){//第一次
             setting.edit().putBoolean("FIRST", false).commit();
-            Toast.makeText(getActivity(), "第一次", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "第一次", Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(getActivity(), "不是第一次", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "不是第一次", Toast.LENGTH_LONG).show();
         }
 
 
