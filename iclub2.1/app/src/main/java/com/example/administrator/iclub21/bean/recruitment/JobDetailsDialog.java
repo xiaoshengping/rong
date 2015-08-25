@@ -71,7 +71,7 @@ public class JobDetailsDialog extends Dialog {
         }else if(tipsType == BEDEFEATED){
             tips_tv.setText("网络异常请稍后重试！");
         }else if(tipsType == ING){
-            tips_tv.setText("正在加载");
+            tips_tv.setText("加载中请稍后...");
         }else if(tipsType == OFFER){
             tips_tv.setText("邀约日期为："+cc.i);
             cancel.setVisibility(View.VISIBLE);

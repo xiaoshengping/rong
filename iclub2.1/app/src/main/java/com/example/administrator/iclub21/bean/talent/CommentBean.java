@@ -5,6 +5,7 @@ package com.example.administrator.iclub21.bean.talent;
  */
 public class CommentBean {
     private String companyName;
+    private String nickname;
     private String body;
     private String time;
     private String uid;
@@ -50,11 +51,20 @@ public class CommentBean {
         this.body = body;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     @Override
     public String toString() {
         return "CommentBean{" +
                 "body='" + body + '\'' +
                 ", companyName='" + companyName + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", time='" + time + '\'' +
                 ", uid='" + uid + '\'' +
                 ", resumeName='" + resumeName + '\'' +

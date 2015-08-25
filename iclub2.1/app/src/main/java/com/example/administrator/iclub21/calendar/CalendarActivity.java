@@ -254,13 +254,13 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 //            tv.setText(dayBeanslist.get(date.day-1).getDay());
                     if (tipsType == -1) {
                         if (toMonth) {
-                            if (todayBeanslist.get(date.day - 1).getStatus().equals("0") && todayBeanslist.get(date.day - 1).getDay().equals(str)) {
+                            if (todayBeanslist.get(date.day - 1).getStatus().equals("1") && todayBeanslist.get(date.day - 1).getDay().equals(str)) {
 
                             } else {
                                 i = str;
                             }
                         } else {
-                            if (nextdayBeanslist.get(date.day - 1).getStatus().equals("0") && nextdayBeanslist.get(date.day - 1).getDay().equals(str)) {
+                            if (nextdayBeanslist.get(date.day - 1).getStatus().equals("1") && nextdayBeanslist.get(date.day - 1).getDay().equals(str)) {
 
                             } else {
                                 i = str;
@@ -635,9 +635,11 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         });
     }
 
+    private boolean ing = false;
 
     //邀约
     public void Invite(){
+        ing = true;
         HttpUtils httpUtils = new HttpUtils();
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getInvite(i, uid, resumeid), new RequestCallBack<String>() {
             @Override
@@ -690,7 +692,10 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
             @Override
             public void onClick(View v) {
                 if(tipsTyp==OFFER) {
+//                    calendar_confirm_b.setBackgroundResource(R.drawable.calendar_button_n_shape);
+//                    i = "ing";
                     Invite();
+
                 }
                 if(tipsTyp==SUCCEED){
                     finish();
@@ -718,10 +723,15 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     public void offer(View v) {
         if(touch) {
             if (userType == 1) {
-                if (i != "") {
-                    dialog(OFFER);
-                } else {
+                if (i .equals("")) {
                     Toast.makeText(CalendarActivity.this, "未选择邀约日期", Toast.LENGTH_LONG).show();
+                }else {
+                    if(!ing){
+                        dialog(OFFER);
+                    }else {
+                        dialog(ING);
+                    }
+
                 }
             } else {
                 modificationRoute(DateUtil.getYear() + "-" + (DateUtil.getMonth() > 9 ? DateUtil.getMonth() : ("0" + DateUtil.getMonth())), true);

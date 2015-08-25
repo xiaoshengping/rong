@@ -64,8 +64,11 @@ public class ReputationAdapter extends BaseAdapter {
             } else {
                 viewHodle = (ViewHodle) convertView.getTag();
             }
-
-            viewHodle.comment_neme_tv.setText(commentDate.get(position).getCompanyName());
+            if(commentDate.get(position).getCompanyName()==null){
+                viewHodle.comment_neme_tv.setText(commentDate.get(position).getNickname());
+            }else {
+                viewHodle.comment_neme_tv.setText(commentDate.get(position).getCompanyName());
+            }
 
             viewHodle.comment_time_tv.setText(commentDate.get(position).getTime());
             viewHodle.comment_body_tv.setText(commentDate.get(position).getBody());
