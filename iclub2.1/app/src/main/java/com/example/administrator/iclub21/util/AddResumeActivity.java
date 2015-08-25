@@ -653,7 +653,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         userEmail = resumeEmail.getText().toString();
         touXiangPath = screenshotFile.getAbsolutePath();
             if (resumeNuber.equals("2222")) {
-                if (TextUtils.isEmpty(touXiangPath) || TextUtils.isEmpty(userName)
+                if (!tempFile.exists() || TextUtils.isEmpty(userName)
                         || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
                         || TextUtils.isEmpty(userInfo) || TextUtils.isEmpty(userWork)||job_classfite_num==-1
                         ||job_city_num==-1||selectYear==0||selectMonthOfYear==0||selectDayOfMonth==0) {
