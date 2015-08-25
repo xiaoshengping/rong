@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-
     android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -44,7 +43,7 @@
                     <TextView
                         android:id="@+id/job_invite_name_tv"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="50dp"
                         android:text="职位名称"
                         android:drawablePadding="15dp"
                         android:textColor="@color/white"
@@ -72,13 +71,6 @@
 
                         android:layout_marginLeft="20dp"
                         android:text="日期内容"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/textSize15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:text="详情"
                         android:textColor="@color/white"
                         android:textSize="@dimen/textSize15"
                         android:layout_width="wrap_content"
@@ -353,9 +345,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginLeft="20dp"
             android:text="合作评论"
+            android:gravity="center"
             android:drawablePadding="15dp"
             android:drawableLeft="@mipmap/cooperation_comment_icon"
             android:textColor="@color/white"
