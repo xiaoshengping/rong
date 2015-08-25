@@ -93,7 +93,7 @@ public class AmendPswActivity extends ActionBarActivity implements View.OnClickL
                         showExitGameAlert("修改密码成功");
 
                     } else {
-                        MyAppliction.showToast("旧密码错误!");
+                        MyAppliction.showExitGameAlert("旧密码错误!", AmendPswActivity.this);
 
                     }
 
@@ -118,16 +118,46 @@ public class AmendPswActivity extends ActionBarActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.register_commit_tv:
-                if (!TextUtils.isEmpty(formerPswEdit.getText().toString())&&!TextUtils.isEmpty(newPswEdit.getText().toString())&&
-                        (resetPswEdit.getText().toString()).equals(newPswEdit.getText().toString())    ){
-                    intiAmndPswData();
+
+                if (!TextUtils.isEmpty(formerPswEdit.getText().toString())){
+                    if (!TextUtils.isEmpty(newPswEdit.getText().toString())){
+                        if (newPswEdit.getText().toString().length()>=6){
+
+                       if (!TextUtils.isEmpty(resetPswEdit.getText().toString())){
+
+                           if (resetPswEdit.getText().toString().length()>=6){
+
+
+                          if ((resetPswEdit.getText().toString()).equals(newPswEdit.getText().toString()) ){
+
+
+                              intiAmndPswData();
+
+
+                          }else {
+                              MyAppliction.showToast("新密码和重复密码不一致");
+
+                          }
+
+
+                           }else {
+                               MyAppliction.showToast("重复密码长度要大于等于6");
+                           }
+                       }else {
+                           MyAppliction.showToast("请输入重复密码");
+                       }
+                        }else {
+                            MyAppliction.showToast("新密码长度大于或等于6");
+
+                        }
+
+                    }else {
+                        MyAppliction.showToast("请输入新密码");
+                    }
 
                 }else {
-                    //Toast.makeText(AmendPswActivity.this,"您填写的信息不全",Toast.LENGTH_LONG).show();
-                MyAppliction.showExitGameAlert("您填写的信息不全或错误",AmendPswActivity.this);
+                    MyAppliction.showToast("请输入旧密码");
                 }
-
-
                 break;
 
         }

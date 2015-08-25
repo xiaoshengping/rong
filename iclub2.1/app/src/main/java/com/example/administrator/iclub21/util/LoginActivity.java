@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -139,13 +141,13 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             case R.id.login_button:
                  String uid=  phoneEdit.getText().toString();
                  String  psw=MD5Uutils.MD5(pswEdit.getText().toString());
-                if(uid!="0"&&psw!="0"){
+
                 try {
                     intiLoginData(uid,psw);
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
-                }
+
                 break;
             case R.id.qq_login:
                 mTencent = Tencent.createInstance("1102291619", this);
@@ -183,6 +185,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 if (value != null && !TextUtils.isEmpty(value.getString("uid"))) {
                     Toast.makeText(LoginActivity.this, "授权成功.",                      Toast.LENGTH_SHORT).show();
                   weiboLogData(value.getString("uid"));
+
                 } else {
                     Toast.makeText(LoginActivity.this, "授权失败",                       Toast.LENGTH_SHORT).show();
                 }
@@ -460,57 +463,95 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     //登录数据
     private void intiLoginData(final String uid,String psw) throws NoSuchAlgorithmException {
 
-        if (uid.length()!=11&&uid!="0"&&psw!="0"){
-            //Toast.makeText(LoginActivity.this,"",Toast.LENGTH_LONG).show();
-            MyAppliction.showToast("您输入的电话号码不正确");
-        }else {
-            MyAppliction.showToast("正在登录......");
-            progressbar.setVisibility(View.VISIBLE);
-            httpUtils.send(HttpRequest.HttpMethod.POST,AppUtilsUrl.getLoginData(uid,psw) , new RequestCallBack<String>() {
-                @Override
-                public void onSuccess(ResponseInfo<String> responseInfo) {
-                    String rerult=responseInfo.result;
-                   // Log.e("intiData",rerult);
-                    if (rerult!=null){
+          if (!TextUtils.isEmpty(uid)){
+              if (uid.length()==11){
+              if (!TextUtils.isEmpty(pswEdit.getText().toString())){
+                  if (pswEdit.getText().toString().length()>=6){
+                      MyAppliction.showToast("正在登录......");
+                      progressbar.setVisibility(View.VISIBLE);
+                      httpUtils.send(HttpRequest.HttpMethod.POST,AppUtilsUrl.getLoginData(uid,psw) , new RequestCallBack<String>() {
+                          @Override
+                          public void onSuccess(ResponseInfo<String> responseInfo) {
+                              String rerult=responseInfo.result;
+                              // Log.e("intiData",rerult);
+                              if (rerult!=null){
 
-                        ParmeBean<LoginValueBean> artistParme= JSONObject.parseObject(rerult, new TypeReference<ParmeBean<LoginValueBean>>() {
-                        });
-                        LoginValueBean loginValueBean=  artistParme.getValue();
-                        if ("success".equals(artistParme.getState())&&uid.equals(loginValueBean.getUid())){
-                           //Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
-                            SQLhelper sqLhelper=new SQLhelper(LoginActivity.this);
-                            insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(),
-                                    loginValueBean.getMobile(), loginValueBean.getPersonId(),loginValueBean.getCompanyName());
-                            Intent intent = new Intent();
-                            LoginActivity.this.setResult(12, intent);
-                            MyAppliction.showToast("登录成功");
-                            progressbar.setVisibility(View.GONE);
-                        /*结束本Activity*/
-                            LoginActivity.this.finish();
-
-                        }else {
-                            MyAppliction.showToast("密码或用户名错误");
-
-                        }
-                        }
+                                  ParmeBean<LoginValueBean> artistParme= JSONObject.parseObject(rerult, new TypeReference<ParmeBean<LoginValueBean>>() {
+                                  });
+                                  LoginValueBean loginValueBean=  artistParme.getValue();
+                                  if ("success".equals(artistParme.getState())&&uid.equals(loginValueBean.getUid())){
+                                      //Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
+                                      SQLhelper sqLhelper=new SQLhelper(LoginActivity.this);
+                                      insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(),
+                                              loginValueBean.getMobile(), loginValueBean.getPersonId(), loginValueBean.getCompanyName());
+                                      Intent intent = new Intent();
+                                      LoginActivity.this.setResult(12, intent);
+                                      progressbar.setVisibility(View.GONE);
+                                      showExitGameAlert("登录成功");
 
 
-                    }
+                                  }else {
+                                      progressbar.setVisibility(View.GONE);
+                                      MyAppliction.showExitGameAlert("用户名或密码错误",LoginActivity.this);
 
-                @Override
-                public void onFailure(HttpException e, String s) {
-                    // Log.e("onFailure",s);
-                }
-            });
-
-        }
-        //Log.e("psw",MD5Uutils.encryptMd5(psw));
+                                  }
+                              }
 
 
+                          }
+
+                          @Override
+                          public void onFailure(HttpException e, String s) {
+                              // Log.e("onFailure",s);
+                              MyAppliction.showExitGameAlert("网络出错了",LoginActivity.this);
+                              progressbar.setVisibility(View.GONE);
+
+                          }
+                      });
 
 
+                  }else {
+                      MyAppliction.showToast("请输入长度大于6位的密码");
+
+                  }
+              }else {
+                  MyAppliction.showToast("请输入密码");
+
+              }
+
+              }else {
+                  MyAppliction.showToast("请输入11位电话号码");
+              }
+
+          }else {
+              MyAppliction.showToast("您输入您的手机号码");
+
+          }
 
     }
+     //登录成功对话框
+    public void showExitGameAlert(String text) {
+        final AlertDialog dlg = new AlertDialog.Builder(LoginActivity.this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.tishi_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText(text);
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("确定");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+                dlg.cancel();
+            }
+        });
+    }
+
+
+
     public void insertData(SQLhelper sqLhelper,String uid,String userName,String userIcon,String state,String mobile,String personid ,String companyName){
         SQLiteDatabase db=sqLhelper.getWritableDatabase();
        // db.execSQL("insert into user(uid,userName,userIcon,state) values('战士',3,5,7)");

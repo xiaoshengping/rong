@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -137,10 +138,108 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
        String  verifypsw=  MD5Uutils.MD5(verifyPswEdit.getText().toString());
          String uid=registerPhoneEdit.getText().toString();
          String capcha=captchaEdit.getText().toString();
+
+        if (!TextUtils.isEmpty(uid)){
+            if (uid.length()==11){
+              if (!TextUtils.isEmpty(capcha)){
+                 if (capcha.length()==6){
+                     if (!TextUtils.isEmpty(setPswEdit.getText().toString())){
+                       if (setPswEdit.getText().toString().length()>=6) {
+                         if (!TextUtils.isEmpty(verifyPswEdit.getText().toString())){
+                             if (verifyPswEdit.getText().toString().length()>=6){
+                                if ((verifyPswEdit.getText().toString()).equals(setPswEdit.getText().toString())){
+                                    progressbar.setVisibility(View.VISIBLE);
+                                    MyAppliction.showToast(tiShiYu);
+                                    RequestParams requestParams=new RequestParams();
+                                    requestParams.addBodyParameter("uid",registerPhoneEdit.getText().toString());
+                                    requestParams.addBodyParameter("pwd",MD5Uutils.MD5(setPswEdit.getText().toString()));
+                                    requestParams.addBodyParameter("vcode", captchaEdit.getText().toString());
+                                    httpUtils.send(HttpRequest.HttpMethod.POST, url, requestParams, new RequestCallBack<String>() {
+                                        @Override
+                                        public void onSuccess(ResponseInfo<String> responseInfo) {
+                                            String rerult = responseInfo.result;
+                                            if (rerult != null) {
+                                                ParmeBean<RegisterValueBean> artistParme = JSONObject.parseObject(rerult, new TypeReference<ParmeBean<RegisterValueBean>>() {
+                                                });
+                                                RegisterValueBean registerValueBean = artistParme.getValue();
+                                                // Log.e("makeText",loginValueBean.getState());
+                                                if ("success".equals(registerValueBean.getMessage())) {
+                                                    progressbar.setVisibility(View.GONE);
+                                                    showExitGameAlert(text);
+
+
+
+                                                } else {
+                                                    progressbar.setVisibility(View.GONE);
+                                                    MyAppliction.showExitGameAlert("注册失败",RegisterActivity.this);
+
+
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(HttpException e, String s) {
+                                            Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_LONG).show();
+                                            progressbar.setVisibility(View.GONE);
+                                        }
+                                    });
+
+                                }else {
+                                  MyAppliction.showExitGameAlert("设置密码和重复密码不一致",RegisterActivity.this);
+
+                                }
+
+                             }else {
+
+                                 MyAppliction.showToast("重复密码长度要大于6");
+                             }
+
+
+                         } else {
+                             MyAppliction.showToast("请输入重复密码");
+                         }
+
+
+                       }else {
+                           MyAppliction.showToast("密码长度要大于6");
+
+                       }
+
+
+                     }else {
+
+                         MyAppliction.showToast("请输入密码");
+                     }
+
+
+                 }else {
+                     MyAppliction.showToast("请输入6位正确的验证码");
+                 }
+
+              }else {
+                  MyAppliction.showToast("请输入验证码");
+
+              }
+
+
+            }else {
+                MyAppliction.showToast("请输入11位手机号码");
+
+            }
+
+        }else {
+
+          MyAppliction.showToast("请输入手机号码");
+        }
+
+
+
+        /*
         if (uid.length()==11&&uid!=null){
             if (capcha!=null&&capcha.length()==6){
 
-                     if (setPswEdit.getText().toString()!=null&&verifyPswEdit.getText().toString()!=null&&(verifyPswEdit.getText().toString()).equals(setPswEdit.getText().toString())) {
+                     if (!TextUtils.isEmpty(setPswEdit.getText().toString())&&!TextUtils.isEmpty(verifyPswEdit.getText().toString())&&(verifyPswEdit.getText().toString()).equals(setPswEdit.getText().toString())) {
                          progressbar.setVisibility(View.VISIBLE);
                          MyAppliction.showToast(tiShiYu);
                          RequestParams requestParams=new RequestParams();
@@ -158,11 +257,11 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                      // Log.e("makeText",loginValueBean.getState());
                                      if ("success".equals(registerValueBean.getMessage())) {
                                          //Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
-                                         /*Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                         *//*Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                          intent.putExtra("uid", registerPhoneEdit.getText().toString());
                                          intent.putExtra("psw", MD5Uutils.MD5(setPswEdit.getText().toString()));
                                          //设置返回数据
-                                         RegisterActivity.this.setResult(RESULT_OK, intent);*/
+                                         RegisterActivity.this.setResult(RESULT_OK, intent);*//*
                                          progressbar.setVisibility(View.GONE);
                                          showExitGameAlert(text);
 
@@ -195,9 +294,9 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
         }else {
 
-            Toast.makeText(RegisterActivity.this, "您输入的电话号码不正确", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "您输入的手机号码不正确", Toast.LENGTH_LONG).show();
 
-        }
+        }*/
 
 
     }
