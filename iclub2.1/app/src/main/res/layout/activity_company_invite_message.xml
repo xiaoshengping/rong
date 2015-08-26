@@ -452,9 +452,10 @@
             android:layout_height="35dp" />
     </LinearLayout>
 </RelativeLayout>-->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@mipmap/iculd_beijin_icon"
     tools:context="com.example.administrator.iclub21.util.CompanyInviteMessageActivity"
     >
@@ -462,7 +463,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:weightSum="1">
         <include
             android:id="@+id/company_invite_tailot"
@@ -535,4 +537,4 @@
             android:layout_width="match_parent"
             android:layout_height="35dp" />
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>
