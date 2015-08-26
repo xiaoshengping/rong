@@ -48,8 +48,6 @@ public class ExperienceWorkActivity extends ActionBarActivity implements View.On
         intiView();
         intiData();
 
-
-
     }
 
 

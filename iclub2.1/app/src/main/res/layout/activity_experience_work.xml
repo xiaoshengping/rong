@@ -58,6 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+
             android:background="#3Affffff"
             android:gravity="top"
             android:textColor="@color/white"

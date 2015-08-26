@@ -180,7 +180,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 @Override
                 public void onFailure(HttpException e, String s) {
                     progressbar.setVisibility(View.GONE);
-                    MyAppliction.showToast("网络请求超时");
+
                 }
             });
 
@@ -423,7 +423,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
             @Override
             public void onFailure(HttpException e, String s) {
                 progressbar.setVisibility(View.GONE);
-                MyAppliction.showToast("网络请求超时");
+
 
             }
         });
