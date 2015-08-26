@@ -11,5 +11,17 @@
         ptr:ptrHeaderTextColor="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/message_tv"
+        android:layout_marginTop="20dp"
+        android:text="暂无接受邀约数据!"
+        android:gravity="center"
+        android:drawablePadding="15dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textSize15"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        />
 
 </FrameLayout>

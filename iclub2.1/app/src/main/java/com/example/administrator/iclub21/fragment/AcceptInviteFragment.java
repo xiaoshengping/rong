@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.adapter.InviteMessageListAdapter;
@@ -44,6 +45,9 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
 
     @ViewInject(R.id.accept_invite_list_lv)
     private PullToRefreshListView accpetListLv;
+    @ViewInject(R.id.message_tv)
+    private TextView messageTv;
+
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private List<InviteMessgaeListValueBean> inviteMessgaeListValueBeans ;
@@ -105,7 +109,10 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
                     accpetListLv.onRefreshComplete();
-
+                    if (inviteMessgaeListValueBeans.size()==0){
+                        accpetListLv.setVisibility(View.GONE);
+                        messageTv.setVisibility(View.VISIBLE);
+                    }
 
                 }
 
@@ -114,7 +121,7 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                accpetListLv.onRefreshComplete();
             }
         });
 
@@ -148,6 +155,8 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
                 startActivity(intent);
             }
         });
+
+
 
     }
 

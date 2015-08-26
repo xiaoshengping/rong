@@ -104,6 +104,7 @@ public class MessageFragment extends Fragment implements View.OnClickListener,  
 
 
 
+
     }
 
 
@@ -124,11 +125,15 @@ public class MessageFragment extends Fragment implements View.OnClickListener,  
                 HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ResumeMessageValueBean>>() {
                 }, informationValueBeans, resumeMessageListAdapter);
                 MessageListView.onRefreshComplete();
-
+                if (informationValueBeans.size()==0){
+                    MessageListView.setVisibility(View.GONE);
+                    messageTv.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
+                MessageListView.onRefreshComplete();
                 Log.e("hdhfhhf",s);
             }
         });

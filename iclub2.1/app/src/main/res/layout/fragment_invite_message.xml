@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.administrator.iclub21.fragment.InviteMessageFragment">
 
    <com.handmark.pulltorefresh.library.PullToRefreshListView
@@ -10,5 +11,16 @@
        ptr:ptrHeaderTextColor="#ffffff"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
-
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/message_tv"
+        android:layout_marginTop="20dp"
+        android:text="暂无邀约历史数据!"
+        android:gravity="center"
+        android:drawablePadding="15dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textSize15"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        />
 </LinearLayout>

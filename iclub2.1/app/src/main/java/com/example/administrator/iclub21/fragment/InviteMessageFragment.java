@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.TypeReference;
 import com.example.administrator.iclub21.adapter.InviteMessageListAdapter;
@@ -45,6 +46,8 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
     @ViewInject(R.id.invite_message_list_lv)
     //private ListView inviteMessageLv;
     private PullToRefreshListView inviteMessageLv;
+    @ViewInject(R.id.message_tv)
+    private TextView messageTv;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private List<InviteMessgaeListValueBean> inviteMessgaeListValueBeans;
@@ -96,6 +99,7 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
         startLabels.setRefreshingLabel("正在刷新...");// 刷新时
         startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
         inviteMessageLv.setRefreshing();
+
     }
     /**
      * 初始化数据
@@ -105,6 +109,7 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
         inviteMessgaeListValueBeans= new  ArrayList<InviteMessgaeListValueBean>();
         inviteMessagelistAdapter=new InviteMessageListAdapter(inviteMessgaeListValueBeans,getActivity());
         inviteMessageLv.setAdapter(inviteMessagelistAdapter);
+
     }
     private void intiView() {
         HttpHelper.getHelper();
@@ -131,7 +136,10 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
                 if (!TextUtils.isEmpty(result)){
                     HttpHelper.baseToUrl(result, new TypeReference< ArtistParme<InviteMessgaeListValueBean>>(){},inviteMessgaeListValueBeans,inviteMessagelistAdapter);
                     inviteMessageLv.onRefreshComplete();
-
+                    if (inviteMessgaeListValueBeans.size()==0){
+                        inviteMessageLv.setVisibility(View.GONE);
+                        messageTv.setVisibility(View.VISIBLE);
+                    }
                 }
 
 

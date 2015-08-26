@@ -52,6 +52,8 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
 
     @ViewInject(R.id.invite_successful_list_lv)
     private PullToRefreshListView inviteSuccessfulListLv;
+    @ViewInject(R.id.message_tv)
+    private TextView messageTv;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private InviteMessageListAdapter inviteMessagelistAdapter;
@@ -116,7 +118,10 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
                     inviteSuccessfulListLv.onRefreshComplete();
-
+                    if (inviteMessgaeListValueBeans.size()==0){
+                        inviteSuccessfulListLv.setVisibility(View.GONE);
+                        messageTv.setVisibility(View.VISIBLE);
+                    }
                 }
 
 
@@ -124,7 +129,7 @@ public class SuccessfulInviteFragment extends Fragment implements PullToRefreshB
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                inviteSuccessfulListLv.onRefreshComplete();
             }
         });
 

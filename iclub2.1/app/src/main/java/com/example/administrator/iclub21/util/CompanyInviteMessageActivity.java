@@ -141,6 +141,7 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
 
             @Override
             public void onFailure(HttpException e, String s) {
+                commentListView.onRefreshComplete();
                 Log.e("onFailure", s);
             }
         });
