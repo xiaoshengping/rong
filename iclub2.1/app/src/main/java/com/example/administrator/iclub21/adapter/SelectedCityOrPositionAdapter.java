@@ -96,7 +96,7 @@ public class SelectedCityOrPositionAdapter extends BaseAdapter{
             String s = areaBean.getProvince(position,1);
             viewHodle.province_tv.setText(s);
             if(ba){
-                if(position==0||position==1) {
+                if(position==0) {
                     viewHodle.province_ll.setVisibility(View.GONE);
                 }
             }

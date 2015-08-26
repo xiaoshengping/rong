@@ -216,7 +216,11 @@ public class SelectedCityOrPositionActivity extends Activity {
 //                animation.setFillAfter(true);
 //                selecte_city_ll.startAnimation(animation);//控件动画
 //                selecte_province_lv.setVisibility(View.VISIBLE);
-                initProvince();
+                if(company==-1) {
+                    initProvince(true);
+                }else {
+                    initProvince();
+                }
             }else if(status == areaBean.POSITION){
                 Intent intent = new Intent();
                 intent.putExtra("City", -1);
@@ -245,7 +249,11 @@ public class SelectedCityOrPositionActivity extends Activity {
 //                animation.setFillAfter(true);
 //                selecte_city_ll.startAnimation(animation);//控件动画
 //                selecte_province_lv.setVisibility(View.VISIBLE);
-            initProvince();
+            if(company==-1) {
+                initProvince(true);
+            }else {
+                initProvince();
+            }
         }else if(status == areaBean.POSITION){
             Intent intent = new Intent();
             intent.putExtra("City", -1);
