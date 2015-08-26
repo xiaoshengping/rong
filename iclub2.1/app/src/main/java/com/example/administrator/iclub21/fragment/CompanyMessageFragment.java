@@ -159,7 +159,8 @@ public class CompanyMessageFragment extends Fragment implements View.OnClickList
 
                 @Override
                 public void onFailure(HttpException e, String s) {
-
+                    MyAppliction.showToast("网络请求超时");
+                    progressbar.setVisibility(View.GONE);
                 }
             });
 
