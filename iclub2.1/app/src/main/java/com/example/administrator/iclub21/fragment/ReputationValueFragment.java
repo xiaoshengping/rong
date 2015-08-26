@@ -52,9 +52,10 @@ public class ReputationValueFragment extends Fragment {
     private TextView authenticity_tv,integrity_tv,record_tv;
     private TextView company_url,company_phone,company_mailbox,company_location,company_name_tv;
     private RecruitmentListBean recruitmentListBean;
-    private TextView title_name_tv,reputation_tipe_tv;
+    private TextView title_name_tv;
     private ImageView authenticity_relatively_iv,integrity_relatively_iv;
     private ImageButton back_ib;
+    private TextView reputation_tipe_tv,authenticity_relatively_tv,integrity_relatively_tv;
 
 
     @Override
@@ -104,7 +105,9 @@ public class ReputationValueFragment extends Fragment {
             record_tv = (TextView) header.findViewById(R.id.record_tv);
             authenticity_relatively_iv = (ImageView)header.findViewById(R.id.authenticity_relatively_iv);
             integrity_relatively_iv = (ImageView)header.findViewById(R.id.integrity_relatively_iv);
-            reputation_list.addHeaderView(header);//添加头部
+        authenticity_relatively_tv = (TextView)header.findViewById(R.id.authenticity_relatively_tv);
+        integrity_relatively_tv = (TextView)header.findViewById(R.id.integrity_relatively_tv);
+        reputation_list.addHeaderView(header);//添加头部
 
 
 //        }else if(i==2){
@@ -153,22 +156,26 @@ public class ReputationValueFragment extends Fragment {
                             authenticity_tv.setText(reputationValueDate.getAuthenticity()+"");
                             integrity_tv.setText(reputationValueDate.getIntegrity()+"");
                             record_tv.setText(reputationValueDate.getTransactionRecord()+"");
-                                if(reputationValueDate.getAuthenticity()<=60){
-                                    authenticity_relatively_iv.setImageResource(R.mipmap.red_down);
-                                }else if(reputationValueDate.getAuthenticity()<=90){
-                                    authenticity_relatively_iv.setImageResource(R.mipmap.grey_flat);
-                                }else{
-                                    authenticity_relatively_iv.setImageResource(R.mipmap.green_top);
-                                }
-                                if(reputationValueDate.getIntegrity()<=60){
-                                    integrity_relatively_iv.setImageResource(R.mipmap.red_down);
-                                }else if(reputationValueDate.getIntegrity()<=90){
-                                    integrity_relatively_iv.setImageResource(R.mipmap.grey_flat);
-                                }else{
-                                    integrity_relatively_iv.setImageResource(R.mipmap.green_top);
-                                }
-
-
+                            if(reputationValueDate.getAuthenticity()<=60){
+                                authenticity_relatively_iv.setImageResource(R.mipmap.red_down);
+                                authenticity_relatively_tv.setText("与同行相比");
+                            }else if(reputationValueDate.getAuthenticity()<=90){
+                                authenticity_relatively_iv.setImageResource(R.mipmap.grey_flat);
+                                authenticity_relatively_tv.setText("与同行持平");
+                            }else{
+                                authenticity_relatively_iv.setImageResource(R.mipmap.green_top);
+                                authenticity_relatively_tv.setText("与同行相比");
+                            }
+                            if(reputationValueDate.getIntegrity()<=60){
+                                integrity_relatively_iv.setImageResource(R.mipmap.red_down);
+                                integrity_relatively_tv.setText("与同行相比");
+                            }else if(reputationValueDate.getIntegrity()<=90){
+                                integrity_relatively_iv.setImageResource(R.mipmap.grey_flat);
+                                integrity_relatively_tv.setText("与同行持平");
+                            }else{
+                                integrity_relatively_iv.setImageResource(R.mipmap.green_top);
+                                integrity_relatively_tv.setText("与同行相比");
+                            }
                         }
 
                     }
