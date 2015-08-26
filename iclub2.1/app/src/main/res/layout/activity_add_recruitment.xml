@@ -1,9 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:orientation="vertical"
     android:background="@mipmap/iculd_beijin_icon"
     tools:context="com.example.administrator.iclub21.util.AddRecruitmentActivity">
+    <include layout="@layout/add_recruitment_tailt_layout"
+        android:id="@+id/include" />
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="45dp"
@@ -12,11 +14,19 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         />
+     <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/include">
+   <LinearLayout
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <include layout="@layout/add_recruitment_tailt_layout"/>
+
     <LinearLayout
         android:background="#20ffffff"
 
@@ -224,7 +234,7 @@
             android:text="亲，请填写职位描述哦(必填)"
             android:textColor="@color/textColor9a4274"
             android:layout_marginLeft="20dp"
-            android:textSize="@dimen/textSize14"
+            android:textSize="@dimen/textSize15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -242,4 +252,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
+   </LinearLayout>
+     </ScrollView>
 </RelativeLayout>

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -123,8 +122,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                    // Log.e("result",responseInfo.result);
                     if (responseInfo.result!=null){
                         progressbar.setVisibility(View.GONE);
-                        MyAppliction.showToast("保存数据成功");
-                        finish();
+                        showExitGameAlert("保存数据成功");
                     }
 
                 }
@@ -132,7 +130,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 @Override
                 public void onFailure(HttpException e, String s) {
                     progressbar.setVisibility(View.GONE);
-                    Log.e("onFailure", s);
+                    MyAppliction.showToast("网络请求超时");
                 }
             });
 
@@ -174,8 +172,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                     //Log.e("result", responseInfo.result);
                     if (responseInfo.result!=null){
                         progressbar.setVisibility(View.GONE);
-                        MyAppliction.showToast("保存数据成功");
-                        finish();
+                        showExitGameAlert("保存数据成功");
                     }
 
                 }
@@ -183,6 +180,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 @Override
                 public void onFailure(HttpException e, String s) {
                     progressbar.setVisibility(View.GONE);
+                    MyAppliction.showToast("网络请求超时");
                 }
             });
 
@@ -201,9 +199,10 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
     }
 
 
+
+
     private void intiView() {
         httpUtils=new HttpUtils();
-        requestParams=new RequestParams();
         intent=getIntent();
         jobRequirementsLayout.setOnClickListener(this);
         jobInfoLayout.setOnClickListener(this);
@@ -237,7 +236,8 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 workDescribeTv.setText("亲，请填写职位描述哦(必填)");
                 workDescribeTv.setTextColor(getResources().getColor(R.color.textColor9a4274));
             }
-
+            merchantWork=recruitmentHistoryValueBean.getJobRequirements();
+            merchantInfo=recruitmentHistoryValueBean.getJobInfo();
             workPayEdit.setText(recruitmentHistoryValueBean.getWorkPay());
             recruitingNumbersEdit.setText(recruitmentHistoryValueBean.getRecruitingNumbers());
         }
@@ -422,7 +422,9 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("jdjfjjf", s);
+                progressbar.setVisibility(View.GONE);
+                MyAppliction.showToast("网络请求超时");
+
             }
         });
 
