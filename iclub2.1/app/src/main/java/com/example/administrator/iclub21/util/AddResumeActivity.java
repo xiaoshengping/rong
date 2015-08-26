@@ -424,12 +424,14 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             case R.id.job_classfite_layout:
                 Intent intentClassfite = new Intent(AddResumeActivity.this, SelectedCityOrPositionActivity.class);  //方法1
                 intentClassfite.putExtra("Status", areaBean.POSITION);
+                intentClassfite.putExtra("Company",-1);
                 startActivityForResult(intentClassfite, 12);
                 overridePendingTransition(R.anim.in_from_right, R.anim.out_to_not);
                 break;
             case R.id.job_city_layout:
                 Intent intentCity = new Intent(AddResumeActivity.this, SelectedCityOrPositionActivity.class);  //方法1
                 intentCity.putExtra("Status", areaBean.PROVINCE);
+                intentCity.putExtra("Company",-1);
                 startActivityForResult(intentCity, 12);
                 overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_not);
                 break;
