@@ -267,14 +267,16 @@ public class CooperationCommentActivity extends ActionBarActivity implements Rad
 
     private void commentGradeData(String personid) {
         if (truthGrade){
-                requestParams.addBodyParameter("authenticity",authenticity );
+            requestParams.addBodyParameter("authenticity", "-" + authenticity);
+
         } else {
-                requestParams.addBodyParameter("authenticity", "-" + authenticity);
+            requestParams.addBodyParameter("authenticity",authenticity );
         }
         if (honestyGrade){
-                requestParams.addBodyParameter("integrity", integrity);
+            requestParams.addBodyParameter("integrity", "-"+integrity);
+
         }else {
-                requestParams.addBodyParameter("integrity", "-"+integrity);
+            requestParams.addBodyParameter("integrity", integrity);
         }
 
 

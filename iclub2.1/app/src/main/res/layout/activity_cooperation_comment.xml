@@ -57,14 +57,15 @@
                 <RadioButton
                     android:id="@+id/append_radio_button"
                     android:layout_marginLeft="20dp"
-                     android:background="@drawable/comment_radio_button_selector"
+                    android:checked="true"
+                    android:background="@drawable/comment_radio_button_selector"
                     style="@style/paren_radiogrud" />
                 <RadioButton
                     android:id="@+id/subtract_radio_button"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/subtract_radio_button_selector"
                     style="@style/paren_radiogrud"
-                    android:checked="false"
+
                      />
             </RadioGroup>
             <RadioGroup
@@ -75,7 +76,7 @@
                 <RadioButton
                     android:id="@+id/truth_one_grade"
                     android:text="1"
-                    android:checked="false"
+
                     android:layout_marginLeft="40dp"
                     android:background="@drawable/comment_checkbox_button_selector"
                     style="@style/paren_radiogrud" />
@@ -85,7 +86,7 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/comment_checkbox_button_selector"
                     style="@style/paren_radiogrud"
-                    android:checked="false"
+
                     />
                 <RadioButton
                     android:id="@+id/truth_three_grade"
@@ -135,6 +136,7 @@
                 <RadioButton
                     android:id="@+id/honesty_apappend_rb"
                     android:layout_marginLeft="20dp"
+                    android:checked="true"
                     android:background="@drawable/comment_radio_button_selector"
                     style="@style/paren_radiogrud" />
                 <RadioButton
