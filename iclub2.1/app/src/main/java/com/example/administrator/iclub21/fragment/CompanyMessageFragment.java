@@ -193,8 +193,6 @@ public class CompanyMessageFragment extends Fragment implements View.OnClickList
        while (cursor.moveToNext()) {
            uid = cursor.getString(0);
 
-
-
        }
         switch (resultCode){
 
