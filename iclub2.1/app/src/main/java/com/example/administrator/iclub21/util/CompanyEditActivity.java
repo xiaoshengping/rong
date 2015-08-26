@@ -1,5 +1,6 @@
 package com.example.administrator.iclub21.util;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -246,7 +247,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
         if (data.equals("name")) {
             name=editCompanyNameEv.getText().toString();
             requestParams.addBodyParameter("BEcompanyName",name);
-
+            update(uid,name);
         }else if (data.equals("phone")){
             phone=editCompanyPhoneEt.getText().toString();
             requestParams.addBodyParameter("BEphone", phone);
@@ -269,7 +270,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
 
         }
 
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getUpdateMerchant(),requestParams, new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getUpdateMerchant(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 //Log.e("responseInfo111111111", responseInfo.result);
@@ -278,7 +279,7 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Log.e("onFailureonFailure",s);
+                Log.e("onFailureonFailure", s);
             }
         });
 
@@ -286,6 +287,21 @@ public class CompanyEditActivity extends ActionBarActivity implements View.OnCli
 
 
     }
+
+    /**
+     * 更新公司名字记录的
+     */
+    public void update(String uid,String name){
+        SQLhelper sqLhelper= new SQLhelper(CompanyEditActivity.this);
+        SQLiteDatabase db = sqLhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLhelper.COMPANYNAME, name);
+        db.update(SQLhelper.tableName, contentValues,
+                "uid=?",
+                new String[]{uid});
+    }
+
+
 
     private AreaBean areaBean = new AreaBean();
 
