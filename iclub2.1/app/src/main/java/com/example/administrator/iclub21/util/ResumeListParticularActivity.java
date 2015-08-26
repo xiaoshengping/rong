@@ -198,7 +198,6 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         }
 
 
-        Log.e("kdfjjfj",resumeValueBean.getResumeMobile().toString());
         //Log.e("jdjfjgjg",AppUtilsUrl.ImageBaseUrl + resumeValueBean.getUsericon());
         MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getUsericon(), userIconIv, MyAppliction.RoundedOptions);
         resumeZhName.setText(resumeValueBean.getResumeZhName());
@@ -210,7 +209,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
 
         }
         if(!TextUtils.isEmpty(resumeValueBean.getResumeUserbg())){
-
+            // Log.e("ssssss",AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeUserbg());
             MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeUserbg(), talenBackIv, MyAppliction.options);
         }else {
             talenBackIv.setBackgroundResource(R.mipmap.resume_background_icon);
@@ -553,8 +552,6 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
 //                设置文本内容为    图片绝对路径和名字
                 //text.setText(tempFile.getAbsolutePath());
                 //Log.e("tempFile",tempFile.getAbsolutePath());
-                intiBackgroundData();
-
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(screenshotFile);
@@ -595,6 +592,12 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        intiBackgroundData();
+    }
+
     private void intiBackgroundData() {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
@@ -603,7 +606,7 @@ public class ResumeListParticularActivity extends ActionBarActivity implements V
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getResumeBackground(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("000000",responseInfo.result);
+                //Log.e("000000",responseInfo.result);
             }
 
             @Override

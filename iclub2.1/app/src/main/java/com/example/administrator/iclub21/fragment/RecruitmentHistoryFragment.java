@@ -125,6 +125,14 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
         super.onResume();
         intitData();
         recruitmentHistoryLv.setRefreshing();
+        SQLhelper sqLhelper=new SQLhelper(getActivity());
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+            bdName=cursor.getString(6);
+        }
     }
 
     private void initView() {
