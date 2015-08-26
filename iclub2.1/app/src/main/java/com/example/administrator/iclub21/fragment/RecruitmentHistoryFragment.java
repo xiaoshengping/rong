@@ -135,6 +135,7 @@ public class RecruitmentHistoryFragment extends Fragment implements View.OnClick
         }
     }
 
+
     private void initView() {
         textTv.setText("招聘记录");
         saveTv.setVisibility(View.VISIBLE);

@@ -100,6 +100,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
     }
 
     private void intiEditData() {
+        RequestParams requestParams=new RequestParams();
         String position=positionEdit.getText().toString();
         String workPay=workPayEdit.getText().toString();
         String recruitingNumbers=recruitingNumbersEdit.getText().toString();
@@ -131,7 +132,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 @Override
                 public void onFailure(HttpException e, String s) {
                     progressbar.setVisibility(View.GONE);
-                    Log.e("onFailure",s);
+                    Log.e("onFailure", s);
                 }
             });
 
@@ -151,6 +152,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
 
 
     private void intiData() {
+        RequestParams requestParams=new RequestParams();
         String position=positionEdit.getText().toString();
         String workPay=workPayEdit.getText().toString();
         String recruitingNumbers=recruitingNumbersEdit.getText().toString();
@@ -235,6 +237,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 workDescribeTv.setText("亲，请填写职位描述哦(必填)");
                 workDescribeTv.setTextColor(getResources().getColor(R.color.textColor9a4274));
             }
+
             workPayEdit.setText(recruitmentHistoryValueBean.getWorkPay());
             recruitingNumbersEdit.setText(recruitmentHistoryValueBean.getRecruitingNumbers());
         }
@@ -276,8 +279,13 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                     experienceRequireTv.setText(merchantWork);
                     experienceRequireTv.setTextColor(getResources().getColor(R.color.white));
                 }else {
-                    experienceRequireTv.setText("亲，请填写经验要求哦(必填)");
-                    experienceRequireTv.setTextColor(getResources().getColor(R.color.textColor9a4274));
+                    if (recruitmentHistoryValueBean!=null){
+                        experienceRequireTv.setText(recruitmentHistoryValueBean.getJobRequirements());
+                    }else {
+                        experienceRequireTv.setText("亲，请填写经验要求哦(必填)");
+                        experienceRequireTv.setTextColor(getResources().getColor(R.color.textColor9a4274));
+                    }
+
                 }
 
                 break;
@@ -287,8 +295,13 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                         workDescribeTv.setText(merchantInfo);
                         workDescribeTv.setTextColor(getResources().getColor(R.color.white));
                     }else {
-                        workDescribeTv.setText("亲，请填写职位描述哦(必填)");
-                        workDescribeTv.setTextColor(getResources().getColor(R.color.textColor9a4274));
+                        if (recruitmentHistoryValueBean!=null){
+                            workDescribeTv.setText(recruitmentHistoryValueBean.getJobInfo());
+                        }else {
+                            workDescribeTv.setText("亲，请填写职位描述哦(必填)");
+                            workDescribeTv.setTextColor(getResources().getColor(R.color.textColor9a4274));
+                        }
+
                     }
                     break;
             }
@@ -304,6 +317,9 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 if (recruitmentHistoryValueBean!=null){
                     jobRequirementsInent.putExtra("recruitmentHistoryValueBean",recruitmentHistoryValueBean.getJobRequirements());
                 }
+                if (!TextUtils.isEmpty(merchantWork)){
+                    jobRequirementsInent.putExtra("recruitmentHistoryValueBean",merchantWork);
+                }
                 startActivityForResult(jobRequirementsInent,15);
                 break;
             case R.id.jobInfo_layout:
@@ -311,6 +327,9 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
                 jobInfoInent.putExtra("addRecruitment","jobInfo");
                 if (recruitmentHistoryValueBean!=null){
                     jobInfoInent.putExtra("recruitmentHistoryValueBean",recruitmentHistoryValueBean.getJobInfo());
+                }
+                if (!TextUtils.isEmpty(merchantInfo)){
+                    jobInfoInent.putExtra("recruitmentHistoryValueBean",merchantInfo);
                 }
                 startActivityForResult(jobInfoInent,16);
                 break;
@@ -364,7 +383,7 @@ public class AddRecruitmentActivity extends ActionBarActivity implements View.On
         // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
         window.setContentView(R.layout.shrew_exit_dialog);
         TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
-        tailte.setText("确定注册账号？");
+        tailte.setText("确定要删除这个招聘？");
         // 为确认按钮添加事件,执行退出应用操作
         TextView ok = (TextView) window.findViewById(R.id.btn_ok);
         ok.setText("确定");
