@@ -244,7 +244,9 @@ public class TalendDetailsActivity extends Activity {
         }
 
 
-        if(talentValueBean.getResumeUserbg().equals("")){}else {
+        if(talentValueBean.getResumeUserbg().equals("")){
+            talen_back_iv.setImageResource(R.mipmap.resume_background_icon);
+        }else {
             bitmapUtils.display(talen_back_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getResumeUserbg());
         }
         if(talentValueBean.getUsericon().equals("")){}else {
