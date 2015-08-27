@@ -47,6 +47,7 @@ public class AdeaAboutActivity extends ActionBarActivity implements View.OnClick
 
         feedbackRetrunTv.setOnClickListener(this);
         feedbackCommitTv.setOnClickListener(this);
+
     }
 
 
@@ -74,6 +75,12 @@ public class AdeaAboutActivity extends ActionBarActivity implements View.OnClick
         }
 
     }
+
+
+
+
+
+
     private void aboutIntiData() {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
@@ -84,6 +91,7 @@ public class AdeaAboutActivity extends ActionBarActivity implements View.OnClick
                 String result= responseInfo.result;
                 //  Log.e("result",result);
                 showExitGameAlert("谢谢您宝贵的意见!");
+
             }
 
             @Override
@@ -101,7 +109,7 @@ public class AdeaAboutActivity extends ActionBarActivity implements View.OnClick
         dlg.show();
         Window window = dlg.getWindow();
         // *** 主要就是在这里实现这种效果的.
-        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        // 设置窗口的内容页面,tishi_exit_dialog.xml文件中定义view内容
         window.setContentView(R.layout.tishi_exit_dialog);
         TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
         tailte.setText(text);

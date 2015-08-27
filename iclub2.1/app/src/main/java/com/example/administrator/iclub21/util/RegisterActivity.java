@@ -235,68 +235,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
 
 
-        /*
-        if (uid.length()==11&&uid!=null){
-            if (capcha!=null&&capcha.length()==6){
 
-                     if (!TextUtils.isEmpty(setPswEdit.getText().toString())&&!TextUtils.isEmpty(verifyPswEdit.getText().toString())&&(verifyPswEdit.getText().toString()).equals(setPswEdit.getText().toString())) {
-                         progressbar.setVisibility(View.VISIBLE);
-                         MyAppliction.showToast(tiShiYu);
-                         RequestParams requestParams=new RequestParams();
-                         requestParams.addBodyParameter("uid",registerPhoneEdit.getText().toString());
-                         requestParams.addBodyParameter("pwd",MD5Uutils.MD5(setPswEdit.getText().toString()));
-                         requestParams.addBodyParameter("vcode", captchaEdit.getText().toString());
-                         httpUtils.send(HttpRequest.HttpMethod.POST, url, requestParams, new RequestCallBack<String>() {
-                             @Override
-                             public void onSuccess(ResponseInfo<String> responseInfo) {
-                                 String rerult = responseInfo.result;
-                                 if (rerult != null) {
-                                     ParmeBean<RegisterValueBean> artistParme = JSONObject.parseObject(rerult, new TypeReference<ParmeBean<RegisterValueBean>>() {
-                                     });
-                                     RegisterValueBean registerValueBean = artistParme.getValue();
-                                     // Log.e("makeText",loginValueBean.getState());
-                                     if ("success".equals(registerValueBean.getMessage())) {
-                                         //Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
-                                         *//*Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                         intent.putExtra("uid", registerPhoneEdit.getText().toString());
-                                         intent.putExtra("psw", MD5Uutils.MD5(setPswEdit.getText().toString()));
-                                         //设置返回数据
-                                         RegisterActivity.this.setResult(RESULT_OK, intent);*//*
-                                         progressbar.setVisibility(View.GONE);
-                                         showExitGameAlert(text);
-
-
-
-                                     } else {
-                                         Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_LONG).show();
-
-
-                                     }
-                                 }
-                             }
-
-                             @Override
-                             public void onFailure(HttpException e, String s) {
-                                 Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_LONG).show();
-                             }
-                         });
-                     }else {
-
-                         Toast.makeText(RegisterActivity.this, "您输入的密码不一致", Toast.LENGTH_LONG).show();
-                     }
-
-
-
-            }else {
-                Toast.makeText(RegisterActivity.this, "验证码不正确", Toast.LENGTH_LONG).show();
-
-            }
-
-        }else {
-
-            Toast.makeText(RegisterActivity.this, "您输入的手机号码不正确", Toast.LENGTH_LONG).show();
-
-        }*/
 
 
     }

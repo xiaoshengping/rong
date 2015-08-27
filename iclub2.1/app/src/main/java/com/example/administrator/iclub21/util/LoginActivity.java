@@ -102,16 +102,12 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
      //程序入口
     private void init() {
        intiView();
-        intWeiBo();
+
         sqLhelper=new SQLhelper(this);
 
     }
 
-    private void intWeiBo() {
 
-
-
-    }
 
     private void intiView() {
         // loginButton.setOnClickListener(this);
@@ -129,13 +125,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login_reten_tv:
-               /* Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
-                intent.putExtra("state","");
-                intent.putExtra("imageUrl","");
-                intent.putExtra("userName","");
-                //设置返回数据
-                LoginActivity.this.setResult(RESULT_OK, intent);
-                LoginActivity.this.finish();*/
                 finish();
                 break;
             case R.id.login_button:
@@ -184,8 +173,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             public void onComplete(Bundle value, SHARE_MEDIA platform) {
                 if (value != null && !TextUtils.isEmpty(value.getString("uid"))) {
                     Toast.makeText(LoginActivity.this, "授权成功.",                      Toast.LENGTH_SHORT).show();
-                  weiboLogData(value.getString("uid"));
-
+                    weiboLogData(platform.toString());
                 } else {
                     Toast.makeText(LoginActivity.this, "授权失败",                       Toast.LENGTH_SHORT).show();
                 }

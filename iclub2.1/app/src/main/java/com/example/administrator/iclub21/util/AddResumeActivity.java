@@ -113,7 +113,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     @ViewInject(R.id.resumeEmail_et)
     private EditText resumeEmail;
     @ViewInject(R.id.phone_editText_et)
-    private EditText phoneEdit;
+    private TextView phoneTV;
     @ViewInject(R.id.phone_textView_tv)
     private TextView phoneTextView;
     @ViewInject(R.id.touxiang_image)
@@ -237,6 +237,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         sexRadioGroup.setOnCheckedChangeListener(this);
         deleteResumeTv.setOnClickListener(this);
         nextTextView.setOnClickListener(this);
+        phoneTV.setOnClickListener(this);
         //获取系统时间
         Calendar calendar = Calendar.getInstance();
         year1 = calendar.get(Calendar.YEAR);
@@ -305,13 +306,14 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             uid = cursor.getString(0);
             mobile=cursor.getString(5);
         }
+        //Log.e("mobile",mobile);
         if (!TextUtils.isEmpty(mobile)){
-            phoneTextView.setVisibility(View.VISIBLE);
             phoneTextView.setText(mobile);
 
         }else {
-            phoneEdit.setVisibility(View.VISIBLE);
-            uid=phoneEdit.getText().toString();
+            phoneTextView.setVisibility(View.GONE);
+            phoneTV.setVisibility(View.VISIBLE);
+
         }
         cursor.close();
         db.close();
@@ -473,7 +475,11 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
                 intiSaveData();
                 break;
+            case R.id.phone_editText_et:
+                Intent intent=new Intent(AddResumeActivity.this,BoundPhoneActivity.class);
+                startActivity(intent);
 
+                break;
 
         }
     }
@@ -611,7 +617,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
             compileRequestParams.addBodyParameter("resumeJobCategory", job_classfite_num+"");
             compileRequestParams.addBodyParameter("resumeCityId", job_city_num + "");
-            compileRequestParams.addBodyParameter("resumeMobile", uid);
+            compileRequestParams.addBodyParameter("resumeMobile", mobile);
             if (selectYear!=0&&selectMonthOfYear!=0&&selectDayOfMonth!=0){
               compileRequestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
            }
@@ -674,9 +680,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                     requestParams.addBodyParameter("usericon", new File(touXiangPath));
                     requestParams.addBodyParameter("resumeJobCategory", job_classfite_num + "");
                     requestParams.addBodyParameter("resumeCityId", job_city_num + "");
-                    requestParams.addBodyParameter("resumeMobile", uid);
-                    requestParams.addBodyParameter("birthday", selectYear+"-"+selectMonthOfYear+"-"+selectDayOfMonth);
-
+                    requestParams.addBodyParameter("resumeMobile", mobile);
+                    requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
                     progressbar.setVisibility(View.VISIBLE);
                     httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
                         @Override

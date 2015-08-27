@@ -279,13 +279,17 @@ public class AppUtilsUrl  {
         return BaseUrl+"inviteListByBusiness.action?"+"uid="+uid+"&value="+value+"&offset="+offset+"&limit=10";
 
     }
-
+    //微博登陆
     public static String LoginWeiBo(){
         // login_weibo.action
         return BaseUrl+"login_weibo.action";
 
     }
+    public static String getBoundData(){
+        // login_weibo.action
+        return BaseUrl+"bind_mobile.action";
 
+    }
 
     //角色用户
     public static String getAddRoleTalents(){

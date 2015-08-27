@@ -81,6 +81,7 @@
     <string name="title_activity_merchant_job_particular">MerchantJobParticularActivity</string>
     <string name="title_activity_next_resume">NextResumeActivity</string>
     <string name="title_activity_adea_about">AdeaAboutActivity</string>
+    <string name="title_activity_bound_phone">BoundPhoneActivity</string>
 
 
 </resources>

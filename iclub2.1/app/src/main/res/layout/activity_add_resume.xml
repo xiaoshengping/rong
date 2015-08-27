@@ -342,21 +342,20 @@
                         android:textColor="@color/whiteOne"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <EditText
-                        android:id="@+id/phone_editText_et"
+
+                    <TextView
                         android:visibility="gone"
-                        android:inputType="phone"
-                        android:hint="必填"
-                        android:textSize="@dimen/textSize15"
+                        android:gravity="center"
+                        android:id="@+id/phone_editText_et"
+                        android:text="去绑定"
+                        android:textSize="@dimen/textSize16"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/white"
-                        android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:visibility="gone"
                         android:id="@+id/phone_textView_tv"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
