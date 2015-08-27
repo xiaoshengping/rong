@@ -247,7 +247,14 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         selectDatabase();       //查询数据库
 
     }
-        //列表数据
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        selectDatabase();       //查询数据库
+    }
+
+    //列表数据
     private void resumeValueBeanData() {
         Intent intent=getIntent();
         resumeValueBean= (ResumeValueBean) intent.getSerializableExtra("compiledata");
@@ -308,6 +315,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         }
         //Log.e("mobile",mobile);
         if (!TextUtils.isEmpty(mobile)){
+            phoneTextView.setVisibility(View.VISIBLE);
+            phoneTV.setVisibility(View.GONE);
             phoneTextView.setText(mobile);
 
         }else {

@@ -356,6 +356,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/phone_textView_tv"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"

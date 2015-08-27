@@ -26,6 +26,8 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 public class BoundPhoneActivity extends ActionBarActivity implements View.OnClickListener {
+   @ViewInject(R.id.register_reten_tv)
+   private TextView returnTv;
     @ViewInject(R.id.register_title_tv)
     private TextView title;
     @ViewInject(R.id.register_phone)
@@ -52,6 +54,7 @@ public class BoundPhoneActivity extends ActionBarActivity implements View.OnClic
         title.setText("绑定手机");
         captchaButton.setOnClickListener(this);
         commitTv.setOnClickListener(this);
+        returnTv.setOnClickListener(this);
 
 
     }
@@ -87,8 +90,9 @@ public class BoundPhoneActivity extends ActionBarActivity implements View.OnClic
                 break;
             case R.id.register_commit_tv:
                 boundPhoneData();
-
-
+                break;
+            case R.id.register_reten_tv:
+                finish();
                 break;
         }
 
@@ -106,10 +110,11 @@ public class BoundPhoneActivity extends ActionBarActivity implements View.OnClic
         }
         RequestParams requestParams=new RequestParams();
         if (!TextUtils.isEmpty(uid)){
+            if (!TextUtils.isEmpty(phoneEditText.getText().toString())) {
+            if (phoneEditText.getText().toString().length()==11){
             if (!TextUtils.isEmpty(captchaEditText.getText().toString())){
-                if (captchaEditText.getText().toString().length()!=6){
-                  if (!TextUtils.isEmpty(phoneEditText.getText().toString())) {
-                      if (phoneEditText.getText().toString().length()!=11){
+                if (captchaEditText.getText().toString().length()==6){
+
                           requestParams.addBodyParameter("uid", uid);
                           requestParams.addBodyParameter("vcode",captchaEditText.getText().toString());
                           requestParams.addBodyParameter("mobile",phoneEditText.getText().toString());
@@ -129,23 +134,24 @@ public class BoundPhoneActivity extends ActionBarActivity implements View.OnClic
                           });
 
                       }else {
-                          MyAppliction.showToast("请输入11位手机号码");
+                    MyAppliction.showToast("验证码为6位");
 
                       }
 
                   }else {
-                      MyAppliction.showToast("请输入手机号码");
+                MyAppliction.showToast("请输入验证码");
                   }
 
 
 
                 }else {
-                    MyAppliction.showToast("验证码为6位");
 
+                    MyAppliction.showToast("请输入11位手机号码");
                 }
 
             }else {
-                MyAppliction.showToast("请输入验证码");
+
+                MyAppliction.showToast("请输入手机号码");
             }
 
 
