@@ -104,10 +104,13 @@ public class ResumeFragment extends Fragment implements View.OnClickListener,Pul
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), ResumeListParticularActivity.class);
-                intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
-                intent.putExtra("flage", "ResumeFragment");
-                startActivity(intent);
+                if (resumeValueBeans.size()!=0){
+                    Intent intent = new Intent(getActivity(), ResumeListParticularActivity.class);
+                    intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
+                    intent.putExtra("flage", "ResumeFragment");
+                    startActivity(intent);
+                }
+
 
 
 
