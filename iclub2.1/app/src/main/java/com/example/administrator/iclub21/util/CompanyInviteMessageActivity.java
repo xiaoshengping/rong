@@ -198,6 +198,8 @@ public class CompanyInviteMessageActivity extends ActionBarActivity implements V
 
         if (inviteMessgaeListValueBean.getBeStatus().equals("2")){
             commentLayout.setVisibility(View.GONE);
+        }else if (inviteMessgaeListValueBean.getBeStatus().equals("6")){
+            commentLayout.setVisibility(View.GONE);
         }
 
 
