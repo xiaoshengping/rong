@@ -73,6 +73,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     private SQLhelper sqLhelper;
     @ViewInject(R.id.progressbar)
     private ProgressBar progressbar;
+    private String weiBoUid;
 
     public static Tencent mTencent;
 
@@ -173,7 +174,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             public void onComplete(Bundle value, SHARE_MEDIA platform) {
                 if (value != null && !TextUtils.isEmpty(value.getString("uid"))) {
                     Toast.makeText(LoginActivity.this, "授权成功.",                      Toast.LENGTH_SHORT).show();
-                    weiboLogData(platform.toString());
+                    weiboLogData(weiBoUid);
                 } else {
                     Toast.makeText(LoginActivity.this, "授权失败",                       Toast.LENGTH_SHORT).show();
                 }
@@ -193,6 +194,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             @Override
             public void onComplete(int status, Map<String, Object> info) {
                 if (status == 200 && info != null) {
+                   weiBoUid= info.get("uid").toString();
                     StringBuilder sb = new StringBuilder();
                     Set<String> keys = info.keySet();
                     for (String key : keys) {

@@ -64,6 +64,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private String state;
     @ViewInject(R.id.share_sdk_layout)
     private LinearLayout shareLayout;
+    @ViewInject(R.id.role_image)
+    private ImageView roleImage;
+    @ViewInject(R.id.role_image_sr)
+    private ImageView roleImageSr;
     //分享
     private  UMSocialService mController;
 
@@ -90,13 +94,19 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         amendPswTv.setOnClickListener(this);
         amendAboutTv.setOnClickListener(this);
         shareLayout.setOnClickListener(this);
+        roleImageSr.setOnClickListener(this);
+
              intiSocial();
         SharedPreferences setting = getActivity().getSharedPreferences("myMineFragment", 0);
         Boolean user_first = setting.getBoolean("FIRST",true);
         if(user_first){//第一次
             setting.edit().putBoolean("FIRST", false).commit();
+            roleImage.setVisibility(View.VISIBLE);
+            roleImageSr.setVisibility(View.VISIBLE);
             //Toast.makeText(getActivity(), "第一次", Toast.LENGTH_LONG).show();
         }else{
+            roleImageSr.setVisibility(View.GONE);
+            roleImage.setVisibility(View.GONE);
             //Toast.makeText(getActivity(), "不是第一次", Toast.LENGTH_LONG).show();
         }
 
@@ -240,6 +250,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 showExitGameAlert();
                 break;
             case  R.id.mine_role_layout:
+                roleImageSr.setVisibility(View.GONE);
+                roleImage.setVisibility(View.GONE);
                 if (TextUtils.isEmpty(states)||states.equals("1")){
                     Intent intentRole = new Intent(getActivity(), RoleActivity.class);
                     startActivity(intentRole);
@@ -278,6 +290,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 //                startActivity(shareItent);\
                 mController.openShare(getActivity(), false);
                 break;
+           /* case R.id.role_image_sr:
+                roleImageSr.setVisibility(View.GONE);
+                roleImage.setVisibility(View.GONE);
+                break;*/
 
         }
     }
