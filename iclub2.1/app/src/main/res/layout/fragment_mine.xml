@@ -16,8 +16,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />-->
     <ImageView
-        android:visibility="gone"
-        android:layout_marginTop="185dp"
+
+        android:layout_marginTop="190dp"
         android:id="@+id/role_image"
         android:scaleType="fitXY"
         android:src="@mipmap/role_diyi_icon"

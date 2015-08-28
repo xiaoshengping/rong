@@ -39,6 +39,7 @@ import com.umeng.socialize.sso.SinaSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.sso.UMSsoHandler;
 import com.umeng.socialize.weixin.controller.UMWXHandler;
+import com.umeng.socialize.weixin.media.CircleShareContent;
 import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
 
@@ -140,13 +141,21 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         //设置分享文字
         weixinContent.setShareContent("我开始用【iclub】App了,全新的演艺招聘模式，专业的娱乐行业服务平台!");
         //设置title
-        weixinContent.setTitle("微信分享");
+        weixinContent.setTitle("iClub软件分享");
        //设置分享内容跳转URL
         weixinContent.setTargetUrl("http://www.iclubapps.com/");
         //设置分享图片
         weixinContent.setShareImage(new UMImage(getActivity(), R.mipmap.icon));
         mController.setShareMedia(weixinContent);
 
+        //设置微信朋友圈分享内容
+        CircleShareContent circleMedia = new CircleShareContent();
+        circleMedia.setShareContent("我开始用【iclub】App了,全新的演艺招聘模式，专业的娱乐行业服务平台!");
+//设置朋友圈title
+        circleMedia.setTitle("iClub软件分享");
+        circleMedia.setShareImage(new UMImage(getActivity(), R.mipmap.icon));
+        circleMedia.setTargetUrl("http://www.iclubapps.com/");
+        mController.setShareMedia(circleMedia);
 
 
         //qq好友
@@ -156,7 +165,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         qqSsoHandler.addToSocialSDK();
         QQShareContent qqShareContent = new QQShareContent();
         qqShareContent.setShareContent("我开始用【iclub】App了,全新的演艺招聘模式，专业的娱乐行业服务平台!");
-        qqShareContent.setTitle("QQ分享");
+        qqShareContent.setTitle("iClub软件分享");
         qqShareContent.setShareImage(new UMImage(getActivity(), R.mipmap.icon));
         qqShareContent.setTargetUrl("http://www.iclubapps.com/");
         mController.setShareMedia(qqShareContent);
@@ -169,7 +178,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         QZoneShareContent qzone = new QZoneShareContent();
         qzone.setShareContent("我开始用【iclub】App了,全新的演艺招聘模式，专业的娱乐行业服务平台!");
         qzone.setTargetUrl("http://www.iclubapps.com/");
-        qzone.setTitle("QQ空间分享");
+        qzone.setTitle("iClub软件分享");
         qzone.setShareImage(new UMImage(getActivity(), R.mipmap.icon));
         mController.setShareMedia(qzone);
        // https://api.weibo.com/oauth2/default.html
