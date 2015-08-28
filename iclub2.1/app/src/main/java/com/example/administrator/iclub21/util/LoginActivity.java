@@ -194,12 +194,13 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             @Override
             public void onComplete(int status, Map<String, Object> info) {
                 if (status == 200 && info != null) {
-                   weiBoUid= info.get("uid").toString();
+                    weiBoUid=info.values().toString();
                     StringBuilder sb = new StringBuilder();
                     Set<String> keys = info.keySet();
                     for (String key : keys) {
                         sb.append(key + "=" + info.get(key).toString() + "\r\n");
                     }
+
                     Log.d("TestData", sb.toString());
                 } else {
                     Log.d("TestData", "发生错误：" + status);
