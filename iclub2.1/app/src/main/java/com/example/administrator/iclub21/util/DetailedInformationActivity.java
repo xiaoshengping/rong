@@ -23,6 +23,8 @@ public class DetailedInformationActivity extends ActionBarActivity implements Vi
     private TextView contentDetailTv;
     @ViewInject(R.id.role_retrun_tv)
     private TextView retrunTv;
+    @ViewInject(R.id.text_tv)
+    private TextView textTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class DetailedInformationActivity extends ActionBarActivity implements Vi
     }
 
     private void inti() {
+        textTv.setText("公告消息");
         retrunTv.setOnClickListener(this);
         InformationValueBean informationValueBean= (InformationValueBean) getIntent().getSerializableExtra("informationValueBeans");
         tailteDetailTv.setText(informationValueBean.getTitle());
